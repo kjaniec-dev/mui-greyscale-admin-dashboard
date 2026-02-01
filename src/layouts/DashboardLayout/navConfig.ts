@@ -37,6 +37,8 @@ import {
     Edit as BlogEditIcon,
     Login as LoginIcon,
     LockReset as ForgotPasswordIcon,
+    Business as BusinessIcon,
+    MonetizationOn as MonetizationOnIcon,
 } from '@mui/icons-material';
 import type { SvgIconProps } from '@mui/material';
 
@@ -143,6 +145,21 @@ export const navConfig: NavSection[] = [
                     { title: 'Posts', path: '/blog/list', icon: ListIcon },
                     { title: 'Create', path: '/blog/create', icon: BlogEditIcon },
                 ],
+            },
+        ],
+    },
+    {
+        title: 'CRM',
+        items: [
+            {
+                title: 'Companies',
+                path: '/crm/companies',
+                icon: BusinessIcon,
+            },
+            {
+                title: 'Deals',
+                path: '/crm/deals',
+                icon: MonetizationOnIcon,
             },
         ],
     },

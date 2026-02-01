@@ -103,7 +103,7 @@ A comprehensive list of all sections and features to implement for a complete ad
 |---------|-------------|----------|
 | ~~Transactions~~ | ~~Payment history~~ | ✅ Done |
 | ~~Refunds~~ | ~~Refund management~~ | ✅ Done |
-| Subscriptions | Recurring billing | Medium |
+| ~~Subscriptions~~ | ~~Recurring billing~~ | ✅ Done |
 | Tax Reports | Tax documentation | Low |
 | Payouts | Vendor/affiliate payments | Medium |
 
@@ -128,7 +128,7 @@ A comprehensive list of all sections and features to implement for a complete ad
 | Orders List | Order management DataGrid | High |
 | Order Details | Order detail page with timeline | High |
 | Order Status | Status updates | High |
-| Order Tracking | Shipping tracking | Medium |
+| ~~Order Tracking~~ | ~~Shipping tracking~~ | ✅ Done |
 
 ---
 

@@ -12,6 +12,7 @@ import { LeadsPage } from '../pages/leads';
 import { SettingsPage } from '../pages/settings';
 import { NotificationsPage } from '../pages/notifications';
 import { BlogCreatePage, BlogPostsPage, BlogDetailPage, BlogEditPage } from '../pages/blog';
+import { CompaniesPage, DealsPage } from '../pages/crm';
 import { TransactionsPage } from '../pages/finance/TransactionsPage';
 import { RefundsPage } from '../pages/finance/RefundsPage';
 import { SubscriptionsPage } from '../pages/finance/SubscriptionsPage';
@@ -104,6 +105,15 @@ export const router = createBrowserRouter([
             {
                 path: 'customers',
                 element: <CustomersPage />,
+            },
+            // CRM
+            {
+                path: 'crm/companies',
+                element: <CompaniesPage />,
+            },
+            {
+                path: 'crm/deals',
+                element: <DealsPage />,
             },
             // Finance management
             {
