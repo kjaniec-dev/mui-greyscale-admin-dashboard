@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, Typography, alpha } from '@mui/material';
 import { TrendingUp, TrendingDown } from '@mui/icons-material';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 interface StatCardProps {
     title: string;

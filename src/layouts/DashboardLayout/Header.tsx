@@ -3,7 +3,6 @@ import {
     Toolbar,
     IconButton,
     InputBase,
-    Badge,
     Avatar,
     Box,
     Tooltip,
@@ -16,7 +15,6 @@ import {
 import {
     Menu as MenuIcon,
     Search as SearchIcon,
-    Notifications as NotificationsIcon,
     DarkMode as DarkModeIcon,
     LightMode as LightModeIcon,
     Settings as SettingsIcon,
@@ -25,6 +23,7 @@ import {
 } from '@mui/icons-material';
 import { useState } from 'react';
 import { useThemeMode, neutral } from '../../theme';
+import { NotificationPanel } from '../../components/common';
 import { DRAWER_WIDTH, COLLAPSED_WIDTH } from './Sidebar';
 
 interface HeaderProps {
@@ -108,13 +107,7 @@ export function Header({ onMenuClick, sidebarCollapsed, isMobile }: HeaderProps)
                     </Tooltip>
 
                     {/* Notifications */}
-                    <Tooltip title="Notifications">
-                        <IconButton sx={{ color: 'text.primary' }}>
-                            <Badge badgeContent={4} color="error">
-                                <NotificationsIcon />
-                            </Badge>
-                        </IconButton>
-                    </Tooltip>
+                    <NotificationPanel />
 
                     {/* Settings */}
                     <Tooltip title="Settings">
