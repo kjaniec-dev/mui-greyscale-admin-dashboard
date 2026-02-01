@@ -13,6 +13,12 @@ export interface OrderCustomer {
     phone?: string;
 }
 
+export interface OrderTimelineEvent {
+    status: Order['status'];
+    description: string;
+    date: Date;
+}
+
 export interface Order {
     id: string;
     orderNumber: string;
@@ -35,6 +41,7 @@ export interface Order {
     notes?: string;
     createdAt: Date;
     updatedAt: Date;
+    timeline: OrderTimelineEvent[];
 }
 
 const customerNames = [
@@ -101,6 +108,50 @@ function generateOrderItems(): OrderItem[] {
     return items;
 }
 
+function generateTimeline(status: Order['status'], createdAt: Date): OrderTimelineEvent[] {
+    const timeline: OrderTimelineEvent[] = [
+        { status: 'Pending', description: 'Order placed', date: createdAt },
+    ];
+
+    if (status === 'Cancelled') {
+        timeline.push({
+            status: 'Cancelled',
+            description: 'Order cancelled',
+            date: new Date(createdAt.getTime() + 1000 * 60 * 60 * 2), // 2 hours later
+        });
+        return timeline;
+    }
+
+    // Add Processing
+    if (['Processing', 'Shipped', 'Delivered'].includes(status)) {
+        timeline.push({
+            status: 'Processing',
+            description: 'Payment confirmed, processing order',
+            date: new Date(createdAt.getTime() + 1000 * 60 * 30), // 30 mins later
+        });
+    }
+
+    // Add Shipped
+    if (['Shipped', 'Delivered'].includes(status)) {
+        timeline.push({
+            status: 'Shipped',
+            description: 'Order has been shipped',
+            date: new Date(createdAt.getTime() + 1000 * 60 * 60 * 24), // 1 day later
+        });
+    }
+
+    // Add Delivered
+    if (status === 'Delivered') {
+        timeline.push({
+            status: 'Delivered',
+            description: 'Order delivered',
+            date: new Date(createdAt.getTime() + 1000 * 60 * 60 * 24 * 3), // 3 days later
+        });
+    }
+
+    return timeline;
+}
+
 function generateOrder(index: number): Order {
     const customerName = getRandomElement(customerNames);
     const nameParts = customerName.split(' ');
@@ -117,7 +168,9 @@ function generateOrder(index: number): Order {
 
     const cityIndex = getRandomInt(0, cities.length - 1);
     const createdAt = getRandomDate(new Date(2024, 0, 1), new Date());
-    const updatedAt = getRandomDate(createdAt, new Date());
+    // Ensure updatedAt is the date of the last timeline event
+    const timeline = generateTimeline(status, createdAt);
+    const updatedAt = timeline[timeline.length - 1].date;
 
     return {
         id: `order-${index + 1}`,
@@ -145,6 +198,7 @@ function generateOrder(index: number): Order {
         },
         createdAt,
         updatedAt,
+        timeline,
     };
 }
 

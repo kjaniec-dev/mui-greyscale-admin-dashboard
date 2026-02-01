@@ -51,6 +51,10 @@ A comprehensive list of all sections and features to implement for a complete ad
 ### Content
 - [x] Blog Posts (List, Create, Edit, Detail)
 
+### Marketing
+- [x] Coupons List (DataGrid)
+- [x] Coupon Create/Edit Actions
+
 ### Authentication
 - [x] Login Page
 - [x] Register Page
@@ -133,8 +137,8 @@ A comprehensive list of all sections and features to implement for a complete ad
 |---------|-------------|----------|
 | Invoice List | Invoice DataGrid | High |
 | Invoice Detail | Invoice preview page | High |
-| Invoice Create | Invoice creation form | Medium |
-| PDF Export | Generate PDF invoices | High |
+| ~~Invoice Create~~ | ~~Invoice creation form~~ | ✅ Done |
+| ~~PDF Export~~ | ~~Generate PDF invoices~~ | ✅ Done |
 
 ---
 
@@ -154,7 +158,7 @@ A comprehensive list of all sections and features to implement for a complete ad
 |---------|-------------|----------|
 | Campaigns | Marketing campaigns | Medium |
 | Email Templates | Newsletter builder | Medium |
-| Coupons/Discounts | Promo code management | High |
+| ~~Coupons/Discounts~~ | ~~Promo code management~~ | ✅ Done |
 | Affiliates | Affiliate program | Low |
 | Social Media | Social integrations | Low |
 

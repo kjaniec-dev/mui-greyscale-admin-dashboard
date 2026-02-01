@@ -24,6 +24,19 @@ import {
     VpnKey as TwoFactorIcon,
     PermMedia as MediaIcon,
     Campaign as CampaignIcon,
+    ReceiptLong as TransactionsIcon,
+    CurrencyExchange as RefundsIcon,
+    Autorenew as SubscriptionsIcon,
+    FormatListBulleted as ListIcon,
+    PersonAdd as UserAddIcon,
+    AccountBox as UserProfileIcon,
+    ManageAccounts as UserAccountIcon,
+    AddCircleOutline as CreateIcon,
+    Info as DetailsIcon,
+    PostAdd as InvoiceCreateIcon,
+    Edit as BlogEditIcon,
+    Login as LoginIcon,
+    LockReset as ForgotPasswordIcon,
 } from '@mui/icons-material';
 import type { SvgIconProps } from '@mui/material';
 
@@ -63,10 +76,10 @@ export const navConfig: NavSection[] = [
                 path: '/users',
                 icon: UsersIcon,
                 children: [
-                    { title: 'List', path: '/users' },
-                    { title: 'Create', path: '/users/create' },
-                    { title: 'Profile', path: '/users/profile' },
-                    { title: 'Account', path: '/users/account' },
+                    { title: 'List', path: '/users', icon: ListIcon },
+                    { title: 'Create', path: '/users/create', icon: UserAddIcon },
+                    { title: 'Profile', path: '/users/profile', icon: UserProfileIcon },
+                    { title: 'Account', path: '/users/account', icon: UserAccountIcon },
                 ],
             },
             {
@@ -74,8 +87,8 @@ export const navConfig: NavSection[] = [
                 path: '/products',
                 icon: ProductsIcon,
                 children: [
-                    { title: 'List', path: '/products' },
-                    { title: 'Create', path: '/products/create' },
+                    { title: 'List', path: '/products', icon: ListIcon },
+                    { title: 'Create', path: '/products/create', icon: CreateIcon },
                 ],
             },
             {
@@ -83,9 +96,9 @@ export const navConfig: NavSection[] = [
                 path: '/orders',
                 icon: OrdersIcon,
                 children: [
-                    { title: 'List', path: '/orders' },
-                    { title: 'Create', path: '/orders/create' },
-                    { title: 'Details', path: '/orders/details' },
+                    { title: 'List', path: '/orders', icon: ListIcon },
+                    { title: 'Create', path: '/orders/create', icon: CreateIcon },
+                    { title: 'Details', path: '/orders/details', icon: DetailsIcon },
                 ],
             },
             {
@@ -93,8 +106,8 @@ export const navConfig: NavSection[] = [
                 path: '/invoices',
                 icon: InvoicesIcon,
                 children: [
-                    { title: 'List', path: '/invoices' },
-                    { title: 'Create', path: '/invoices/create' },
+                    { title: 'List', path: '/invoices', icon: ListIcon },
+                    { title: 'Create', path: '/invoices/create', icon: InvoiceCreateIcon },
                 ],
             },
             {
@@ -102,8 +115,9 @@ export const navConfig: NavSection[] = [
                 path: '/finance',
                 icon: FinanceIcon,
                 children: [
-                    { title: 'Transactions', path: '/finance/transactions' },
-                    { title: 'Refunds', path: '/finance/refunds' },
+                    { title: 'Transactions', path: '/finance/transactions', icon: TransactionsIcon },
+                    { title: 'Refunds', path: '/finance/refunds', icon: RefundsIcon },
+                    { title: 'Subscriptions', path: '/finance/subscriptions', icon: SubscriptionsIcon },
                 ],
             },
             {
@@ -126,8 +140,8 @@ export const navConfig: NavSection[] = [
                 path: '/blog',
                 icon: BlogIcon,
                 children: [
-                    { title: 'Posts', path: '/blog/list' },
-                    { title: 'Create', path: '/blog/create' },
+                    { title: 'Posts', path: '/blog/list', icon: ListIcon },
+                    { title: 'Create', path: '/blog/create', icon: BlogEditIcon },
                 ],
             },
         ],
@@ -160,9 +174,9 @@ export const navConfig: NavSection[] = [
                 path: '/auth',
                 icon: AuthIcon,
                 children: [
-                    { title: 'Login', path: '/auth/login' },
-                    { title: 'Register', path: '/auth/register' },
-                    { title: 'Forgot Password', path: '/auth/forgot-password' },
+                    { title: 'Login', path: '/auth/login', icon: LoginIcon },
+                    { title: 'Register', path: '/auth/register', icon: UserAddIcon },
+                    { title: 'Forgot Password', path: '/auth/forgot-password', icon: ForgotPasswordIcon },
                 ],
             },
         ],

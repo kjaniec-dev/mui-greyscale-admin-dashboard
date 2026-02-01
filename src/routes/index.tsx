@@ -14,6 +14,7 @@ import { NotificationsPage } from '../pages/notifications';
 import { BlogCreatePage, BlogPostsPage, BlogDetailPage, BlogEditPage } from '../pages/blog';
 import { TransactionsPage } from '../pages/finance/TransactionsPage';
 import { RefundsPage } from '../pages/finance/RefundsPage';
+import { SubscriptionsPage } from '../pages/finance/SubscriptionsPage';
 import { CouponsPage } from '../pages/marketing/CouponsPage';
 import { CalendarPage, KanbanPage, MailPage, ChatPage, FileManagerPage } from '../pages/apps';
 import { LoginPage, RegisterPage, ForgotPasswordPage } from '../pages/auth';
@@ -112,6 +113,10 @@ export const router = createBrowserRouter([
             {
                 path: 'finance/refunds',
                 element: <RefundsPage />,
+            },
+            {
+                path: 'finance/subscriptions',
+                element: <SubscriptionsPage />,
             },
             // Tickets management
             {

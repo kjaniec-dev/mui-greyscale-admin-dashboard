@@ -23,10 +23,11 @@ import {
     Phone as PhoneIcon,
     LocalShipping as ShippingIcon,
     Payment as PaymentIcon,
-    CalendarToday as CalendarIcon,
+
     Edit as EditIcon,
 } from '@mui/icons-material';
 import { mockOrders } from '../../data/mockOrders';
+import { OrderTracking } from './components/OrderTracking';
 
 function formatCurrency(amount: number): string {
     return new Intl.NumberFormat('en-US', {
@@ -289,23 +290,8 @@ export function OrderDetailsPage() {
                     </Paper>
 
                     {/* Timeline */}
-                    <Paper sx={sectionSx}>
-                        <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
-                            Timeline
-                        </Typography>
-                        <Stack spacing={2}>
-                            <InfoRow
-                                icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
-                                label="Created"
-                                value={formatDate(order.createdAt)}
-                            />
-                            <InfoRow
-                                icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
-                                label="Last Updated"
-                                value={formatDate(order.updatedAt)}
-                            />
-                        </Stack>
-                    </Paper>
+                    {/* Timeline */}
+                    <OrderTracking order={order} />
                 </Box>
             </Box>
         </Box>

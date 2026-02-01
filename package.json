@@ -23,6 +23,7 @@
     "@mui/material": "^7.3.6",
     "@mui/x-charts": "^8.24.0",
     "@mui/x-data-grid": "^8.23.0",
+    "@react-pdf/renderer": "^4.3.2",
     "framer-motion": "^12.23.26",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
