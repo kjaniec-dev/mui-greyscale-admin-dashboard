@@ -22,7 +22,7 @@ import { LoginPage, RegisterPage, ForgotPasswordPage } from '../pages/auth';
 import { ComponentsShowcasePage } from '../pages/components';
 import { ExportCenterPage } from '../pages/export';
 import { RolesPermissionsPage } from '../pages/roles';
-import { TwoFactorAuthPage } from '../pages/security';
+import { TwoFactorAuthPage, AuditLogsPage } from '../pages/security';
 import { MediaLibraryPage } from '../pages/media';
 import { ReportsListPage, ReportBuilderPage } from '../pages/reports';
 import { ErrorPage } from '../components/ErrorPage';
@@ -233,6 +233,10 @@ export const router = createBrowserRouter([
             {
                 path: 'media',
                 element: <MediaLibraryPage />,
+            },
+            {
+                path: 'audit-logs',
+                element: <AuditLogsPage />,
             },
         ],
     },

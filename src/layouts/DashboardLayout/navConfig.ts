@@ -40,6 +40,7 @@ import {
     Business as BusinessIcon,
     MonetizationOn as MonetizationOnIcon,
     Assessment as ReportsIcon,
+    History as AuditIcon,
 } from '@mui/icons-material';
 import type { SvgIconProps } from '@mui/material';
 
@@ -213,6 +214,7 @@ export const navConfig: NavSection[] = [
         items: [
             { title: 'Roles', path: '/roles', icon: RolesIcon },
             { title: 'Two-Factor Auth', path: '/2fa', icon: TwoFactorIcon },
+            { title: 'Audit Logs', path: '/audit-logs', icon: AuditIcon },
             { title: 'Media Library', path: '/media', icon: MediaIcon },
             { title: 'Export Center', path: '/export', icon: ExportIcon },
             { title: 'Components', path: '/components', icon: ComponentsIcon },
