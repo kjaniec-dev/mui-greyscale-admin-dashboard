@@ -9,7 +9,7 @@ import { InvoicesPage, InvoiceCreatePage } from '../pages/invoices';
 import { CustomersPage } from '../pages/customers';
 import { TicketsPage } from '../pages/tickets';
 import { LeadsPage } from '../pages/leads';
-import { SettingsPage } from '../pages/settings';
+import { SettingsPage, ApiKeysPage } from '../pages/settings';
 import { NotificationsPage } from '../pages/notifications';
 import { BlogCreatePage, BlogPostsPage, BlogDetailPage, BlogEditPage } from '../pages/blog';
 import { CompaniesPage, DealsPage } from '../pages/crm';
@@ -237,6 +237,10 @@ export const router = createBrowserRouter([
             {
                 path: 'audit-logs',
                 element: <AuditLogsPage />,
+            },
+            {
+                path: 'api-keys',
+                element: <ApiKeysPage />,
             },
         ],
     },

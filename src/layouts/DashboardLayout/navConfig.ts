@@ -215,6 +215,7 @@ export const navConfig: NavSection[] = [
             { title: 'Roles', path: '/roles', icon: RolesIcon },
             { title: 'Two-Factor Auth', path: '/2fa', icon: TwoFactorIcon },
             { title: 'Audit Logs', path: '/audit-logs', icon: AuditIcon },
+            { title: 'API Keys', path: '/api-keys', icon: TwoFactorIcon },
             { title: 'Media Library', path: '/media', icon: MediaIcon },
             { title: 'Export Center', path: '/export', icon: ExportIcon },
             { title: 'Components', path: '/components', icon: ComponentsIcon },

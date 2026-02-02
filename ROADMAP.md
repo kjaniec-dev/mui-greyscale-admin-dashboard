@@ -180,7 +180,7 @@ A comprehensive list of all sections and features to implement for a complete ad
 |---------|-------------|----------|
 | ~~Roles & Permissions~~ | ~~RBAC management~~ | ✅ Done |
 | ~~Audit Logs~~ | ~~Activity history~~ | ✅ Done |
-| API Keys | API access management | Medium |
+| ~~API Keys~~ | ~~API access management~~ | ✅ Done |
 | ~~Two-Factor Auth~~ | ~~2FA settings~~ | ✅ Done |
 | Session Management | Active sessions | Medium |
 
