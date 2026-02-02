@@ -24,6 +24,7 @@ import { ExportCenterPage } from '../pages/export';
 import { RolesPermissionsPage } from '../pages/roles';
 import { TwoFactorAuthPage } from '../pages/security';
 import { MediaLibraryPage } from '../pages/media';
+import { ReportsListPage, ReportBuilderPage } from '../pages/reports';
 import { ErrorPage } from '../components/ErrorPage';
 
 export const router = createBrowserRouter([
@@ -49,6 +50,19 @@ export const router = createBrowserRouter([
             {
                 path: 'dashboard/ecommerce',
                 element: <EcommercePage />,
+            },
+            // Reports
+            {
+                path: 'reports',
+                element: <ReportsListPage />,
+            },
+            {
+                path: 'reports/new',
+                element: <ReportBuilderPage />,
+            },
+            {
+                path: 'reports/:id/edit',
+                element: <ReportBuilderPage />,
             },
             // Users management
             {

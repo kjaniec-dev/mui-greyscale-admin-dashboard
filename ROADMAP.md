@@ -79,7 +79,7 @@ A comprehensive list of all sections and features to implement for a complete ad
 ### 📊 Analytics & Reporting
 | Feature | Description | Priority |
 |---------|-------------|----------|
-| Reports Builder | Custom report generation | Medium |
+| ~~Reports Builder~~ | ~~Custom report generation~~ | ✅ Done |
 | ~~Data Export Center~~ | ~~CSV, Excel, PDF exports~~ | ✅ Done |
 | Scheduled Reports | Automated report delivery | Low |
 | Real-time Dashboard | Live metrics with WebSocket | Medium |

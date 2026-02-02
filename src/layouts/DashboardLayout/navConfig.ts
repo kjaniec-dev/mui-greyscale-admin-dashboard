@@ -39,6 +39,7 @@ import {
     LockReset as ForgotPasswordIcon,
     Business as BusinessIcon,
     MonetizationOn as MonetizationOnIcon,
+    Assessment as ReportsIcon,
 } from '@mui/icons-material';
 import type { SvgIconProps } from '@mui/material';
 
@@ -66,6 +67,15 @@ export const navConfig: NavSection[] = [
                     { title: 'App', path: '/dashboard' },
                     { title: 'Analytics', path: '/dashboard/analytics' },
                     { title: 'E-commerce', path: '/dashboard/ecommerce' },
+                ],
+            },
+            {
+                title: 'Reports',
+                path: '/reports',
+                icon: ReportsIcon,
+                children: [
+                    { title: 'All Reports', path: '/reports', icon: ListIcon },
+                    { title: 'Create', path: '/reports/new', icon: CreateIcon },
                 ],
             },
         ],
