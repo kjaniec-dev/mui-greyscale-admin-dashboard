@@ -5,3 +5,8 @@ export { InvoiceTable } from './InvoiceTable';
 export { CustomerTable } from './CustomerTable';
 export { TicketTable } from './TicketTable';
 export { LeadTable } from './LeadTable';
+export { WarehouseTable } from './WarehouseTable';
+export { SupplierTable } from './SupplierTable';
+export { ReturnTable } from './ReturnTable';
+export { StockLevelTable } from './StockLevelTable';
+

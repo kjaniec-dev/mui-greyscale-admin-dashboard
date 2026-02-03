@@ -41,6 +41,10 @@ import {
     MonetizationOn as MonetizationOnIcon,
     Assessment as ReportsIcon,
     History as AuditIcon,
+    Warehouse as WarehouseIcon,
+    LocalShipping as SuppliersIcon,
+    AssignmentReturn as ReturnsIcon,
+    Inventory2 as StockIcon,
 } from '@mui/icons-material';
 import type { SvgIconProps } from '@mui/material';
 
@@ -156,6 +160,31 @@ export const navConfig: NavSection[] = [
                     { title: 'Posts', path: '/blog/list', icon: ListIcon },
                     { title: 'Create', path: '/blog/create', icon: BlogEditIcon },
                 ],
+            },
+        ],
+    },
+    {
+        title: 'Inventory',
+        items: [
+            {
+                title: 'Warehouses',
+                path: '/inventory/warehouses',
+                icon: WarehouseIcon,
+            },
+            {
+                title: 'Stock Levels',
+                path: '/inventory/stock-levels',
+                icon: StockIcon,
+            },
+            {
+                title: 'Suppliers',
+                path: '/inventory/suppliers',
+                icon: SuppliersIcon,
+            },
+            {
+                title: 'Returns',
+                path: '/inventory/returns',
+                icon: ReturnsIcon,
             },
         ],
     },

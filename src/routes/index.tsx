@@ -18,6 +18,7 @@ import { RefundsPage } from '../pages/finance/RefundsPage';
 import { SubscriptionsPage } from '../pages/finance/SubscriptionsPage';
 import { CouponsPage } from '../pages/marketing/CouponsPage';
 import { CalendarPage, KanbanPage, MailPage, ChatPage, FileManagerPage } from '../pages/apps';
+import { WarehousesPage, SuppliersPage, ReturnsPage, StockLevelsPage } from '../pages/inventory';
 import { LoginPage, RegisterPage, ForgotPasswordPage } from '../pages/auth';
 import { ComponentsShowcasePage } from '../pages/components';
 import { ExportCenterPage } from '../pages/export';
@@ -171,6 +172,23 @@ export const router = createBrowserRouter([
             {
                 path: 'blog/edit/:id',
                 element: <BlogEditPage />,
+            },
+            // Inventory
+            {
+                path: 'inventory/warehouses',
+                element: <WarehousesPage />,
+            },
+            {
+                path: 'inventory/stock-levels',
+                element: <StockLevelsPage />,
+            },
+            {
+                path: 'inventory/suppliers',
+                element: <SuppliersPage />,
+            },
+            {
+                path: 'inventory/returns',
+                element: <ReturnsPage />,
             },
             // Marketing
             {
