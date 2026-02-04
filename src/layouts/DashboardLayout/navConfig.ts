@@ -46,6 +46,7 @@ import {
     LocalShipping as SuppliersIcon,
     AssignmentReturn as ReturnsIcon,
     Inventory2 as StockIcon,
+    Summarize as TaxIcon,
 } from '@mui/icons-material';
 import type { SvgIconProps } from '@mui/material';
 
@@ -138,6 +139,7 @@ export const navConfig: NavSection[] = [
                     { title: 'Refunds', path: '/finance/refunds', icon: RefundsIcon },
                     { title: 'Subscriptions', path: '/finance/subscriptions', icon: SubscriptionsIcon },
                     { title: 'Payouts', path: '/finance/payouts', icon: PaymentsIcon },
+                    { title: 'Tax Reports', path: '/finance/tax-reports', icon: TaxIcon },
                 ],
             },
             {

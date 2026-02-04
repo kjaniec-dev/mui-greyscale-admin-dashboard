@@ -17,6 +17,7 @@ import { TransactionsPage } from '../pages/finance/TransactionsPage';
 import { RefundsPage } from '../pages/finance/RefundsPage';
 import { SubscriptionsPage } from '../pages/finance/SubscriptionsPage';
 import { PayoutsPage } from '../pages/finance/PayoutsPage';
+import { TaxReportsPage } from '../pages/finance/TaxReportsPage';
 import { CouponsPage } from '../pages/marketing/CouponsPage';
 import { CalendarPage, KanbanPage, MailPage, ChatPage, FileManagerPage } from '../pages/apps';
 import { WarehousesPage, SuppliersPage, ReturnsPage, StockLevelsPage } from '../pages/inventory';
@@ -151,6 +152,10 @@ export const router = createBrowserRouter([
             {
                 path: 'finance/payouts',
                 element: <PayoutsPage />,
+            },
+            {
+                path: 'finance/tax-reports',
+                element: <TaxReportsPage />,
             },
             // Tickets management
             {
