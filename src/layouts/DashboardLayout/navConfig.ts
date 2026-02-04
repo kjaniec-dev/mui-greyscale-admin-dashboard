@@ -27,6 +27,7 @@ import {
     ReceiptLong as TransactionsIcon,
     CurrencyExchange as RefundsIcon,
     Autorenew as SubscriptionsIcon,
+    Payments as PaymentsIcon,
     FormatListBulleted as ListIcon,
     PersonAdd as UserAddIcon,
     AccountBox as UserProfileIcon,
@@ -72,6 +73,7 @@ export const navConfig: NavSection[] = [
                     { title: 'App', path: '/dashboard' },
                     { title: 'Analytics', path: '/dashboard/analytics' },
                     { title: 'E-commerce', path: '/dashboard/ecommerce' },
+                    { title: 'Real-time', path: '/dashboard/realtime' },
                 ],
             },
             {
@@ -135,6 +137,7 @@ export const navConfig: NavSection[] = [
                     { title: 'Transactions', path: '/finance/transactions', icon: TransactionsIcon },
                     { title: 'Refunds', path: '/finance/refunds', icon: RefundsIcon },
                     { title: 'Subscriptions', path: '/finance/subscriptions', icon: SubscriptionsIcon },
+                    { title: 'Payouts', path: '/finance/payouts', icon: PaymentsIcon },
                 ],
             },
             {

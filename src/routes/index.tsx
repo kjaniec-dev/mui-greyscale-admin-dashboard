@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { DashboardLayout } from '../layouts/DashboardLayout';
 import { AuthLayout } from '../layouts/AuthLayout';
-import { OverviewPage, AnalyticsPage, EcommercePage } from '../pages/dashboard';
+import { OverviewPage, AnalyticsPage, EcommercePage, RealTimePage } from '../pages/dashboard';
 import { UsersPage, UserProfilePage, UserCreatePage, UserAccountPage } from '../pages/users';
 import { ProductsPage, ProductCreatePage } from '../pages/products';
 import { OrdersPage, OrderCreatePage, OrderDetailsPage } from '../pages/orders';
@@ -16,6 +16,7 @@ import { CompaniesPage, DealsPage } from '../pages/crm';
 import { TransactionsPage } from '../pages/finance/TransactionsPage';
 import { RefundsPage } from '../pages/finance/RefundsPage';
 import { SubscriptionsPage } from '../pages/finance/SubscriptionsPage';
+import { PayoutsPage } from '../pages/finance/PayoutsPage';
 import { CouponsPage } from '../pages/marketing/CouponsPage';
 import { CalendarPage, KanbanPage, MailPage, ChatPage, FileManagerPage } from '../pages/apps';
 import { WarehousesPage, SuppliersPage, ReturnsPage, StockLevelsPage } from '../pages/inventory';
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
             {
                 path: 'dashboard/ecommerce',
                 element: <EcommercePage />,
+            },
+            {
+                path: 'dashboard/realtime',
+                element: <RealTimePage />,
             },
             // Reports
             {
@@ -142,6 +147,10 @@ export const router = createBrowserRouter([
             {
                 path: 'finance/subscriptions',
                 element: <SubscriptionsPage />,
+            },
+            {
+                path: 'finance/payouts',
+                element: <PayoutsPage />,
             },
             // Tickets management
             {

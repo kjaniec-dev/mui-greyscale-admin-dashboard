@@ -11,3 +11,4 @@ export {
     FormSkeleton,
 } from './LoadingSkeletons';
 export { EmptyState, TableEmptyState, CardEmptyState } from './EmptyState';
+export { ConnectionStatus } from './ConnectionStatus';
