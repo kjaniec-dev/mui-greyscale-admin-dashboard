@@ -8,4 +8,5 @@ export { LeadDetailDrawer } from './LeadDetailDrawer';
 export { WarehouseDetailDrawer } from './WarehouseDetailDrawer';
 export { SupplierDetailDrawer } from './SupplierDetailDrawer';
 export { ReturnDetailDrawer } from './ReturnDetailDrawer';
+export { PayoutDetailDrawer } from './PayoutDetailDrawer';
 

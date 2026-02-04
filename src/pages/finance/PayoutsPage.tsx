@@ -23,6 +23,7 @@ import {
     type GridRenderCellParams,
 } from '@mui/x-data-grid';
 import { mockPayouts, type Payout } from '../../data/mockPayouts';
+import { PayoutDetailDrawer } from '../../components/drawers/PayoutDetailDrawer';
 
 const currencyFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -43,6 +44,7 @@ export function PayoutsPage() {
     const [typeFilter, setTypeFilter] = useState<string>('all');
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [selectedPayout, setSelectedPayout] = useState<Payout | null>(null);
+    const [drawerOpen, setDrawerOpen] = useState(false);
 
     const handleMenuOpen = (event: React.MouseEvent<HTMLElement>, payout: Payout) => {
         setAnchorEl(event.currentTarget);
@@ -51,6 +53,15 @@ export function PayoutsPage() {
 
     const handleMenuClose = () => {
         setAnchorEl(null);
+    };
+
+    const handleViewDetails = () => {
+        setDrawerOpen(true);
+        handleMenuClose();
+    };
+
+    const handleDrawerClose = () => {
+        setDrawerOpen(false);
         setSelectedPayout(null);
     };
 
@@ -306,7 +317,7 @@ export function PayoutsPage() {
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                 transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             >
-                <MenuItem onClick={() => handleAction('View')}>
+                <MenuItem onClick={handleViewDetails}>
                     View Details
                 </MenuItem>
                 {selectedPayout?.status === 'Pending' && (
@@ -325,6 +336,13 @@ export function PayoutsPage() {
                     </MenuItem>
                 )}
             </Menu>
+
+            {/* Detail Drawer */}
+            <PayoutDetailDrawer
+                open={drawerOpen}
+                onClose={handleDrawerClose}
+                payout={selectedPayout}
+            />
         </Box>
     );
 }
