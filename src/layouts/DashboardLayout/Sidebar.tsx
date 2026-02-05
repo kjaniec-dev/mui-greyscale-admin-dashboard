@@ -176,11 +176,6 @@ export function Sidebar({
                         Dashboard
                     </Typography>
                 )}
-                {collapsed && (
-                    <Typography variant="h6" fontWeight={700} color="text.primary">
-                        D
-                    </Typography>
-                )}
                 <Tooltip title={collapsed ? 'Expand' : 'Collapse'}>
                     <IconButton onClick={onToggleCollapse} size="small">
                         {collapsed ? <ChevronRight /> : <ChevronLeft />}

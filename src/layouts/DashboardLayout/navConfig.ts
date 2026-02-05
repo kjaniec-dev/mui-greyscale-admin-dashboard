@@ -216,6 +216,11 @@ export const navConfig: NavSection[] = [
                 path: '/marketing/coupons',
                 icon: CampaignIcon,
             },
+            {
+                title: 'Campaigns',
+                path: '/marketing/campaigns',
+                icon: CampaignIcon,
+            },
         ],
     },
     {

@@ -156,7 +156,7 @@ A comprehensive list of all sections and features to implement for a complete ad
 ### 📢 Marketing
 | Feature | Description | Priority |
 |---------|-------------|----------|
-| Campaigns | Marketing campaigns | Medium |
+| ~~Campaigns~~ | ~~Marketing campaigns~~ | ✅ Done |
 | Email Templates | Newsletter builder | Medium |
 | ~~Coupons/Discounts~~ | ~~Promo code management~~ | ✅ Done |
 | Affiliates | Affiliate program | Low |
