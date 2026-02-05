@@ -47,6 +47,7 @@ import {
     AssignmentReturn as ReturnsIcon,
     Inventory2 as StockIcon,
     Summarize as TaxIcon,
+    Email as EmailIcon,
 } from '@mui/icons-material';
 import type { SvgIconProps } from '@mui/material';
 
@@ -220,6 +221,11 @@ export const navConfig: NavSection[] = [
                 title: 'Campaigns',
                 path: '/marketing/campaigns',
                 icon: CampaignIcon,
+            },
+            {
+                title: 'Email Templates',
+                path: '/marketing/email-templates',
+                icon: EmailIcon,
             },
         ],
     },
