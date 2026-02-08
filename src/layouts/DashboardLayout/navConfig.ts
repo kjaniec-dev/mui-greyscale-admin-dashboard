@@ -49,6 +49,7 @@ import {
     Summarize as TaxIcon,
     Email as EmailIcon,
     Devices as DevicesIcon,
+    ChatBubble as ChatHistoryIcon,
     MenuBook as KnowledgeBaseIcon,
 } from '@mui/icons-material';
 import type { SvgIconProps } from '@mui/material';
@@ -154,6 +155,11 @@ export const navConfig: NavSection[] = [
                 title: 'Tickets',
                 path: '/tickets',
                 icon: TicketsIcon,
+            },
+            {
+                title: 'Chat History',
+                path: '/chat-history',
+                icon: ChatHistoryIcon,
             },
             {
                 title: 'Knowledge Base',

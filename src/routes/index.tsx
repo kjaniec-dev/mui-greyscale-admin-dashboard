@@ -8,6 +8,7 @@ import { OrdersPage, OrderCreatePage, OrderDetailsPage } from '../pages/orders';
 import { InvoicesPage, InvoiceCreatePage } from '../pages/invoices';
 import { CustomersPage } from '../pages/customers';
 import { TicketsPage } from '../pages/tickets';
+import { ChatHistoryPage } from '../pages/chat-history';
 import { KnowledgeBasePage, ArticleDetailPage, ArticleCreatePage } from '../pages/knowledge-base';
 import { LeadsPage } from '../pages/leads';
 import { SettingsPage, ApiKeysPage, PaymentGatewaysPage } from '../pages/settings';
@@ -162,6 +163,10 @@ export const router = createBrowserRouter([
             {
                 path: 'tickets',
                 element: <TicketsPage />,
+            },
+            {
+                path: 'chat-history',
+                element: <ChatHistoryPage />,
             },
             // Knowledge Base
             {
