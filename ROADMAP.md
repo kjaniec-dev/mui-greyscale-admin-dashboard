@@ -146,7 +146,7 @@ A comprehensive list of all sections and features to implement for a complete ad
 | Feature | Description | Priority |
 |---------|-------------|----------|
 | Tickets | Customer support tickets | High |
-| Knowledge Base | Help articles | Medium |
+| ~~Knowledge Base~~ | ~~Help articles~~ | ✅ Done |
 | FAQ Management | Frequently asked questions | Low |
 | Live Chat History | Chat transcripts | Medium |
 | Feedback | Customer feedback collection | Low |
