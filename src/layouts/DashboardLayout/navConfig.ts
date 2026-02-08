@@ -52,6 +52,7 @@ import {
     ChatBubble as ChatHistoryIcon,
     MenuBook as KnowledgeBaseIcon,
     CheckBox as TasksIcon,
+    Note as NotesIcon,
 } from '@mui/icons-material';
 import type { SvgIconProps } from '@mui/material';
 
@@ -247,6 +248,7 @@ export const navConfig: NavSection[] = [
         title: 'Apps',
         items: [
             { title: 'Tasks', path: '/tasks', icon: TasksIcon },
+            { title: 'Notes', path: '/notes', icon: NotesIcon },
             { title: 'Calendar', path: '/apps/calendar', icon: CalendarIcon },
             { title: 'Kanban', path: '/apps/kanban', icon: KanbanIcon },
             { title: 'Mail', path: '/apps/mail', icon: MailIcon },

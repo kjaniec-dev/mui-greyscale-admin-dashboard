@@ -23,6 +23,7 @@ import { TaxReportsPage } from '../pages/finance/TaxReportsPage';
 import { CouponsPage, CampaignsPage, EmailTemplatesPage } from '../pages/marketing';
 import { CalendarPage, KanbanPage, MailPage, ChatPage, FileManagerPage } from '../pages/apps';
 import { TasksPage } from '../pages/tasks';
+import { NotesPage } from '../pages/notes';
 import { WarehousesPage, SuppliersPage, ReturnsPage, StockLevelsPage } from '../pages/inventory';
 import { LoginPage, RegisterPage, ForgotPasswordPage } from '../pages/auth';
 import { ComponentsShowcasePage } from '../pages/components';
@@ -244,6 +245,10 @@ export const router = createBrowserRouter([
             {
                 path: 'tasks',
                 element: <TasksPage />,
+            },
+            {
+                path: 'notes',
+                element: <NotesPage />,
             },
             {
                 path: 'apps/calendar',
