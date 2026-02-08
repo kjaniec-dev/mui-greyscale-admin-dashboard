@@ -268,6 +268,7 @@ export const navConfig: NavSection[] = [
             { title: 'Components', path: '/components', icon: ComponentsIcon },
             { title: 'Notifications', path: '/notifications', icon: NotificationsIcon },
             { title: 'Settings', path: '/settings', icon: SettingsIcon },
+            { title: 'Payment Gateways', path: '/settings/payment-gateways', icon: PaymentsIcon },
             { title: 'Account', path: '/account', icon: AccountIcon },
         ],
     },

@@ -191,7 +191,7 @@ A comprehensive list of all sections and features to implement for a complete ad
 |---------|-------------|----------|
 | ~~General Settings~~ | ~~Site configuration~~ | ✅ Done |
 | ~~Email Settings~~ | ~~SMTP configuration~~ | ✅ Done |
-| Payment Gateways | Payment integrations | Medium |
+| ~~Payment Gateways~~ | ~~Payment integrations~~ | ✅ Done |
 | Webhooks | Event notifications | Low |
 | Integrations | Third-party apps | Low |
 | Backup & Restore | Data management | Low |
