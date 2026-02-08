@@ -48,6 +48,7 @@ import {
     Inventory2 as StockIcon,
     Summarize as TaxIcon,
     Email as EmailIcon,
+    Devices as DevicesIcon,
 } from '@mui/icons-material';
 import type { SvgIconProps } from '@mui/material';
 
@@ -259,6 +260,7 @@ export const navConfig: NavSection[] = [
         items: [
             { title: 'Roles', path: '/roles', icon: RolesIcon },
             { title: 'Two-Factor Auth', path: '/2fa', icon: TwoFactorIcon },
+            { title: 'Active Sessions', path: '/sessions', icon: DevicesIcon },
             { title: 'Audit Logs', path: '/audit-logs', icon: AuditIcon },
             { title: 'API Keys', path: '/api-keys', icon: TwoFactorIcon },
             { title: 'Media Library', path: '/media', icon: MediaIcon },
