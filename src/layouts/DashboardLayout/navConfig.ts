@@ -272,7 +272,15 @@ export const navConfig: NavSection[] = [
             { title: 'Media Library', path: '/media', icon: MediaIcon },
             { title: 'Export Center', path: '/export', icon: ExportIcon },
             { title: 'Components', path: '/components', icon: ComponentsIcon },
-            { title: 'Notifications', path: '/notifications', icon: NotificationsIcon },
+            {
+                title: 'Notifications',
+                path: '/notifications',
+                icon: NotificationsIcon,
+                children: [
+                    { title: 'All Notifications', path: '/notifications', icon: NotificationsIcon },
+                    { title: 'Email Preferences', path: '/notifications/email-preferences', icon: EmailIcon },
+                ],
+            },
             { title: 'Settings', path: '/settings', icon: SettingsIcon },
             { title: 'Payment Gateways', path: '/settings/payment-gateways', icon: PaymentsIcon },
             { title: 'Account', path: '/account', icon: AccountIcon },

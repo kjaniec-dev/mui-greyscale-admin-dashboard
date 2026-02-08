@@ -11,7 +11,7 @@ import { TicketsPage } from '../pages/tickets';
 import { KnowledgeBasePage, ArticleDetailPage, ArticleCreatePage } from '../pages/knowledge-base';
 import { LeadsPage } from '../pages/leads';
 import { SettingsPage, ApiKeysPage, PaymentGatewaysPage } from '../pages/settings';
-import { NotificationsPage } from '../pages/notifications';
+import { NotificationsPage, EmailPreferencesPage } from '../pages/notifications';
 import { BlogCreatePage, BlogPostsPage, BlogDetailPage, BlogEditPage } from '../pages/blog';
 import { CompaniesPage, DealsPage } from '../pages/crm';
 import { TransactionsPage } from '../pages/finance/TransactionsPage';
@@ -270,6 +270,10 @@ export const router = createBrowserRouter([
             {
                 path: 'notifications',
                 element: <NotificationsPage />,
+            },
+            {
+                path: 'notifications/email-preferences',
+                element: <EmailPreferencesPage />,
             },
             {
                 path: 'account',

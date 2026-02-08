@@ -203,7 +203,7 @@ A comprehensive list of all sections and features to implement for a complete ad
 |---------|-------------|----------|
 | Notification Center | In-app notifications | High |
 | Push Notifications | Mobile/web push | Medium |
-| Email Preferences | Email notification settings | Medium |
+| ~~Email Preferences~~ | ~~Email notification settings~~ | ✅ Done |
 | SMS Settings | Text message alerts | Low |
 
 ---
