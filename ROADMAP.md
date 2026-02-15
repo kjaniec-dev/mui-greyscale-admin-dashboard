@@ -105,7 +105,7 @@ A comprehensive list of all sections and features to implement for a complete ad
 | ~~Refunds~~ | ~~Refund management~~ | ✅ Done |
 | ~~Subscriptions~~ | ~~Recurring billing~~ | ✅ Done |
 | ~~Tax Reports~~ | ~~Tax documentation~~ | ✅ Done |
-| Payouts | Vendor/affiliate payments | Medium |
+| ~~Payouts~~ | ~~Vendor/affiliate payments~~ | ✅ Done |
 
 ---
 
