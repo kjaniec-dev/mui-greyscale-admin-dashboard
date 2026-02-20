@@ -3,3 +3,4 @@ export { KanbanPage } from './KanbanPage';
 export { MailPage } from './MailPage';
 export { ChatPage } from './ChatPage';
 export { FileManagerPage } from './FileManagerPage';
+export { TasksPage } from './TasksPage';

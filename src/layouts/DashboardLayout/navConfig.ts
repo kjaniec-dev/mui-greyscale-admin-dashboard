@@ -256,7 +256,7 @@ export const navConfig: NavSection[] = [
     {
         title: 'Apps',
         items: [
-            { title: 'Tasks', path: '/tasks', icon: TasksIcon },
+            { title: 'Tasks', path: '/apps/tasks', icon: TasksIcon },
             { title: 'Notes', path: '/notes', icon: NotesIcon },
             { title: 'Calendar', path: '/apps/calendar', icon: CalendarIcon },
             { title: 'Kanban', path: '/apps/kanban', icon: KanbanIcon },
