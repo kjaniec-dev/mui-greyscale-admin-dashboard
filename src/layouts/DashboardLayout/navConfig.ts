@@ -36,9 +36,11 @@ import {
     Info as DetailsIcon,
     PostAdd as InvoiceCreateIcon,
     Edit as BlogEditIcon,
+    Category as CategoryIcon,
     Login as LoginIcon,
     LockReset as ForgotPasswordIcon,
     Business as BusinessIcon,
+    Contacts as ContactsIcon,
     MonetizationOn as MonetizationOnIcon,
     Assessment as ReportsIcon,
     History as AuditIcon,
@@ -48,6 +50,7 @@ import {
     Inventory2 as StockIcon,
     Summarize as TaxIcon,
     Email as EmailIcon,
+    Smartphone as MobileIcon,
     Devices as DevicesIcon,
     ChatBubble as ChatHistoryIcon,
     MenuBook as KnowledgeBaseIcon,
@@ -179,6 +182,7 @@ export const navConfig: NavSection[] = [
                 icon: BlogIcon,
                 children: [
                     { title: 'Posts', path: '/blog/list', icon: ListIcon },
+                    { title: 'Categories/Tags', path: '/blog/categories', icon: CategoryIcon },
                     { title: 'Create', path: '/blog/create', icon: BlogEditIcon },
                 ],
             },
@@ -212,6 +216,11 @@ export const navConfig: NavSection[] = [
     {
         title: 'CRM',
         items: [
+            {
+                title: 'Contacts',
+                path: '/crm/contacts',
+                icon: ContactsIcon,
+            },
             {
                 title: 'Companies',
                 path: '/crm/companies',
@@ -289,6 +298,7 @@ export const navConfig: NavSection[] = [
                 children: [
                     { title: 'All Notifications', path: '/notifications', icon: NotificationsIcon },
                     { title: 'Email Preferences', path: '/notifications/email-preferences', icon: EmailIcon },
+                    { title: 'Push Notifications', path: '/notifications/push', icon: MobileIcon },
                 ],
             },
             { title: 'Settings', path: '/settings', icon: SettingsIcon },
