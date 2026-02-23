@@ -21,8 +21,7 @@ import { SubscriptionsPage } from '../pages/finance/SubscriptionsPage';
 import { PayoutsPage } from '../pages/finance/PayoutsPage';
 import { TaxReportsPage } from '../pages/finance/TaxReportsPage';
 import { CouponsPage, CampaignsPage, EmailTemplatesPage } from '../pages/marketing';
-import { CalendarPage, KanbanPage, MailPage, ChatPage, FileManagerPage } from '../pages/apps';
-import { TasksPage } from '../pages/tasks';
+import { CalendarPage, KanbanPage, MailPage, ChatPage, FileManagerPage, TasksPage } from '../pages/apps';
 import { NotesPage } from '../pages/notes';
 import { WarehousesPage, SuppliersPage, ReturnsPage, StockLevelsPage } from '../pages/inventory';
 import { LoginPage, RegisterPage, ForgotPasswordPage } from '../pages/auth';
@@ -251,7 +250,7 @@ export const router = createBrowserRouter([
             },
             // Apps
             {
-                path: 'tasks',
+                path: 'apps/tasks',
                 element: <TasksPage />,
             },
             {
