@@ -84,6 +84,7 @@ export const navConfig: NavSection[] = [
                     { title: 'Analytics', path: '/dashboard/analytics' },
                     { title: 'E-commerce', path: '/dashboard/ecommerce' },
                     { title: 'Real-time', path: '/dashboard/realtime' },
+                    { title: 'Heatmaps', path: '/dashboard/heatmaps' },
                 ],
             },
             {
@@ -93,6 +94,7 @@ export const navConfig: NavSection[] = [
                 children: [
                     { title: 'All Reports', path: '/reports', icon: ListIcon },
                     { title: 'Create', path: '/reports/new', icon: CreateIcon },
+                    { title: 'Scheduled', path: '/reports/scheduled', icon: ReportsIcon },
                 ],
             },
         ],

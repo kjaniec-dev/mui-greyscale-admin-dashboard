@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { DashboardLayout } from '../layouts/DashboardLayout';
 import { AuthLayout } from '../layouts/AuthLayout';
-import { OverviewPage, AnalyticsPage, EcommercePage, RealTimePage } from '../pages/dashboard';
+import { OverviewPage, AnalyticsPage, EcommercePage, RealTimePage, HeatmapsPage } from '../pages/dashboard';
 import { UsersPage, UserProfilePage, UserCreatePage, UserAccountPage } from '../pages/users';
 import { ProductsPage, ProductCreatePage } from '../pages/products';
 import { OrdersPage, OrderCreatePage, OrderDetailsPage } from '../pages/orders';
@@ -30,7 +30,7 @@ import { ExportCenterPage } from '../pages/export';
 import { RolesPermissionsPage } from '../pages/roles';
 import { TwoFactorAuthPage, AuditLogsPage, SessionsPage } from '../pages/security';
 import { MediaLibraryPage } from '../pages/media';
-import { ReportsListPage, ReportBuilderPage } from '../pages/reports';
+import { ReportsListPage, ReportBuilderPage, ScheduledReportsPage } from '../pages/reports';
 import { ErrorPage } from '../components/ErrorPage';
 
 export const router = createBrowserRouter([
@@ -61,6 +61,10 @@ export const router = createBrowserRouter([
                 path: 'dashboard/realtime',
                 element: <RealTimePage />,
             },
+            {
+                path: 'dashboard/heatmaps',
+                element: <HeatmapsPage />,
+            },
             // Reports
             {
                 path: 'reports',
@@ -73,6 +77,10 @@ export const router = createBrowserRouter([
             {
                 path: 'reports/:id/edit',
                 element: <ReportBuilderPage />,
+            },
+            {
+                path: 'reports/scheduled',
+                element: <ScheduledReportsPage />,
             },
             // Users management
             {
