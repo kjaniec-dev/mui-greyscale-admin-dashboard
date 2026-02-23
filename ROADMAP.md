@@ -11,6 +11,17 @@ A comprehensive list of all sections and features to implement for a complete ad
 - [x] Analytics Page
 - [x] E-commerce Page
 
+### CRM
+- [x] Contacts
+- [x] Companies
+- [x] Deals/Opportunities
+
+### Inventory
+- [x] Warehouses
+- [x] Stock Levels
+- [x] Suppliers
+- [x] Returns
+
 ### Management
 - [x] Users List (DataGrid)
 - [x] User Create Form
@@ -38,6 +49,8 @@ A comprehensive list of all sections and features to implement for a complete ad
 - [x] Lead Conversion to Customer
 
 ### Apps
+- [x] Notes
+- [x] Tasks/To-Do
 - [x] Calendar (FullCalendar)
 - [x] Kanban Board (@hello-pangea/dnd)
 - [x] Mail (Email Client)
@@ -49,9 +62,11 @@ A comprehensive list of all sections and features to implement for a complete ad
 - [x] Refunds List (DataGrid)
 
 ### Content
+- [x] Categories/Tags
 - [x] Blog Posts (List, Create, Edit, Detail)
 
 ### Marketing
+- [x] Email Templates
 - [x] Coupons List (DataGrid)
 - [x] Coupon Create/Edit Actions
 
@@ -60,7 +75,13 @@ A comprehensive list of all sections and features to implement for a complete ad
 - [x] Register Page
 - [x] Forgot Password Page
 
+### Notifications
+- [x] Push Notifications
+
 ### UI Components
+- [x] Breadcrumbs
+- [x] Modals
+- [x] Drawers
 - [x] Notification Center (Header dropdown)
 - [x] Toast/Snackbar System (Global context)
 - [x] Loading Skeletons (Table, Card, Stats, Chart, List, Form)
@@ -92,9 +113,9 @@ A comprehensive list of all sections and features to implement for a complete ad
 |---------|-------------|----------|
 | Customers | Customer profiles and history | High |
 | Leads | Lead tracking and conversion | Medium |
-| Contacts | Contact management | Medium |
-| Companies | B2B account management | Medium |
-| Deals/Opportunities | Sales pipeline | Medium |
+| ~~Contacts~~ | ~~Contact management~~ | ✅ Done |
+| ~~Companies~~ | ~~B2B account management~~ | ✅ Done |
+| ~~Deals/Opportunities~~ | ~~Sales pipeline~~ | ✅ Done |
 
 ---
 
@@ -114,11 +135,11 @@ A comprehensive list of all sections and features to implement for a complete ad
 |---------|-------------|----------|
 | Products List | Product catalog with DataGrid | High |
 | Product Create/Edit | Product forms | High |
-| Warehouses | Multi-location inventory | Medium |
-| Stock Levels | Low stock alerts | Medium |
-| Suppliers | Vendor management | Medium |
+| ~~Warehouses~~ | ~~Multi-location inventory~~ | ✅ Done |
+| ~~Stock Levels~~ | ~~Low stock alerts~~ | ✅ Done |
+| ~~Suppliers~~ | ~~Vendor management~~ | ✅ Done |
 | Shipping | Carrier integrations | Low |
-| Returns | Return management | Medium |
+| ~~Returns~~ | ~~Return management~~ | ✅ Done |
 
 ---
 
@@ -127,7 +148,7 @@ A comprehensive list of all sections and features to implement for a complete ad
 |---------|-------------|----------|
 | Orders List | Order management DataGrid | High |
 | Order Details | Order detail page with timeline | High |
-| Order Status | Status updates | High |
+| ~~Order Status~~ | ~~Status updates~~ | ✅ Done |
 | ~~Order Tracking~~ | ~~Shipping tracking~~ | ✅ Done |
 
 ---
@@ -157,7 +178,7 @@ A comprehensive list of all sections and features to implement for a complete ad
 | Feature | Description | Priority |
 |---------|-------------|----------|
 | ~~Campaigns~~ | ~~Marketing campaigns~~ | ✅ Done |
-| Email Templates | Newsletter builder | Medium |
+| ~~Email Templates~~ | ~~Newsletter builder~~ | ✅ Done |
 | ~~Coupons/Discounts~~ | ~~Promo code management~~ | ✅ Done |
 | Affiliates | Affiliate program | Low |
 | Social Media | Social integrations | Low |
@@ -170,7 +191,7 @@ A comprehensive list of all sections and features to implement for a complete ad
 | Blog Posts | Blog management | Medium |
 | Pages | Static page editor | Low |
 | ~~Media Library~~ | ~~Image/file management~~ | ✅ Done |
-| Categories/Tags | Content organization | Medium |
+| ~~Categories/Tags~~ | ~~Content organization~~ | ✅ Done |
 | SEO Settings | Meta tags management | Low |
 
 ---
@@ -202,7 +223,7 @@ A comprehensive list of all sections and features to implement for a complete ad
 | Feature | Description | Priority |
 |---------|-------------|----------|
 | Notification Center | In-app notifications | High |
-| Push Notifications | Mobile/web push | Medium |
+| ~~Push Notifications~~ | ~~Mobile/web push~~ | ✅ Done |
 | ~~Email Preferences~~ | ~~Email notification settings~~ | ✅ Done |
 | SMS Settings | Text message alerts | Low |
 
@@ -216,8 +237,8 @@ A comprehensive list of all sections and features to implement for a complete ad
 | Chat | Real-time messaging | Medium |
 | Mail | Email client | Medium |
 | File Manager | File browser | High |
-| Notes | Personal notes | Low |
-| Tasks/To-Do | Task management | Medium |
+| ~~Notes~~ | ~~Personal notes~~ | ✅ Done |
+| ~~Tasks/To-Do~~ | ~~Task management~~ | ✅ Done |
 
 ---
 
@@ -227,9 +248,9 @@ A comprehensive list of all sections and features to implement for a complete ad
 | Toast/Notifications | Global notification system | High |
 | Loading Skeletons | Loading states | High |
 | Empty States | Empty table/list states | High |
-| Breadcrumbs | Navigation breadcrumbs | Medium |
-| Modals | Modal dialog system | High |
-| Drawers | Slide-out panels | Medium |
+| ~~Breadcrumbs~~ | ~~Navigation breadcrumbs~~ | ✅ Done |
+| ~~Modals~~ | ~~Modal dialog system~~ | ✅ Done |
+| ~~Drawers~~ | ~~Slide-out panels~~ | ✅ Done |
 
 ---
 
