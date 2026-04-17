@@ -59,12 +59,13 @@ export function ForgotPasswordPage() {
                         severity="success"
                         sx={{
                             mb: 3,
-                            bgcolor: isDarkMode ? 'rgba(34, 197, 94, 0.1)' : 'rgba(34, 197, 94, 0.1)',
-                            color: isDarkMode ? '#4ade80' : '#15803d',
-                            border: `1px solid ${isDarkMode ? 'rgba(34, 197, 94, 0.2)' : 'rgba(34, 197, 94, 0.2)'}`
+                            bgcolor: isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.04)',
+                            color: 'text.primary',
+                            border: `1px solid`,
+                            borderColor: 'divider',
                         }}
                     >
-                        Passowrd reset link has been sent to your email address.
+                        Password reset link has been sent to your email address.
                     </Alert>
                     <Link
                         to="/auth/login"

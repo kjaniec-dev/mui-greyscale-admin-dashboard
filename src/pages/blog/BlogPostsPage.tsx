@@ -40,6 +40,7 @@ import {
 } from '@mui/icons-material';
 import { DataGrid, type GridColDef } from '@mui/x-data-grid';
 import { mockPosts, type BlogPost, type BlogPostStatus } from '../../data/mockPosts';
+import { getStatusSolid } from '../../theme';
 
 type TabValue = 'All' | BlogPostStatus;
 type ViewMode = 'list' | 'grid';
@@ -122,10 +123,10 @@ export function BlogPostsPage() {
         Scheduled: mockPosts.filter(p => p.status === 'Scheduled').length,
     }), []);
 
-    const statusColors: Record<BlogPostStatus, { bg: string; bgDark: string }> = {
-        Published: { bg: '#22C55E', bgDark: '#4ADE80' },
-        Draft: { bg: '#737373', bgDark: '#A3A3A3' },
-        Scheduled: { bg: '#3B82F6', bgDark: '#60A5FA' },
+    const getPostStatusColor = (status: string) => {
+        // Import centralized helper
+        const { bg, text } = getStatusSolid(status, isDarkMode);
+        return { bg, bgDark: bg, text }; // bgDark is same since getStatusSolid is already mode-aware
     };
 
     const handleView = (post: BlogPost) => {
@@ -216,14 +217,14 @@ export function BlogPostsPage() {
             width: 100,
             renderCell: (params) => {
                 const status = params.value as BlogPostStatus;
-                const colors = statusColors[status];
+                const colors = getPostStatusColor(status);
                 return (
                     <Chip
                         label={status}
                         size="small"
                         sx={{
-                            bgcolor: isDarkMode ? colors.bgDark : colors.bg,
-                            color: '#FFFFFF',
+                            bgcolor: colors.bg,
+                            color: colors.text,
                             fontWeight: 500,
                             borderRadius: 1,
                         }}
@@ -270,7 +271,7 @@ export function BlogPostsPage() {
 
     // Grid view card
     const BlogCard = ({ post }: { post: BlogPost }) => {
-        const colors = statusColors[post.status];
+        const colors = getPostStatusColor(post.status);
         return (
             <Card
                 sx={{
@@ -317,8 +318,8 @@ export function BlogPostsPage() {
                                 label={post.status}
                                 size="small"
                                 sx={{
-                                    bgcolor: isDarkMode ? colors.bgDark : colors.bg,
-                                    color: '#FFFFFF',
+                                    bgcolor: colors.bg,
+                                    color: colors.text,
                                     fontWeight: 500,
                                     borderRadius: 1,
                                     fontSize: '0.7rem',

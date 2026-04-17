@@ -22,6 +22,7 @@ import {
 } from '@mui/icons-material';
 import { mockCompanies, type Company } from '../../data/mockCompanies';
 import { CompanyDialog } from './components/CompanyDialog';
+import { getStatusColor } from '../../theme';
 
 export function CompaniesPage() {
     const theme = useTheme();
@@ -59,16 +60,7 @@ export function CompaniesPage() {
     };
 
     const getLifecycleColor = (stage: Company['lifecycleStage']) => {
-        switch (stage) {
-            case 'Customer':
-                return { bg: isDarkMode ? '#064E3B' : '#ECFDF5', text: isDarkMode ? '#34D399' : '#059669' };
-            case 'Lead':
-                return { bg: isDarkMode ? '#1E40AF' : '#EFF6FF', text: isDarkMode ? '#60A5FA' : '#3B82F6' };
-            case 'Churned':
-                return { bg: isDarkMode ? '#7F1D1D' : '#FEF2F2', text: isDarkMode ? '#F87171' : '#DC2626' };
-            default:
-                return { bg: 'default', text: 'default' };
-        }
+        return getStatusColor(stage, isDarkMode);
     };
 
     const columns: GridColDef[] = [

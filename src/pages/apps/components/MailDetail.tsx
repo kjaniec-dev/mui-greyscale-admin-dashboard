@@ -77,9 +77,9 @@ export function MailDetail({ email, onToggleStar, onDelete, onReply }: MailDetai
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <IconButton size="small" onClick={() => onToggleStar(email.id)}>
                         {email.starred ? (
-                            <StarIcon sx={{ color: '#F59E0B' }} />
+                            <StarIcon sx={{ color: 'text.primary' }} />
                         ) : (
-                            <StarBorderIcon sx={{ color: isDarkMode ? '#737373' : '#A3A3A3' }} />
+                            <StarBorderIcon sx={{ color: 'text.disabled' }} />
                         )}
                     </IconButton>
                     <IconButton size="small" onClick={() => onReply?.(email)}>

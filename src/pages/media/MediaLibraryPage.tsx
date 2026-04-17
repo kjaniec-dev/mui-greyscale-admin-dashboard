@@ -85,11 +85,11 @@ const folderContents: Record<string, MediaFile[]> = {
 };
 
 const fileTypeIcons: Record<string, React.ReactNode> = {
-    folder: <FolderIcon sx={{ fontSize: 48, color: '#FFC107' }} />,
-    image: <ImageIcon sx={{ fontSize: 48, color: '#4CAF50' }} />,
-    video: <VideoIcon sx={{ fontSize: 48, color: '#E91E63' }} />,
-    pdf: <PdfIcon sx={{ fontSize: 48, color: '#F44336' }} />,
-    document: <DocIcon sx={{ fontSize: 48, color: '#2196F3' }} />,
+    folder: <FolderIcon sx={{ fontSize: 48, color: 'text.secondary' }} />,
+    image: <ImageIcon sx={{ fontSize: 48, color: 'text.secondary' }} />,
+    video: <VideoIcon sx={{ fontSize: 48, color: 'text.secondary' }} />,
+    pdf: <PdfIcon sx={{ fontSize: 48, color: 'text.secondary' }} />,
+    document: <DocIcon sx={{ fontSize: 48, color: 'text.secondary' }} />,
 };
 
 export function MediaLibraryPage() {

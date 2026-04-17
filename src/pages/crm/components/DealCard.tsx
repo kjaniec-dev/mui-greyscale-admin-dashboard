@@ -14,6 +14,7 @@ import {
     AttachMoney as MoneyIcon,
 } from '@mui/icons-material';
 import type { Deal } from '../../../data/mockDeals';
+import { getStatusColor } from '../../../theme';
 
 interface DealCardProps {
     deal: Deal;
@@ -25,13 +26,12 @@ export function DealCard({ deal, index, onClick }: DealCardProps) {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
 
-    const priorityColors = {
-        Low: { bg: isDarkMode ? '#404040' : '#E5E5E5', text: isDarkMode ? '#A3A3A3' : '#525252' },
-        Medium: { bg: isDarkMode ? '#1E40AF' : '#EFF6FF', text: isDarkMode ? '#60A5FA' : '#3B82F6' },
-        High: { bg: isDarkMode ? '#7F1D1D' : '#FEF2F2', text: isDarkMode ? '#F87171' : '#DC2626' },
+    const priorityColorMap: Record<string, string> = {
+        Low: 'inactive',
+        Medium: 'info',
+        High: 'error',
     };
-
-    const colors = priorityColors[deal.priority];
+    const colors = getStatusColor(priorityColorMap[deal.priority] || 'info', isDarkMode);
 
     const formatCurrency = (amount: number) => {
         return new Intl.NumberFormat('en-US', {

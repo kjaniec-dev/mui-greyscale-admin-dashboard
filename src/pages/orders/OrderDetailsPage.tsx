@@ -28,6 +28,7 @@ import {
 } from '@mui/icons-material';
 import { mockOrders } from '../../data/mockOrders';
 import { OrderTracking } from './components/OrderTracking';
+import { getStatusSolid } from '../../theme';
 
 function formatCurrency(amount: number): string {
     return new Intl.NumberFormat('en-US', {
@@ -56,13 +57,7 @@ export function OrderDetailsPage() {
     // Find order by ID or orderNumber, fallback to first order for demo
     const order = mockOrders.find(o => o.id === orderId || o.orderNumber === orderId) || mockOrders[0];
 
-    const statusColors = {
-        Pending: { bg: isDarkMode ? '#525252' : '#A3A3A3', text: isDarkMode ? '#FAFAFA' : '#171717' },
-        Processing: { bg: isDarkMode ? '#1E40AF' : '#3B82F6', text: '#FAFAFA' },
-        Shipped: { bg: isDarkMode ? '#7C3AED' : '#8B5CF6', text: '#FAFAFA' },
-        Delivered: { bg: isDarkMode ? '#A3A3A3' : '#525252', text: isDarkMode ? '#171717' : '#FAFAFA' },
-        Cancelled: { bg: isDarkMode ? '#DC2626' : '#EF4444', text: '#FAFAFA' },
-    };
+    const getOrderStatusColor = (status: string) => getStatusSolid(status, isDarkMode);
 
     const sectionSx = {
         p: 3,
@@ -123,8 +118,8 @@ export function OrderDetailsPage() {
                         <Chip
                             label={order.status}
                             sx={{
-                                bgcolor: statusColors[order.status].bg,
-                                color: statusColors[order.status].text,
+                                bgcolor: getOrderStatusColor(order.status).bg,
+                                color: getOrderStatusColor(order.status).text,
                                 fontWeight: 600,
                                 borderRadius: 1,
                             }}
@@ -255,14 +250,8 @@ export function OrderDetailsPage() {
                                     label={order.paymentStatus}
                                     size="small"
                                     sx={{
-                                        bgcolor: order.paymentStatus === 'Paid'
-                                            ? (isDarkMode ? '#A3A3A3' : '#525252')
-                                            : order.paymentStatus === 'Pending'
-                                                ? (isDarkMode ? '#D97706' : '#F59E0B')
-                                                : (isDarkMode ? '#DC2626' : '#EF4444'),
-                                        color: order.paymentStatus === 'Paid'
-                                            ? (isDarkMode ? '#171717' : '#FAFAFA')
-                                            : '#FAFAFA',
+                                        bgcolor: getOrderStatusColor(order.paymentStatus).bg,
+                                        color: getOrderStatusColor(order.paymentStatus).text,
                                         fontWeight: 500,
                                         borderRadius: 1,
                                     }}

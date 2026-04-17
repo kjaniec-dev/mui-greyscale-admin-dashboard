@@ -86,8 +86,8 @@ const dataSourceColumns: Record<DataSource, { key: string; label: string }[]> = 
 
 const formatIcons: Record<ExportFormat, React.ReactNode> = {
     csv: <CsvIcon />,
-    excel: <ExcelIcon sx={{ color: '#217346' }} />,
-    pdf: <PdfIcon sx={{ color: '#E53935' }} />,
+    excel: <ExcelIcon sx={{ color: 'text.secondary' }} />,
+    pdf: <PdfIcon sx={{ color: 'text.secondary' }} />,
 };
 
 const formatLabels: Record<ExportFormat, string> = {

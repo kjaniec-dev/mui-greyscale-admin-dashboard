@@ -16,7 +16,8 @@ import {
     Visibility as ViewIcon,
     ChatBubbleOutline as CommentIcon,
 } from '@mui/icons-material';
-import { mockPosts, type BlogPostStatus } from '../../data/mockPosts';
+import { mockPosts } from '../../data/mockPosts';
+import { getStatusSolid } from '../../theme';
 
 export function BlogDetailPage() {
     const { id } = useParams<{ id: string }>();
@@ -39,13 +40,7 @@ export function BlogDetailPage() {
         );
     }
 
-    const statusColors: Record<BlogPostStatus, { bg: string; bgDark: string }> = {
-        Published: { bg: '#22C55E', bgDark: '#4ADE80' },
-        Draft: { bg: '#737373', bgDark: '#A3A3A3' },
-        Scheduled: { bg: '#3B82F6', bgDark: '#60A5FA' },
-    };
-
-    const colors = statusColors[post.status];
+    const colors = getStatusSolid(post.status, isDarkMode);
 
     const formatDate = (date: Date | undefined) => {
         if (!date) return '—';
@@ -151,8 +146,8 @@ export function BlogDetailPage() {
                                 label={post.status}
                                 size="small"
                                 sx={{
-                                    bgcolor: isDarkMode ? colors.bgDark : colors.bg,
-                                    color: '#FFFFFF',
+                                    bgcolor: colors.bg,
+                                    color: colors.text,
                                     fontWeight: 500,
                                 }}
                             />

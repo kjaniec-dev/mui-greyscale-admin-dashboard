@@ -36,6 +36,7 @@ import {
     availableYears,
     type QuarterlyTax,
 } from '../../data/mockTaxReports';
+import { getStatusSolid, statusPalette } from '../../theme';
 
 const currencyFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -180,19 +181,14 @@ export function TaxReportsPage() {
             headerName: 'Status',
             width: 120,
             renderCell: (params: GridRenderCellParams<QuarterlyTax, string>) => {
-                const statusColors: Record<string, string> = {
-                    Paid: isDarkMode ? '#22C55E' : '#16A34A',
-                    Filed: isDarkMode ? '#3B82F6' : '#2563EB',
-                    Pending: isDarkMode ? '#D97706' : '#F59E0B',
-                    Overdue: isDarkMode ? '#DC2626' : '#EF4444',
-                };
+                const { bg, text } = getStatusSolid(params.value || '', isDarkMode);
                 return (
                     <Chip
                         label={params.value}
                         size="small"
                         sx={{
-                            bgcolor: statusColors[params.value || ''] || '#737373',
-                            color: '#FAFAFA',
+                            bgcolor: bg,
+                            color: text,
                             fontWeight: 500,
                             borderRadius: 1,
                         }}
@@ -265,7 +261,7 @@ export function TaxReportsPage() {
                         title="Total Revenue"
                         value={currencyFormatter.format(summary?.totalRevenue || 0)}
                         icon={<RevenueIcon />}
-                        color={isDarkMode ? '#22C55E' : '#16A34A'}
+                        color={isDarkMode ? '#A3A3A3' : '#525252'}
                         subtitle={`Fiscal Year ${selectedYear}`}
                     />
                 </Grid>
@@ -274,7 +270,7 @@ export function TaxReportsPage() {
                         title="Taxable Income"
                         value={currencyFormatter.format(summary?.taxableIncome || 0)}
                         icon={<TaxIcon />}
-                        color={isDarkMode ? '#3B82F6' : '#2563EB'}
+                        color={isDarkMode ? '#A3A3A3' : '#525252'}
                         subtitle="After deductions"
                     />
                 </Grid>
@@ -283,7 +279,7 @@ export function TaxReportsPage() {
                         title="Tax Collected"
                         value={currencyFormatter.format(summary?.taxCollected || 0)}
                         icon={<PaidIcon />}
-                        color={isDarkMode ? '#8B5CF6' : '#7C3AED'}
+                        color={isDarkMode ? '#A3A3A3' : '#525252'}
                         subtitle="From sales"
                     />
                 </Grid>
@@ -292,10 +288,7 @@ export function TaxReportsPage() {
                         title="Balance Due"
                         value={currencyFormatter.format(summary?.balance || 0)}
                         icon={<TaxOwedIcon />}
-                        color={summary?.balance && summary.balance > 0
-                            ? (isDarkMode ? '#D97706' : '#F59E0B')
-                            : (isDarkMode ? '#22C55E' : '#16A34A')
-                        }
+                        color={isDarkMode ? '#A3A3A3' : '#525252'}
                         subtitle={summary?.balance === 0 ? 'All paid' : 'Pending payment'}
                     />
                 </Grid>
@@ -366,11 +359,11 @@ export function TaxReportsPage() {
                                             size="small"
                                             sx={{
                                                 bgcolor: category.rate === 0
-                                                    ? (isDarkMode ? '#22C55E' : '#16A34A')
+                                                    ? (isDarkMode ? statusPalette.success.dark : statusPalette.success.light)
                                                     : category.rate < 8
-                                                        ? (isDarkMode ? '#3B82F6' : '#2563EB')
+                                                        ? (isDarkMode ? statusPalette.info.dark : statusPalette.info.light)
                                                         : (isDarkMode ? '#737373' : '#525252'),
-                                                color: '#FAFAFA',
+                                                color: category.rate === 0 || category.rate < 8 ? (isDarkMode ? '#171717' : '#FAFAFA') : '#FAFAFA',
                                                 fontWeight: 600,
                                             }}
                                         />

@@ -28,6 +28,7 @@ import {
     Delete as DeleteIcon,
 } from '@mui/icons-material';
 import { mockNotifications, getUnreadCount, type Notification, type NotificationType } from '../../data/mockNotifications';
+import { notificationTypeColors } from '../../theme';
 
 function getNotificationIcon(type: NotificationType) {
     switch (type) {
@@ -47,14 +48,8 @@ function getNotificationIcon(type: NotificationType) {
 }
 
 function getNotificationColor(type: NotificationType, isDarkMode: boolean): string {
-    const colors: Record<NotificationType, { light: string; dark: string }> = {
-        order: { light: '#3B82F6', dark: '#60A5FA' },
-        user: { light: '#8B5CF6', dark: '#A78BFA' },
-        system: { light: '#737373', dark: '#A3A3A3' },
-        message: { light: '#22C55E', dark: '#4ADE80' },
-        payment: { light: '#F59E0B', dark: '#FBBF24' },
-    };
-    return isDarkMode ? colors[type].dark : colors[type].light;
+    const colors = notificationTypeColors[type] || notificationTypeColors.system;
+    return isDarkMode ? colors.dark : colors.light;
 }
 
 function formatTimeAgo(date: Date): string {

@@ -82,9 +82,9 @@ export function MailList({ emails, selectedId, onSelect, onToggleStar }: MailLis
                         sx={{ mr: 1 }}
                     >
                         {email.starred ? (
-                            <StarIcon sx={{ fontSize: 18, color: '#F59E0B' }} />
+                            <StarIcon sx={{ fontSize: 18, color: 'text.primary' }} />
                         ) : (
-                            <StarBorderIcon sx={{ fontSize: 18, color: isDarkMode ? '#737373' : '#A3A3A3' }} />
+                            <StarBorderIcon sx={{ fontSize: 18, color: 'text.disabled' }} />
                         )}
                     </IconButton>
 

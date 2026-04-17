@@ -2,6 +2,7 @@ import { Box, Card, CardContent, CardHeader, Typography, IconButton, alpha, Chip
 import { MoreVert, FiberManualRecord } from '@mui/icons-material';
 import { type ReactNode } from 'react';
 import { LineChart } from '@mui/x-charts/LineChart';
+import { getChartColors } from '../../theme';
 
 interface LiveChartCardProps {
     title: string;
@@ -23,8 +24,8 @@ export function LiveChartCard({
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
 
-    // Theme-aware color
-    const lineColor = isDarkMode ? '#E5E5E5' : '#171717';
+    // Use centralized chart palette — first color for single-series
+    const lineColor = getChartColors(isDarkMode)[0] as string;
 
     // Format timestamps for x-axis
     const formattedData = data.map((point) => ({
@@ -117,7 +118,7 @@ export function LiveChartCard({
                                 stroke: isDarkMode ? '#404040' : '#E5E5E5',
                             },
                             '& .MuiChartsAxis-tickLabel': {
-                                fill: '#737373',
+                                fill: isDarkMode ? '#A3A3A3' : '#737373',
                                 fontSize: '10px',
                             },
                             '& .MuiAreaElement-root': {

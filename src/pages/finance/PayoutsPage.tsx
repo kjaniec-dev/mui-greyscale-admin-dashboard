@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import {
+
     Box,
     Typography,
     TextField,
@@ -24,6 +25,7 @@ import {
 } from '@mui/x-data-grid';
 import { mockPayouts, type Payout } from '../../data/mockPayouts';
 import { PayoutDetailDrawer } from '../../components/drawers/PayoutDetailDrawer';
+import { getStatusSolid, statusPalette } from '../../theme';
 
 const currencyFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -125,20 +127,23 @@ export function PayoutsPage() {
             field: 'recipientType',
             headerName: 'Type',
             width: 100,
-            renderCell: (params: GridRenderCellParams<Payout, string>) => (
-                <Chip
-                    label={params.value}
-                    size="small"
-                    sx={{
-                        bgcolor: params.value === 'Vendor'
-                            ? (isDarkMode ? '#3B82F6' : '#2563EB')
-                            : (isDarkMode ? '#8B5CF6' : '#7C3AED'),
-                        color: '#FAFAFA',
-                        fontWeight: 500,
-                        borderRadius: 1,
-                    }}
-                />
-            ),
+            renderCell: (params: GridRenderCellParams<Payout, string>) => {
+                const colors = params.value === 'Vendor'
+                    ? { bg: isDarkMode ? statusPalette.info.dark : statusPalette.info.light, text: isDarkMode ? '#171717' : '#FAFAFA' }
+                    : { bg: isDarkMode ? statusPalette.purple.dark : statusPalette.purple.light, text: isDarkMode ? '#171717' : '#FAFAFA' };
+                return (
+                    <Chip
+                        label={params.value}
+                        size="small"
+                        sx={{
+                            bgcolor: colors.bg,
+                            color: colors.text,
+                            fontWeight: 500,
+                            borderRadius: 1,
+                        }}
+                    />
+                );
+            },
         },
         {
             field: 'amount',
@@ -155,19 +160,14 @@ export function PayoutsPage() {
             headerName: 'Status',
             width: 120,
             renderCell: (params: GridRenderCellParams<Payout, string>) => {
-                const statusColors: Record<string, string> = {
-                    'Pending': isDarkMode ? '#D97706' : '#F59E0B',
-                    'Processing': isDarkMode ? '#3B82F6' : '#2563EB',
-                    'Completed': isDarkMode ? '#22C55E' : '#16A34A',
-                    'Failed': isDarkMode ? '#DC2626' : '#EF4444',
-                };
+                const { bg, text } = getStatusSolid(params.value || '', isDarkMode);
                 return (
                     <Chip
                         label={params.value}
                         size="small"
                         sx={{
-                            bgcolor: statusColors[params.value || ''] || '#737373',
-                            color: '#FAFAFA',
+                            bgcolor: bg,
+                            color: text,
                             fontWeight: 500,
                             borderRadius: 1,
                         }}

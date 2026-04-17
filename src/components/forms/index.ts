@@ -14,4 +14,5 @@ export { WarehouseFormDialog, type WarehouseFormData } from './WarehouseFormDial
 export { SupplierFormDialog, type SupplierFormData } from './SupplierFormDialog';
 export { ReturnFormDialog, type ReturnFormData } from './ReturnFormDialog';
 export { StockAdjustmentDialog, type StockAdjustmentFormData } from './StockAdjustmentDialog';
+export { ShipmentFormDialog, type ShipmentFormData } from './ShipmentFormDialog';
 

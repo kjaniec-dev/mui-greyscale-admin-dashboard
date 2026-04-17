@@ -22,6 +22,7 @@ import {
     Cancel as CancelIcon,
 } from '@mui/icons-material';
 import type { Payout } from '../../data/mockPayouts';
+import { getStatusSolid, statusPalette } from '../../theme';
 
 interface PayoutDetailDrawerProps {
     open: boolean;
@@ -63,16 +64,11 @@ export function PayoutDetailDrawer({
 
     if (!payout) return null;
 
-    const statusColors: Record<string, { bg: string; text: string }> = {
-        Pending: { bg: isDarkMode ? '#D97706' : '#F59E0B', text: '#171717' },
-        Processing: { bg: isDarkMode ? '#3B82F6' : '#2563EB', text: '#FAFAFA' },
-        Completed: { bg: isDarkMode ? '#22C55E' : '#16A34A', text: '#FAFAFA' },
-        Failed: { bg: isDarkMode ? '#DC2626' : '#EF4444', text: '#FAFAFA' },
-    };
+    const getPayoutStatusColor = (status: string) => getStatusSolid(status, isDarkMode);
 
     const typeColors: Record<string, string> = {
-        Vendor: isDarkMode ? '#3B82F6' : '#2563EB',
-        Affiliate: isDarkMode ? '#8B5CF6' : '#7C3AED',
+        Vendor: isDarkMode ? statusPalette.info.dark : statusPalette.info.light,
+        Affiliate: isDarkMode ? statusPalette.purple.dark : statusPalette.purple.light,
     };
 
     const InfoRow = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: React.ReactNode }) => (
@@ -153,8 +149,8 @@ export function PayoutDetailDrawer({
                             <Chip
                                 label={payout.status}
                                 sx={{
-                                    bgcolor: statusColors[payout.status]?.bg || '#737373',
-                                    color: statusColors[payout.status]?.text || '#FAFAFA',
+                                    bgcolor: getPayoutStatusColor(payout.status).bg,
+                                    color: getPayoutStatusColor(payout.status).text,
                                     fontWeight: 600,
                                     borderRadius: 1,
                                 }}
@@ -258,7 +254,7 @@ export function PayoutDetailDrawer({
                             />
                             {payout.processedAt && (
                                 <InfoRow
-                                    icon={<CalendarIcon sx={{ fontSize: 18, color: '#22C55E' }} />}
+                                    icon={<CalendarIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                     label="Processed"
                                     value={formatDate(payout.processedAt)}
                                 />

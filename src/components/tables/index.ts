@@ -9,4 +9,5 @@ export { WarehouseTable } from './WarehouseTable';
 export { SupplierTable } from './SupplierTable';
 export { ReturnTable } from './ReturnTable';
 export { StockLevelTable } from './StockLevelTable';
+export { ShipmentTable } from './ShipmentTable';
 

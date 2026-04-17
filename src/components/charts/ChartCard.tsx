@@ -4,6 +4,7 @@ import { type ReactNode } from 'react';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { PieChart } from '@mui/x-charts/PieChart';
+import { getChartColors } from '../../theme';
 
 
 interface BaseChartConfig {
@@ -54,11 +55,26 @@ export function ChartCard({ title, subtitle, chart, action }: ChartCardProps) {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
 
-    // Theme-aware color palette
-    // In dark mode, use lighter colors for better visibility
-    const CHART_COLORS = isDarkMode
-        ? ['#E5E5E5', '#A3A3A3', '#737373', '#525252', '#404040']
-        : ['#171717', '#525252', '#737373', '#A3A3A3', '#D4D4D4'];
+    // Use the centralized colorful chart palette for better data readability
+    const CHART_COLORS = getChartColors(isDarkMode) as string[];
+
+    // Theme-aware axis styling
+    const axisStyles = {
+        '& .MuiChartsAxis-line': {
+            stroke: isDarkMode ? '#404040' : '#E5E5E5',
+        },
+        '& .MuiChartsAxis-tick': {
+            stroke: isDarkMode ? '#404040' : '#E5E5E5',
+        },
+        '& .MuiChartsAxis-tickLabel': {
+            fill: isDarkMode ? '#A3A3A3' : '#737373',
+            fontSize: '12px',
+        },
+        '& .MuiChartsLegend-label': {
+            fill: isDarkMode ? '#A3A3A3' : '#525252',
+            fontSize: '12px',
+        },
+    };
 
     const renderChart = () => {
         const height = chart.height || 300;
@@ -79,22 +95,7 @@ export function ChartCard({ title, subtitle, chart, action }: ChartCardProps) {
                         scaleType: 'point',
                         data: config.xAxis.categories,
                     }]}
-                    sx={{
-                        '& .MuiChartsAxis-line': {
-                            stroke: '#E5E5E5',
-                        },
-                        '& .MuiChartsAxis-tick': {
-                            stroke: '#E5E5E5',
-                        },
-                        '& .MuiChartsAxis-tickLabel': {
-                            fill: '#737373',
-                            fontSize: '12px',
-                        },
-                        '& .MuiChartsLegend-label': {
-                            fill: '#525252',
-                            fontSize: '12px',
-                        },
-                    }}
+                    sx={axisStyles}
                     grid={{ horizontal: true }}
                     margin={{ top: 20, right: 20, bottom: 40, left: 60 }}
                 />
@@ -122,22 +123,7 @@ export function ChartCard({ title, subtitle, chart, action }: ChartCardProps) {
                         data: config.xAxis.categories,
                     }] : undefined}
                     layout={isHorizontal ? 'horizontal' : 'vertical'}
-                    sx={{
-                        '& .MuiChartsAxis-line': {
-                            stroke: '#E5E5E5',
-                        },
-                        '& .MuiChartsAxis-tick': {
-                            stroke: '#E5E5E5',
-                        },
-                        '& .MuiChartsAxis-tickLabel': {
-                            fill: '#737373',
-                            fontSize: '12px',
-                        },
-                        '& .MuiChartsLegend-label': {
-                            fill: '#525252',
-                            fontSize: '12px',
-                        },
-                    }}
+                    sx={axisStyles}
                     grid={{ horizontal: !isHorizontal, vertical: isHorizontal }}
                     margin={{ top: 20, right: 20, bottom: 40, left: isHorizontal ? 120 : 60 }}
                 />
@@ -165,10 +151,7 @@ export function ChartCard({ title, subtitle, chart, action }: ChartCardProps) {
                         highlightScope: { fade: 'global', highlight: 'item' },
                     }]}
                     sx={{
-                        '& .MuiChartsLegend-label': {
-                            fill: '#525252',
-                            fontSize: '12px',
-                        },
+                        '& .MuiChartsLegend-label': axisStyles['& .MuiChartsLegend-label'],
                     }}
                     margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
                 />

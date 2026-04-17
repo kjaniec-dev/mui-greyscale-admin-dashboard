@@ -23,7 +23,7 @@ import { TaxReportsPage } from '../pages/finance/TaxReportsPage';
 import { CouponsPage, CampaignsPage, EmailTemplatesPage } from '../pages/marketing';
 import { CalendarPage, KanbanPage, MailPage, ChatPage, FileManagerPage, TasksPage } from '../pages/apps';
 import { NotesPage } from '../pages/notes';
-import { WarehousesPage, SuppliersPage, ReturnsPage, StockLevelsPage } from '../pages/inventory';
+import { WarehousesPage, SuppliersPage, ReturnsPage, StockLevelsPage, ShippingPage } from '../pages/inventory';
 import { LoginPage, RegisterPage, ForgotPasswordPage } from '../pages/auth';
 import { ComponentsShowcasePage } from '../pages/components';
 import { ExportCenterPage } from '../pages/export';
@@ -243,6 +243,10 @@ export const router = createBrowserRouter([
             {
                 path: 'inventory/returns',
                 element: <ReturnsPage />,
+            },
+            {
+                path: 'inventory/shipping',
+                element: <ShippingPage />,
             },
             {
                 path: 'marketing/coupons',

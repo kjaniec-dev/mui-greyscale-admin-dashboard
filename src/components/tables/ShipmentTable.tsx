@@ -17,26 +17,26 @@ import {
     MoreVert as MoreVertIcon,
     Visibility as ViewIcon,
     Edit as EditIcon,
-    Delete as DeleteIcon,
+    CheckCircle as DeliveredIcon,
 } from '@mui/icons-material';
-import type { Order } from '../../data/mockOrders';
-import { getStatusSolid } from '../../theme';
+import type { Shipment } from '../../data/mockShipments';
 
-interface OrderTableProps {
-    orders: Order[];
-    onView?: (order: Order) => void;
-    onEdit?: (order: Order) => void;
-    onDelete?: (order: Order) => void;
+interface ShipmentTableProps {
+    shipments: Shipment[];
+    onView?: (shipment: Shipment) => void;
+    onEdit?: (shipment: Shipment) => void;
+    onMarkDelivered?: (shipment: Shipment) => void;
 }
 
-function ActionsMenu({ order, onView, onEdit, onDelete }: {
-    order: Order;
-    onView?: (order: Order) => void;
-    onEdit?: (order: Order) => void;
-    onDelete?: (order: Order) => void;
+function ActionsMenu({ shipment, onView, onEdit, onMarkDelivered }: {
+    shipment: Shipment;
+    onView?: (shipment: Shipment) => void;
+    onEdit?: (shipment: Shipment) => void;
+    onMarkDelivered?: (shipment: Shipment) => void;
 }) {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
+    const canMarkDelivered = shipment.status !== 'Delivered' && shipment.status !== 'Exception';
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -47,17 +47,17 @@ function ActionsMenu({ order, onView, onEdit, onDelete }: {
     };
 
     const handleView = () => {
-        onView?.(order);
+        onView?.(shipment);
         handleClose();
     };
 
     const handleEdit = () => {
-        onEdit?.(order);
+        onEdit?.(shipment);
         handleClose();
     };
 
-    const handleDelete = () => {
-        onDelete?.(order);
+    const handleMarkDelivered = () => {
+        onMarkDelivered?.(shipment);
         handleClose();
     };
 
@@ -81,103 +81,107 @@ function ActionsMenu({ order, onView, onEdit, onDelete }: {
             >
                 <MenuItem onClick={handleView}>
                     <ViewIcon sx={{ mr: 1, fontSize: 20 }} />
-                    View
+                    View Details
                 </MenuItem>
                 <MenuItem onClick={handleEdit}>
                     <EditIcon sx={{ mr: 1, fontSize: 20 }} />
                     Edit
                 </MenuItem>
-                <MenuItem onClick={handleDelete} sx={{ color: 'error.main' }}>
-                    <DeleteIcon sx={{ mr: 1, fontSize: 20 }} />
-                    Delete
-                </MenuItem>
+                {canMarkDelivered && (
+                    <MenuItem onClick={handleMarkDelivered} sx={{ color: 'success.main' }}>
+                        <DeliveredIcon sx={{ mr: 1, fontSize: 20 }} />
+                        Mark Delivered
+                    </MenuItem>
+                )}
             </Menu>
         </>
     );
 }
 
-function formatCurrency(amount: number): string {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    }).format(amount);
-}
-
-export function OrderTable({ orders, onView, onEdit, onDelete }: OrderTableProps) {
+export function ShipmentTable({ shipments, onView, onEdit, onMarkDelivered }: ShipmentTableProps) {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
 
-    const getOrderStatusColor = (status: string) => getStatusSolid(status, isDarkMode);
-
     const columns: GridColDef[] = [
         {
-            field: 'orderNumber',
-            headerName: 'Order #',
-            width: 150,
+            field: 'id',
+            headerName: 'Shipment ID',
+            width: 130,
             renderCell: (params) => (
-                <Typography variant="body2" fontWeight={600} sx={{ fontFamily: 'monospace' }}>
+                <Typography variant="body2" fontWeight={500}>
                     {params.value}
                 </Typography>
             ),
         },
         {
-            field: 'customer',
-            headerName: 'Customer',
-            flex: 1,
-            minWidth: 180,
-            valueGetter: (value: Order['customer']) => value.name,
+            field: 'orderNumber',
+            headerName: 'Order',
+            width: 150,
             renderCell: (params) => (
-                <Box>
-                    <Typography variant="body2" fontWeight={500}>
-                        {params.row.customer.name}
-                    </Typography>
-                    <Typography variant="caption" color="text.secondary">
-                        {params.row.customer.email}
-                    </Typography>
-                </Box>
+                <Typography variant="body2" color="text.secondary">
+                    {params.value}
+                </Typography>
             ),
         },
         {
-            field: 'items',
-            headerName: 'Items',
-            width: 80,
-            valueGetter: (value: Order['items']) => value.length,
+            field: 'customerName',
+            headerName: 'Customer',
+            flex: 1,
+            minWidth: 150,
+            renderCell: (params) => (
+                <Typography variant="body2" fontWeight={500}>
+                    {params.value}
+                </Typography>
+            ),
+        },
+        {
+            field: 'carrier',
+            headerName: 'Carrier',
+            width: 100,
             renderCell: (params) => (
                 <Chip
-                    label={`${params.row.items.length} item${params.row.items.length > 1 ? 's' : ''}`}
+                    label={params.value}
                     size="small"
                     sx={{
                         bgcolor: isDarkMode ? '#404040' : '#E5E5E5',
                         color: isDarkMode ? '#E5E5E5' : '#171717',
                         fontWeight: 500,
                         borderRadius: 1,
+                        fontSize: '0.75rem',
                     }}
                 />
             ),
         },
         {
-            field: 'total',
-            headerName: 'Total',
-            width: 120,
+            field: 'trackingNumber',
+            headerName: 'Tracking #',
+            width: 180,
             renderCell: (params) => (
-                <Typography variant="body2" fontWeight={600}>
-                    {formatCurrency(params.value)}
+                <Typography variant="body2" sx={{ fontFamily: 'monospace', fontSize: '0.8rem' }}>
+                    {params.value}
                 </Typography>
             ),
         },
         {
             field: 'status',
             headerName: 'Status',
-            width: 130,
+            width: 140,
             renderCell: (params) => {
-                const colors = getOrderStatusColor(params.value as string);
+                const statusColors: Record<string, string> = {
+                    'Label Created': isDarkMode ? '#525252' : '#737373',
+                    'Picked Up': isDarkMode ? '#D97706' : '#F59E0B',
+                    'In Transit': isDarkMode ? '#3B82F6' : '#2563EB',
+                    'Out for Delivery': isDarkMode ? '#8B5CF6' : '#7C3AED',
+                    'Delivered': isDarkMode ? '#22C55E' : '#16A34A',
+                    'Exception': isDarkMode ? '#DC2626' : '#EF4444',
+                };
                 return (
                     <Chip
                         label={params.value}
                         size="small"
                         sx={{
-                            bgcolor: colors.bg,
-                            color: colors.text,
+                            bgcolor: statusColors[params.value as string],
+                            color: '#FAFAFA',
                             fontWeight: 500,
                             borderRadius: 1,
                         }}
@@ -186,33 +190,34 @@ export function OrderTable({ orders, onView, onEdit, onDelete }: OrderTableProps
             },
         },
         {
-            field: 'paymentStatus',
-            headerName: 'Payment',
+            field: 'shippingMethod',
+            headerName: 'Method',
             width: 110,
-            renderCell: (params) => {
-                const paymentColor = getOrderStatusColor(params.value as string);
-                return (
-                    <Typography
-                        variant="caption"
-                        fontWeight={500}
-                        sx={{
-                            color: paymentColor.bg,
-                        }}
-                    >
-                        {params.value}
-                    </Typography>
-                );
-            },
+            renderCell: (params) => (
+                <Typography variant="body2" color="text.secondary">
+                    {params.value}
+                </Typography>
+            ),
         },
         {
-            field: 'createdAt',
-            headerName: 'Date',
+            field: 'shippingCost',
+            headerName: 'Cost',
+            width: 90,
+            renderCell: (params) => (
+                <Typography variant="body2" fontWeight={500}>
+                    ${params.value.toFixed(2)}
+                </Typography>
+            ),
+        },
+        {
+            field: 'estimatedDelivery',
+            headerName: 'Est. Delivery',
             width: 120,
             valueFormatter: (value) => {
                 return new Date(value).toLocaleDateString('en-US', {
-                    year: 'numeric',
                     month: 'short',
                     day: 'numeric',
+                    year: 'numeric',
                 });
             },
         },
@@ -221,13 +226,13 @@ export function OrderTable({ orders, onView, onEdit, onDelete }: OrderTableProps
             type: 'actions',
             headerName: 'Actions',
             width: 80,
-            getActions: (params: GridRowParams<Order>) => [
+            getActions: (params: GridRowParams<Shipment>) => [
                 <ActionsMenu
                     key={params.row.id}
-                    order={params.row}
+                    shipment={params.row}
                     onView={onView}
                     onEdit={onEdit}
-                    onDelete={onDelete}
+                    onMarkDelivered={onMarkDelivered}
                 />,
             ],
         },
@@ -236,7 +241,7 @@ export function OrderTable({ orders, onView, onEdit, onDelete }: OrderTableProps
     return (
         <Box sx={{ width: '100%' }}>
             <DataGrid
-                rows={orders}
+                rows={shipments}
                 columns={columns}
                 initialState={{
                     pagination: {

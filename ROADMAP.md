@@ -138,7 +138,7 @@ A comprehensive list of all sections and features to implement for a complete ad
 | ~~Warehouses~~ | ~~Multi-location inventory~~ | ✅ Done |
 | ~~Stock Levels~~ | ~~Low stock alerts~~ | ✅ Done |
 | ~~Suppliers~~ | ~~Vendor management~~ | ✅ Done |
-| Shipping | Carrier integrations | Low |
+| Shipping | Carrier integrations | ✅ Done |
 | ~~Returns~~ | ~~Return management~~ | ✅ Done |
 
 ---

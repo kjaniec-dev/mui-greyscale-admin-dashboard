@@ -6,26 +6,27 @@ import {
     Divider,
     Chip,
     Stack,
-    LinearProgress,
     useTheme,
 } from '@mui/material';
 import {
     Close as CloseIcon,
-    Warehouse as WarehouseIcon,
-    LocationOn as LocationIcon,
+    LocalShipping as ShippingIcon,
+    ShoppingCart as OrderIcon,
     Person as PersonIcon,
-    Phone as PhoneIcon,
-    Email as EmailIcon,
     CalendarToday as CalendarIcon,
-    Inventory as InventoryIcon,
+    LocationOn as LocationIcon,
+    AttachMoney as MoneyIcon,
+    Scale as WeightIcon,
+    Flight as MethodIcon,
+    ConfirmationNumber as TrackingIcon,
+    Business as CarrierIcon,
 } from '@mui/icons-material';
-import type { Warehouse } from '../../data/mockWarehouses';
-import { getStatusSolid, statusPalette } from '../../theme';
+import type { Shipment } from '../../data/mockShipments';
 
-interface WarehouseDetailDrawerProps {
+interface ShipmentDetailDrawerProps {
     open: boolean;
     onClose: () => void;
-    warehouse: Warehouse | null;
+    shipment: Shipment | null;
 }
 
 function formatDate(date: Date | undefined): string {
@@ -37,19 +38,26 @@ function formatDate(date: Date | undefined): string {
     });
 }
 
-export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDetailDrawerProps) {
+function formatCurrency(amount: number): string {
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    }).format(amount);
+}
+
+export function ShipmentDetailDrawer({ open, onClose, shipment }: ShipmentDetailDrawerProps) {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
 
-    if (!warehouse) return null;
+    if (!shipment) return null;
 
-    const { bg: statusBg, text: statusText } = getStatusSolid(warehouse.status, isDarkMode);
-
-    const usedPercent = (warehouse.usedCapacity / warehouse.capacity) * 100;
-    const getCapacityColor = () => {
-        if (usedPercent >= 90) return isDarkMode ? statusPalette.error.dark : statusPalette.error.light;
-        if (usedPercent >= 70) return isDarkMode ? statusPalette.warning.dark : statusPalette.warning.light;
-        return isDarkMode ? statusPalette.success.dark : statusPalette.success.light;
+    const statusColors: Record<string, string> = {
+        'Label Created': isDarkMode ? '#525252' : '#737373',
+        'Picked Up': isDarkMode ? '#D97706' : '#F59E0B',
+        'In Transit': isDarkMode ? '#3B82F6' : '#2563EB',
+        'Out for Delivery': isDarkMode ? '#8B5CF6' : '#7C3AED',
+        'Delivered': isDarkMode ? '#22C55E' : '#16A34A',
+        'Exception': isDarkMode ? '#DC2626' : '#EF4444',
     };
 
     const InfoRow = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: React.ReactNode }) => (
@@ -102,7 +110,7 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
                     }}
                 >
                     <Typography variant="h6" fontWeight={700}>
-                        Warehouse Details
+                        Shipment Details
                     </Typography>
                     <IconButton
                         onClick={onClose}
@@ -119,7 +127,7 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
 
                 {/* Content */}
                 <Box sx={{ flex: 1, overflow: 'auto', p: 3 }}>
-                    {/* Warehouse Name and Status */}
+                    {/* Shipment ID and Status */}
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 4 }}>
                         <Box
                             sx={{
@@ -133,27 +141,17 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
                                 mb: 2,
                             }}
                         >
-                            <WarehouseIcon sx={{ fontSize: 40, color: isDarkMode ? '#A3A3A3' : '#525252' }} />
+                            <ShippingIcon sx={{ fontSize: 40, color: isDarkMode ? '#A3A3A3' : '#525252' }} />
                         </Box>
                         <Typography variant="h5" fontWeight={700} gutterBottom textAlign="center">
-                            {warehouse.name}
-                        </Typography>
-                        <Typography
-                            variant="body2"
-                            sx={{
-                                fontFamily: 'monospace',
-                                color: isDarkMode ? '#A3A3A3' : '#737373',
-                                mb: 2,
-                            }}
-                        >
-                            {warehouse.code}
+                            {shipment.id}
                         </Typography>
                         <Chip
-                            label={warehouse.status}
+                            label={shipment.status}
                             size="small"
                             sx={{
-                                bgcolor: statusBg,
-                                color: statusText,
+                                bgcolor: statusColors[shipment.status],
+                                color: '#FAFAFA',
                                 fontWeight: 500,
                                 borderRadius: 1,
                             }}
@@ -162,7 +160,7 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
 
                     <Divider sx={{ mb: 3 }} />
 
-                    {/* Capacity */}
+                    {/* Order Info */}
                     <Box sx={{ mb: 4 }}>
                         <Typography
                             variant="overline"
@@ -174,44 +172,25 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
                                 display: 'block',
                             }}
                         >
-                            Capacity
+                            Order Information
                         </Typography>
-                        <Box sx={{ mb: 2 }}>
-                            <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                                <Typography variant="body2" fontWeight={500}>
-                                    {warehouse.usedCapacity.toLocaleString()} used
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    of {warehouse.capacity.toLocaleString()}
-                                </Typography>
-                            </Box>
-                            <LinearProgress
-                                variant="determinate"
-                                value={usedPercent}
-                                sx={{
-                                    height: 10,
-                                    borderRadius: 1,
-                                    bgcolor: isDarkMode ? '#404040' : '#E5E5E5',
-                                    '& .MuiLinearProgress-bar': {
-                                        bgcolor: getCapacityColor(),
-                                        borderRadius: 1,
-                                    },
-                                }}
+                        <Stack spacing={2}>
+                            <InfoRow
+                                icon={<OrderIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                label="Order Number"
+                                value={shipment.orderNumber}
                             />
-                            <Typography variant="caption" color="text.secondary" sx={{ mt: 0.5, display: 'block' }}>
-                                {usedPercent.toFixed(1)}% utilized
-                            </Typography>
-                        </Box>
-                        <InfoRow
-                            icon={<InventoryIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
-                            label="Available Space"
-                            value={`${(warehouse.capacity - warehouse.usedCapacity).toLocaleString()} units`}
-                        />
+                            <InfoRow
+                                icon={<PersonIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                label="Customer"
+                                value={shipment.customerName}
+                            />
+                        </Stack>
                     </Box>
 
                     <Divider sx={{ mb: 3 }} />
 
-                    {/* Location */}
+                    {/* Carrier & Tracking */}
                     <Box sx={{ mb: 4 }}>
                         <Typography
                             variant="overline"
@@ -223,20 +202,59 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
                                 display: 'block',
                             }}
                         >
-                            Location
+                            Carrier & Tracking
+                        </Typography>
+                        <Stack spacing={2}>
+                            <InfoRow
+                                icon={<CarrierIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                label="Carrier"
+                                value={shipment.carrier}
+                            />
+                            <InfoRow
+                                icon={<TrackingIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                label="Tracking Number"
+                                value={
+                                    <Typography variant="body2" fontWeight={500} sx={{ fontFamily: 'monospace' }}>
+                                        {shipment.trackingNumber}
+                                    </Typography>
+                                }
+                            />
+                        </Stack>
+                    </Box>
+
+                    <Divider sx={{ mb: 3 }} />
+
+                    {/* Route */}
+                    <Box sx={{ mb: 4 }}>
+                        <Typography
+                            variant="overline"
+                            sx={{
+                                color: isDarkMode ? '#A3A3A3' : '#737373',
+                                fontWeight: 600,
+                                letterSpacing: 1,
+                                mb: 2,
+                                display: 'block',
+                            }}
+                        >
+                            Route
                         </Typography>
                         <Stack spacing={2}>
                             <InfoRow
                                 icon={<LocationIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
-                                label="Address"
-                                value={`${warehouse.address}, ${warehouse.city}, ${warehouse.country}`}
+                                label="Origin"
+                                value={shipment.origin}
+                            />
+                            <InfoRow
+                                icon={<LocationIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                label="Destination"
+                                value={shipment.destination}
                             />
                         </Stack>
                     </Box>
 
                     <Divider sx={{ mb: 3 }} />
 
-                    {/* Contact */}
+                    {/* Shipping Details */}
                     <Box sx={{ mb: 4 }}>
                         <Typography
                             variant="overline"
@@ -248,30 +266,30 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
                                 display: 'block',
                             }}
                         >
-                            Contact
+                            Shipping Details
                         </Typography>
                         <Stack spacing={2}>
                             <InfoRow
-                                icon={<PersonIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
-                                label="Manager"
-                                value={warehouse.manager}
+                                icon={<MethodIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                label="Shipping Method"
+                                value={shipment.shippingMethod}
                             />
                             <InfoRow
-                                icon={<PhoneIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
-                                label="Phone"
-                                value={warehouse.phone}
+                                icon={<WeightIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                label="Weight"
+                                value={`${shipment.weight} lbs`}
                             />
                             <InfoRow
-                                icon={<EmailIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
-                                label="Email"
-                                value={warehouse.email}
+                                icon={<MoneyIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                label="Shipping Cost"
+                                value={formatCurrency(shipment.shippingCost)}
                             />
                         </Stack>
                     </Box>
 
                     <Divider sx={{ mb: 3 }} />
 
-                    {/* Timestamps */}
+                    {/* Timeline */}
                     <Box>
                         <Typography
                             variant="overline"
@@ -283,14 +301,26 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
                                 display: 'block',
                             }}
                         >
-                            Information
+                            Timeline
                         </Typography>
                         <Stack spacing={2}>
                             <InfoRow
                                 icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
-                                label="Created At"
-                                value={formatDate(warehouse.createdAt)}
+                                label="Created"
+                                value={formatDate(shipment.createdAt)}
                             />
+                            <InfoRow
+                                icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                label="Estimated Delivery"
+                                value={formatDate(shipment.estimatedDelivery)}
+                            />
+                            {shipment.actualDelivery && (
+                                <InfoRow
+                                    icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#22C55E' : '#16A34A' }} />}
+                                    label="Actual Delivery"
+                                    value={formatDate(shipment.actualDelivery)}
+                                />
+                            )}
                         </Stack>
                     </Box>
                 </Box>
