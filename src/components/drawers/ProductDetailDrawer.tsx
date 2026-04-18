@@ -18,6 +18,7 @@ import {
     Update as UpdateIcon,
 } from '@mui/icons-material';
 import type { Product } from '../../data/mockProducts';
+import { DetailInfoRow } from '../common/DetailInfoRow';
 
 interface ProductDetailDrawerProps {
     open: boolean;
@@ -61,32 +62,6 @@ export function ProductDetailDrawer({ open, onClose, product }: ProductDetailDra
         Home: isDarkMode ? '#404040' : '#E5E5E5',
         Sports: isDarkMode ? '#404040' : '#E5E5E5',
     };
-
-    const InfoRow = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: React.ReactNode }) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box
-                sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 1,
-                    bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                {icon}
-            </Box>
-            <Box sx={{ flex: 1 }}>
-                <Typography variant="caption" color="text.secondary" display="block">
-                    {label}
-                </Typography>
-                <Typography variant="body2" fontWeight={500}>
-                    {value}
-                </Typography>
-            </Box>
-        </Box>
-    );
 
     return (
         <Drawer
@@ -199,17 +174,17 @@ export function ProductDetailDrawer({ open, onClose, product }: ProductDetailDra
                             Pricing & Inventory
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<MoneyIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Price"
                                 value={formatCurrency(product.price)}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<NumbersIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Stock Quantity"
                                 value={`${product.stock} units`}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<CategoryIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Category"
                                 value={product.category}
@@ -258,12 +233,12 @@ export function ProductDetailDrawer({ open, onClose, product }: ProductDetailDra
                             Timestamps
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Created At"
                                 value={formatDate(product.createdAt)}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<UpdateIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Last Updated"
                                 value={formatDate(product.updatedAt)}

@@ -41,17 +41,13 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
 export function TransactionsPage() {
     const [searchQuery, setSearchQuery] = useState('');
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
 
-    const handleMenuOpen = (event: React.MouseEvent<HTMLElement>, transaction: Transaction) => {
+    const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
-        setSelectedTransaction(transaction);
     };
 
     const handleMenuClose = () => {
         setAnchorEl(null);
-        setSelectedTransaction(null);
     };
 
     const filteredTransactions = useMemo(() => {
@@ -151,8 +147,8 @@ export function TransactionsPage() {
             headerName: 'Actions',
             width: 80,
             sortable: false,
-            renderCell: (params: GridRenderCellParams<Transaction>) => (
-                <IconButton onClick={(e) => handleMenuOpen(e, params.row)} size="small">
+            renderCell: () => (
+                <IconButton onClick={handleMenuOpen} size="small">
                     <MoreVertIcon fontSize="small" />
                 </IconButton>
             ),

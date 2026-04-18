@@ -1,5 +1,6 @@
 export { lightTheme, darkTheme, neutral } from './theme';
-export { ThemeProvider, useThemeMode } from './ThemeProvider';
+export { ThemeProvider } from './ThemeProvider';
+export { useThemeMode } from './themeContext';
 export {
   statusPalette,
   chartPalette,

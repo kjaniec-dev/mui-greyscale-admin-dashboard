@@ -23,7 +23,7 @@ export function DealsPage() {
     const [selectedDeal, setSelectedDeal] = useState<Deal | null>(null);
 
     // Open dialog for new deal
-    const handleAddDeal = (stage?: Deal['stage']) => {
+    const handleAddDeal = () => {
         setSelectedDeal(null);
         setIsDialogOpen(true);
     };

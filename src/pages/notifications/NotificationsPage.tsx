@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
     Box,
     Typography,
@@ -69,6 +70,7 @@ function formatTimeAgo(date: Date): string {
 export function NotificationsPage() {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
+    const navigate = useNavigate();
     const [notifications, setNotifications] = useState(mockNotifications);
     const [tab, setTab] = useState(0);
 
@@ -97,7 +99,7 @@ export function NotificationsPage() {
     const handleNotificationClick = (notification: Notification) => {
         handleMarkAsRead(notification.id);
         if (notification.link) {
-            window.location.href = notification.link;
+            navigate(notification.link);
         }
     };
 

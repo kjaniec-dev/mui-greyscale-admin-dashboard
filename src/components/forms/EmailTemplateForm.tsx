@@ -9,10 +9,8 @@ import {
     CardContent,
     CardHeader,
     Divider,
-    Grid,
     TextField,
     MenuItem,
-    Typography,
     Stack,
 } from '@mui/material';
 import type { EmailTemplate } from '../../data/mockEmailTemplates';
@@ -23,11 +21,11 @@ const STATUSES = ['Active', 'Draft', 'Archived'] as const;
 const emailTemplateSchema = z.object({
     name: z.string().min(1, 'Template name is required'),
     subject: z.string().min(1, 'Subject line is required'),
-    category: z.enum(CATEGORIES as unknown as [string, ...string[]], {
-        errorMap: () => ({ message: 'Category is required' }),
+    category: z.enum(CATEGORIES, {
+        message: 'Category is required',
     }),
-    status: z.enum(STATUSES as unknown as [string, ...string[]], {
-        errorMap: () => ({ message: 'Status is required' }),
+    status: z.enum(STATUSES, {
+        message: 'Status is required',
     }),
     content: z.string().min(1, 'Content is required'),
 });

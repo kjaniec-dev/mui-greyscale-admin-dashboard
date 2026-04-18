@@ -23,6 +23,7 @@ import {
     CalendarToday as CalendarIcon,
 } from '@mui/icons-material';
 import type { Order } from '../../data/mockOrders';
+import { DetailInfoRow } from '../common/DetailInfoRow';
 
 interface OrderDetailDrawerProps {
     open: boolean;
@@ -61,32 +62,6 @@ export function OrderDetailDrawer({ open, onClose, order }: OrderDetailDrawerPro
         Delivered: { bg: isDarkMode ? '#A3A3A3' : '#525252', text: isDarkMode ? '#171717' : '#FAFAFA' },
         Cancelled: { bg: isDarkMode ? '#DC2626' : '#EF4444', text: '#FAFAFA' },
     };
-
-    const InfoRow = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: React.ReactNode }) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box
-                sx={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: 1,
-                    bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                {icon}
-            </Box>
-            <Box sx={{ flex: 1 }}>
-                <Typography variant="caption" color="text.secondary" display="block">
-                    {label}
-                </Typography>
-                <Typography variant="body2" fontWeight={500}>
-                    {value}
-                </Typography>
-            </Box>
-        </Box>
-    );
 
     return (
         <Drawer
@@ -167,18 +142,18 @@ export function OrderDetailDrawer({ open, onClose, order }: OrderDetailDrawerPro
                             Customer
                         </Typography>
                         <Stack spacing={1.5}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<PersonIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Name"
                                 value={order.customer.name}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<EmailIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Email"
                                 value={order.customer.email}
                             />
                             {order.customer.phone && (
-                                <InfoRow
+                                <DetailInfoRow
                                     icon={<PhoneIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                     label="Phone"
                                     value={order.customer.phone}
@@ -277,7 +252,7 @@ export function OrderDetailDrawer({ open, onClose, order }: OrderDetailDrawerPro
                             >
                                 Payment
                             </Typography>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<PaymentIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label={order.paymentMethod}
                                 value={
@@ -314,7 +289,7 @@ export function OrderDetailDrawer({ open, onClose, order }: OrderDetailDrawerPro
                             >
                                 Shipping Address
                             </Typography>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<ShippingIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Address"
                                 value={
@@ -340,7 +315,7 @@ export function OrderDetailDrawer({ open, onClose, order }: OrderDetailDrawerPro
                             >
                                 Timeline
                             </Typography>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<CalendarIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Last Updated"
                                 value={formatDate(order.updatedAt)}

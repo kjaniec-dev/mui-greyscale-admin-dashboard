@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import {
     Box,
     Typography,
@@ -32,6 +32,58 @@ import {
     Language as UrlIcon,
     AttachMoney as CurrencyIcon,
 } from '@mui/icons-material';
+
+interface SettingRowProps {
+    icon: ReactNode;
+    label: string;
+    description?: string;
+    children: ReactNode;
+}
+
+function SettingRow({ icon, label, description, children }: SettingRowProps) {
+    const theme = useTheme();
+    const isDarkMode = theme.palette.mode === 'dark';
+
+    return (
+        <Box
+            sx={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                justifyContent: 'space-between',
+                gap: 2,
+                py: 1.5,
+            }}
+        >
+            <Box sx={{ display: 'flex', gap: 2, flex: 1 }}>
+                <Box
+                    sx={{
+                        width: 40,
+                        height: 40,
+                        borderRadius: 1,
+                        bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                    }}
+                >
+                    {icon}
+                </Box>
+                <Box>
+                    <Typography variant="body2" fontWeight={500}>
+                        {label}
+                    </Typography>
+                    {description && (
+                        <Typography variant="caption" color="text.secondary">
+                            {description}
+                        </Typography>
+                    )}
+                </Box>
+            </Box>
+            <Box sx={{ flexShrink: 0 }}>{children}</Box>
+        </Box>
+    );
+}
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -129,56 +181,6 @@ export function SettingsPage() {
         bgcolor: isDarkMode ? '#0A0A0A' : '#FAFAFA',
         minWidth: 280,
     };
-
-    const SettingRow = ({
-        icon,
-        label,
-        description,
-        children,
-    }: {
-        icon: React.ReactNode;
-        label: string;
-        description?: string;
-        children: React.ReactNode;
-    }) => (
-        <Box
-            sx={{
-                display: 'flex',
-                alignItems: 'flex-start',
-                justifyContent: 'space-between',
-                gap: 2,
-                py: 1.5,
-            }}
-        >
-            <Box sx={{ display: 'flex', gap: 2, flex: 1 }}>
-                <Box
-                    sx={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: 1,
-                        bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0,
-                    }}
-                >
-                    {icon}
-                </Box>
-                <Box>
-                    <Typography variant="body2" fontWeight={500}>
-                        {label}
-                    </Typography>
-                    {description && (
-                        <Typography variant="caption" color="text.secondary">
-                            {description}
-                        </Typography>
-                    )}
-                </Box>
-            </Box>
-            <Box sx={{ flexShrink: 0 }}>{children}</Box>
-        </Box>
-    );
 
     return (
         <Box>

@@ -22,6 +22,7 @@ import {
     Business as CarrierIcon,
 } from '@mui/icons-material';
 import type { Shipment } from '../../data/mockShipments';
+import { DetailInfoRow } from '../common/DetailInfoRow';
 
 interface ShipmentDetailDrawerProps {
     open: boolean;
@@ -59,32 +60,6 @@ export function ShipmentDetailDrawer({ open, onClose, shipment }: ShipmentDetail
         'Delivered': isDarkMode ? '#22C55E' : '#16A34A',
         'Exception': isDarkMode ? '#DC2626' : '#EF4444',
     };
-
-    const InfoRow = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: React.ReactNode }) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box
-                sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 1,
-                    bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                {icon}
-            </Box>
-            <Box sx={{ flex: 1 }}>
-                <Typography variant="caption" color="text.secondary" display="block">
-                    {label}
-                </Typography>
-                <Typography variant="body2" fontWeight={500}>
-                    {value}
-                </Typography>
-            </Box>
-        </Box>
-    );
 
     return (
         <Drawer
@@ -175,12 +150,12 @@ export function ShipmentDetailDrawer({ open, onClose, shipment }: ShipmentDetail
                             Order Information
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<OrderIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Order Number"
                                 value={shipment.orderNumber}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<PersonIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Customer"
                                 value={shipment.customerName}
@@ -205,12 +180,12 @@ export function ShipmentDetailDrawer({ open, onClose, shipment }: ShipmentDetail
                             Carrier & Tracking
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<CarrierIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Carrier"
                                 value={shipment.carrier}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<TrackingIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Tracking Number"
                                 value={
@@ -239,12 +214,12 @@ export function ShipmentDetailDrawer({ open, onClose, shipment }: ShipmentDetail
                             Route
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<LocationIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Origin"
                                 value={shipment.origin}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<LocationIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Destination"
                                 value={shipment.destination}
@@ -269,17 +244,17 @@ export function ShipmentDetailDrawer({ open, onClose, shipment }: ShipmentDetail
                             Shipping Details
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<MethodIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Shipping Method"
                                 value={shipment.shippingMethod}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<WeightIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Weight"
                                 value={`${shipment.weight} lbs`}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<MoneyIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Shipping Cost"
                                 value={formatCurrency(shipment.shippingCost)}
@@ -304,18 +279,18 @@ export function ShipmentDetailDrawer({ open, onClose, shipment }: ShipmentDetail
                             Timeline
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Created"
                                 value={formatDate(shipment.createdAt)}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Estimated Delivery"
                                 value={formatDate(shipment.estimatedDelivery)}
                             />
                             {shipment.actualDelivery && (
-                                <InfoRow
+                                <DetailInfoRow
                                     icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#22C55E' : '#16A34A' }} />}
                                     label="Actual Delivery"
                                     value={formatDate(shipment.actualDelivery)}

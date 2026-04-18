@@ -15,7 +15,6 @@ import {
     GridToolbar,
 } from '@mui/x-data-grid';
 import {
-    MoreVert as MoreVertIcon, // kept just in case or better remove if truly unused. Actually, delete icon logic was removed too.
     Visibility as ViewIcon,
     Edit as EditIcon,
     Business as BusinessIcon,

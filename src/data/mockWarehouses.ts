@@ -53,10 +53,6 @@ const managers = [
     'Amanda Thomas',
 ];
 
-function getRandomElement<T>(array: T[]): T {
-    return array[Math.floor(Math.random() * array.length)];
-}
-
 function getRandomCapacity(): number {
     return Math.floor(Math.random() * 40000) + 10000;
 }
