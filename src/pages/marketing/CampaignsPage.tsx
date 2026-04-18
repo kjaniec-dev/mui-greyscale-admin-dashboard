@@ -33,7 +33,7 @@ import type { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { DataGrid as DataGridComponent } from '@mui/x-data-grid';
 import { mockCampaigns, type Campaign, type CampaignStatus, type CampaignType } from '../../data/mockCampaigns';
 import { CampaignForm, type CampaignFormData } from '../../components/forms/CampaignForm';
-import { getStatusColor } from '../../theme';
+import { getStatusSolid } from '../../theme';
 
 const typeIcons: Record<CampaignType, React.ReactNode> = {
     email: <EmailIcon fontSize="small" />,
@@ -160,18 +160,16 @@ export function CampaignsPage() {
             headerName: 'Status',
             width: 120,
             renderCell: (params: GridRenderCellParams<Campaign, string>) => {
-                const colors = getStatusColor(params.value as CampaignStatus, isDarkMode);
+                const colors = getStatusSolid(params.value as CampaignStatus, isDarkMode);
                 return (
                     <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
                         <Chip
                             label={params.value}
                             size="small"
-                            variant="outlined"
                             sx={{
                                 textTransform: 'capitalize',
-                                color: colors.text,
-                                borderColor: colors.text,
                                 bgcolor: colors.bg,
+                                color: colors.text,
                             }}
                         />
                     </Box>

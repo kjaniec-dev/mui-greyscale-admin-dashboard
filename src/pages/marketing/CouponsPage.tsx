@@ -29,7 +29,7 @@ import type { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { DataGrid as DataGridComponent } from '@mui/x-data-grid';
 import { mockCoupons, type Coupon, type CouponStatus } from '../../data/mockCoupons';
 import { CouponForm, type CouponFormData } from '../../components/forms/CouponForm';
-import { getStatusColor } from '../../theme';
+import { getStatusSolid } from '../../theme';
 
 const currencyFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -177,18 +177,16 @@ export function CouponsPage() {
             headerName: 'Status',
             width: 120,
             renderCell: (params: GridRenderCellParams<Coupon, string>) => {
-                const colors = getStatusColor(params.value as CouponStatus, isDarkMode);
+                const colors = getStatusSolid(params.value as CouponStatus, isDarkMode);
                 return (
                     <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
                         <Chip
                             label={params.value}
                             size="small"
-                            variant="outlined"
                             sx={{
                                 textTransform: 'capitalize',
-                                color: colors.text,
-                                borderColor: colors.text,
                                 bgcolor: colors.bg,
+                                color: colors.text,
                             }}
                         />
                     </Box>

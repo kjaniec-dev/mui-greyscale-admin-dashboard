@@ -17,7 +17,7 @@ import {
     Assignment as AssignmentIcon,
 } from '@mui/icons-material';
 import type { Ticket } from '../../data/mockTickets';
-import { getStatusColor } from '../../theme';
+import { getStatusSolid } from '../../theme';
 
 interface TicketDetailDrawerProps {
     open: boolean;
@@ -57,7 +57,7 @@ export function TicketDetailDrawer({ open, onClose, ticket }: TicketDetailDrawer
 
     if (!ticket) return null;
 
-    const statusStyle = getStatusColor(ticket.status, isDarkMode);
+    const statusStyle = getStatusSolid(ticket.status, isDarkMode);
     const priorityStyle = priorityColors[ticket.priority] || priorityColors.Low;
 
     return (

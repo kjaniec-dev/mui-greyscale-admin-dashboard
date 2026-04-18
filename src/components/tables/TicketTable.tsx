@@ -16,7 +16,7 @@ import {
     MoreVert as MoreVertIcon,
 } from '@mui/icons-material';
 import type { Ticket } from '../../data/mockTickets';
-import { getStatusColor } from '../../theme';
+import { getStatusSolid } from '../../theme';
 
 interface TicketTableProps {
     tickets: Ticket[];
@@ -165,7 +165,7 @@ export function TicketTable({ tickets, onView, onEdit, onDelete }: TicketTablePr
             headerName: 'Status',
             width: 120,
             renderCell: (params) => {
-                const colors = getStatusColor(params.value as string, isDarkMode);
+                const colors = getStatusSolid(params.value as string, isDarkMode);
                 return (
                     <Chip
                         label={params.value}

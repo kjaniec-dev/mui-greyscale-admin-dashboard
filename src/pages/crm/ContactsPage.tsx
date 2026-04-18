@@ -21,6 +21,7 @@ import {
 } from '@mui/icons-material';
 import { mockContacts, type Contact } from '../../data/mockContacts';
 import { ContactDialog } from './components/ContactDialog';
+import { getStatusSolid } from '../../theme';
 
 export function ContactsPage() {
     const theme = useTheme();
@@ -117,18 +118,14 @@ export function ContactsPage() {
             width: 120,
             renderCell: (params: GridRenderCellParams<Contact, string>) => {
                 const status = params.value as Contact['status'];
-                const isActive = status === 'Active';
+                const colors = getStatusSolid(status, isDarkMode);
                 return (
                     <Chip
                         label={status}
                         size="small"
                         sx={{
-                            bgcolor: isActive
-                                ? (isDarkMode ? '#064E3B' : '#ECFDF5')
-                                : (isDarkMode ? '#7F1D1D' : '#FEF2F2'),
-                            color: isActive
-                                ? (isDarkMode ? '#34D399' : '#059669')
-                                : (isDarkMode ? '#F87171' : '#DC2626'),
+                            bgcolor: colors.bg,
+                            color: colors.text,
                             fontWeight: 600,
                             borderRadius: '6px',
                             height: 24,

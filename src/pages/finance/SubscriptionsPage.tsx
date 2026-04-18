@@ -26,7 +26,7 @@ import {
     Pause as PauseIcon,
 } from '@mui/icons-material';
 import { mockSubscriptions, type Subscription } from '../../data/mockSubscriptions';
-import { getStatusColor } from '../../theme';
+import { getStatusSolid } from '../../theme';
 
 export function SubscriptionsPage() {
     const theme = useTheme();
@@ -104,7 +104,7 @@ export function SubscriptionsPage() {
             width: 120,
             renderCell: (params: GridRenderCellParams<Subscription, string>) => {
                 const status = params.value as Subscription['status'];
-                const colors = getStatusColor(status, isDarkMode);
+                const colors = getStatusSolid(status, isDarkMode);
                 return (
                     <Chip
                         label={status}
