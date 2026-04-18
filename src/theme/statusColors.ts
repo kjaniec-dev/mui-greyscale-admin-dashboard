@@ -126,6 +126,34 @@ const STATUS_MAP: Record<string, StatusKey> = {
   sandbox: 'purple',
 };
 
+export function getStatusKey(status: string): StatusKey {
+  return STATUS_MAP[status.toLowerCase()] ?? 'info';
+}
+
+export function getToneColor(
+  tone: StatusKey,
+  isDark: boolean,
+): { text: string; bg: string; solid: string } {
+  const palette = statusPalette[tone];
+  return {
+    text: isDark ? palette.dark : palette.light,
+    bg: isDark ? palette.bg.dark : palette.bg.light,
+    solid: isDark ? palette.dark : palette.light,
+  };
+}
+
+export function getProgressColor(
+  tone: Extract<StatusKey, 'success' | 'warning' | 'error' | 'info'>,
+  isDark: boolean,
+): string {
+  return isDark ? statusPalette[tone].dark : statusPalette[tone].light;
+}
+
+export function getNotificationColor(type: string, isDark: boolean): string {
+  const colors = notificationTypeColors[type] ?? notificationTypeColors.system;
+  return isDark ? colors.dark : colors.light;
+}
+
 /**
  * Get the foreground + background colors for a status string.
  *
@@ -137,12 +165,8 @@ export function getStatusColor(
   status: string,
   isDark: boolean,
 ): { text: string; bg: string } {
-  const key = STATUS_MAP[status.toLowerCase()] ?? 'info';
-  const palette = statusPalette[key];
-  return {
-    text: isDark ? palette.dark : palette.light,
-    bg: isDark ? palette.bg.dark : palette.bg.light,
-  };
+  const { text, bg } = getToneColor(getStatusKey(status), isDark);
+  return { text, bg };
 }
 
 /**
@@ -153,10 +177,9 @@ export function getStatusSolid(
   status: string,
   isDark: boolean,
 ): { bg: string; text: string } {
-  const key = STATUS_MAP[status.toLowerCase()] ?? 'info';
-  const palette = statusPalette[key];
+  const { solid } = getToneColor(getStatusKey(status), isDark);
   return {
-    bg: isDark ? palette.dark : palette.light,
+    bg: solid,
     text: isDark ? '#171717' : '#FAFAFA',
   };
 }
