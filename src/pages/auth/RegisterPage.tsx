@@ -52,13 +52,15 @@ export function RegisterPage() {
         },
     });
 
-    const onSubmit = async (data: RegisterInputs) => {
+    const onSubmit = async () => {
         setLoading(true);
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-        console.log('Register:', data);
-        setLoading(false);
-        navigate('/auth/login');
+        try {
+            // Simulate API call
+            await new Promise((resolve) => setTimeout(resolve, 1500));
+            navigate('/auth/login');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (

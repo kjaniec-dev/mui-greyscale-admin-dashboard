@@ -264,58 +264,80 @@ export const mockTasks: Task[] = [
 ];
 
 // Helper functions
-export const getTasksByList = (list: TaskListType | 'All'): Task[] => {
-    if (list === 'All') return mockTasks;
-    return mockTasks.filter((task) => task.list === list);
+const getStartOfDay = (date: Date): Date => {
+    const start = new Date(date);
+    start.setHours(0, 0, 0, 0);
+    return start;
 };
 
-export const getTasksForToday = (): Task[] => {
-    const todayStart = new Date(today);
-    todayStart.setHours(0, 0, 0, 0);
-    const todayEnd = new Date(today);
-    todayEnd.setHours(23, 59, 59, 999);
+const getEndOfDay = (date: Date): Date => {
+    const end = new Date(date);
+    end.setHours(23, 59, 59, 999);
+    return end;
+};
 
-    return mockTasks.filter((task) => {
+export const getTasksByList = (
+    list: TaskListType | 'All',
+    tasks: Task[] = mockTasks,
+): Task[] => {
+    if (list === 'All') return tasks;
+    return tasks.filter((task) => task.list === list);
+};
+
+export const getTasksForToday = (
+    tasks: Task[] = mockTasks,
+    referenceDate: Date = new Date(),
+): Task[] => {
+    const todayStart = getStartOfDay(referenceDate);
+    const todayEnd = getEndOfDay(referenceDate);
+
+    return tasks.filter((task) => {
         if (!task.dueDate) return false;
         const dueDate = new Date(task.dueDate);
         return dueDate >= todayStart && dueDate <= todayEnd && !task.completed;
     });
 };
 
-export const getOverdueTasks = (): Task[] => {
-    const todayStart = new Date(today);
-    todayStart.setHours(0, 0, 0, 0);
+export const getOverdueTasks = (
+    tasks: Task[] = mockTasks,
+    referenceDate: Date = new Date(),
+): Task[] => {
+    const todayStart = getStartOfDay(referenceDate);
 
-    return mockTasks.filter((task) => {
+    return tasks.filter((task) => {
         if (!task.dueDate || task.completed) return false;
         return new Date(task.dueDate) < todayStart;
     });
 };
 
-export const getUpcomingTasks = (): Task[] => {
-    const todayEnd = new Date(today);
-    todayEnd.setHours(23, 59, 59, 999);
-    const nextWeekEnd = new Date(today);
-    nextWeekEnd.setDate(today.getDate() + 7);
+export const getUpcomingTasks = (
+    tasks: Task[] = mockTasks,
+    referenceDate: Date = new Date(),
+): Task[] => {
+    const todayEnd = getEndOfDay(referenceDate);
+    const nextWeekEnd = getEndOfDay(referenceDate);
+    nextWeekEnd.setDate(referenceDate.getDate() + 7);
 
-    return mockTasks.filter((task) => {
+    return tasks.filter((task) => {
         if (!task.dueDate || task.completed) return false;
         const dueDate = new Date(task.dueDate);
         return dueDate > todayEnd && dueDate <= nextWeekEnd;
     });
 };
 
-export const getTaskStats = () => {
-    const total = mockTasks.length;
-    const completed = mockTasks.filter((t) => t.completed).length;
-    const completedToday = mockTasks.filter((t) => {
+export const getTaskStats = (
+    tasks: Task[] = mockTasks,
+    referenceDate: Date = new Date(),
+) => {
+    const total = tasks.length;
+    const completed = tasks.filter((t) => t.completed).length;
+    const completedToday = tasks.filter((t) => {
         if (!t.completedAt) return false;
         const completedDate = new Date(t.completedAt);
-        const todayStart = new Date(today);
-        todayStart.setHours(0, 0, 0, 0);
+        const todayStart = getStartOfDay(referenceDate);
         return completedDate >= todayStart;
     }).length;
-    const overdue = getOverdueTasks().length;
+    const overdue = getOverdueTasks(tasks, referenceDate).length;
     const completionRate = total > 0 ? Math.round((completed / total) * 100) : 0;
 
     return {

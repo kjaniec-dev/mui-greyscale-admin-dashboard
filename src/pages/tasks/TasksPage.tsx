@@ -54,6 +54,7 @@ import {
     type TaskListType,
     type TaskPriority,
 } from '../../data/mockTasks';
+import { useCurrentDate } from '../../hooks/useCurrentDate';
 
 type ViewFilter = 'All' | 'Active' | 'Completed';
 type SortOption = 'dueDate' | 'priority' | 'createdAt';
@@ -62,6 +63,7 @@ type SelectedList = 'All' | 'Today' | 'Upcoming' | TaskListType;
 export function TasksPage() {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
+    const currentDate = useCurrentDate();
 
     const [tasks, setTasks] = useState<Task[]>(mockTasks);
     const [viewFilter, setViewFilter] = useState<ViewFilter>('All');
@@ -79,7 +81,9 @@ export function TasksPage() {
         tags: '' as string,
     });
 
-    const stats = getTaskStats();
+    const todayTasks = useMemo(() => getTasksForToday(tasks, currentDate), [tasks, currentDate]);
+    const upcomingTasks = useMemo(() => getUpcomingTasks(tasks, currentDate), [tasks, currentDate]);
+    const stats = useMemo(() => getTaskStats(tasks, currentDate), [tasks, currentDate]);
 
     // Filter and sort tasks
     const filteredTasks = useMemo(() => {
@@ -94,11 +98,11 @@ export function TasksPage() {
 
         // Filter by selected list
         if (selectedList === 'Today') {
-            const todayTasks = getTasksForToday();
-            result = result.filter((t) => todayTasks.some((tt) => tt.id === t.id));
+            const todayTaskIds = new Set(todayTasks.map((task) => task.id));
+            result = result.filter((task) => todayTaskIds.has(task.id));
         } else if (selectedList === 'Upcoming') {
-            const upcomingTasks = getUpcomingTasks();
-            result = result.filter((t) => upcomingTasks.some((ut) => ut.id === t.id));
+            const upcomingTaskIds = new Set(upcomingTasks.map((task) => task.id));
+            result = result.filter((task) => upcomingTaskIds.has(task.id));
         } else if (selectedList !== 'All') {
             result = result.filter((t) => t.list === selectedList);
         }
@@ -130,7 +134,7 @@ export function TasksPage() {
         });
 
         return result;
-    }, [tasks, viewFilter, sortBy, searchQuery, selectedList]);
+    }, [tasks, viewFilter, sortBy, searchQuery, selectedList, todayTasks, upcomingTasks]);
 
     const handleToggleComplete = (taskId: string) => {
         setTasks((prev) =>
@@ -262,8 +266,8 @@ export function TasksPage() {
 
     const getListCount = (listId: SelectedList): number => {
         if (listId === 'All') return tasks.filter((t) => !t.completed).length;
-        if (listId === 'Today') return getTasksForToday().length;
-        if (listId === 'Upcoming') return getUpcomingTasks().length;
+        if (listId === 'Today') return todayTasks.length;
+        if (listId === 'Upcoming') return upcomingTasks.length;
         return tasks.filter((t) => t.list === listId && !t.completed).length;
     };
 

@@ -39,12 +39,14 @@ import {
     getOverdueTasks,
 } from '../../data/mockTasks';
 import { TaskDialog } from './components/TaskDialog';
+import { useCurrentDate } from '../../hooks/useCurrentDate';
 
 type FilterType = 'All' | 'Today' | 'Upcoming' | 'Overdue' | 'Completed' | TaskListType;
 
 export const TasksPage = () => {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
+    const currentDate = useCurrentDate();
 
     const [tasks, setTasks] = useState<Task[]>(mockTasks);
     const [currentFilter, setCurrentFilter] = useState<FilterType>('All');
@@ -54,19 +56,23 @@ export const TasksPage = () => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
+    const todayTasks = useMemo(() => getTasksForToday(tasks, currentDate), [tasks, currentDate]);
+    const upcomingTasks = useMemo(() => getUpcomingTasks(tasks, currentDate), [tasks, currentDate]);
+    const overdueTasks = useMemo(() => getOverdueTasks(tasks, currentDate), [tasks, currentDate]);
+
     const filteredTasks = useMemo(() => {
         let filtered = tasks;
 
         // Apply sidebar filter
         switch (currentFilter) {
             case 'Today':
-                filtered = getTasksForToday(); // Using helper from mock data (you'd normally filter state directly)
+                filtered = todayTasks;
                 break;
             case 'Upcoming':
-                filtered = getUpcomingTasks();
+                filtered = upcomingTasks;
                 break;
             case 'Overdue':
-                filtered = getOverdueTasks();
+                filtered = overdueTasks;
                 break;
             case 'Completed':
                 filtered = tasks.filter(t => t.completed);
@@ -91,7 +97,7 @@ export const TasksPage = () => {
         }
 
         return filtered;
-    }, [tasks, currentFilter, searchQuery]);
+    }, [tasks, currentFilter, searchQuery, todayTasks, upcomingTasks, overdueTasks]);
 
     const handleToggleComplete = (taskId: string) => {
         setTasks(prev => prev.map(t => {

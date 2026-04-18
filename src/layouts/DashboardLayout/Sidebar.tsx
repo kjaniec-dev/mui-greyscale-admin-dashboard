@@ -23,6 +23,7 @@ import {
 } from '@mui/icons-material';
 import { navConfig } from './navConfig';
 import type { NavItem, NavSection } from './navConfig';
+import { getSidebarNavigationTarget } from './sidebarNavigation';
 import { neutral } from '../../theme';
 
 const DRAWER_WIDTH = 280;
@@ -71,13 +72,19 @@ export function Sidebar({
         const isOpen = openSections[item.path] ?? isParentActive(item);
         const active = isActive(item.path);
         const Icon = item.icon;
+        const navigationTarget = getSidebarNavigationTarget(item, collapsed);
 
         return (
             <Box key={item.path}>
                 <ListItemButton
-                    onClick={() =>
-                        hasChildren ? handleToggleSection(item.path) : handleNavigate(item.path)
-                    }
+                    onClick={() => {
+                        if (hasChildren && !collapsed) {
+                            handleToggleSection(item.path);
+                            return;
+                        }
+
+                        handleNavigate(navigationTarget);
+                    }}
                     sx={{
                         minHeight: 44,
                         borderRadius: 1,

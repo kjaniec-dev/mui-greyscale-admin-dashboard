@@ -415,21 +415,24 @@ Makes 48 cookies`,
 ];
 
 // Helper functions
-export const getNotesByFolder = (folder: NoteFolder | 'All' | 'Pinned'): Note[] => {
-    if (folder === 'All') return mockNotes;
-    if (folder === 'Pinned') return mockNotes.filter((note) => note.isPinned);
-    return mockNotes.filter((note) => note.folder === folder);
+export const getNotesByFolder = (
+    folder: NoteFolder | 'All' | 'Pinned',
+    notes: Note[] = mockNotes,
+): Note[] => {
+    if (folder === 'All') return notes;
+    if (folder === 'Pinned') return notes.filter((note) => note.isPinned);
+    return notes.filter((note) => note.folder === folder);
 };
 
-export const getPinnedNotes = (): Note[] => {
-    return mockNotes.filter((note) => note.isPinned);
+export const getPinnedNotes = (notes: Note[] = mockNotes): Note[] => {
+    return notes.filter((note) => note.isPinned);
 };
 
-export const getNoteStats = () => {
-    const total = mockNotes.length;
-    const pinned = mockNotes.filter((n) => n.isPinned).length;
+export const getNoteStats = (notes: Note[] = mockNotes) => {
+    const total = notes.length;
+    const pinned = notes.filter((n) => n.isPinned).length;
     const byFolder = noteFolders.reduce((acc, folder) => {
-        acc[folder.id] = mockNotes.filter((n) => n.folder === folder.id).length;
+        acc[folder.id] = notes.filter((n) => n.folder === folder.id).length;
         return acc;
     }, {} as Record<NoteFolder, number>);
 
@@ -440,9 +443,9 @@ export const getNoteStats = () => {
     };
 };
 
-export const getAllTags = (): string[] => {
+export const getAllTags = (notes: Note[] = mockNotes): string[] => {
     const tagSet = new Set<string>();
-    mockNotes.forEach((note) => {
+    notes.forEach((note) => {
         note.tags.forEach((tag) => tagSet.add(tag));
     });
     return Array.from(tagSet).sort();

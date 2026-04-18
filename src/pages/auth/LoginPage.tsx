@@ -41,13 +41,15 @@ export function LoginPage() {
         },
     });
 
-    const onSubmit = async (data: LoginInputs) => {
+    const onSubmit = async () => {
         setLoading(true);
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        console.log('Login:', data);
-        setLoading(false);
-        navigate('/dashboard');
+        try {
+            // Simulate API call
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            navigate('/dashboard');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (

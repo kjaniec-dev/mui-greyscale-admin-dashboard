@@ -1,38 +1,49 @@
+import type { ComponentType } from 'react';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { DashboardLayout } from '../layouts/DashboardLayout';
 import { AuthLayout } from '../layouts/AuthLayout';
-import { OverviewPage, AnalyticsPage, EcommercePage, RealTimePage, HeatmapsPage } from '../pages/dashboard';
-import { UsersPage, UserProfilePage, UserCreatePage, UserAccountPage } from '../pages/users';
-import { ProductsPage, ProductCreatePage } from '../pages/products';
-import { OrdersPage, OrderCreatePage, OrderDetailsPage } from '../pages/orders';
-import { InvoicesPage, InvoiceCreatePage } from '../pages/invoices';
-import { CustomersPage } from '../pages/customers';
-import { TicketsPage } from '../pages/tickets';
-import { ChatHistoryPage } from '../pages/chat-history';
-import { KnowledgeBasePage, ArticleDetailPage, ArticleCreatePage } from '../pages/knowledge-base';
-import { LeadsPage } from '../pages/leads';
-import { SettingsPage, ApiKeysPage, PaymentGatewaysPage } from '../pages/settings';
-import { NotificationsPage, EmailPreferencesPage, PushNotificationsPage } from '../pages/notifications';
-import { BlogCreatePage, BlogPostsPage, BlogDetailPage, BlogEditPage, CategoriesPage } from '../pages/blog';
-import { CompaniesPage, DealsPage, ContactsPage } from '../pages/crm';
-import { TransactionsPage } from '../pages/finance/TransactionsPage';
-import { RefundsPage } from '../pages/finance/RefundsPage';
-import { SubscriptionsPage } from '../pages/finance/SubscriptionsPage';
-import { PayoutsPage } from '../pages/finance/PayoutsPage';
-import { TaxReportsPage } from '../pages/finance/TaxReportsPage';
-import { CouponsPage, CampaignsPage, EmailTemplatesPage } from '../pages/marketing';
-import { CalendarPage, KanbanPage, MailPage, ChatPage, FileManagerPage, TasksPage } from '../pages/apps';
-import { NotesPage } from '../pages/notes';
-import { WarehousesPage, SuppliersPage, ReturnsPage, StockLevelsPage, ShippingPage } from '../pages/inventory';
-import { LoginPage, RegisterPage, ForgotPasswordPage } from '../pages/auth';
-import { ComponentsShowcasePage } from '../pages/components';
-import { ExportCenterPage } from '../pages/export';
-import { RolesPermissionsPage } from '../pages/roles';
-import { TwoFactorAuthPage, AuditLogsPage, SessionsPage } from '../pages/security';
-import { MediaLibraryPage } from '../pages/media';
-import { ReportsListPage, ReportBuilderPage, ScheduledReportsPage } from '../pages/reports';
 import { ErrorPage } from '../components/ErrorPage';
 import { ComingSoonPage } from './ComingSoonPage';
+
+type LazyComponentModule = Record<string, ComponentType>;
+
+const lazyRoute = <T extends LazyComponentModule>(
+    loader: () => Promise<T>,
+    exportName: keyof T,
+) => async () => {
+    const module = await loader();
+
+    return {
+        Component: module[exportName] as ComponentType,
+    };
+};
+
+const loadDashboardPages = () => import('../pages/dashboard');
+const loadUsersPages = () => import('../pages/users');
+const loadProductsPages = () => import('../pages/products');
+const loadOrdersPages = () => import('../pages/orders');
+const loadInvoicesPages = () => import('../pages/invoices');
+const loadCustomersPages = () => import('../pages/customers');
+const loadTicketsPages = () => import('../pages/tickets');
+const loadChatHistoryPages = () => import('../pages/chat-history');
+const loadKnowledgeBasePages = () => import('../pages/knowledge-base');
+const loadLeadsPages = () => import('../pages/leads');
+const loadSettingsPages = () => import('../pages/settings');
+const loadNotificationsPages = () => import('../pages/notifications');
+const loadBlogPages = () => import('../pages/blog');
+const loadCrmPages = () => import('../pages/crm');
+const loadFinancePages = () => import('../pages/finance');
+const loadMarketingPages = () => import('../pages/marketing');
+const loadAppsPages = () => import('../pages/apps');
+const loadNotesPages = () => import('../pages/notes');
+const loadInventoryPages = () => import('../pages/inventory');
+const loadAuthPages = () => import('../pages/auth');
+const loadComponentsPages = () => import('../pages/components');
+const loadExportPages = () => import('../pages/export');
+const loadRolesPages = () => import('../pages/roles');
+const loadSecurityPages = () => import('../pages/security');
+const loadMediaPages = () => import('../pages/media');
+const loadReportsPages = () => import('../pages/reports');
 
 export const router = createBrowserRouter([
     {
@@ -45,330 +56,88 @@ export const router = createBrowserRouter([
         element: <DashboardLayout />,
         errorElement: <ErrorPage />,
         children: [
-            // Dashboard routes
-            {
-                path: 'dashboard',
-                element: <OverviewPage />,
-            },
-            {
-                path: 'dashboard/analytics',
-                element: <AnalyticsPage />,
-            },
-            {
-                path: 'dashboard/ecommerce',
-                element: <EcommercePage />,
-            },
-            {
-                path: 'dashboard/realtime',
-                element: <RealTimePage />,
-            },
-            {
-                path: 'dashboard/heatmaps',
-                element: <HeatmapsPage />,
-            },
-            // Reports
-            {
-                path: 'reports',
-                element: <ReportsListPage />,
-            },
-            {
-                path: 'reports/new',
-                element: <ReportBuilderPage />,
-            },
-            {
-                path: 'reports/:id/edit',
-                element: <ReportBuilderPage />,
-            },
-            {
-                path: 'reports/scheduled',
-                element: <ScheduledReportsPage />,
-            },
-            // Users management
-            {
-                path: 'users',
-                element: <UsersPage />,
-            },
-            {
-                path: 'users/create',
-                element: <UserCreatePage />,
-            },
-            {
-                path: 'users/profile',
-                element: <UserProfilePage />,
-            },
-            {
-                path: 'users/account',
-                element: <UserAccountPage />,
-            },
-            // Products management
-            {
-                path: 'products',
-                element: <ProductsPage />,
-            },
-            {
-                path: 'products/create',
-                element: <ProductCreatePage />,
-            },
-            {
-                path: 'orders',
-                element: <OrdersPage />,
-            },
-            {
-                path: 'orders/create',
-                element: <OrderCreatePage />,
-            },
-            {
-                path: 'orders/details',
-                element: <OrderDetailsPage />,
-            },
-            {
-                path: 'orders/details/:orderId',
-                element: <OrderDetailsPage />,
-            },
-            // Invoices management
-            {
-                path: 'invoices',
-                element: <InvoicesPage />,
-            },
-            {
-                path: 'invoices/create',
-                element: <InvoiceCreatePage />,
-            },
-            // Customers management
-            {
-                path: 'customers',
-                element: <CustomersPage />,
-            },
-            // CRM
-            {
-                path: 'crm/companies',
-                element: <CompaniesPage />,
-            },
-            {
-                path: 'crm/contacts',
-                element: <ContactsPage />,
-            },
-            {
-                path: 'crm/deals',
-                element: <DealsPage />,
-            },
-            // Finance management
-            {
-                path: 'finance/transactions',
-                element: <TransactionsPage />,
-            },
-            {
-                path: 'finance/refunds',
-                element: <RefundsPage />,
-            },
-            {
-                path: 'finance/subscriptions',
-                element: <SubscriptionsPage />,
-            },
-            {
-                path: 'finance/payouts',
-                element: <PayoutsPage />,
-            },
-            {
-                path: 'finance/tax-reports',
-                element: <TaxReportsPage />,
-            },
-            // Tickets management
-            {
-                path: 'tickets',
-                element: <TicketsPage />,
-            },
-            {
-                path: 'chat-history',
-                element: <ChatHistoryPage />,
-            },
-            // Knowledge Base
-            {
-                path: 'knowledge-base',
-                element: <KnowledgeBasePage />,
-            },
-            {
-                path: 'knowledge-base/create',
-                element: <ArticleCreatePage />,
-            },
-            {
-                path: 'knowledge-base/edit/:id',
-                element: <ArticleCreatePage />,
-            },
-            {
-                path: 'knowledge-base/:id',
-                element: <ArticleDetailPage />,
-            },
-            // Leads management
-            {
-                path: 'leads',
-                element: <LeadsPage />,
-            },
-            {
-                path: 'blog',
-                element: <BlogPostsPage />,
-            },
-            {
-                path: 'blog/list',
-                element: <BlogPostsPage />,
-            },
-            {
-                path: 'blog/categories',
-                element: <CategoriesPage />,
-            },
-            {
-                path: 'blog/create',
-                element: <BlogCreatePage />,
-            },
-            {
-                path: 'blog/:id',
-                element: <BlogDetailPage />,
-            },
-            {
-                path: 'blog/edit/:id',
-                element: <BlogEditPage />,
-            },
-            // Inventory
-            {
-                path: 'inventory/warehouses',
-                element: <WarehousesPage />,
-            },
-            {
-                path: 'inventory/stock-levels',
-                element: <StockLevelsPage />,
-            },
-            {
-                path: 'inventory/suppliers',
-                element: <SuppliersPage />,
-            },
-            {
-                path: 'inventory/returns',
-                element: <ReturnsPage />,
-            },
-            {
-                path: 'inventory/shipping',
-                element: <ShippingPage />,
-            },
-            {
-                path: 'marketing/coupons',
-                element: <CouponsPage />,
-            },
-            {
-                path: 'marketing/campaigns',
-                element: <CampaignsPage />,
-            },
-            {
-                path: 'marketing/email-templates',
-                element: <EmailTemplatesPage />,
-            },
-            // Apps
-            {
-                path: 'apps/tasks',
-                element: <TasksPage />,
-            },
-            {
-                path: 'notes',
-                element: <NotesPage />,
-            },
-            {
-                path: 'apps/calendar',
-                element: <CalendarPage />,
-            },
-            {
-                path: 'apps/kanban',
-                element: <KanbanPage />,
-            },
-            {
-                path: 'apps/mail',
-                element: <MailPage />,
-            },
-            {
-                path: 'apps/chat',
-                element: <ChatPage />,
-            },
-            {
-                path: 'apps/file-manager',
-                element: <FileManagerPage />,
-            },
-            {
-                path: 'apps/*',
-                element: <ComingSoonPage title="Apps" />,
-            },
-            {
-                path: 'settings',
-                element: <SettingsPage />,
-            },
-            {
-                path: 'settings/payment-gateways',
-                element: <PaymentGatewaysPage />,
-            },
-            {
-                path: 'notifications',
-                element: <NotificationsPage />,
-            },
-            {
-                path: 'notifications/email-preferences',
-                element: <EmailPreferencesPage />,
-            },
-            {
-                path: 'notifications/push',
-                element: <PushNotificationsPage />,
-            },
-            {
-                path: 'account',
-                element: <UserAccountPage />,
-            },
-            {
-                path: 'components',
-                element: <ComponentsShowcasePage />,
-            },
-            {
-                path: 'export',
-                element: <ExportCenterPage />,
-            },
-            {
-                path: 'roles',
-                element: <RolesPermissionsPage />,
-            },
-            {
-                path: '2fa',
-                element: <TwoFactorAuthPage />,
-            },
-            {
-                path: 'media',
-                element: <MediaLibraryPage />,
-            },
-            {
-                path: 'audit-logs',
-                element: <AuditLogsPage />,
-            },
-            {
-                path: 'api-keys',
-                element: <ApiKeysPage />,
-            },
-            {
-                path: 'sessions',
-                element: <SessionsPage />,
-            },
+            { path: 'dashboard', lazy: lazyRoute(loadDashboardPages, 'OverviewPage') },
+            { path: 'dashboard/analytics', lazy: lazyRoute(loadDashboardPages, 'AnalyticsPage') },
+            { path: 'dashboard/ecommerce', lazy: lazyRoute(loadDashboardPages, 'EcommercePage') },
+            { path: 'dashboard/realtime', lazy: lazyRoute(loadDashboardPages, 'RealTimePage') },
+            { path: 'dashboard/heatmaps', lazy: lazyRoute(loadDashboardPages, 'HeatmapsPage') },
+            { path: 'reports', lazy: lazyRoute(loadReportsPages, 'ReportsListPage') },
+            { path: 'reports/new', lazy: lazyRoute(loadReportsPages, 'ReportBuilderPage') },
+            { path: 'reports/:id/edit', lazy: lazyRoute(loadReportsPages, 'ReportBuilderPage') },
+            { path: 'reports/scheduled', lazy: lazyRoute(loadReportsPages, 'ScheduledReportsPage') },
+            { path: 'users', lazy: lazyRoute(loadUsersPages, 'UsersPage') },
+            { path: 'users/create', lazy: lazyRoute(loadUsersPages, 'UserCreatePage') },
+            { path: 'users/profile', lazy: lazyRoute(loadUsersPages, 'UserProfilePage') },
+            { path: 'users/account', lazy: lazyRoute(loadUsersPages, 'UserAccountPage') },
+            { path: 'products', lazy: lazyRoute(loadProductsPages, 'ProductsPage') },
+            { path: 'products/create', lazy: lazyRoute(loadProductsPages, 'ProductCreatePage') },
+            { path: 'orders', lazy: lazyRoute(loadOrdersPages, 'OrdersPage') },
+            { path: 'orders/create', lazy: lazyRoute(loadOrdersPages, 'OrderCreatePage') },
+            { path: 'orders/details', lazy: lazyRoute(loadOrdersPages, 'OrderDetailsPage') },
+            { path: 'orders/details/:orderId', lazy: lazyRoute(loadOrdersPages, 'OrderDetailsPage') },
+            { path: 'invoices', lazy: lazyRoute(loadInvoicesPages, 'InvoicesPage') },
+            { path: 'invoices/create', lazy: lazyRoute(loadInvoicesPages, 'InvoiceCreatePage') },
+            { path: 'customers', lazy: lazyRoute(loadCustomersPages, 'CustomersPage') },
+            { path: 'crm/companies', lazy: lazyRoute(loadCrmPages, 'CompaniesPage') },
+            { path: 'crm/contacts', lazy: lazyRoute(loadCrmPages, 'ContactsPage') },
+            { path: 'crm/deals', lazy: lazyRoute(loadCrmPages, 'DealsPage') },
+            { path: 'finance/transactions', lazy: lazyRoute(loadFinancePages, 'TransactionsPage') },
+            { path: 'finance/refunds', lazy: lazyRoute(loadFinancePages, 'RefundsPage') },
+            { path: 'finance/subscriptions', lazy: lazyRoute(loadFinancePages, 'SubscriptionsPage') },
+            { path: 'finance/payouts', lazy: lazyRoute(loadFinancePages, 'PayoutsPage') },
+            { path: 'finance/tax-reports', lazy: lazyRoute(loadFinancePages, 'TaxReportsPage') },
+            { path: 'tickets', lazy: lazyRoute(loadTicketsPages, 'TicketsPage') },
+            { path: 'chat-history', lazy: lazyRoute(loadChatHistoryPages, 'ChatHistoryPage') },
+            { path: 'knowledge-base', lazy: lazyRoute(loadKnowledgeBasePages, 'KnowledgeBasePage') },
+            { path: 'knowledge-base/create', lazy: lazyRoute(loadKnowledgeBasePages, 'ArticleCreatePage') },
+            { path: 'knowledge-base/edit/:id', lazy: lazyRoute(loadKnowledgeBasePages, 'ArticleCreatePage') },
+            { path: 'knowledge-base/:id', lazy: lazyRoute(loadKnowledgeBasePages, 'ArticleDetailPage') },
+            { path: 'leads', lazy: lazyRoute(loadLeadsPages, 'LeadsPage') },
+            { path: 'blog', lazy: lazyRoute(loadBlogPages, 'BlogPostsPage') },
+            { path: 'blog/list', lazy: lazyRoute(loadBlogPages, 'BlogPostsPage') },
+            { path: 'blog/categories', lazy: lazyRoute(loadBlogPages, 'CategoriesPage') },
+            { path: 'blog/create', lazy: lazyRoute(loadBlogPages, 'BlogCreatePage') },
+            { path: 'blog/:id', lazy: lazyRoute(loadBlogPages, 'BlogDetailPage') },
+            { path: 'blog/edit/:id', lazy: lazyRoute(loadBlogPages, 'BlogEditPage') },
+            { path: 'inventory/warehouses', lazy: lazyRoute(loadInventoryPages, 'WarehousesPage') },
+            { path: 'inventory/stock-levels', lazy: lazyRoute(loadInventoryPages, 'StockLevelsPage') },
+            { path: 'inventory/suppliers', lazy: lazyRoute(loadInventoryPages, 'SuppliersPage') },
+            { path: 'inventory/returns', lazy: lazyRoute(loadInventoryPages, 'ReturnsPage') },
+            { path: 'inventory/shipping', lazy: lazyRoute(loadInventoryPages, 'ShippingPage') },
+            { path: 'marketing/coupons', lazy: lazyRoute(loadMarketingPages, 'CouponsPage') },
+            { path: 'marketing/campaigns', lazy: lazyRoute(loadMarketingPages, 'CampaignsPage') },
+            { path: 'marketing/email-templates', lazy: lazyRoute(loadMarketingPages, 'EmailTemplatesPage') },
+            { path: 'apps/tasks', lazy: lazyRoute(loadAppsPages, 'TasksPage') },
+            { path: 'notes', lazy: lazyRoute(loadNotesPages, 'NotesPage') },
+            { path: 'apps/calendar', lazy: lazyRoute(loadAppsPages, 'CalendarPage') },
+            { path: 'apps/kanban', lazy: lazyRoute(loadAppsPages, 'KanbanPage') },
+            { path: 'apps/mail', lazy: lazyRoute(loadAppsPages, 'MailPage') },
+            { path: 'apps/chat', lazy: lazyRoute(loadAppsPages, 'ChatPage') },
+            { path: 'apps/file-manager', lazy: lazyRoute(loadAppsPages, 'FileManagerPage') },
+            { path: 'apps/*', element: <ComingSoonPage title="Apps" /> },
+            { path: 'settings', lazy: lazyRoute(loadSettingsPages, 'SettingsPage') },
+            { path: 'settings/payment-gateways', lazy: lazyRoute(loadSettingsPages, 'PaymentGatewaysPage') },
+            { path: 'notifications', lazy: lazyRoute(loadNotificationsPages, 'NotificationsPage') },
+            { path: 'notifications/email-preferences', lazy: lazyRoute(loadNotificationsPages, 'EmailPreferencesPage') },
+            { path: 'notifications/push', lazy: lazyRoute(loadNotificationsPages, 'PushNotificationsPage') },
+            { path: 'account', lazy: lazyRoute(loadUsersPages, 'UserAccountPage') },
+            { path: 'components', lazy: lazyRoute(loadComponentsPages, 'ComponentsShowcasePage') },
+            { path: 'export', lazy: lazyRoute(loadExportPages, 'ExportCenterPage') },
+            { path: 'roles', lazy: lazyRoute(loadRolesPages, 'RolesPermissionsPage') },
+            { path: '2fa', lazy: lazyRoute(loadSecurityPages, 'TwoFactorAuthPage') },
+            { path: 'media', lazy: lazyRoute(loadMediaPages, 'MediaLibraryPage') },
+            { path: 'audit-logs', lazy: lazyRoute(loadSecurityPages, 'AuditLogsPage') },
+            { path: 'api-keys', lazy: lazyRoute(loadSettingsPages, 'ApiKeysPage') },
+            { path: 'sessions', lazy: lazyRoute(loadSecurityPages, 'SessionsPage') },
         ],
     },
-    // Auth routes
     {
         path: '/auth',
         element: <AuthLayout />,
         children: [
-            {
-                path: 'login',
-                element: <LoginPage />,
-            },
-            {
-                path: 'register',
-                element: <RegisterPage />,
-            },
-            {
-                path: 'forgot-password',
-                element: <ForgotPasswordPage />,
-            },
+            { path: 'login', lazy: lazyRoute(loadAuthPages, 'LoginPage') },
+            { path: 'register', lazy: lazyRoute(loadAuthPages, 'RegisterPage') },
+            { path: 'forgot-password', lazy: lazyRoute(loadAuthPages, 'ForgotPasswordPage') },
         ],
     },
 ]);

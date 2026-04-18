@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
     Box,
     Typography,
@@ -68,8 +68,37 @@ export function NotesPage() {
     const [editedColor, setEditedColor] = useState<string | undefined>(undefined);
     const [editedIsPinned, setEditedIsPinned] = useState(false);
 
-    const stats = getNoteStats();
     const selectedNote = notes.find((n) => n.id === selectedNoteId);
+    const stats = useMemo(() => getNoteStats(notes), [notes]);
+    const parsedEditedTags = useMemo(
+        () =>
+            editedTags
+                .split(',')
+                .map((tag) => tag.trim())
+                .filter((tag) => tag.length > 0),
+        [editedTags],
+    );
+    const hasDraftChanges = useMemo(() => {
+        if (!selectedNote) return false;
+
+        return (
+            (editedTitle || 'Untitled Note') !== selectedNote.title ||
+            editedContent !== selectedNote.content ||
+            editedFolder !== selectedNote.folder ||
+            editedColor !== selectedNote.color ||
+            editedIsPinned !== selectedNote.isPinned ||
+            parsedEditedTags.length !== selectedNote.tags.length ||
+            parsedEditedTags.some((tag, index) => tag !== selectedNote.tags[index])
+        );
+    }, [
+        editedColor,
+        editedContent,
+        editedFolder,
+        editedIsPinned,
+        editedTitle,
+        parsedEditedTags,
+        selectedNote,
+    ]);
 
     // Filter and sort notes
     const filteredNotes = useMemo(() => {
@@ -141,7 +170,9 @@ export function NotesPage() {
         setEditedIsPinned(note.isPinned);
     };
 
-    const handleSaveNote = () => {
+    const handleSaveNote = useCallback((
+        overrides: Partial<Pick<Note, 'title' | 'content' | 'folder' | 'tags' | 'color' | 'isPinned'>> = {},
+    ) => {
         if (!selectedNoteId) return;
 
         setNotes((prev) =>
@@ -149,21 +180,26 @@ export function NotesPage() {
                 n.id === selectedNoteId
                     ? {
                         ...n,
-                        title: editedTitle || 'Untitled Note',
-                        content: editedContent,
-                        folder: editedFolder,
-                        tags: editedTags
-                            .split(',')
-                            .map((t) => t.trim())
-                            .filter((t) => t.length > 0),
-                        color: editedColor,
-                        isPinned: editedIsPinned,
+                        title: 'title' in overrides ? (overrides.title || 'Untitled Note') : (editedTitle || 'Untitled Note'),
+                        content: 'content' in overrides ? (overrides.content || '') : editedContent,
+                        folder: 'folder' in overrides ? (overrides.folder || editedFolder) : editedFolder,
+                        tags: 'tags' in overrides ? (overrides.tags || []) : parsedEditedTags,
+                        color: 'color' in overrides ? overrides.color : editedColor,
+                        isPinned: 'isPinned' in overrides ? !!overrides.isPinned : editedIsPinned,
                         updatedAt: new Date(),
                     }
                     : n
             )
         );
-    };
+    }, [
+        editedColor,
+        editedContent,
+        editedFolder,
+        editedIsPinned,
+        editedTitle,
+        parsedEditedTags,
+        selectedNoteId,
+    ]);
 
     const handleDeleteNote = () => {
         if (!selectedNoteId) return;
@@ -172,17 +208,33 @@ export function NotesPage() {
     };
 
     const handleTogglePin = () => {
-        setEditedIsPinned(!editedIsPinned);
-        setTimeout(handleSaveNote, 0);
+        const nextPinned = !editedIsPinned;
+        setEditedIsPinned(nextPinned);
+        handleSaveNote({ isPinned: nextPinned });
     };
 
     // Auto-save after typing
-    useMemo(() => {
-        if (selectedNoteId) {
-            const timer = setTimeout(handleSaveNote, 1000);
-            return () => clearTimeout(timer);
-        }
-    }, [editedTitle, editedContent, editedFolder, editedTags, editedColor]);
+    useEffect(() => {
+        if (!selectedNoteId || !hasDraftChanges) return;
+
+        const timer = window.setTimeout(() => {
+            handleSaveNote();
+        }, 1000);
+
+        return () => {
+            window.clearTimeout(timer);
+        };
+    }, [
+        editedColor,
+        editedContent,
+        editedFolder,
+        editedIsPinned,
+        editedTags,
+        editedTitle,
+        handleSaveNote,
+        hasDraftChanges,
+        selectedNoteId,
+    ]);
 
     const getFolderIcon = (folderId: SelectedFolder) => {
         switch (folderId) {
@@ -465,8 +517,9 @@ export function NotesPage() {
                                     value={editedFolder}
                                     label="Folder"
                                     onChange={(e) => {
-                                        setEditedFolder(e.target.value as NoteFolder);
-                                        setTimeout(handleSaveNote, 0);
+                                        const nextFolder = e.target.value as NoteFolder;
+                                        setEditedFolder(nextFolder);
+                                        handleSaveNote({ folder: nextFolder });
                                     }}
                                 >
                                     {noteFolders.map((folder) => (
@@ -482,8 +535,9 @@ export function NotesPage() {
                                     value={editedColor || ''}
                                     label="Color"
                                     onChange={(e) => {
-                                        setEditedColor(e.target.value || undefined);
-                                        setTimeout(handleSaveNote, 0);
+                                        const nextColor = e.target.value || undefined;
+                                        setEditedColor(nextColor);
+                                        handleSaveNote({ color: nextColor });
                                     }}
                                 >
                                     {NOTE_COLORS.map((color) => (
