@@ -194,6 +194,18 @@ export function ChartSkeleton({ height = 300 }: { height?: number }) {
     );
 }
 
+export function ChartBodySkeleton({ height = 300 }: { height?: number }) {
+    return (
+        <Skeleton
+            variant="rectangular"
+            width="100%"
+            height={height}
+            sx={{ borderRadius: 1 }}
+            animation="wave"
+        />
+    );
+}
+
 export function ListSkeleton({ rows = 5 }: { rows?: number }) {
     return (
         <Box>

@@ -7,6 +7,7 @@ export {
     StatCardSkeleton,
     StatGridSkeleton,
     ChartSkeleton,
+    ChartBodySkeleton,
     ListSkeleton,
     FormSkeleton,
 } from './LoadingSkeletons';
