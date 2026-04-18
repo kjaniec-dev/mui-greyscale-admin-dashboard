@@ -20,14 +20,11 @@ import {
     LocationOn as LocationIcon,
     CalendarToday as CalendarIcon,
     Receipt as ReceiptIcon,
-    Download as DownloadIcon,
 } from '@mui/icons-material';
-import { Button } from '@mui/material';
-import { PDFDownloadLink } from '@react-pdf/renderer';
-import { InvoicePDF } from '../pdf/InvoicePDF';
 import type { Invoice } from '../../data/mockInvoices';
 import { DetailInfoRow } from '../common/DetailInfoRow';
 import { getStatusSolid } from '../../theme';
+import { LazyInvoiceDownloadLink } from '../pdf/LazyInvoiceDownloadLink';
 
 interface InvoiceDetailDrawerProps {
     open: boolean;
@@ -105,22 +102,7 @@ export function InvoiceDetailDrawer({ open, onClose, invoice }: InvoiceDetailDra
 
                 {/* Actions */}
                 <Box sx={{ px: 3, pt: 2, display: 'flex', justifyContent: 'flex-end' }}>
-                    <PDFDownloadLink
-                        document={<InvoicePDF invoice={invoice} />}
-                        fileName={`invoice-${invoice.invoiceNumber}.pdf`}
-                        style={{ textDecoration: 'none' }}
-                    >
-                        {({ loading }) => (
-                            <Button
-                                variant="outlined"
-                                startIcon={<DownloadIcon />}
-                                disabled={loading}
-                                size="small"
-                            >
-                                {loading ? 'Preparing...' : 'Download PDF'}
-                            </Button>
-                        )}
-                    </PDFDownloadLink>
+                    <LazyInvoiceDownloadLink invoice={invoice} />
                 </Box>
 
                 {/* Content */}
