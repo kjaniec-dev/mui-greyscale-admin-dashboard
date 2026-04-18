@@ -56,7 +56,7 @@ export function ChartCard({ title, subtitle, chart, action }: ChartCardProps) {
     const isDarkMode = theme.palette.mode === 'dark';
 
     // Use the centralized colorful chart palette for better data readability
-    const CHART_COLORS = getChartColors(isDarkMode) as string[];
+    const chartColors = getChartColors(isDarkMode);
 
     // Theme-aware axis styling
     const axisStyles = {
@@ -87,7 +87,7 @@ export function ChartCard({ title, subtitle, chart, action }: ChartCardProps) {
                     series={config.series.map((s, index) => ({
                         data: s.data,
                         label: s.name,
-                        color: CHART_COLORS[index % CHART_COLORS.length],
+                        color: chartColors[index % chartColors.length],
                         area: chart.type === 'area',
                         curve: 'natural',
                     }))}
@@ -112,7 +112,7 @@ export function ChartCard({ title, subtitle, chart, action }: ChartCardProps) {
                     series={config.series.map((s, index) => ({
                         data: s.data,
                         label: s.name,
-                        color: CHART_COLORS[index % CHART_COLORS.length],
+                        color: chartColors[index % chartColors.length],
                     }))}
                     xAxis={isHorizontal ? undefined : [{
                         scaleType: 'band',
@@ -136,7 +136,7 @@ export function ChartCard({ title, subtitle, chart, action }: ChartCardProps) {
                 id: index,
                 value,
                 label: config.labels[index],
-                color: CHART_COLORS[index % CHART_COLORS.length],
+                color: chartColors[index % chartColors.length],
             }));
 
             return (

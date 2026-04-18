@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, Card, CardContent, CardHeader, List, ListItem, ListItemIcon, ListItemText, IconButton, alpha, Divider } from '@mui/material';
+import { Box, Grid, Typography, Card, CardContent, CardHeader, List, ListItem, ListItemIcon, ListItemText, IconButton, Divider, useTheme } from '@mui/material';
 import {
     People as VisitorsIcon,
     ShoppingCart as OrdersIcon,
@@ -15,6 +15,7 @@ import { LiveChartCard } from '../../components/charts/LiveChartCard';
 import { ConnectionStatus } from '../../components/common/ConnectionStatus';
 import { useRealtimeData } from '../../hooks/useRealtimeData';
 import type { RealtimeActivity } from '../../data/realtimeData';
+import { getToneColor } from '../../theme';
 
 // Icon map for activity types
 const activityIcons: Record<string, React.ReactNode> = {
@@ -24,13 +25,12 @@ const activityIcons: Record<string, React.ReactNode> = {
     signup: <PersonAdd sx={{ fontSize: 20 }} />,
 };
 
-// Color map for activity types
-const activityColors: Record<string, string> = {
-    order: '#3b82f6',
-    visitor: '#22c55e',
-    sale: '#f59e0b',
-    signup: '#8b5cf6',
-};
+const activityToneByType = {
+    order: 'info',
+    sale: 'success',
+    signup: 'warning',
+    visitor: 'info',
+} as const;
 
 // Format metric value based on format type
 function formatValue(value: number, format?: string, unit?: string): string {
@@ -60,7 +60,10 @@ function formatRelativeTime(date: Date): string {
 }
 
 function ActivityItem({ activity }: { activity: RealtimeActivity }) {
-    const color = activityColors[activity.type] || '#737373';
+    const theme = useTheme();
+    const isDarkMode = theme.palette.mode === 'dark';
+    const tone = activityToneByType[activity.type as keyof typeof activityToneByType] ?? 'info';
+    const { text, bg } = getToneColor(tone, isDarkMode);
 
     return (
         <ListItem
@@ -79,8 +82,8 @@ function ActivityItem({ activity }: { activity: RealtimeActivity }) {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        bgcolor: alpha(color, 0.1),
-                        color: color,
+                        bgcolor: bg,
+                        color: text,
                     }}
                 >
                     {activityIcons[activity.type]}
