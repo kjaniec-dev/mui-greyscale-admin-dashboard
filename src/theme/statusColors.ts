@@ -96,6 +96,7 @@ const STATUS_MAP: Record<string, StatusKey> = {
 
   // warning‑family
   pending: 'warning',
+  'past due': 'error',
   scheduled: 'warning',
   paused: 'warning',
   maintenance: 'warning',

@@ -10,6 +10,7 @@ import {
     IconButton,
     Menu,
     MenuItem,
+    useTheme,
 } from '@mui/material';
 import {
     Search as SearchIcon,
@@ -19,14 +20,8 @@ import {
 } from '@mui/icons-material';
 import type { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { DataGrid as DataGridComponent } from '@mui/x-data-grid';
-import { mockTransactions, type Transaction, type TransactionStatus } from '../../data/mockTransactions';
-
-const statusColors: Record<TransactionStatus, 'success' | 'warning' | 'error' | 'default' | 'info'> = {
-    completed: 'success',
-    pending: 'warning',
-    failed: 'error',
-    refunded: 'default',
-};
+import { mockTransactions, type Transaction } from '../../data/mockTransactions';
+import { getStatusSolid } from '../../theme';
 
 const currencyFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -39,6 +34,8 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
 });
 
 export function TransactionsPage() {
+    const theme = useTheme();
+    const isDarkMode = theme.palette.mode === 'dark';
     const [searchQuery, setSearchQuery] = useState('');
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
@@ -133,13 +130,16 @@ export function TransactionsPage() {
             headerName: 'Status',
             width: 120,
             renderCell: (params: GridRenderCellParams<Transaction, string>) => (
-                <Chip
-                    label={params.value}
-                    size="small"
-                    color={statusColors[params.value as TransactionStatus]}
-                    variant="outlined"
-                    sx={{ textTransform: 'capitalize' }}
-                />
+                (() => {
+                    const { bg, text } = getStatusSolid(params.value || '', isDarkMode);
+                    return (
+                        <Chip
+                            label={params.value}
+                            size="small"
+                            sx={{ textTransform: 'capitalize', bgcolor: bg, color: text }}
+                        />
+                    );
+                })()
             ),
         },
         {

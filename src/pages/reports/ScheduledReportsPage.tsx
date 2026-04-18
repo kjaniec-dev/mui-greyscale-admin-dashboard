@@ -38,16 +38,7 @@ import {
     type ReportFrequency,
 } from '../../data/mockScheduledReports';
 import { ScheduledReportDialog } from './components/ScheduledReportDialog';
-
-const statusColors: Record<ReportStatus, { bg: string; text: string }> = {
-    Active: { bg: '#ECFDF5', text: '#059669' },
-    Paused: { bg: '#FEF2F2', text: '#DC2626' },
-};
-
-const statusColorsDark: Record<ReportStatus, { bg: string; text: string }> = {
-    Active: { bg: '#064E3B', text: '#34D399' },
-    Paused: { bg: '#7F1D1D', text: '#F87171' },
-};
+import { getStatusSolid } from '../../theme';
 
 export function ScheduledReportsPage() {
     const theme = useTheme();
@@ -228,7 +219,7 @@ export function ScheduledReportsPage() {
             width: 120,
             renderCell: (params: GridRenderCellParams<ScheduledReport, string>) => {
                 const status = params.value as ReportStatus;
-                const colors = isDarkMode ? statusColorsDark[status] : statusColors[status];
+                const colors = getStatusSolid(status, isDarkMode);
                 return (
                     <Chip
                         label={status}

@@ -36,7 +36,7 @@ import {
     availableYears,
     type QuarterlyTax,
 } from '../../data/mockTaxReports';
-import { getStatusSolid, statusPalette } from '../../theme';
+import { getStatusSolid, getToneColor } from '../../theme';
 
 const currencyFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -343,6 +343,14 @@ export function TaxReportsPage() {
                     <Grid container spacing={3}>
                         {taxCategories.map((category) => (
                             <Grid size={{ xs: 12, md: 4 }} key={category.id}>
+                                {(() => {
+                                    const chipTone =
+                                        category.rate === 0
+                                            ? getToneColor('success', isDarkMode)
+                                            : category.rate < 8
+                                                ? getToneColor('info', isDarkMode)
+                                                : null;
+                                    return (
                                 <Box
                                     sx={{
                                         p: 2.5,
@@ -358,12 +366,8 @@ export function TaxReportsPage() {
                                             label={`${category.rate}%`}
                                             size="small"
                                             sx={{
-                                                bgcolor: category.rate === 0
-                                                    ? (isDarkMode ? statusPalette.success.dark : statusPalette.success.light)
-                                                    : category.rate < 8
-                                                        ? (isDarkMode ? statusPalette.info.dark : statusPalette.info.light)
-                                                        : (isDarkMode ? '#737373' : '#525252'),
-                                                color: category.rate === 0 || category.rate < 8 ? (isDarkMode ? '#171717' : '#FAFAFA') : '#FAFAFA',
+                                                bgcolor: chipTone?.solid ?? (isDarkMode ? '#737373' : '#525252'),
+                                                color: chipTone ? (isDarkMode ? '#171717' : '#FAFAFA') : '#FAFAFA',
                                                 fontWeight: 600,
                                             }}
                                         />
@@ -372,6 +376,8 @@ export function TaxReportsPage() {
                                         {category.description}
                                     </Typography>
                                 </Box>
+                                    );
+                                })()}
                             </Grid>
                         ))}
                     </Grid>
