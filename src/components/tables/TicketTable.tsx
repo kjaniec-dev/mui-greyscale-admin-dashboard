@@ -9,7 +9,6 @@ import {
     useTheme,
 } from '@mui/material';
 import {
-    DataGrid,
     type GridColDef,
 } from '@mui/x-data-grid';
 import {
@@ -17,6 +16,7 @@ import {
 } from '@mui/icons-material';
 import type { Ticket } from '../../data/mockTickets';
 import { getStatusSolid } from '../../theme';
+import { LazyDataGrid } from './LazyDataGrid';
 
 interface TicketTableProps {
     tickets: Ticket[];
@@ -243,7 +243,7 @@ export function TicketTable({ tickets, onView, onEdit, onDelete }: TicketTablePr
 
     return (
         <Box sx={{ width: '100%' }}>
-            <DataGrid
+            <LazyDataGrid
                 rows={tickets}
                 columns={columns}
                 initialState={{

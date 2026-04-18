@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {
-    DataGrid,
     type GridColDef,
     type GridRowParams,
 } from '@mui/x-data-grid';
@@ -21,6 +20,7 @@ import {
 } from '@mui/icons-material';
 import type { Order } from '../../data/mockOrders';
 import { getStatusSolid } from '../../theme';
+import { LazyDataGrid } from './LazyDataGrid';
 
 interface OrderTableProps {
     orders: Order[];
@@ -235,7 +235,7 @@ export function OrderTable({ orders, onView, onEdit, onDelete }: OrderTableProps
 
     return (
         <Box sx={{ width: '100%' }}>
-            <DataGrid
+            <LazyDataGrid
                 rows={orders}
                 columns={columns}
                 initialState={{

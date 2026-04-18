@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {
-    DataGrid,
     type GridColDef,
     type GridRowParams,
 } from '@mui/x-data-grid';
@@ -22,6 +21,7 @@ import {
 } from '@mui/icons-material';
 import type { Warehouse } from '../../data/mockWarehouses';
 import { getStatusSolid } from '../../theme';
+import { LazyDataGrid } from './LazyDataGrid';
 
 interface WarehouseTableProps {
     warehouses: Warehouse[];
@@ -230,7 +230,7 @@ export function WarehouseTable({ warehouses, onView, onEdit, onDelete }: Warehou
 
     return (
         <Box sx={{ width: '100%' }}>
-            <DataGrid
+            <LazyDataGrid
                 rows={warehouses}
                 columns={columns}
                 initialState={{

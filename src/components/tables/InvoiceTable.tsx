@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {
-    DataGrid,
     type GridColDef,
     type GridRowParams,
 } from '@mui/x-data-grid';
@@ -21,6 +20,7 @@ import {
 } from '@mui/icons-material';
 import type { Invoice } from '../../data/mockInvoices';
 import { getStatusSolid } from '../../theme';
+import { LazyDataGrid } from './LazyDataGrid';
 
 interface InvoiceTableProps {
     invoices: Invoice[];
@@ -217,7 +217,7 @@ export function InvoiceTable({ invoices, onView, onEdit, onDelete }: InvoiceTabl
 
     return (
         <Box sx={{ width: '100%' }}>
-            <DataGrid
+            <LazyDataGrid
                 rows={invoices}
                 columns={columns}
                 initialState={{

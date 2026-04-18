@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {
-    DataGrid,
     type GridColDef,
 } from '@mui/x-data-grid';
 import {
@@ -21,6 +20,7 @@ import {
 } from '@mui/icons-material';
 import { type Lead, type LeadStatus, type LeadSource } from '../../data/mockLeads';
 import { getStatusSolid } from '../../theme';
+import { LazyDataGrid } from './LazyDataGrid';
 
 interface LeadTableProps {
     leads: Lead[];
@@ -265,7 +265,7 @@ export function LeadTable({ leads, onView, onEdit, onConvert, onDelete }: LeadTa
 
     return (
         <Box sx={{ width: '100%' }}>
-            <DataGrid
+            <LazyDataGrid
                 rows={leads}
                 columns={columns}
                 initialState={{

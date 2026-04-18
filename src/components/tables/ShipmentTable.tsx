@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {
-    DataGrid,
     type GridColDef,
     type GridRowParams,
 } from '@mui/x-data-grid';
@@ -21,6 +20,7 @@ import {
 } from '@mui/icons-material';
 import type { Shipment } from '../../data/mockShipments';
 import { getStatusSolid } from '../../theme';
+import { LazyDataGrid } from './LazyDataGrid';
 
 interface ShipmentTableProps {
     shipments: Shipment[];
@@ -234,7 +234,7 @@ export function ShipmentTable({ shipments, onView, onEdit, onMarkDelivered }: Sh
 
     return (
         <Box sx={{ width: '100%' }}>
-            <DataGrid
+            <LazyDataGrid
                 rows={shipments}
                 columns={columns}
                 initialState={{

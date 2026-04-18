@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {
-    DataGrid,
     type GridColDef,
 } from '@mui/x-data-grid';
 import {
@@ -20,6 +19,7 @@ import {
 } from '@mui/icons-material';
 import { type Customer } from '../../data/mockCustomers';
 import { getStatusSolid } from '../../theme';
+import { LazyDataGrid } from './LazyDataGrid';
 
 interface CustomerTableProps {
     customers: Customer[];
@@ -225,7 +225,7 @@ export function CustomerTable({ customers, onView, onEdit, onDelete }: CustomerT
 
     return (
         <Box sx={{ width: '100%' }}>
-            <DataGrid
+            <LazyDataGrid
                 rows={customers}
                 columns={columns}
                 initialState={{
