@@ -23,6 +23,7 @@ import {
     Alert,
     Tooltip,
     Snackbar,
+    useTheme,
 } from '@mui/material';
 import {
     Add as AddIcon,
@@ -36,13 +37,13 @@ import {
     permissionLabels,
     permissionDescriptions,
     permissionColors,
-    statusColors,
     expiryOptions,
     maskApiKey,
     generateMockApiKey,
     type ApiKey,
     type ApiKeyPermission,
 } from '../../data/mockApiKeys';
+import { getStatusSolid } from '../../theme';
 
 const dateFormatter = new Intl.DateTimeFormat('en-US', {
     dateStyle: 'medium',
@@ -50,6 +51,8 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
 });
 
 export function ApiKeysPage() {
+    const theme = useTheme();
+    const isDarkMode = theme.palette.mode === 'dark';
     const [keys, setKeys] = useState<ApiKey[]>(mockApiKeys);
     const [createDialogOpen, setCreateDialogOpen] = useState(false);
     const [revokeDialogOpen, setRevokeDialogOpen] = useState(false);
@@ -192,8 +195,11 @@ export function ApiKeysPage() {
                                         <Chip
                                             label={key.status}
                                             size="small"
-                                            color={statusColors[key.status]}
-                                            sx={{ textTransform: 'capitalize' }}
+                                            sx={{
+                                                textTransform: 'capitalize',
+                                                bgcolor: getStatusSolid(key.status, isDarkMode).bg,
+                                                color: getStatusSolid(key.status, isDarkMode).text,
+                                            }}
                                         />
                                     </Stack>
 

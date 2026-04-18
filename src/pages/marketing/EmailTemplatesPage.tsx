@@ -13,6 +13,7 @@ import {
     DialogContent,
     Menu,
     MenuItem,
+    useTheme,
 } from '@mui/material';
 import {
     DataGrid,
@@ -34,6 +35,7 @@ import {
 } from '@mui/icons-material';
 import { mockEmailTemplates, type EmailTemplate, type EmailTemplateStatus, type EmailTemplateCategory } from '../../data/mockEmailTemplates';
 import { EmailTemplateForm, type EmailTemplateFormData } from '../../components/forms/EmailTemplateForm';
+import { getStatusSolid } from '../../theme';
 
 // Custom toolbar for the data grid
 function CustomToolbar() {
@@ -44,12 +46,6 @@ function CustomToolbar() {
     );
 }
 
-const statusColors: Record<EmailTemplateStatus, 'success' | 'default' | 'error'> = {
-    Active: 'success',
-    Draft: 'default',
-    Archived: 'error',
-};
-
 const categoryIcons: Record<EmailTemplateCategory, React.ReactNode> = {
     Newsletter: <EmailIcon fontSize="small" />,
     Transactional: <CodeIcon fontSize="small" />,
@@ -58,6 +54,8 @@ const categoryIcons: Record<EmailTemplateCategory, React.ReactNode> = {
 };
 
 export const EmailTemplatesPage = () => {
+    const theme = useTheme();
+    const isDarkMode = theme.palette.mode === 'dark';
     const [templates, setTemplates] = useState<EmailTemplate[]>(mockEmailTemplates);
     const [searchTerm, setSearchTerm] = useState('');
     const [isFormOpen, setIsFormOpen] = useState(false);
@@ -197,14 +195,21 @@ export const EmailTemplatesPage = () => {
             field: 'status',
             headerName: 'Status',
             width: 120,
-            renderCell: (params: GridRenderCellParams) => (
-                <Chip
-                    label={params.value}
-                    size="small"
-                    color={statusColors[params.value as EmailTemplateStatus]}
-                    sx={{ borderRadius: 1, px: 1 }}
-                />
-            ),
+            renderCell: (params: GridRenderCellParams) => {
+                const colors = getStatusSolid(params.value as EmailTemplateStatus, isDarkMode);
+                return (
+                    <Chip
+                        label={params.value}
+                        size="small"
+                        sx={{
+                            borderRadius: 1,
+                            px: 1,
+                            bgcolor: colors.bg,
+                            color: colors.text,
+                        }}
+                    />
+                );
+            },
         },
         {
             field: 'lastModified',

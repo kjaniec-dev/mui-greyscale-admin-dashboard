@@ -18,6 +18,8 @@ import {
     AccessTime as AccessTimeIcon,
 } from '@mui/icons-material';
 import { mockUsers } from '../../data/mockUsers';
+import { DetailInfoRow } from '../../components/common/DetailInfoRow';
+import { getStatusColor, getStatusSolid } from '../../theme';
 
 // Use the first user as the "current" logged-in user for demo purposes
 const currentUser = mockUsers[0];
@@ -54,44 +56,8 @@ function formatDateTime(date: Date | undefined): string {
 export function UserProfilePage() {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
-
-    const statusColors = {
-        Active: isDarkMode ? '#A3A3A3' : '#525252',
-        Inactive: isDarkMode ? '#525252' : '#A3A3A3',
-        Pending: isDarkMode ? '#737373' : '#737373',
-    };
-
-    const roleColors = {
-        Admin: isDarkMode ? '#404040' : '#E5E5E5',
-        Manager: isDarkMode ? '#404040' : '#E5E5E5',
-        User: isDarkMode ? '#404040' : '#E5E5E5',
-    };
-
-    const InfoRow = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: React.ReactNode }) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box
-                sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 1,
-                    bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                {icon}
-            </Box>
-            <Box sx={{ flex: 1 }}>
-                <Typography variant="caption" color="text.secondary" display="block">
-                    {label}
-                </Typography>
-                <Typography variant="body2" fontWeight={500}>
-                    {value}
-                </Typography>
-            </Box>
-        </Box>
-    );
+    const statusColors = getStatusSolid(currentUser.status, isDarkMode);
+    const statusIndicator = getStatusColor(currentUser.status, isDarkMode);
 
     return (
         <Box>
@@ -141,7 +107,7 @@ export function UserProfilePage() {
                             label={currentUser.role}
                             size="small"
                             sx={{
-                                bgcolor: roleColors[currentUser.role],
+                                bgcolor: isDarkMode ? '#404040' : '#E5E5E5',
                                 color: isDarkMode ? '#E5E5E5' : '#171717',
                                 fontWeight: 500,
                                 borderRadius: 1,
@@ -151,8 +117,8 @@ export function UserProfilePage() {
                             label={currentUser.status}
                             size="small"
                             sx={{
-                                bgcolor: statusColors[currentUser.status],
-                                color: isDarkMode ? '#171717' : '#FAFAFA',
+                                bgcolor: statusColors.bg,
+                                color: statusColors.text,
                                 fontWeight: 500,
                                 borderRadius: 1,
                             }}
@@ -207,17 +173,17 @@ export function UserProfilePage() {
                             Personal Information
                         </Typography>
                         <Stack spacing={2.5}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<EmailIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Email Address"
                                 value={currentUser.email}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<BadgeIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="User ID"
                                 value={<span style={{ fontFamily: 'monospace' }}>{currentUser.id}</span>}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Member Since"
                                 value={formatDate(currentUser.createdAt)}
@@ -238,7 +204,7 @@ export function UserProfilePage() {
                             Account Activity
                         </Typography>
                         <Stack spacing={2.5}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<AccessTimeIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Last Login"
                                 value={formatDateTime(currentUser.lastLogin)}
@@ -260,9 +226,7 @@ export function UserProfilePage() {
                                             width: 10,
                                             height: 10,
                                             borderRadius: '50%',
-                                            bgcolor: currentUser.status === 'Active'
-                                                ? (isDarkMode ? '#A3A3A3' : '#525252')
-                                                : (isDarkMode ? '#525252' : '#A3A3A3'),
+                                            bgcolor: statusIndicator.text,
                                         }}
                                     />
                                 </Box>

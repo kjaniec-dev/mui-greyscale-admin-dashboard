@@ -21,6 +21,7 @@ import {
     Delete as DeleteIcon,
 } from '@mui/icons-material';
 import type { Supplier } from '../../data/mockSuppliers';
+import { getStatusSolid } from '../../theme';
 
 interface SupplierTableProps {
     suppliers: Supplier[];
@@ -190,18 +191,14 @@ export function SupplierTable({ suppliers, onView, onEdit, onDelete }: SupplierT
             headerName: 'Status',
             width: 120,
             renderCell: (params) => {
-                const statusColors = {
-                    'Active': isDarkMode ? '#22C55E' : '#16A34A',
-                    'Inactive': isDarkMode ? '#A3A3A3' : '#525252',
-                    'Pending': isDarkMode ? '#D97706' : '#F59E0B',
-                };
+                const statusColors = getStatusSolid(params.value as string, isDarkMode);
                 return (
                     <Chip
                         label={params.value}
                         size="small"
                         sx={{
-                            bgcolor: statusColors[params.value as keyof typeof statusColors],
-                            color: '#FAFAFA',
+                            bgcolor: statusColors.bg,
+                            color: statusColors.text,
                             fontWeight: 500,
                             borderRadius: 1,
                         }}

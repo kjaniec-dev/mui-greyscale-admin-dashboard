@@ -21,6 +21,8 @@ import {
     LocalShipping as DeliveryIcon,
 } from '@mui/icons-material';
 import type { Supplier } from '../../data/mockSuppliers';
+import { DetailInfoRow } from '../common/DetailInfoRow';
+import { getStatusSolid } from '../../theme';
 
 interface SupplierDetailDrawerProps {
     open: boolean;
@@ -43,43 +45,13 @@ export function SupplierDetailDrawer({ open, onClose, supplier }: SupplierDetail
 
     if (!supplier) return null;
 
-    const statusColors = {
-        'Active': isDarkMode ? '#22C55E' : '#16A34A',
-        'Inactive': isDarkMode ? '#A3A3A3' : '#525252',
-        'Pending': isDarkMode ? '#D97706' : '#F59E0B',
-    };
+    const statusColors = getStatusSolid(supplier.status, isDarkMode);
 
     const getDeliveryColor = () => {
         if (supplier.onTimeDelivery >= 95) return isDarkMode ? '#22C55E' : '#16A34A';
         if (supplier.onTimeDelivery >= 85) return isDarkMode ? '#D97706' : '#F59E0B';
         return isDarkMode ? '#DC2626' : '#EF4444';
     };
-
-    const InfoRow = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: React.ReactNode }) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box
-                sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 1,
-                    bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                {icon}
-            </Box>
-            <Box sx={{ flex: 1 }}>
-                <Typography variant="caption" color="text.secondary" display="block">
-                    {label}
-                </Typography>
-                <Typography variant="body2" fontWeight={500}>
-                    {value}
-                </Typography>
-            </Box>
-        </Box>
-    );
 
     return (
         <Drawer
@@ -164,8 +136,8 @@ export function SupplierDetailDrawer({ open, onClose, supplier }: SupplierDetail
                             label={supplier.status}
                             size="small"
                             sx={{
-                                bgcolor: statusColors[supplier.status],
-                                color: '#FAFAFA',
+                                bgcolor: statusColors.bg,
+                                color: statusColors.text,
                                 fontWeight: 500,
                                 borderRadius: 1,
                             }}
@@ -189,12 +161,12 @@ export function SupplierDetailDrawer({ open, onClose, supplier }: SupplierDetail
                             Performance
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<OrdersIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Total Orders"
                                 value={supplier.totalOrders.toLocaleString()}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<DeliveryIcon sx={{ fontSize: 20, color: getDeliveryColor() }} />}
                                 label="On-Time Delivery"
                                 value={
@@ -223,17 +195,17 @@ export function SupplierDetailDrawer({ open, onClose, supplier }: SupplierDetail
                             Contact
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<PersonIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Contact Person"
                                 value={supplier.contactName}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<EmailIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Email"
                                 value={supplier.email}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<PhoneIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Phone"
                                 value={supplier.phone}
@@ -258,7 +230,7 @@ export function SupplierDetailDrawer({ open, onClose, supplier }: SupplierDetail
                             Location
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<LocationIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Address"
                                 value={`${supplier.address}, ${supplier.city}, ${supplier.country}`}
@@ -283,7 +255,7 @@ export function SupplierDetailDrawer({ open, onClose, supplier }: SupplierDetail
                             Information
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Partner Since"
                                 value={formatDate(supplier.createdAt)}

@@ -17,7 +17,7 @@ export interface StockLevel {
     lastUpdated: Date;
 }
 
-function getStockStatus(quantity: number, minQuantity: number, maxQuantity: number, reorderPoint: number): StockLevel['status'] {
+function getStockStatus(quantity: number, maxQuantity: number, reorderPoint: number): StockLevel['status'] {
     if (quantity <= 0) return 'Critical';
     if (quantity <= reorderPoint) return 'Low';
     if (quantity >= maxQuantity * 0.95) return 'Overstocked';
@@ -60,7 +60,7 @@ function generateStockLevel(productIndex: number, warehouseIndex: number): Stock
         minQuantity,
         maxQuantity,
         reorderPoint,
-        status: getStockStatus(quantity, minQuantity, maxQuantity, reorderPoint),
+        status: getStockStatus(quantity, maxQuantity, reorderPoint),
         lastUpdated,
     };
 }

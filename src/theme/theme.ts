@@ -100,9 +100,33 @@ const baseTheme: ThemeOptions = {
     },
     MuiChip: {
       styleOverrides: {
-        root: {
-          borderRadius: 8,
-          fontWeight: 500,
+        root: ({ theme }) => ({
+          borderRadius: 10,
+          fontWeight: 600,
+          height: 28,
+          border: `1px solid ${theme.palette.divider}`,
+          '&.MuiChip-sizeSmall': {
+            height: 24,
+            fontSize: theme.typography.caption.fontSize,
+          },
+        }),
+        label: {
+          paddingInline: 10,
+        },
+      },
+    },
+    MuiLinearProgress: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          height: 8,
+          borderRadius: 999,
+          backgroundColor:
+            theme.palette.mode === 'dark'
+              ? theme.palette.action.hover
+              : theme.palette.action.selected,
+        }),
+        bar: {
+          borderRadius: 999,
         },
       },
     },

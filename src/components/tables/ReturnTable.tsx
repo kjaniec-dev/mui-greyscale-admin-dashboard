@@ -20,6 +20,7 @@ import {
     Cancel as RejectIcon,
 } from '@mui/icons-material';
 import type { Return } from '../../data/mockReturns';
+import { getStatusSolid } from '../../theme';
 
 interface ReturnTableProps {
     returns: Return[];
@@ -173,20 +174,14 @@ export function ReturnTable({ returns, onView, onApprove, onReject }: ReturnTabl
             headerName: 'Status',
             width: 120,
             renderCell: (params) => {
-                const statusColors = {
-                    'Pending': isDarkMode ? '#D97706' : '#F59E0B',
-                    'Approved': isDarkMode ? '#22C55E' : '#16A34A',
-                    'Rejected': isDarkMode ? '#DC2626' : '#EF4444',
-                    'Refunded': isDarkMode ? '#3B82F6' : '#2563EB',
-                    'Replaced': isDarkMode ? '#8B5CF6' : '#7C3AED',
-                };
+                const statusColors = getStatusSolid(params.value as string, isDarkMode);
                 return (
                     <Chip
                         label={params.value}
                         size="small"
                         sx={{
-                            bgcolor: statusColors[params.value as keyof typeof statusColors],
-                            color: '#FAFAFA',
+                            bgcolor: statusColors.bg,
+                            color: statusColors.text,
                             fontWeight: 500,
                             borderRadius: 1,
                         }}

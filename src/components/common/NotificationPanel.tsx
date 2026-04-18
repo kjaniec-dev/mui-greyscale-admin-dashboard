@@ -98,7 +98,7 @@ export function NotificationPanel() {
         ));
         // Navigate if link exists
         if (notification.link) {
-            window.location.href = notification.link;
+            navigate(notification.link);
         }
         handleClose();
     };

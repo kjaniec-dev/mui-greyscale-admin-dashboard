@@ -14,6 +14,10 @@ import {
     CalendarMonth as ActivityIcon,
 } from '@mui/icons-material';
 
+function getDeterministicValue(day: number, hour: number, offset: number, range: number, base: number) {
+    return ((day * 37 + hour * 17 + offset) % range) + base;
+}
+
 // --- Activity Heatmap Component ---
 const ActivityHeatmap = () => {
     const theme = useTheme();
@@ -26,13 +30,13 @@ const ActivityHeatmap = () => {
     const getIntensity = (day: number, hour: number) => {
         // Higher activity on weekdays during working hours
         if (day > 0 && day < 6) {
-            if (hour >= 9 && hour <= 17) return Math.floor(Math.random() * 60) + 40;
-            if (hour >= 18 && hour <= 22) return Math.floor(Math.random() * 40) + 10;
+            if (hour >= 9 && hour <= 17) return getDeterministicValue(day, hour, 13, 60, 40);
+            if (hour >= 18 && hour <= 22) return getDeterministicValue(day, hour, 7, 40, 10);
         } else {
             // Weekend
-            if (hour >= 10 && hour <= 20) return Math.floor(Math.random() * 30) + 10;
+            if (hour >= 10 && hour <= 20) return getDeterministicValue(day, hour, 3, 30, 10);
         }
-        return Math.floor(Math.random() * 15); // Low baseline
+        return getDeterministicValue(day, hour, 1, 15, 0); // Low baseline
     };
 
     const heatmapData = days.map((dayLabel, dIdx) => ({
@@ -273,4 +277,3 @@ export function HeatmapsPage() {
         </Box>
     );
 }
-

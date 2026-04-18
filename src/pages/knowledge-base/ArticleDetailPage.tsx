@@ -30,8 +30,8 @@ import {
     calculateHelpfulness,
     formatArticleDate,
     getCategoryColor,
-    type ArticleStatus,
 } from '../../data/mockArticles';
+import { getStatusSolid } from '../../theme';
 
 export function ArticleDetailPage() {
     const { id } = useParams<{ id: string }>();
@@ -62,13 +62,7 @@ export function ArticleDetailPage() {
         article.relatedArticles.includes(a.id)
     );
 
-    const statusColors: Record<ArticleStatus, { bg: string; bgDark: string }> = {
-        Published: { bg: '#22C55E', bgDark: '#4ADE80' },
-        Draft: { bg: '#737373', bgDark: '#A3A3A3' },
-        Archived: { bg: '#EF4444', bgDark: '#F87171' },
-    };
-
-    const statusColor = statusColors[article.status];
+    const statusColor = getStatusSolid(article.status, isDarkMode);
 
     const handleHelpful = (helpful: boolean) => {
         if (helpful) {
@@ -127,8 +121,8 @@ export function ArticleDetailPage() {
                             label={article.status}
                             size="small"
                             sx={{
-                                bgcolor: isDarkMode ? statusColor.bgDark : statusColor.bg,
-                                color: '#FFFFFF',
+                                bgcolor: statusColor.bg,
+                                color: statusColor.text,
                                 fontWeight: 500,
                             }}
                         />

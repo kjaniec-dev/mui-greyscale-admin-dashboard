@@ -54,7 +54,7 @@ export const mockSubscriptions: Subscription[] = Array.from({ length: 50 }, (_, 
     const startDate = getRandomDate(new Date(2023, 0, 1), new Date());
 
     // Calculate next billing date
-    let nextBillingDate = new Date(startDate);
+    const nextBillingDate = new Date(startDate);
     while (nextBillingDate < new Date()) {
         if (plan.interval === 'Monthly') {
             nextBillingDate.setMonth(nextBillingDate.getMonth() + 1);

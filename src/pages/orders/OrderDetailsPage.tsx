@@ -29,6 +29,7 @@ import {
 import { mockOrders } from '../../data/mockOrders';
 import { OrderTracking } from './components/OrderTracking';
 import { getStatusSolid } from '../../theme';
+import { DetailInfoRow } from '../../components/common/DetailInfoRow';
 
 function formatCurrency(amount: number): string {
     return new Intl.NumberFormat('en-US', {
@@ -65,32 +66,6 @@ export function OrderDetailsPage() {
         border: `1px solid ${isDarkMode ? '#262626' : '#E5E5E5'}`,
         borderRadius: 2,
     };
-
-    const InfoRow = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: React.ReactNode }) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box
-                sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 1,
-                    bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                {icon}
-            </Box>
-            <Box sx={{ flex: 1 }}>
-                <Typography variant="caption" color="text.secondary" display="block">
-                    {label}
-                </Typography>
-                <Typography variant="body2" fontWeight={500}>
-                    {value}
-                </Typography>
-            </Box>
-        </Box>
-    );
 
     return (
         <Box>
@@ -214,18 +189,18 @@ export function OrderDetailsPage() {
                             Customer Information
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<PersonIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Name"
                                 value={order.customer.name}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<EmailIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Email"
                                 value={order.customer.email}
                             />
                             {order.customer.phone && (
-                                <InfoRow
+                                <DetailInfoRow
                                     icon={<PhoneIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                     label="Phone"
                                     value={order.customer.phone}
@@ -242,7 +217,7 @@ export function OrderDetailsPage() {
                         <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
                             Payment
                         </Typography>
-                        <InfoRow
+                        <DetailInfoRow
                             icon={<PaymentIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                             label={order.paymentMethod}
                             value={
@@ -265,7 +240,7 @@ export function OrderDetailsPage() {
                         <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
                             Shipping Address
                         </Typography>
-                        <InfoRow
+                        <DetailInfoRow
                             icon={<ShippingIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                             label="Address"
                             value={

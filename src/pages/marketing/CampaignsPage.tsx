@@ -14,6 +14,7 @@ import {
     Dialog,
     DialogTitle,
     DialogContent,
+    useTheme,
 } from '@mui/material';
 import {
     Search as SearchIcon,
@@ -32,14 +33,7 @@ import type { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { DataGrid as DataGridComponent } from '@mui/x-data-grid';
 import { mockCampaigns, type Campaign, type CampaignStatus, type CampaignType } from '../../data/mockCampaigns';
 import { CampaignForm, type CampaignFormData } from '../../components/forms/CampaignForm';
-
-const statusColors: Record<CampaignStatus, 'success' | 'warning' | 'error' | 'default' | 'info'> = {
-    active: 'success',
-    scheduled: 'info',
-    paused: 'warning',
-    completed: 'default',
-    draft: 'default',
-};
+import { getStatusSolid } from '../../theme';
 
 const typeIcons: Record<CampaignType, React.ReactNode> = {
     email: <EmailIcon fontSize="small" />,
@@ -61,6 +55,8 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
 });
 
 export function CampaignsPage() {
+    const theme = useTheme();
+    const isDarkMode = theme.palette.mode === 'dark';
     const [searchQuery, setSearchQuery] = useState('');
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
@@ -163,17 +159,22 @@ export function CampaignsPage() {
             field: 'status',
             headerName: 'Status',
             width: 120,
-            renderCell: (params: GridRenderCellParams<Campaign, string>) => (
-                <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-                    <Chip
-                        label={params.value}
-                        size="small"
-                        color={statusColors[params.value as CampaignStatus]}
-                        variant="outlined"
-                        sx={{ textTransform: 'capitalize' }}
-                    />
-                </Box>
-            ),
+            renderCell: (params: GridRenderCellParams<Campaign, string>) => {
+                const colors = getStatusSolid(params.value as CampaignStatus, isDarkMode);
+                return (
+                    <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+                        <Chip
+                            label={params.value}
+                            size="small"
+                            sx={{
+                                textTransform: 'capitalize',
+                                bgcolor: colors.bg,
+                                color: colors.text,
+                            }}
+                        />
+                    </Box>
+                );
+            },
         },
         {
             field: 'dates',

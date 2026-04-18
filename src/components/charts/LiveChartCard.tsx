@@ -25,7 +25,7 @@ export function LiveChartCard({
     const isDarkMode = theme.palette.mode === 'dark';
 
     // Use centralized chart palette — first color for single-series
-    const lineColor = getChartColors(isDarkMode)[0] as string;
+    const lineColor = getChartColors(isDarkMode)[0];
 
     // Format timestamps for x-axis
     const formattedData = data.map((point) => ({

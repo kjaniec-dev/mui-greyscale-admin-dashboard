@@ -93,15 +93,24 @@ const STATUS_MAP: Record<string, StatusKey> = {
   resolved: 'success',
   live: 'success',
   success: 'success',
+  normal: 'success',
+  'in stock': 'success',
+  won: 'success',
 
   // warning‑family
   pending: 'warning',
+  unresolved: 'warning',
+  'past due': 'error',
   scheduled: 'warning',
   paused: 'warning',
   maintenance: 'warning',
   draft: 'warning',
   warning: 'warning',
   overdue: 'warning',
+  low: 'warning',
+  'low stock': 'warning',
+  qualified: 'warning',
+  'picked up': 'warning',
 
   // error‑family
   failed: 'error',
@@ -111,6 +120,12 @@ const STATUS_MAP: Record<string, StatusKey> = {
   error: 'error',
   archived: 'error',
   inactive: 'error',
+  disabled: 'error',
+  'out of stock': 'error',
+  critical: 'error',
+  exception: 'error',
+  lost: 'error',
+  closed: 'error',
 
   // info‑family
   processing: 'info',
@@ -119,12 +134,49 @@ const STATUS_MAP: Record<string, StatusKey> = {
   shipped: 'info',
   info: 'info',
   new: 'info',
+  transferred: 'info',
+  lead: 'info',
+  contacted: 'info',
+  proposal: 'info',
+  'label created': 'info',
+  'in transit': 'info',
+  overstocked: 'info',
 
   // purple
   refunded: 'purple',
   test: 'purple',
   sandbox: 'purple',
+  negotiation: 'purple',
+  'out for delivery': 'purple',
 };
+
+export function getStatusKey(status: string): StatusKey {
+  return STATUS_MAP[status.toLowerCase()] ?? 'info';
+}
+
+export function getToneColor(
+  tone: StatusKey,
+  isDark: boolean,
+): { text: string; bg: string; solid: string } {
+  const palette = statusPalette[tone];
+  return {
+    text: isDark ? palette.dark : palette.light,
+    bg: isDark ? palette.bg.dark : palette.bg.light,
+    solid: isDark ? palette.dark : palette.light,
+  };
+}
+
+export function getProgressColor(
+  tone: Extract<StatusKey, 'success' | 'warning' | 'error' | 'info'>,
+  isDark: boolean,
+): string {
+  return isDark ? statusPalette[tone].dark : statusPalette[tone].light;
+}
+
+export function getNotificationColor(type: string, isDark: boolean): string {
+  const colors = notificationTypeColors[type] ?? notificationTypeColors.system;
+  return isDark ? colors.dark : colors.light;
+}
 
 /**
  * Get the foreground + background colors for a status string.
@@ -137,12 +189,8 @@ export function getStatusColor(
   status: string,
   isDark: boolean,
 ): { text: string; bg: string } {
-  const key = STATUS_MAP[status.toLowerCase()] ?? 'info';
-  const palette = statusPalette[key];
-  return {
-    text: isDark ? palette.dark : palette.light,
-    bg: isDark ? palette.bg.dark : palette.bg.light,
-  };
+  const { text, bg } = getToneColor(getStatusKey(status), isDark);
+  return { text, bg };
 }
 
 /**
@@ -153,10 +201,9 @@ export function getStatusSolid(
   status: string,
   isDark: boolean,
 ): { bg: string; text: string } {
-  const key = STATUS_MAP[status.toLowerCase()] ?? 'info';
-  const palette = statusPalette[key];
+  const { solid } = getToneColor(getStatusKey(status), isDark);
   return {
-    bg: isDark ? palette.dark : palette.light,
+    bg: solid,
     text: isDark ? '#171717' : '#FAFAFA',
   };
 }

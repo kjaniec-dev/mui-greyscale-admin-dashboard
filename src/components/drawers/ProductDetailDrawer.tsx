@@ -18,6 +18,8 @@ import {
     Update as UpdateIcon,
 } from '@mui/icons-material';
 import type { Product } from '../../data/mockProducts';
+import { DetailInfoRow } from '../common/DetailInfoRow';
+import { getStatusSolid } from '../../theme';
 
 interface ProductDetailDrawerProps {
     open: boolean;
@@ -47,46 +49,7 @@ export function ProductDetailDrawer({ open, onClose, product }: ProductDetailDra
 
     if (!product) return null;
 
-    const statusColors = {
-        'In Stock': isDarkMode ? '#A3A3A3' : '#525252',
-        'Low Stock': isDarkMode ? '#737373' : '#737373',
-        'Out of Stock': isDarkMode ? '#525252' : '#A3A3A3',
-    };
-
-    const categoryColors = {
-        Electronics: isDarkMode ? '#404040' : '#E5E5E5',
-        Clothing: isDarkMode ? '#404040' : '#E5E5E5',
-        Food: isDarkMode ? '#404040' : '#E5E5E5',
-        Books: isDarkMode ? '#404040' : '#E5E5E5',
-        Home: isDarkMode ? '#404040' : '#E5E5E5',
-        Sports: isDarkMode ? '#404040' : '#E5E5E5',
-    };
-
-    const InfoRow = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: React.ReactNode }) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box
-                sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 1,
-                    bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                {icon}
-            </Box>
-            <Box sx={{ flex: 1 }}>
-                <Typography variant="caption" color="text.secondary" display="block">
-                    {label}
-                </Typography>
-                <Typography variant="body2" fontWeight={500}>
-                    {value}
-                </Typography>
-            </Box>
-        </Box>
-    );
+    const statusColors = getStatusSolid(product.status, isDarkMode);
 
     return (
         <Drawer
@@ -163,7 +126,7 @@ export function ProductDetailDrawer({ open, onClose, product }: ProductDetailDra
                                 label={product.category}
                                 size="small"
                                 sx={{
-                                    bgcolor: categoryColors[product.category],
+                                    bgcolor: isDarkMode ? '#404040' : '#E5E5E5',
                                     color: isDarkMode ? '#E5E5E5' : '#171717',
                                     fontWeight: 500,
                                     borderRadius: 1,
@@ -173,8 +136,8 @@ export function ProductDetailDrawer({ open, onClose, product }: ProductDetailDra
                                 label={product.status}
                                 size="small"
                                 sx={{
-                                    bgcolor: statusColors[product.status],
-                                    color: isDarkMode ? '#171717' : '#FAFAFA',
+                                    bgcolor: statusColors.bg,
+                                    color: statusColors.text,
                                     fontWeight: 500,
                                     borderRadius: 1,
                                 }}
@@ -199,17 +162,17 @@ export function ProductDetailDrawer({ open, onClose, product }: ProductDetailDra
                             Pricing & Inventory
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<MoneyIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Price"
                                 value={formatCurrency(product.price)}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<NumbersIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Stock Quantity"
                                 value={`${product.stock} units`}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<CategoryIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Category"
                                 value={product.category}
@@ -258,12 +221,12 @@ export function ProductDetailDrawer({ open, onClose, product }: ProductDetailDra
                             Timestamps
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Created At"
                                 value={formatDate(product.createdAt)}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<UpdateIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Last Updated"
                                 value={formatDate(product.updatedAt)}

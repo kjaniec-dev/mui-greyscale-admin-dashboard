@@ -32,6 +32,7 @@ import { TwoFactorAuthPage, AuditLogsPage, SessionsPage } from '../pages/securit
 import { MediaLibraryPage } from '../pages/media';
 import { ReportsListPage, ReportBuilderPage, ScheduledReportsPage } from '../pages/reports';
 import { ErrorPage } from '../components/ErrorPage';
+import { ComingSoonPage } from './ComingSoonPage';
 
 export const router = createBrowserRouter([
     {
@@ -291,7 +292,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'apps/*',
-                element: <ComingSoon title="Apps" />,
+                element: <ComingSoonPage title="Apps" />,
             },
             {
                 path: 'settings',
@@ -371,22 +372,3 @@ export const router = createBrowserRouter([
         ],
     },
 ]);
-
-// Placeholder component for unimplemented pages
-function ComingSoon({ title }: { title: string }) {
-    return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '60vh',
-                textAlign: 'center',
-            }}
-        >
-            <h2 style={{ marginBottom: '8px', fontWeight: 600 }}>{title}</h2>
-            <p style={{ color: '#737373' }}>This page is coming soon.</p>
-        </div>
-    );
-}

@@ -1,10 +1,15 @@
 export { lightTheme, darkTheme, neutral } from './theme';
-export { ThemeProvider, useThemeMode } from './ThemeProvider';
+export { ThemeProvider } from './ThemeProvider';
+export { useThemeMode } from './themeContext';
 export {
   statusPalette,
   chartPalette,
   onlineColor,
   notificationTypeColors,
+  getStatusKey,
+  getToneColor,
+  getProgressColor,
+  getNotificationColor,
   getStatusColor,
   getStatusSolid,
   getChartColors,

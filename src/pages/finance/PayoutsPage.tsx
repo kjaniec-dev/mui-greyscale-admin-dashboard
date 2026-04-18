@@ -25,7 +25,7 @@ import {
 } from '@mui/x-data-grid';
 import { mockPayouts, type Payout } from '../../data/mockPayouts';
 import { PayoutDetailDrawer } from '../../components/drawers/PayoutDetailDrawer';
-import { getStatusSolid, statusPalette } from '../../theme';
+import { getStatusSolid, getToneColor } from '../../theme';
 
 const currencyFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -128,16 +128,15 @@ export function PayoutsPage() {
             headerName: 'Type',
             width: 100,
             renderCell: (params: GridRenderCellParams<Payout, string>) => {
-                const colors = params.value === 'Vendor'
-                    ? { bg: isDarkMode ? statusPalette.info.dark : statusPalette.info.light, text: isDarkMode ? '#171717' : '#FAFAFA' }
-                    : { bg: isDarkMode ? statusPalette.purple.dark : statusPalette.purple.light, text: isDarkMode ? '#171717' : '#FAFAFA' };
+                const tone = params.value === 'Vendor' ? 'info' : 'purple';
+                const { solid } = getToneColor(tone, isDarkMode);
                 return (
                     <Chip
                         label={params.value}
                         size="small"
                         sx={{
-                            bgcolor: colors.bg,
-                            color: colors.text,
+                            bgcolor: solid,
+                            color: isDarkMode ? '#171717' : '#FAFAFA',
                             fontWeight: 500,
                             borderRadius: 1,
                         }}

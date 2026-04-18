@@ -10,6 +10,7 @@ import {
     IconButton,
     Menu,
     MenuItem,
+    useTheme,
 } from '@mui/material';
 import {
     Search as SearchIcon,
@@ -20,14 +21,8 @@ import {
 } from '@mui/icons-material';
 import type { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { DataGrid as DataGridComponent } from '@mui/x-data-grid';
-import { mockRefunds, type Refund, type RefundStatus } from '../../data/mockRefunds';
-
-const statusColors: Record<RefundStatus, 'success' | 'warning' | 'error' | 'default' | 'info'> = {
-    approved: 'success',
-    pending: 'warning',
-    rejected: 'error',
-    processed: 'info',
-};
+import { mockRefunds, type Refund } from '../../data/mockRefunds';
+import { getStatusSolid } from '../../theme';
 
 const currencyFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -40,6 +35,8 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
 });
 
 export function RefundsPage() {
+    const theme = useTheme();
+    const isDarkMode = theme.palette.mode === 'dark';
     const [searchQuery, setSearchQuery] = useState('');
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [selectedRefund, setSelectedRefund] = useState<Refund | null>(null);
@@ -145,13 +142,16 @@ export function RefundsPage() {
             headerName: 'Status',
             width: 120,
             renderCell: (params: GridRenderCellParams<Refund, string>) => (
-                <Chip
-                    label={params.value}
-                    size="small"
-                    color={statusColors[params.value as RefundStatus]}
-                    variant="outlined"
-                    sx={{ textTransform: 'capitalize' }}
-                />
+                (() => {
+                    const { bg, text } = getStatusSolid(params.value || '', isDarkMode);
+                    return (
+                        <Chip
+                            label={params.value}
+                            size="small"
+                            sx={{ textTransform: 'capitalize', bgcolor: bg, color: text }}
+                        />
+                    );
+                })()
             ),
         },
         {

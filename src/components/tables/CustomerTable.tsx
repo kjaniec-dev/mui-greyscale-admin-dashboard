@@ -19,6 +19,7 @@ import {
     Delete as DeleteIcon,
 } from '@mui/icons-material';
 import { type Customer } from '../../data/mockCustomers';
+import { getStatusSolid } from '../../theme';
 
 interface CustomerTableProps {
     customers: Customer[];
@@ -162,18 +163,14 @@ export function CustomerTable({ customers, onView, onEdit, onDelete }: CustomerT
             headerName: 'Status',
             width: 100,
             renderCell: (params) => {
-                const statusColors = {
-                    Active: isDarkMode ? '#A3A3A3' : '#525252',
-                    Inactive: isDarkMode ? '#525252' : '#A3A3A3',
-                    Lead: isDarkMode ? '#737373' : '#737373',
-                };
+                const statusColors = getStatusSolid(params.value as string, isDarkMode);
                 return (
                     <Chip
                         label={params.value}
                         size="small"
                         sx={{
-                            bgcolor: statusColors[params.value as keyof typeof statusColors],
-                            color: isDarkMode ? '#171717' : '#FAFAFA',
+                            bgcolor: statusColors.bg,
+                            color: statusColors.text,
                             fontWeight: 500,
                             borderRadius: 1,
                         }}

@@ -26,6 +26,7 @@ import {
     Pause as PauseIcon,
 } from '@mui/icons-material';
 import { mockSubscriptions, type Subscription } from '../../data/mockSubscriptions';
+import { getStatusSolid } from '../../theme';
 
 export function SubscriptionsPage() {
     const theme = useTheme();
@@ -38,21 +39,6 @@ export function SubscriptionsPage() {
 
     const handleMenuClose = () => {
         setAnchorEl(null);
-    };
-
-    const getStatusColor = (status: Subscription['status']) => {
-        switch (status) {
-            case 'Active':
-                return { bg: isDarkMode ? '#064E3B' : '#ECFDF5', text: isDarkMode ? '#34D399' : '#059669' };
-            case 'Past Due':
-                return { bg: isDarkMode ? '#7F1D1D' : '#FEF2F2', text: isDarkMode ? '#F87171' : '#DC2626' };
-            case 'Cancelled':
-                return { bg: isDarkMode ? '#262626' : '#F3F4F6', text: isDarkMode ? '#A3A3A3' : '#6B7280' };
-            case 'Paused':
-                return { bg: isDarkMode ? '#78350F' : '#FFFBEB', text: isDarkMode ? '#FBBF24' : '#D97706' };
-            default:
-                return { bg: 'default', text: 'default' };
-        }
     };
 
     const columns: GridColDef[] = [
@@ -118,7 +104,7 @@ export function SubscriptionsPage() {
             width: 120,
             renderCell: (params: GridRenderCellParams<Subscription, string>) => {
                 const status = params.value as Subscription['status'];
-                const colors = getStatusColor(status);
+                const colors = getStatusSolid(status, isDarkMode);
                 return (
                     <Chip
                         label={status}

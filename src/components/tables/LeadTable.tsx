@@ -20,6 +20,7 @@ import {
     PersonAdd as ConvertIcon,
 } from '@mui/icons-material';
 import { type Lead, type LeadStatus, type LeadSource } from '../../data/mockLeads';
+import { getStatusSolid } from '../../theme';
 
 interface LeadTableProps {
     leads: Lead[];
@@ -136,16 +137,6 @@ function formatDate(date: Date | undefined): string {
     });
 }
 
-const statusColors: Record<LeadStatus, { bg: string; bgDark: string }> = {
-    New: { bg: '#3B82F6', bgDark: '#60A5FA' },
-    Contacted: { bg: '#8B5CF6', bgDark: '#A78BFA' },
-    Qualified: { bg: '#F59E0B', bgDark: '#FBBF24' },
-    Proposal: { bg: '#10B981', bgDark: '#34D399' },
-    Negotiation: { bg: '#6366F1', bgDark: '#818CF8' },
-    Won: { bg: '#22C55E', bgDark: '#4ADE80' },
-    Lost: { bg: '#737373', bgDark: '#A3A3A3' },
-};
-
 const sourceLabels: Record<LeadSource, string> = {
     Website: 'Website',
     Referral: 'Referral',
@@ -219,14 +210,14 @@ export function LeadTable({ leads, onView, onEdit, onConvert, onDelete }: LeadTa
             width: 110,
             renderCell: (params) => {
                 const status = params.value as LeadStatus;
-                const colors = statusColors[status];
+                const colors = getStatusSolid(status, isDarkMode);
                 return (
                     <Chip
                         label={status}
                         size="small"
                         sx={{
-                            bgcolor: isDarkMode ? colors.bgDark : colors.bg,
-                            color: '#FFFFFF',
+                            bgcolor: colors.bg,
+                            color: colors.text,
                             fontWeight: 500,
                             borderRadius: 1,
                         }}

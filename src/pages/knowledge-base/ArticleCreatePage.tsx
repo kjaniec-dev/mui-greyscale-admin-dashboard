@@ -104,7 +104,10 @@ export function ArticleCreatePage() {
     const [showSuccess, setShowSuccess] = useState(false);
     const [isSaving, setIsSaving] = useState(false);
 
-    const handleChange = (field: keyof typeof formData, value: any) => {
+    const handleChange = (
+        field: keyof typeof formData,
+        value: string | string[] | ArticleCategory | ArticleStatus
+    ) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
     };
 

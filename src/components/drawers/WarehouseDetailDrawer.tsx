@@ -20,7 +20,8 @@ import {
     Inventory as InventoryIcon,
 } from '@mui/icons-material';
 import type { Warehouse } from '../../data/mockWarehouses';
-import { getStatusSolid, statusPalette } from '../../theme';
+import { getStatusSolid, getProgressColor } from '../../theme';
+import { DetailInfoRow } from '../common/DetailInfoRow';
 
 interface WarehouseDetailDrawerProps {
     open: boolean;
@@ -47,36 +48,10 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
 
     const usedPercent = (warehouse.usedCapacity / warehouse.capacity) * 100;
     const getCapacityColor = () => {
-        if (usedPercent >= 90) return isDarkMode ? statusPalette.error.dark : statusPalette.error.light;
-        if (usedPercent >= 70) return isDarkMode ? statusPalette.warning.dark : statusPalette.warning.light;
-        return isDarkMode ? statusPalette.success.dark : statusPalette.success.light;
+        if (usedPercent >= 90) return getProgressColor('error', isDarkMode);
+        if (usedPercent >= 70) return getProgressColor('warning', isDarkMode);
+        return getProgressColor('success', isDarkMode);
     };
-
-    const InfoRow = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: React.ReactNode }) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box
-                sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 1,
-                    bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                {icon}
-            </Box>
-            <Box sx={{ flex: 1 }}>
-                <Typography variant="caption" color="text.secondary" display="block">
-                    {label}
-                </Typography>
-                <Typography variant="body2" fontWeight={500}>
-                    {value}
-                </Typography>
-            </Box>
-        </Box>
-    );
 
     return (
         <Drawer
@@ -202,7 +177,7 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
                                 {usedPercent.toFixed(1)}% utilized
                             </Typography>
                         </Box>
-                        <InfoRow
+                        <DetailInfoRow
                             icon={<InventoryIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                             label="Available Space"
                             value={`${(warehouse.capacity - warehouse.usedCapacity).toLocaleString()} units`}
@@ -226,7 +201,7 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
                             Location
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<LocationIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Address"
                                 value={`${warehouse.address}, ${warehouse.city}, ${warehouse.country}`}
@@ -251,17 +226,17 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
                             Contact
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<PersonIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Manager"
                                 value={warehouse.manager}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<PhoneIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Phone"
                                 value={warehouse.phone}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<EmailIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Email"
                                 value={warehouse.email}
@@ -286,7 +261,7 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
                             Information
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Created At"
                                 value={formatDate(warehouse.createdAt)}

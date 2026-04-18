@@ -20,6 +20,7 @@ import {
     CheckCircle as DeliveredIcon,
 } from '@mui/icons-material';
 import type { Shipment } from '../../data/mockShipments';
+import { getStatusSolid } from '../../theme';
 
 interface ShipmentTableProps {
     shipments: Shipment[];
@@ -167,21 +168,14 @@ export function ShipmentTable({ shipments, onView, onEdit, onMarkDelivered }: Sh
             headerName: 'Status',
             width: 140,
             renderCell: (params) => {
-                const statusColors: Record<string, string> = {
-                    'Label Created': isDarkMode ? '#525252' : '#737373',
-                    'Picked Up': isDarkMode ? '#D97706' : '#F59E0B',
-                    'In Transit': isDarkMode ? '#3B82F6' : '#2563EB',
-                    'Out for Delivery': isDarkMode ? '#8B5CF6' : '#7C3AED',
-                    'Delivered': isDarkMode ? '#22C55E' : '#16A34A',
-                    'Exception': isDarkMode ? '#DC2626' : '#EF4444',
-                };
+                const statusColors = getStatusSolid(params.value as string, isDarkMode);
                 return (
                     <Chip
                         label={params.value}
                         size="small"
                         sx={{
-                            bgcolor: statusColors[params.value as string],
-                            color: '#FAFAFA',
+                            bgcolor: statusColors.bg,
+                            color: statusColors.text,
                             fontWeight: 500,
                             borderRadius: 1,
                         }}

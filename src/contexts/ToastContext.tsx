@@ -1,21 +1,6 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
+import { useState, useCallback, type ReactNode } from 'react';
 import { Snackbar, Alert, type AlertColor, Slide, type SlideProps } from '@mui/material';
-
-interface ToastOptions {
-    message: string;
-    severity?: AlertColor;
-    duration?: number;
-}
-
-interface ToastContextType {
-    showToast: (options: ToastOptions) => void;
-    success: (message: string) => void;
-    error: (message: string) => void;
-    warning: (message: string) => void;
-    info: (message: string) => void;
-}
-
-const ToastContext = createContext<ToastContextType | undefined>(undefined);
+import { ToastContext, type ToastOptions } from './toast-context';
 
 function SlideTransition(props: SlideProps) {
     return <Slide {...props} direction="up" />;
@@ -87,12 +72,4 @@ export function ToastProvider({ children }: ToastProviderProps) {
             </Snackbar>
         </ToastContext.Provider>
     );
-}
-
-export function useToast(): ToastContextType {
-    const context = useContext(ToastContext);
-    if (context === undefined) {
-        throw new Error('useToast must be used within a ToastProvider');
-    }
-    return context;
 }

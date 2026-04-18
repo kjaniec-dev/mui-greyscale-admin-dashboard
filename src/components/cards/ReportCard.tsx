@@ -198,10 +198,8 @@ export function ReportCard({
                         <Chip
                             label={chartLabels[chartType]}
                             size="small"
-                            sx={{
-                                fontSize: '0.75rem',
-                                bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                            }}
+                            variant="outlined"
+                            sx={{ fontSize: '0.75rem' }}
                         />
                     </Box>
                     <Typography variant="caption" color="text.secondary">

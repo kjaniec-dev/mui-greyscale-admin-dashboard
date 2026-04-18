@@ -217,7 +217,7 @@ export function BlogEditPage() {
                             <FormLabel sx={labelSx}>Status</FormLabel>
                             <Select
                                 value={formData.status}
-                                onChange={handleChange('status') as any}
+                                onChange={(event) => setFormData((prev) => ({ ...prev, status: event.target.value }))}
                                 disabled={isSubmitting}
                                 sx={{ bgcolor: isDarkMode ? '#0A0A0A' : '#FAFAFA' }}
                             >
@@ -231,7 +231,7 @@ export function BlogEditPage() {
                             <FormLabel sx={labelSx}>Category</FormLabel>
                             <Select
                                 value={formData.category}
-                                onChange={handleChange('category') as any}
+                                onChange={(event) => setFormData((prev) => ({ ...prev, category: event.target.value }))}
                                 disabled={isSubmitting}
                                 sx={{ bgcolor: isDarkMode ? '#0A0A0A' : '#FAFAFA' }}
                             >

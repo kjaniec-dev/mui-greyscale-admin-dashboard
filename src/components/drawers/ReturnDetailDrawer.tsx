@@ -21,6 +21,8 @@ import {
     Notes as NotesIcon,
 } from '@mui/icons-material';
 import type { Return } from '../../data/mockReturns';
+import { DetailInfoRow } from '../common/DetailInfoRow';
+import { getStatusSolid } from '../../theme';
 
 interface ReturnDetailDrawerProps {
     open: boolean;
@@ -50,13 +52,7 @@ export function ReturnDetailDrawer({ open, onClose, returnItem }: ReturnDetailDr
 
     if (!returnItem) return null;
 
-    const statusColors = {
-        'Pending': isDarkMode ? '#D97706' : '#F59E0B',
-        'Approved': isDarkMode ? '#22C55E' : '#16A34A',
-        'Rejected': isDarkMode ? '#DC2626' : '#EF4444',
-        'Refunded': isDarkMode ? '#3B82F6' : '#2563EB',
-        'Replaced': isDarkMode ? '#8B5CF6' : '#7C3AED',
-    };
+    const statusColors = getStatusSolid(returnItem.status, isDarkMode);
 
     const reasonColors: Record<string, string> = {
         'Defective': isDarkMode ? '#DC2626' : '#EF4444',
@@ -65,32 +61,6 @@ export function ReturnDetailDrawer({ open, onClose, returnItem }: ReturnDetailDr
         'Not as Described': isDarkMode ? '#D97706' : '#F59E0B',
         'Damaged': isDarkMode ? '#DC2626' : '#EF4444',
     };
-
-    const InfoRow = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: React.ReactNode }) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box
-                sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 1,
-                    bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                {icon}
-            </Box>
-            <Box sx={{ flex: 1 }}>
-                <Typography variant="caption" color="text.secondary" display="block">
-                    {label}
-                </Typography>
-                <Typography variant="body2" fontWeight={500}>
-                    {value}
-                </Typography>
-            </Box>
-        </Box>
-    );
 
     return (
         <Drawer
@@ -157,8 +127,8 @@ export function ReturnDetailDrawer({ open, onClose, returnItem }: ReturnDetailDr
                                 label={returnItem.status}
                                 size="small"
                                 sx={{
-                                    bgcolor: statusColors[returnItem.status],
-                                    color: '#FAFAFA',
+                                    bgcolor: statusColors.bg,
+                                    color: statusColors.text,
                                     fontWeight: 500,
                                     borderRadius: 1,
                                 }}
@@ -193,12 +163,12 @@ export function ReturnDetailDrawer({ open, onClose, returnItem }: ReturnDetailDr
                             Order & Product
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<OrderIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Order ID"
                                 value={returnItem.orderId}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<ProductIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Product"
                                 value={`${returnItem.productName} (Qty: ${returnItem.quantity})`}
@@ -223,12 +193,12 @@ export function ReturnDetailDrawer({ open, onClose, returnItem }: ReturnDetailDr
                             Customer
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<PersonIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Name"
                                 value={returnItem.customerName}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<EmailIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Email"
                                 value={returnItem.customerEmail}
@@ -256,14 +226,14 @@ export function ReturnDetailDrawer({ open, onClose, returnItem }: ReturnDetailDr
                                 </Typography>
                                 <Stack spacing={2}>
                                     {returnItem.refundAmount && (
-                                        <InfoRow
+                                        <DetailInfoRow
                                             icon={<MoneyIcon sx={{ fontSize: 20, color: isDarkMode ? '#22C55E' : '#16A34A' }} />}
                                             label="Refund Amount"
                                             value={formatCurrency(returnItem.refundAmount)}
                                         />
                                     )}
                                     {returnItem.resolvedAt && (
-                                        <InfoRow
+                                        <DetailInfoRow
                                             icon={<ResolvedIcon sx={{ fontSize: 20, color: isDarkMode ? '#22C55E' : '#16A34A' }} />}
                                             label="Resolved At"
                                             value={formatDate(returnItem.resolvedAt)}
@@ -291,7 +261,7 @@ export function ReturnDetailDrawer({ open, onClose, returnItem }: ReturnDetailDr
                                 >
                                     Notes
                                 </Typography>
-                                <InfoRow
+                                <DetailInfoRow
                                     icon={<NotesIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                     label="Customer Note"
                                     value={returnItem.notes}
@@ -316,7 +286,7 @@ export function ReturnDetailDrawer({ open, onClose, returnItem }: ReturnDetailDr
                             Timeline
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Requested At"
                                 value={formatDate(returnItem.requestedAt)}

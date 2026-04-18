@@ -15,6 +15,7 @@ import {
     Drawer,
     Divider,
     Button,
+    useTheme,
 } from '@mui/material';
 import {
     Search as SearchIcon,
@@ -37,12 +38,7 @@ import {
     type AuditAction,
     type AuditStatus,
 } from '../../data/mockAuditLogs';
-
-const statusColors: Record<AuditStatus, 'success' | 'error' | 'warning'> = {
-    success: 'success',
-    failed: 'error',
-    warning: 'warning',
-};
+import { getStatusSolid } from '../../theme';
 
 const dateFormatter = new Intl.DateTimeFormat('en-US', {
     dateStyle: 'medium',
@@ -50,6 +46,9 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
 });
 
 export function AuditLogsPage() {
+    const theme = useTheme();
+    const isDarkMode = theme.palette.mode === 'dark';
+    const colorsForStatus = (status: AuditStatus) => getStatusSolid(status, isDarkMode);
     const [searchQuery, setSearchQuery] = useState('');
     const [actionFilter, setActionFilter] = useState<string>('all');
     const [resourceFilter, setResourceFilter] = useState<string>('all');
@@ -178,14 +177,20 @@ export function AuditLogsPage() {
             field: 'status',
             headerName: 'Status',
             width: 100,
-            renderCell: (params: GridRenderCellParams<AuditLogEntry, AuditStatus>) => (
-                <Chip
-                    label={params.value}
-                    size="small"
-                    color={statusColors[params.value!]}
-                    sx={{ textTransform: 'capitalize' }}
-                />
-            ),
+            renderCell: (params: GridRenderCellParams<AuditLogEntry, AuditStatus>) => {
+                const colors = colorsForStatus(params.value!);
+                return (
+                    <Chip
+                        label={params.value}
+                        size="small"
+                        sx={{
+                            textTransform: 'capitalize',
+                            bgcolor: colors.bg,
+                            color: colors.text,
+                        }}
+                    />
+                );
+            },
         },
         {
             field: 'actions',
@@ -379,8 +384,11 @@ export function AuditLogsPage() {
                                     />
                                     <Chip
                                         label={selectedLog.status}
-                                        color={statusColors[selectedLog.status]}
-                                        sx={{ textTransform: 'capitalize' }}
+                                        sx={{
+                                            textTransform: 'capitalize',
+                                            bgcolor: colorsForStatus(selectedLog.status).bg,
+                                            color: colorsForStatus(selectedLog.status).text,
+                                        }}
                                     />
                                 </Stack>
                             </Box>
