@@ -48,6 +48,7 @@ import {
     type ArticleStatus,
     type ArticleCategory,
 } from '../../data/mockArticles';
+import { getStatusSolid } from '../../theme';
 
 type TabValue = 'All' | ArticleCategory;
 type ViewMode = 'list' | 'grid';
@@ -151,12 +152,6 @@ export function KnowledgeBasePage() {
         return counts;
     }, []);
 
-    const statusColors: Record<ArticleStatus, { bg: string; bgDark: string }> = {
-        Published: { bg: '#22C55E', bgDark: '#4ADE80' },
-        Draft: { bg: '#737373', bgDark: '#A3A3A3' },
-        Archived: { bg: '#EF4444', bgDark: '#F87171' },
-    };
-
     const handleView = (article: Article) => {
         navigate(`/knowledge-base/${article.id}`);
     };
@@ -243,14 +238,14 @@ export function KnowledgeBasePage() {
             width: 100,
             renderCell: (params) => {
                 const status = params.value as ArticleStatus;
-                const colors = statusColors[status];
+                const colors = getStatusSolid(status, isDarkMode);
                 return (
                     <Chip
                         label={status}
                         size="small"
                         sx={{
-                            bgcolor: isDarkMode ? colors.bgDark : colors.bg,
-                            color: '#FFFFFF',
+                            bgcolor: colors.bg,
+                            color: colors.text,
                             fontWeight: 500,
                             borderRadius: 1,
                         }}
@@ -310,7 +305,7 @@ export function KnowledgeBasePage() {
     // Grid view card
     const ArticleCard = ({ article }: { article: Article }) => {
         const categoryColors = getCategoryColor(article.category);
-        const statusColors2 = statusColors[article.status];
+        const statusColors = getStatusSolid(article.status, isDarkMode);
         const helpfulnessPercent = calculateHelpfulness(article.helpful, article.notHelpful);
 
         return (
@@ -357,8 +352,8 @@ export function KnowledgeBasePage() {
                                 label={article.status}
                                 size="small"
                                 sx={{
-                                    bgcolor: isDarkMode ? statusColors2.bgDark : statusColors2.bg,
-                                    color: '#FFFFFF',
+                                    bgcolor: statusColors.bg,
+                                    color: statusColors.text,
                                     fontWeight: 500,
                                     borderRadius: 1,
                                     fontSize: '0.7rem',

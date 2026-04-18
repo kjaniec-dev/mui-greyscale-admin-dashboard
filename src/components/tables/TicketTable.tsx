@@ -16,6 +16,7 @@ import {
     MoreVert as MoreVertIcon,
 } from '@mui/icons-material';
 import type { Ticket } from '../../data/mockTickets';
+import { getStatusColor } from '../../theme';
 
 interface TicketTableProps {
     tickets: Ticket[];
@@ -91,25 +92,6 @@ export function TicketTable({ tickets, onView, onEdit, onDelete }: TicketTablePr
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
 
-    const statusColors: Record<string, { bg: string; color: string }> = {
-        Open: {
-            bg: isDarkMode ? '#3B82F6' : '#DBEAFE',
-            color: isDarkMode ? '#FFFFFF' : '#1E40AF'
-        },
-        'In Progress': {
-            bg: isDarkMode ? '#F59E0B' : '#FEF3C7',
-            color: isDarkMode ? '#FFFFFF' : '#92400E'
-        },
-        Resolved: {
-            bg: isDarkMode ? '#10B981' : '#D1FAE5',
-            color: isDarkMode ? '#FFFFFF' : '#065F46'
-        },
-        Closed: {
-            bg: isDarkMode ? '#6B7280' : '#F3F4F6',
-            color: isDarkMode ? '#FFFFFF' : '#374151'
-        },
-    };
-
     const priorityColors: Record<string, { bg: string; color: string }> = {
         Low: {
             bg: isDarkMode ? '#6B7280' : '#F3F4F6',
@@ -183,14 +165,14 @@ export function TicketTable({ tickets, onView, onEdit, onDelete }: TicketTablePr
             headerName: 'Status',
             width: 120,
             renderCell: (params) => {
-                const colors = statusColors[params.value] || statusColors.Open;
+                const colors = getStatusColor(params.value as string, isDarkMode);
                 return (
                     <Chip
                         label={params.value}
                         size="small"
                         sx={{
                             bgcolor: colors.bg,
-                            color: colors.color,
+                            color: colors.text,
                             fontWeight: 500,
                             borderRadius: 1,
                         }}

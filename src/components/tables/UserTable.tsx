@@ -20,6 +20,7 @@ import {
     Delete as DeleteIcon,
 } from '@mui/icons-material';
 import { type User } from '../../data/mockUsers';
+import { getStatusSolid } from '../../theme';
 
 interface UserTableProps {
     users: User[];
@@ -160,18 +161,14 @@ export function UserTable({ users, onView, onEdit, onDelete }: UserTableProps) {
             headerName: 'Status',
             width: 120,
             renderCell: (params) => {
-                const statusColors = {
-                    Active: isDarkMode ? '#A3A3A3' : '#525252',
-                    Inactive: isDarkMode ? '#525252' : '#A3A3A3',
-                    Pending: isDarkMode ? '#737373' : '#737373',
-                };
+                const statusColors = getStatusSolid(params.value as string, isDarkMode);
                 return (
                     <Chip
                         label={params.value}
                         size="small"
                         sx={{
-                            bgcolor: statusColors[params.value as keyof typeof statusColors],
-                            color: isDarkMode ? '#171717' : '#FAFAFA',
+                            bgcolor: statusColors.bg,
+                            color: statusColors.text,
                             fontWeight: 500,
                             borderRadius: 1,
                         }}

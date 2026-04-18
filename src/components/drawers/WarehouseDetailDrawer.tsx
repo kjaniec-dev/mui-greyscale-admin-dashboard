@@ -20,7 +20,7 @@ import {
     Inventory as InventoryIcon,
 } from '@mui/icons-material';
 import type { Warehouse } from '../../data/mockWarehouses';
-import { getStatusSolid, statusPalette } from '../../theme';
+import { getStatusSolid, getProgressColor } from '../../theme';
 import { DetailInfoRow } from '../common/DetailInfoRow';
 
 interface WarehouseDetailDrawerProps {
@@ -48,9 +48,9 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
 
     const usedPercent = (warehouse.usedCapacity / warehouse.capacity) * 100;
     const getCapacityColor = () => {
-        if (usedPercent >= 90) return isDarkMode ? statusPalette.error.dark : statusPalette.error.light;
-        if (usedPercent >= 70) return isDarkMode ? statusPalette.warning.dark : statusPalette.warning.light;
-        return isDarkMode ? statusPalette.success.dark : statusPalette.success.light;
+        if (usedPercent >= 90) return getProgressColor('error', isDarkMode);
+        if (usedPercent >= 70) return getProgressColor('warning', isDarkMode);
+        return getProgressColor('success', isDarkMode);
     };
 
     return (

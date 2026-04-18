@@ -20,6 +20,7 @@ import {
     History as HistoryIcon,
 } from '@mui/icons-material';
 import type { StockLevel } from '../../data/mockStockLevels';
+import { getStatusSolid } from '../../theme';
 
 interface StockLevelTableProps {
     stockLevels: StockLevel[];
@@ -175,19 +176,14 @@ export function StockLevelTable({ stockLevels, onAddStock, onRemoveStock, onView
             headerName: 'Status',
             width: 130,
             renderCell: (params) => {
-                const statusColors = {
-                    'Normal': isDarkMode ? '#22C55E' : '#16A34A',
-                    'Low': isDarkMode ? '#D97706' : '#F59E0B',
-                    'Critical': isDarkMode ? '#DC2626' : '#EF4444',
-                    'Overstocked': isDarkMode ? '#3B82F6' : '#2563EB',
-                };
+                const statusColors = getStatusSolid(params.value as string, isDarkMode);
                 return (
                     <Chip
                         label={params.value}
                         size="small"
                         sx={{
-                            bgcolor: statusColors[params.value as keyof typeof statusColors],
-                            color: '#FAFAFA',
+                            bgcolor: statusColors.bg,
+                            color: statusColors.text,
                             fontWeight: 500,
                             borderRadius: 1,
                         }}

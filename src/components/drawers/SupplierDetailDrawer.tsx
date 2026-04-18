@@ -22,6 +22,7 @@ import {
 } from '@mui/icons-material';
 import type { Supplier } from '../../data/mockSuppliers';
 import { DetailInfoRow } from '../common/DetailInfoRow';
+import { getStatusSolid } from '../../theme';
 
 interface SupplierDetailDrawerProps {
     open: boolean;
@@ -44,11 +45,7 @@ export function SupplierDetailDrawer({ open, onClose, supplier }: SupplierDetail
 
     if (!supplier) return null;
 
-    const statusColors = {
-        'Active': isDarkMode ? '#22C55E' : '#16A34A',
-        'Inactive': isDarkMode ? '#A3A3A3' : '#525252',
-        'Pending': isDarkMode ? '#D97706' : '#F59E0B',
-    };
+    const statusColors = getStatusSolid(supplier.status, isDarkMode);
 
     const getDeliveryColor = () => {
         if (supplier.onTimeDelivery >= 95) return isDarkMode ? '#22C55E' : '#16A34A';
@@ -139,8 +136,8 @@ export function SupplierDetailDrawer({ open, onClose, supplier }: SupplierDetail
                             label={supplier.status}
                             size="small"
                             sx={{
-                                bgcolor: statusColors[supplier.status],
-                                color: '#FAFAFA',
+                                bgcolor: statusColors.bg,
+                                color: statusColors.text,
                                 fontWeight: 500,
                                 borderRadius: 1,
                             }}

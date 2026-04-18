@@ -21,6 +21,7 @@ import {
     LocalOffer as TagIcon,
 } from '@mui/icons-material';
 import type { Customer } from '../../data/mockCustomers';
+import { getStatusSolid } from '../../theme';
 
 interface CustomerDetailDrawerProps {
     open: boolean;
@@ -92,11 +93,7 @@ export function CustomerDetailDrawer({ open, onClose, customer }: CustomerDetail
 
     if (!customer) return null;
 
-    const statusColors = {
-        Active: isDarkMode ? '#A3A3A3' : '#525252',
-        Inactive: isDarkMode ? '#525252' : '#A3A3A3',
-        Lead: isDarkMode ? '#737373' : '#737373',
-    };
+    const statusColors = getStatusSolid(customer.status, isDarkMode);
 
     const iconColor = isDarkMode ? '#A3A3A3' : '#525252';
 
@@ -169,8 +166,8 @@ export function CustomerDetailDrawer({ open, onClose, customer }: CustomerDetail
                             size="small"
                             sx={{
                                 mt: 1,
-                                bgcolor: statusColors[customer.status],
-                                color: isDarkMode ? '#171717' : '#FAFAFA',
+                                bgcolor: statusColors.bg,
+                                color: statusColors.text,
                                 fontWeight: 500,
                                 borderRadius: 1,
                             }}

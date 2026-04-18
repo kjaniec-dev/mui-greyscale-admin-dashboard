@@ -22,7 +22,8 @@ import {
     Notes as NotesIcon,
     PersonAdd as ConvertIcon,
 } from '@mui/icons-material';
-import type { Lead, LeadStatus } from '../../data/mockLeads';
+import type { Lead } from '../../data/mockLeads';
+import { getStatusSolid } from '../../theme';
 
 interface LeadDetailDrawerProps {
     open: boolean;
@@ -56,16 +57,6 @@ function formatCurrency(value: number): string {
         maximumFractionDigits: 0,
     }).format(value);
 }
-
-const statusColors: Record<LeadStatus, { bg: string; bgDark: string }> = {
-    New: { bg: '#3B82F6', bgDark: '#60A5FA' },
-    Contacted: { bg: '#8B5CF6', bgDark: '#A78BFA' },
-    Qualified: { bg: '#F59E0B', bgDark: '#FBBF24' },
-    Proposal: { bg: '#10B981', bgDark: '#34D399' },
-    Negotiation: { bg: '#6366F1', bgDark: '#818CF8' },
-    Won: { bg: '#22C55E', bgDark: '#4ADE80' },
-    Lost: { bg: '#737373', bgDark: '#A3A3A3' },
-};
 
 function InfoRow({ icon, label, value, isDarkMode }: {
     icon: React.ReactNode;
@@ -106,7 +97,7 @@ export function LeadDetailDrawer({ open, onClose, lead, onConvert }: LeadDetailD
 
     if (!lead) return null;
 
-    const colors = statusColors[lead.status];
+    const colors = getStatusSolid(lead.status, isDarkMode);
     const iconColor = isDarkMode ? '#A3A3A3' : '#525252';
     const canConvert = lead.status !== 'Won' && lead.status !== 'Lost';
 
@@ -177,8 +168,8 @@ export function LeadDetailDrawer({ open, onClose, lead, onConvert }: LeadDetailD
                             size="small"
                             sx={{
                                 mt: 1,
-                                bgcolor: isDarkMode ? colors.bgDark : colors.bg,
-                                color: '#FFFFFF',
+                                bgcolor: colors.bg,
+                                color: colors.text,
                                 fontWeight: 500,
                                 borderRadius: 1,
                             }}

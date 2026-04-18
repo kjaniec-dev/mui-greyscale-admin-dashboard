@@ -17,6 +17,7 @@ import {
     Assignment as AssignmentIcon,
 } from '@mui/icons-material';
 import type { Ticket } from '../../data/mockTickets';
+import { getStatusColor } from '../../theme';
 
 interface TicketDetailDrawerProps {
     open: boolean;
@@ -47,13 +48,6 @@ export function TicketDetailDrawer({ open, onClose, ticket }: TicketDetailDrawer
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
 
-    const statusColors: Record<string, { bg: string; color: string }> = {
-        Open: { bg: isDarkMode ? '#3B82F6' : '#DBEAFE', color: isDarkMode ? '#FFFFFF' : '#1E40AF' },
-        'In Progress': { bg: isDarkMode ? '#F59E0B' : '#FEF3C7', color: isDarkMode ? '#FFFFFF' : '#92400E' },
-        Resolved: { bg: isDarkMode ? '#10B981' : '#D1FAE5', color: isDarkMode ? '#FFFFFF' : '#065F46' },
-        Closed: { bg: isDarkMode ? '#6B7280' : '#F3F4F6', color: isDarkMode ? '#FFFFFF' : '#374151' },
-    };
-
     const priorityColors: Record<string, { bg: string; color: string }> = {
         Low: { bg: isDarkMode ? '#6B7280' : '#F3F4F6', color: isDarkMode ? '#FFFFFF' : '#374151' },
         Medium: { bg: isDarkMode ? '#3B82F6' : '#DBEAFE', color: isDarkMode ? '#FFFFFF' : '#1E40AF' },
@@ -63,7 +57,7 @@ export function TicketDetailDrawer({ open, onClose, ticket }: TicketDetailDrawer
 
     if (!ticket) return null;
 
-    const statusStyle = statusColors[ticket.status] || statusColors.Open;
+    const statusStyle = getStatusColor(ticket.status, isDarkMode);
     const priorityStyle = priorityColors[ticket.priority] || priorityColors.Low;
 
     return (
@@ -104,7 +98,7 @@ export function TicketDetailDrawer({ open, onClose, ticket }: TicketDetailDrawer
                             size="small"
                             sx={{
                                 bgcolor: statusStyle.bg,
-                                color: statusStyle.color,
+                                color: statusStyle.text,
                                 fontWeight: 500,
                             }}
                         />

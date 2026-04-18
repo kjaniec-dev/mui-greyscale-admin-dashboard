@@ -31,6 +31,7 @@ import {
     type ChatHistoryConversation,
     type ChatHistoryStatus,
 } from '../../data/mockChatHistory';
+import { getStatusColor as getThemeStatusColor } from '../../theme';
 
 type TabValue = 'All' | ChatHistoryStatus;
 
@@ -86,17 +87,6 @@ export function ChatHistoryPage() {
     const handleDownloadTranscript = (conversation: ChatHistoryConversation) => {
         console.log('Download transcript:', conversation.id);
         // TODO: Implement actual download logic
-    };
-
-    const getStatusColor = (status: ChatHistoryStatus): string => {
-        switch (status) {
-            case 'Resolved':
-                return isDarkMode ? '#4ADE80' : '#22C55E';
-            case 'Unresolved':
-                return isDarkMode ? '#FBBF24' : '#F59E0B';
-            case 'Transferred':
-                return isDarkMode ? '#60A5FA' : '#3B82F6';
-        }
     };
 
     const columns: GridColDef<ChatHistoryConversation>[] = [
@@ -158,18 +148,21 @@ export function ChatHistoryPage() {
             field: 'status',
             headerName: 'Status',
             width: 130,
-            renderCell: (params) => (
-                <Chip
-                    label={params.value}
-                    size="small"
-                    sx={{
-                        bgcolor: alpha(getStatusColor(params.value), 0.15),
-                        color: getStatusColor(params.value),
-                        fontWeight: 500,
-                        border: `1px solid ${alpha(getStatusColor(params.value), 0.3)}`,
-                    }}
-                />
-            ),
+            renderCell: (params) => {
+                const colors = getThemeStatusColor(params.value as ChatHistoryStatus, isDarkMode);
+                return (
+                    <Chip
+                        label={params.value}
+                        size="small"
+                        sx={{
+                            bgcolor: colors.bg,
+                            color: colors.text,
+                            fontWeight: 500,
+                            border: `1px solid ${alpha(colors.text, 0.25)}`,
+                        }}
+                    />
+                );
+            },
         },
         {
             field: 'rating',
@@ -402,16 +395,21 @@ export function ChatHistoryPage() {
                                         <Typography variant="caption" color="text.secondary">
                                             Status
                                         </Typography>
-                                        <Chip
-                                            label={transcriptDialog.status}
-                                            size="small"
-                                            sx={{
-                                                bgcolor: alpha(getStatusColor(transcriptDialog.status), 0.15),
-                                                color: getStatusColor(transcriptDialog.status),
-                                                fontWeight: 500,
-                                                border: `1px solid ${alpha(getStatusColor(transcriptDialog.status), 0.3)}`,
-                                            }}
-                                        />
+                                        {(() => {
+                                            const colors = getThemeStatusColor(transcriptDialog.status, isDarkMode);
+                                            return (
+                                                <Chip
+                                                    label={transcriptDialog.status}
+                                                    size="small"
+                                                    sx={{
+                                                        bgcolor: colors.bg,
+                                                        color: colors.text,
+                                                        fontWeight: 500,
+                                                        border: `1px solid ${alpha(colors.text, 0.25)}`,
+                                                    }}
+                                                />
+                                            );
+                                        })()}
                                     </Box>
                                     {transcriptDialog.rating && (
                                         <Box>

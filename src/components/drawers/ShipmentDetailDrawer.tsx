@@ -23,6 +23,7 @@ import {
 } from '@mui/icons-material';
 import type { Shipment } from '../../data/mockShipments';
 import { DetailInfoRow } from '../common/DetailInfoRow';
+import { getStatusSolid } from '../../theme';
 
 interface ShipmentDetailDrawerProps {
     open: boolean;
@@ -52,14 +53,7 @@ export function ShipmentDetailDrawer({ open, onClose, shipment }: ShipmentDetail
 
     if (!shipment) return null;
 
-    const statusColors: Record<string, string> = {
-        'Label Created': isDarkMode ? '#525252' : '#737373',
-        'Picked Up': isDarkMode ? '#D97706' : '#F59E0B',
-        'In Transit': isDarkMode ? '#3B82F6' : '#2563EB',
-        'Out for Delivery': isDarkMode ? '#8B5CF6' : '#7C3AED',
-        'Delivered': isDarkMode ? '#22C55E' : '#16A34A',
-        'Exception': isDarkMode ? '#DC2626' : '#EF4444',
-    };
+    const statusColors = getStatusSolid(shipment.status, isDarkMode);
 
     return (
         <Drawer
@@ -125,8 +119,8 @@ export function ShipmentDetailDrawer({ open, onClose, shipment }: ShipmentDetail
                             label={shipment.status}
                             size="small"
                             sx={{
-                                bgcolor: statusColors[shipment.status],
-                                color: '#FAFAFA',
+                                bgcolor: statusColors.bg,
+                                color: statusColors.text,
                                 fontWeight: 500,
                                 borderRadius: 1,
                             }}

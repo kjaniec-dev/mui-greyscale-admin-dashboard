@@ -14,6 +14,7 @@ import {
     Dialog,
     DialogTitle,
     DialogContent,
+    useTheme,
 } from '@mui/material';
 import {
     Search as SearchIcon,
@@ -28,12 +29,7 @@ import type { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import { DataGrid as DataGridComponent } from '@mui/x-data-grid';
 import { mockCoupons, type Coupon, type CouponStatus } from '../../data/mockCoupons';
 import { CouponForm, type CouponFormData } from '../../components/forms/CouponForm';
-
-const statusColors: Record<CouponStatus, 'success' | 'warning' | 'error' | 'default'> = {
-    active: 'success',
-    expired: 'error',
-    disabled: 'default',
-};
+import { getStatusColor } from '../../theme';
 
 const currencyFormatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -45,6 +41,8 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
 });
 
 export function CouponsPage() {
+    const theme = useTheme();
+    const isDarkMode = theme.palette.mode === 'dark';
     const [searchQuery, setSearchQuery] = useState('');
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [selectedCoupon, setSelectedCoupon] = useState<Coupon | null>(null);
@@ -178,17 +176,24 @@ export function CouponsPage() {
             field: 'status',
             headerName: 'Status',
             width: 120,
-            renderCell: (params: GridRenderCellParams<Coupon, string>) => (
-                <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-                    <Chip
-                        label={params.value}
-                        size="small"
-                        color={statusColors[params.value as CouponStatus]}
-                        variant="outlined"
-                        sx={{ textTransform: 'capitalize' }}
-                    />
-                </Box>
-            ),
+            renderCell: (params: GridRenderCellParams<Coupon, string>) => {
+                const colors = getStatusColor(params.value as CouponStatus, isDarkMode);
+                return (
+                    <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+                        <Chip
+                            label={params.value}
+                            size="small"
+                            variant="outlined"
+                            sx={{
+                                textTransform: 'capitalize',
+                                color: colors.text,
+                                borderColor: colors.text,
+                                bgcolor: colors.bg,
+                            }}
+                        />
+                    </Box>
+                );
+            },
         },
         {
             field: 'expirationDate',

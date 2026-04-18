@@ -17,6 +17,7 @@ import {
     Badge as BadgeIcon,
 } from '@mui/icons-material';
 import type { User } from '../../data/mockUsers';
+import { getStatusSolid } from '../../theme';
 
 interface UserDetailDrawerProps {
     open: boolean;
@@ -50,17 +51,7 @@ export function UserDetailDrawer({ open, onClose, user }: UserDetailDrawerProps)
 
     if (!user) return null;
 
-    const statusColors = {
-        Active: isDarkMode ? '#A3A3A3' : '#525252',
-        Inactive: isDarkMode ? '#525252' : '#A3A3A3',
-        Pending: isDarkMode ? '#737373' : '#737373',
-    };
-
-    const roleColors = {
-        Admin: isDarkMode ? '#404040' : '#E5E5E5',
-        Manager: isDarkMode ? '#404040' : '#E5E5E5',
-        User: isDarkMode ? '#404040' : '#E5E5E5',
-    };
+    const statusColors = getStatusSolid(user.status, isDarkMode);
 
     return (
         <Drawer
@@ -126,7 +117,7 @@ export function UserDetailDrawer({ open, onClose, user }: UserDetailDrawerProps)
                                 label={user.role}
                                 size="small"
                                 sx={{
-                                    bgcolor: roleColors[user.role],
+                                    bgcolor: isDarkMode ? '#404040' : '#E5E5E5',
                                     color: isDarkMode ? '#E5E5E5' : '#171717',
                                     fontWeight: 500,
                                     borderRadius: 1,
@@ -136,8 +127,8 @@ export function UserDetailDrawer({ open, onClose, user }: UserDetailDrawerProps)
                                 label={user.status}
                                 size="small"
                                 sx={{
-                                    bgcolor: statusColors[user.status],
-                                    color: isDarkMode ? '#171717' : '#FAFAFA',
+                                    bgcolor: statusColors.bg,
+                                    color: statusColors.text,
                                     fontWeight: 500,
                                     borderRadius: 1,
                                 }}

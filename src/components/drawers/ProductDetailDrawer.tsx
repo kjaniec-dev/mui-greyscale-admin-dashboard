@@ -19,6 +19,7 @@ import {
 } from '@mui/icons-material';
 import type { Product } from '../../data/mockProducts';
 import { DetailInfoRow } from '../common/DetailInfoRow';
+import { getStatusSolid } from '../../theme';
 
 interface ProductDetailDrawerProps {
     open: boolean;
@@ -48,20 +49,7 @@ export function ProductDetailDrawer({ open, onClose, product }: ProductDetailDra
 
     if (!product) return null;
 
-    const statusColors = {
-        'In Stock': isDarkMode ? '#A3A3A3' : '#525252',
-        'Low Stock': isDarkMode ? '#737373' : '#737373',
-        'Out of Stock': isDarkMode ? '#525252' : '#A3A3A3',
-    };
-
-    const categoryColors = {
-        Electronics: isDarkMode ? '#404040' : '#E5E5E5',
-        Clothing: isDarkMode ? '#404040' : '#E5E5E5',
-        Food: isDarkMode ? '#404040' : '#E5E5E5',
-        Books: isDarkMode ? '#404040' : '#E5E5E5',
-        Home: isDarkMode ? '#404040' : '#E5E5E5',
-        Sports: isDarkMode ? '#404040' : '#E5E5E5',
-    };
+    const statusColors = getStatusSolid(product.status, isDarkMode);
 
     return (
         <Drawer
@@ -138,7 +126,7 @@ export function ProductDetailDrawer({ open, onClose, product }: ProductDetailDra
                                 label={product.category}
                                 size="small"
                                 sx={{
-                                    bgcolor: categoryColors[product.category],
+                                    bgcolor: isDarkMode ? '#404040' : '#E5E5E5',
                                     color: isDarkMode ? '#E5E5E5' : '#171717',
                                     fontWeight: 500,
                                     borderRadius: 1,
@@ -148,8 +136,8 @@ export function ProductDetailDrawer({ open, onClose, product }: ProductDetailDra
                                 label={product.status}
                                 size="small"
                                 sx={{
-                                    bgcolor: statusColors[product.status],
-                                    color: isDarkMode ? '#171717' : '#FAFAFA',
+                                    bgcolor: statusColors.bg,
+                                    color: statusColors.text,
                                     fontWeight: 500,
                                     borderRadius: 1,
                                 }}

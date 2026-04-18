@@ -27,6 +27,7 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import { InvoicePDF } from '../pdf/InvoicePDF';
 import type { Invoice } from '../../data/mockInvoices';
 import { DetailInfoRow } from '../common/DetailInfoRow';
+import { getStatusSolid } from '../../theme';
 
 interface InvoiceDetailDrawerProps {
     open: boolean;
@@ -56,13 +57,7 @@ export function InvoiceDetailDrawer({ open, onClose, invoice }: InvoiceDetailDra
 
     if (!invoice) return null;
 
-    const statusColors = {
-        Draft: { bg: isDarkMode ? '#404040' : '#D4D4D4', text: isDarkMode ? '#E5E5E5' : '#171717' },
-        Pending: { bg: isDarkMode ? '#D97706' : '#F59E0B', text: '#171717' },
-        Paid: { bg: isDarkMode ? '#A3A3A3' : '#525252', text: isDarkMode ? '#171717' : '#FAFAFA' },
-        Overdue: { bg: isDarkMode ? '#DC2626' : '#EF4444', text: '#FAFAFA' },
-        Cancelled: { bg: isDarkMode ? '#525252' : '#A3A3A3', text: isDarkMode ? '#FAFAFA' : '#171717' },
-    };
+    const statusColors = getStatusSolid(invoice.status, isDarkMode);
 
     return (
         <Drawer
@@ -135,8 +130,8 @@ export function InvoiceDetailDrawer({ open, onClose, invoice }: InvoiceDetailDra
                         <Chip
                             label={invoice.status}
                             sx={{
-                                bgcolor: statusColors[invoice.status].bg,
-                                color: statusColors[invoice.status].text,
+                                bgcolor: statusColors.bg,
+                                color: statusColors.text,
                                 fontWeight: 600,
                                 borderRadius: 1,
                             }}

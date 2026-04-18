@@ -24,6 +24,7 @@ import {
 } from '@mui/icons-material';
 import type { Order } from '../../data/mockOrders';
 import { DetailInfoRow } from '../common/DetailInfoRow';
+import { getStatusSolid } from '../../theme';
 
 interface OrderDetailDrawerProps {
     open: boolean;
@@ -55,13 +56,7 @@ export function OrderDetailDrawer({ open, onClose, order }: OrderDetailDrawerPro
 
     if (!order) return null;
 
-    const statusColors = {
-        Pending: { bg: isDarkMode ? '#525252' : '#A3A3A3', text: isDarkMode ? '#FAFAFA' : '#171717' },
-        Processing: { bg: isDarkMode ? '#1E40AF' : '#3B82F6', text: '#FAFAFA' },
-        Shipped: { bg: isDarkMode ? '#7C3AED' : '#8B5CF6', text: '#FAFAFA' },
-        Delivered: { bg: isDarkMode ? '#A3A3A3' : '#525252', text: isDarkMode ? '#171717' : '#FAFAFA' },
-        Cancelled: { bg: isDarkMode ? '#DC2626' : '#EF4444', text: '#FAFAFA' },
-    };
+    const statusColors = getStatusSolid(order.status, isDarkMode);
 
     return (
         <Drawer
@@ -114,8 +109,8 @@ export function OrderDetailDrawer({ open, onClose, order }: OrderDetailDrawerPro
                         <Chip
                             label={order.status}
                             sx={{
-                                bgcolor: statusColors[order.status].bg,
-                                color: statusColors[order.status].text,
+                                bgcolor: statusColors.bg,
+                                color: statusColors.text,
                                 fontWeight: 600,
                                 borderRadius: 1,
                             }}

@@ -20,6 +20,7 @@ import {
     Delete as DeleteIcon,
 } from '@mui/icons-material';
 import type { Invoice } from '../../data/mockInvoices';
+import { getStatusSolid } from '../../theme';
 
 interface InvoiceTableProps {
     invoices: Invoice[];
@@ -114,14 +115,6 @@ export function InvoiceTable({ invoices, onView, onEdit, onDelete }: InvoiceTabl
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
 
-    const statusColors = {
-        Draft: { bg: isDarkMode ? '#404040' : '#D4D4D4', text: isDarkMode ? '#E5E5E5' : '#171717' },
-        Pending: { bg: isDarkMode ? '#D97706' : '#F59E0B', text: '#171717' },
-        Paid: { bg: isDarkMode ? '#A3A3A3' : '#525252', text: isDarkMode ? '#171717' : '#FAFAFA' },
-        Overdue: { bg: isDarkMode ? '#DC2626' : '#EF4444', text: '#FAFAFA' },
-        Cancelled: { bg: isDarkMode ? '#525252' : '#A3A3A3', text: isDarkMode ? '#FAFAFA' : '#171717' },
-    };
-
     const columns: GridColDef[] = [
         {
             field: 'invoiceNumber',
@@ -165,7 +158,7 @@ export function InvoiceTable({ invoices, onView, onEdit, onDelete }: InvoiceTabl
             headerName: 'Status',
             width: 120,
             renderCell: (params) => {
-                const colors = statusColors[params.value as keyof typeof statusColors];
+                const colors = getStatusSolid(params.value as string, isDarkMode);
                 return (
                     <Chip
                         label={params.value}

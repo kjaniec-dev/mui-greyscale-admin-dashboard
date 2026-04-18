@@ -93,9 +93,13 @@ const STATUS_MAP: Record<string, StatusKey> = {
   resolved: 'success',
   live: 'success',
   success: 'success',
+  normal: 'success',
+  'in stock': 'success',
+  won: 'success',
 
   // warning‑family
   pending: 'warning',
+  unresolved: 'warning',
   'past due': 'error',
   scheduled: 'warning',
   paused: 'warning',
@@ -103,6 +107,10 @@ const STATUS_MAP: Record<string, StatusKey> = {
   draft: 'warning',
   warning: 'warning',
   overdue: 'warning',
+  low: 'warning',
+  'low stock': 'warning',
+  qualified: 'warning',
+  'picked up': 'warning',
 
   // error‑family
   failed: 'error',
@@ -112,6 +120,12 @@ const STATUS_MAP: Record<string, StatusKey> = {
   error: 'error',
   archived: 'error',
   inactive: 'error',
+  disabled: 'error',
+  'out of stock': 'error',
+  critical: 'error',
+  exception: 'error',
+  lost: 'error',
+  closed: 'error',
 
   // info‑family
   processing: 'info',
@@ -120,11 +134,20 @@ const STATUS_MAP: Record<string, StatusKey> = {
   shipped: 'info',
   info: 'info',
   new: 'info',
+  transferred: 'info',
+  lead: 'info',
+  contacted: 'info',
+  proposal: 'info',
+  'label created': 'info',
+  'in transit': 'info',
+  overstocked: 'info',
 
   // purple
   refunded: 'purple',
   test: 'purple',
   sandbox: 'purple',
+  negotiation: 'purple',
+  'out for delivery': 'purple',
 };
 
 export function getStatusKey(status: string): StatusKey {

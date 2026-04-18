@@ -22,6 +22,7 @@ import {
 } from '@mui/icons-material';
 import type { Return } from '../../data/mockReturns';
 import { DetailInfoRow } from '../common/DetailInfoRow';
+import { getStatusSolid } from '../../theme';
 
 interface ReturnDetailDrawerProps {
     open: boolean;
@@ -51,13 +52,7 @@ export function ReturnDetailDrawer({ open, onClose, returnItem }: ReturnDetailDr
 
     if (!returnItem) return null;
 
-    const statusColors = {
-        'Pending': isDarkMode ? '#D97706' : '#F59E0B',
-        'Approved': isDarkMode ? '#22C55E' : '#16A34A',
-        'Rejected': isDarkMode ? '#DC2626' : '#EF4444',
-        'Refunded': isDarkMode ? '#3B82F6' : '#2563EB',
-        'Replaced': isDarkMode ? '#8B5CF6' : '#7C3AED',
-    };
+    const statusColors = getStatusSolid(returnItem.status, isDarkMode);
 
     const reasonColors: Record<string, string> = {
         'Defective': isDarkMode ? '#DC2626' : '#EF4444',
@@ -132,8 +127,8 @@ export function ReturnDetailDrawer({ open, onClose, returnItem }: ReturnDetailDr
                                 label={returnItem.status}
                                 size="small"
                                 sx={{
-                                    bgcolor: statusColors[returnItem.status],
-                                    color: '#FAFAFA',
+                                    bgcolor: statusColors.bg,
+                                    color: statusColors.text,
                                     fontWeight: 500,
                                     borderRadius: 1,
                                 }}

@@ -22,7 +22,7 @@ import {
     Cancel as CancelIcon,
 } from '@mui/icons-material';
 import type { Payout } from '../../data/mockPayouts';
-import { getStatusSolid, statusPalette } from '../../theme';
+import { getStatusSolid, getToneColor } from '../../theme';
 import { DetailInfoRow } from '../common/DetailInfoRow';
 
 interface PayoutDetailDrawerProps {
@@ -68,8 +68,8 @@ export function PayoutDetailDrawer({
     const getPayoutStatusColor = (status: string) => getStatusSolid(status, isDarkMode);
 
     const typeColors: Record<string, string> = {
-        Vendor: isDarkMode ? statusPalette.info.dark : statusPalette.info.light,
-        Affiliate: isDarkMode ? statusPalette.purple.dark : statusPalette.purple.light,
+        Vendor: getToneColor('info', isDarkMode).solid,
+        Affiliate: getToneColor('purple', isDarkMode).solid,
     };
 
     return (

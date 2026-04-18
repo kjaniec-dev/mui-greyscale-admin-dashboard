@@ -20,6 +20,7 @@ import {
     Delete as DeleteIcon,
 } from '@mui/icons-material';
 import type { Product } from '../../data/mockProducts';
+import { getStatusSolid } from '../../theme';
 
 interface ProductTableProps {
     products: Product[];
@@ -169,18 +170,14 @@ export function ProductTable({ products, onView, onEdit, onDelete }: ProductTabl
             headerName: 'Status',
             width: 130,
             renderCell: (params) => {
-                const statusColors = {
-                    'In Stock': isDarkMode ? '#A3A3A3' : '#525252',
-                    'Low Stock': isDarkMode ? '#D97706' : '#F59E0B',
-                    'Out of Stock': isDarkMode ? '#DC2626' : '#EF4444',
-                };
+                const statusColors = getStatusSolid(params.value as string, isDarkMode);
                 return (
                     <Chip
                         label={params.value}
                         size="small"
                         sx={{
-                            bgcolor: statusColors[params.value as keyof typeof statusColors],
-                            color: isDarkMode ? '#171717' : '#FAFAFA',
+                            bgcolor: statusColors.bg,
+                            color: statusColors.text,
                             fontWeight: 500,
                             borderRadius: 1,
                         }}
