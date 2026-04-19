@@ -24,7 +24,7 @@ import {
 import { useState } from 'react';
 import { useThemeMode, neutral } from '../../theme';
 import { NotificationPanel } from '../../components/common';
-import { DRAWER_WIDTH, COLLAPSED_WIDTH } from './Sidebar';
+import { COLLAPSED_WIDTH, DRAWER_WIDTH } from './layoutConstants';
 
 interface HeaderProps {
     onMenuClick: () => void;

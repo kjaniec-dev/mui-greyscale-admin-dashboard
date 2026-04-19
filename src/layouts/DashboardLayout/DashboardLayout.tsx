@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Box, useMediaQuery, useTheme } from '@mui/material';
-import { Sidebar, DRAWER_WIDTH, COLLAPSED_WIDTH } from './Sidebar';
+import { COLLAPSED_WIDTH, DRAWER_WIDTH } from './layoutConstants';
+import { Sidebar } from './Sidebar';
 import { Header } from './Header';
 
 export function DashboardLayout() {
@@ -24,13 +25,15 @@ export function DashboardLayout() {
         <Box sx={{ display: 'flex', minHeight: '100vh' }}>
             {/* Mobile drawer */}
             {isMobile ? (
-                <Sidebar
-                    open={mobileOpen}
-                    collapsed={false}
-                    onToggleCollapse={handleMobileToggle}
-                    onClose={handleMobileToggle}
-                    variant="temporary"
-                />
+                mobileOpen ? (
+                    <Sidebar
+                        open={mobileOpen}
+                        collapsed={false}
+                        onToggleCollapse={handleMobileToggle}
+                        onClose={handleMobileToggle}
+                        variant="temporary"
+                    />
+                ) : null
             ) : (
                 /* Desktop sidebar */
                 <Sidebar

@@ -1,9 +1,10 @@
 import type { ComponentType } from 'react';
-import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { DashboardLayout } from '../layouts/DashboardLayout';
+import { createBrowserRouter } from 'react-router-dom';
+import { DashboardLayout } from '../layouts/DashboardLayout/DashboardLayout';
 import { AuthLayout } from '../layouts/AuthLayout';
 import { ErrorPage } from '../components/ErrorPage';
 import { ComingSoonPage } from './ComingSoonPage';
+import { OverviewPage } from '../pages/dashboard/OverviewPage';
 
 type LazyComponentModule = Record<string, ComponentType>;
 
@@ -21,15 +22,11 @@ const lazyRoute = <T extends LazyComponentModule>(
 export const router = createBrowserRouter([
     {
         path: '/',
-        element: <Navigate to="/dashboard" replace />,
-        errorElement: <ErrorPage />,
-    },
-    {
-        path: '/',
         element: <DashboardLayout />,
         errorElement: <ErrorPage />,
         children: [
-            { path: 'dashboard', lazy: lazyRoute(() => import('../pages/dashboard/OverviewPage'), 'OverviewPage') },
+            { index: true, element: <OverviewPage /> },
+            { path: 'dashboard', element: <OverviewPage /> },
             { path: 'dashboard/analytics', lazy: lazyRoute(() => import('../pages/dashboard/AnalyticsPage'), 'AnalyticsPage') },
             { path: 'dashboard/ecommerce', lazy: lazyRoute(() => import('../pages/dashboard/EcommercePage'), 'EcommercePage') },
             { path: 'dashboard/realtime', lazy: lazyRoute(() => import('../pages/dashboard/RealTimePage'), 'RealTimePage') },

@@ -25,9 +25,7 @@ import { navConfig } from './navConfig';
 import type { NavItem, NavSection } from './navConfig';
 import { getSidebarNavigationTarget } from './sidebarNavigation';
 import { neutral } from '../../theme';
-
-const DRAWER_WIDTH = 280;
-const COLLAPSED_WIDTH = 80;
+import { COLLAPSED_WIDTH, DRAWER_WIDTH } from './layoutConstants';
 
 interface SidebarProps {
     open: boolean;
@@ -259,5 +257,3 @@ export function Sidebar({
         </Drawer>
     );
 }
-
-export { DRAWER_WIDTH, COLLAPSED_WIDTH };
