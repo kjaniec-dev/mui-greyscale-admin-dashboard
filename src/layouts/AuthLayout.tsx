@@ -7,6 +7,7 @@ export function AuthLayout() {
 
     return (
         <Box
+            component="main"
             sx={{
                 minHeight: '100vh',
                 display: 'flex',
