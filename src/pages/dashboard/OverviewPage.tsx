@@ -56,7 +56,7 @@ export function OverviewPage() {
         <Box>
             {/* Page Header */}
             <Box sx={{ mb: 4 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography component="h1" variant="h4" fontWeight={700} gutterBottom>
                     Dashboard
                 </Typography>
                 <Typography variant="body1" color="text.secondary">

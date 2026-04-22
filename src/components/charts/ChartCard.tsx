@@ -59,7 +59,7 @@ export function ChartCard({ title, subtitle, chart, action }: ChartCardProps) {
         <Card sx={{ height: '100%' }}>
             <CardHeader
                 title={
-                    <Typography variant="h6" fontWeight={600}>
+                    <Typography component="h2" variant="h6" fontWeight={600}>
                         {title}
                     </Typography>
                 }
@@ -72,7 +72,7 @@ export function ChartCard({ title, subtitle, chart, action }: ChartCardProps) {
                 }
                 action={
                     action || (
-                        <IconButton size="small">
+                        <IconButton size="small" aria-label={`More options for ${title}`}>
                             <MoreVert />
                         </IconButton>
                     )
