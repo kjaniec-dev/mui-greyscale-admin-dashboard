@@ -22,21 +22,13 @@ import {
 } from '@mui/icons-material';
 import type { Supplier } from '../../data/mockSuppliers';
 import { DetailInfoRow } from '../common/DetailInfoRow';
-import { getStatusSolid } from '../../theme';
+import { getStatusSolid, getToneColor } from '../../theme';
+import { formatDate } from '../../utils/formatters';
 
 interface SupplierDetailDrawerProps {
     open: boolean;
     onClose: () => void;
     supplier: Supplier | null;
-}
-
-function formatDate(date: Date | undefined): string {
-    if (!date) return 'N/A';
-    return new Date(date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-    });
 }
 
 export function SupplierDetailDrawer({ open, onClose, supplier }: SupplierDetailDrawerProps) {
@@ -48,9 +40,9 @@ export function SupplierDetailDrawer({ open, onClose, supplier }: SupplierDetail
     const statusColors = getStatusSolid(supplier.status, isDarkMode);
 
     const getDeliveryColor = () => {
-        if (supplier.onTimeDelivery >= 95) return isDarkMode ? '#22C55E' : '#16A34A';
-        if (supplier.onTimeDelivery >= 85) return isDarkMode ? '#D97706' : '#F59E0B';
-        return isDarkMode ? '#DC2626' : '#EF4444';
+        if (supplier.onTimeDelivery >= 95) return getToneColor('success', isDarkMode).solid;
+        if (supplier.onTimeDelivery >= 85) return getToneColor('warning', isDarkMode).solid;
+        return getToneColor('error', isDarkMode).solid;
     };
 
     return (
@@ -60,7 +52,7 @@ export function SupplierDetailDrawer({ open, onClose, supplier }: SupplierDetail
             onClose={onClose}
             PaperProps={{
                 sx: {
-                    width: { xs: '100%', sm: 400 },
+                    width: { xs: '100%', sm: 420 },
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                 },
             }}

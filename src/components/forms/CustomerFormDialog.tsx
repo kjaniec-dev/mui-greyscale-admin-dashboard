@@ -131,10 +131,10 @@ export function CustomerFormDialog({
                     variant="contained"
                     disabled={isSubmitting}
                     sx={{
-                        bgcolor: '#171717',
-                        color: '#FAFAFA',
+                        bgcolor: isDarkMode ? '#FAFAFA' : '#171717',
+                        color: isDarkMode ? '#171717' : '#FAFAFA',
                         '&:hover': {
-                            bgcolor: '#262626',
+                            bgcolor: isDarkMode ? '#E5E5E5' : '#262626',
                         },
                         '&:disabled': {
                             bgcolor: isDarkMode ? '#404040' : '#E5E5E5',

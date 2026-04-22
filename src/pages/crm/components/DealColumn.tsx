@@ -69,7 +69,7 @@ export function DealColumn({ columnId, title, deals, onAddDeal, onEditDeal }: De
                             flexGrow: 1,
                             minHeight: 100,
                             bgcolor: snapshot.isDraggingOver
-                                ? (isDarkMode ? '#262626' : '#F3F4F6')
+                                ? (isDarkMode ? '#262626' : '#F5F5F5')
                                 : 'transparent',
                             transition: 'background-color 0.2s',
                         }}
@@ -98,7 +98,7 @@ export function DealColumn({ columnId, title, deals, onAddDeal, onEditDeal }: De
                         justifyContent: 'flex-start',
                         textTransform: 'none',
                         '&:hover': {
-                            bgcolor: isDarkMode ? '#262626' : '#F3F4F6',
+                            bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
                             color: 'text.primary',
                         },
                     }}

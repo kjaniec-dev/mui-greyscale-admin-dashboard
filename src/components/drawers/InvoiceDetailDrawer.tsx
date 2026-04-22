@@ -25,27 +25,12 @@ import type { Invoice } from '../../data/mockInvoices';
 import { DetailInfoRow } from '../common/DetailInfoRow';
 import { getStatusSolid } from '../../theme';
 import { LazyInvoiceDownloadLink } from '../pdf/LazyInvoiceDownloadLink';
+import { formatCurrency, formatDate } from '../../utils/formatters';
 
 interface InvoiceDetailDrawerProps {
     open: boolean;
     onClose: () => void;
     invoice: Invoice | null;
-}
-
-function formatCurrency(amount: number): string {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    }).format(amount);
-}
-
-function formatDate(date: Date | undefined): string {
-    if (!date) return 'N/A';
-    return new Date(date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-    });
 }
 
 export function InvoiceDetailDrawer({ open, onClose, invoice }: InvoiceDetailDrawerProps) {
@@ -139,14 +124,14 @@ export function InvoiceDetailDrawer({ open, onClose, invoice }: InvoiceDetailDra
                         >
                             Dates
                         </Typography>
-                        <Stack spacing={1.5}>
+                        <Stack spacing={2}>
                             <DetailInfoRow
-                                icon={<CalendarIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Issue Date"
                                 value={formatDate(invoice.issueDate)}
                             />
                             <DetailInfoRow
-                                icon={<CalendarIcon sx={{ fontSize: 18, color: invoice.status === 'Overdue' ? '#EF4444' : (isDarkMode ? '#A3A3A3' : '#525252') }} />}
+                                icon={<CalendarIcon sx={{ fontSize: 20, color: invoice.status === 'Overdue' ? '#EF4444' : (isDarkMode ? '#A3A3A3' : '#525252') }} />}
                                 label="Due Date"
                                 value={
                                     <Typography
@@ -159,7 +144,7 @@ export function InvoiceDetailDrawer({ open, onClose, invoice }: InvoiceDetailDra
                             />
                             {invoice.paidDate && (
                                 <DetailInfoRow
-                                    icon={<ReceiptIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                    icon={<ReceiptIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                     label="Paid Date"
                                     value={formatDate(invoice.paidDate)}
                                 />
@@ -185,17 +170,17 @@ export function InvoiceDetailDrawer({ open, onClose, invoice }: InvoiceDetailDra
                         </Typography>
                         <Stack spacing={1.5}>
                             <DetailInfoRow
-                                icon={<BusinessIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                icon={<BusinessIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Company"
                                 value={invoice.customer.name}
                             />
                             <DetailInfoRow
-                                icon={<EmailIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                icon={<EmailIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Email"
                                 value={invoice.customer.email}
                             />
                             <DetailInfoRow
-                                icon={<LocationIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                icon={<LocationIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Address"
                                 value={
                                     <>

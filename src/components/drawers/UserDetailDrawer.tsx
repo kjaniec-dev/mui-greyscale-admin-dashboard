@@ -18,31 +18,13 @@ import {
 } from '@mui/icons-material';
 import type { User } from '../../data/mockUsers';
 import { getStatusSolid } from '../../theme';
+import { DetailInfoRow } from '../common/DetailInfoRow';
+import { getInitials, formatDateTime } from '../../utils/formatters';
 
 interface UserDetailDrawerProps {
     open: boolean;
     onClose: () => void;
     user: User | null;
-}
-
-function getInitials(name: string): string {
-    return name
-        .split(' ')
-        .map((n) => n[0])
-        .join('')
-        .toUpperCase()
-        .slice(0, 2);
-}
-
-function formatDate(date: Date | undefined): string {
-    if (!date) return 'Never';
-    return new Date(date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-    });
 }
 
 export function UserDetailDrawer({ open, onClose, user }: UserDetailDrawerProps) {
@@ -52,6 +34,7 @@ export function UserDetailDrawer({ open, onClose, user }: UserDetailDrawerProps)
     if (!user) return null;
 
     const statusColors = getStatusSolid(user.status, isDarkMode);
+    const iconColor = isDarkMode ? '#A3A3A3' : '#525252';
 
     return (
         <Drawer
@@ -60,7 +43,7 @@ export function UserDetailDrawer({ open, onClose, user }: UserDetailDrawerProps)
             onClose={onClose}
             PaperProps={{
                 sx: {
-                    width: { xs: '100%', sm: 400 },
+                    width: { xs: '100%', sm: 420 },
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                 },
             }}
@@ -153,53 +136,20 @@ export function UserDetailDrawer({ open, onClose, user }: UserDetailDrawerProps)
                             Contact Information
                         </Typography>
                         <Stack spacing={2}>
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                                <Box
-                                    sx={{
-                                        width: 40,
-                                        height: 40,
-                                        borderRadius: 1,
-                                        bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                    }}
-                                >
-                                    <EmailIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />
-                                </Box>
-                                <Box sx={{ flex: 1 }}>
-                                    <Typography variant="caption" color="text.secondary" display="block">
-                                        Email Address
-                                    </Typography>
-                                    <Typography variant="body2" fontWeight={500}>
-                                        {user.email}
-                                    </Typography>
-                                </Box>
-                            </Box>
-
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                                <Box
-                                    sx={{
-                                        width: 40,
-                                        height: 40,
-                                        borderRadius: 1,
-                                        bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                    }}
-                                >
-                                    <BadgeIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />
-                                </Box>
-                                <Box sx={{ flex: 1 }}>
-                                    <Typography variant="caption" color="text.secondary" display="block">
-                                        User ID
-                                    </Typography>
+                            <DetailInfoRow
+                                icon={<EmailIcon sx={{ fontSize: 20, color: iconColor }} />}
+                                label="Email Address"
+                                value={user.email}
+                            />
+                            <DetailInfoRow
+                                icon={<BadgeIcon sx={{ fontSize: 20, color: iconColor }} />}
+                                label="User ID"
+                                value={
                                     <Typography variant="body2" fontWeight={500} sx={{ fontFamily: 'monospace' }}>
                                         {user.id}
                                     </Typography>
-                                </Box>
-                            </Box>
+                                }
+                            />
                         </Stack>
                     </Box>
 
@@ -220,53 +170,16 @@ export function UserDetailDrawer({ open, onClose, user }: UserDetailDrawerProps)
                             Account Information
                         </Typography>
                         <Stack spacing={2}>
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                                <Box
-                                    sx={{
-                                        width: 40,
-                                        height: 40,
-                                        borderRadius: 1,
-                                        bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                    }}
-                                >
-                                    <CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />
-                                </Box>
-                                <Box sx={{ flex: 1 }}>
-                                    <Typography variant="caption" color="text.secondary" display="block">
-                                        Created At
-                                    </Typography>
-                                    <Typography variant="body2" fontWeight={500}>
-                                        {formatDate(user.createdAt)}
-                                    </Typography>
-                                </Box>
-                            </Box>
-
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                                <Box
-                                    sx={{
-                                        width: 40,
-                                        height: 40,
-                                        borderRadius: 1,
-                                        bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                    }}
-                                >
-                                    <AccessTimeIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />
-                                </Box>
-                                <Box sx={{ flex: 1 }}>
-                                    <Typography variant="caption" color="text.secondary" display="block">
-                                        Last Login
-                                    </Typography>
-                                    <Typography variant="body2" fontWeight={500}>
-                                        {formatDate(user.lastLogin)}
-                                    </Typography>
-                                </Box>
-                            </Box>
+                            <DetailInfoRow
+                                icon={<CalendarIcon sx={{ fontSize: 20, color: iconColor }} />}
+                                label="Created At"
+                                value={formatDateTime(user.createdAt, 'Never')}
+                            />
+                            <DetailInfoRow
+                                icon={<AccessTimeIcon sx={{ fontSize: 20, color: iconColor }} />}
+                                label="Last Login"
+                                value={formatDateTime(user.lastLogin, 'Never')}
+                            />
                         </Stack>
                     </Box>
                 </Box>

@@ -23,72 +23,15 @@ import {
     PersonAdd as ConvertIcon,
 } from '@mui/icons-material';
 import type { Lead } from '../../data/mockLeads';
-import { getStatusSolid } from '../../theme';
+import { getStatusSolid, statusPalette } from '../../theme';
+import { DetailInfoRow } from '../common/DetailInfoRow';
+import { getInitials, formatDate, formatCurrencyCompact } from '../../utils/formatters';
 
 interface LeadDetailDrawerProps {
     open: boolean;
     onClose: () => void;
     lead: Lead | null;
     onConvert?: (lead: Lead) => void;
-}
-
-function getInitials(name: string): string {
-    return name
-        .split(' ')
-        .map((n) => n[0])
-        .join('')
-        .toUpperCase()
-        .slice(0, 2);
-}
-
-function formatDate(date: Date | undefined): string {
-    if (!date) return 'Never';
-    return new Date(date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-    });
-}
-
-function formatCurrency(value: number): string {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        maximumFractionDigits: 0,
-    }).format(value);
-}
-
-function InfoRow({ icon, label, value, isDarkMode }: {
-    icon: React.ReactNode;
-    label: string;
-    value: string | React.ReactNode;
-    isDarkMode: boolean;
-}) {
-    return (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box
-                sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 1,
-                    bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                {icon}
-            </Box>
-            <Box sx={{ flex: 1 }}>
-                <Typography variant="caption" color="text.secondary" display="block">
-                    {label}
-                </Typography>
-                <Typography variant="body2" fontWeight={500}>
-                    {value}
-                </Typography>
-            </Box>
-        </Box>
-    );
 }
 
 export function LeadDetailDrawer({ open, onClose, lead, onConvert }: LeadDetailDrawerProps) {
@@ -100,6 +43,9 @@ export function LeadDetailDrawer({ open, onClose, lead, onConvert }: LeadDetailD
     const colors = getStatusSolid(lead.status, isDarkMode);
     const iconColor = isDarkMode ? '#A3A3A3' : '#525252';
     const canConvert = lead.status !== 'Won' && lead.status !== 'Lost';
+
+    const convertBg = isDarkMode ? statusPalette.success.dark : statusPalette.success.light;
+    const convertHoverBg = statusPalette.success.light;
 
     return (
         <Drawer
@@ -185,10 +131,10 @@ export function LeadDetailDrawer({ open, onClose, lead, onConvert }: LeadDetailD
                                 startIcon={<ConvertIcon />}
                                 onClick={() => onConvert?.(lead)}
                                 sx={{
-                                    bgcolor: '#22C55E',
+                                    bgcolor: convertBg,
                                     color: '#FFFFFF',
                                     '&:hover': {
-                                        bgcolor: '#16A34A',
+                                        bgcolor: convertHoverBg,
                                     },
                                 }}
                             >
@@ -214,23 +160,20 @@ export function LeadDetailDrawer({ open, onClose, lead, onConvert }: LeadDetailD
                             Contact Information
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<EmailIcon sx={{ fontSize: 20, color: iconColor }} />}
                                 label="Email"
                                 value={lead.email}
-                                isDarkMode={isDarkMode}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<PhoneIcon sx={{ fontSize: 20, color: iconColor }} />}
                                 label="Phone"
                                 value={lead.phone}
-                                isDarkMode={isDarkMode}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<BusinessIcon sx={{ fontSize: 20, color: iconColor }} />}
                                 label="Company"
                                 value={lead.company}
-                                isDarkMode={isDarkMode}
                             />
                         </Stack>
                     </Box>
@@ -252,23 +195,20 @@ export function LeadDetailDrawer({ open, onClose, lead, onConvert }: LeadDetailD
                             Lead Details
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<SourceIcon sx={{ fontSize: 20, color: iconColor }} />}
                                 label="Source"
                                 value={lead.source}
-                                isDarkMode={isDarkMode}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<ValueIcon sx={{ fontSize: 20, color: iconColor }} />}
                                 label="Estimated Value"
-                                value={formatCurrency(lead.value)}
-                                isDarkMode={isDarkMode}
+                                value={formatCurrencyCompact(lead.value)}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<AssignedIcon sx={{ fontSize: 20, color: iconColor }} />}
                                 label="Assigned To"
                                 value={lead.assignedTo}
-                                isDarkMode={isDarkMode}
                             />
                         </Stack>
                     </Box>
@@ -290,17 +230,15 @@ export function LeadDetailDrawer({ open, onClose, lead, onConvert }: LeadDetailD
                             Timeline
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<CalendarIcon sx={{ fontSize: 20, color: iconColor }} />}
                                 label="Created"
                                 value={formatDate(lead.createdAt)}
-                                isDarkMode={isDarkMode}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<CalendarIcon sx={{ fontSize: 20, color: iconColor }} />}
                                 label="Last Contacted"
-                                value={formatDate(lead.lastContactedAt)}
-                                isDarkMode={isDarkMode}
+                                value={formatDate(lead.lastContactedAt, 'Never')}
                             />
                         </Stack>
                     </Box>
@@ -322,25 +260,11 @@ export function LeadDetailDrawer({ open, onClose, lead, onConvert }: LeadDetailD
                                 >
                                     Notes
                                 </Typography>
-                                <Box sx={{ display: 'flex', gap: 2 }}>
-                                    <Box
-                                        sx={{
-                                            width: 40,
-                                            height: 40,
-                                            borderRadius: 1,
-                                            bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            flexShrink: 0,
-                                        }}
-                                    >
-                                        <NotesIcon sx={{ fontSize: 20, color: iconColor }} />
-                                    </Box>
-                                    <Typography variant="body2" sx={{ color: isDarkMode ? '#A3A3A3' : '#525252' }}>
-                                        {lead.notes}
-                                    </Typography>
-                                </Box>
+                                <DetailInfoRow
+                                    icon={<NotesIcon sx={{ fontSize: 20, color: iconColor }} />}
+                                    label="Note"
+                                    value={lead.notes}
+                                />
                             </Box>
                         </>
                     )}

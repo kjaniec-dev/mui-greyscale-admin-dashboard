@@ -22,28 +22,13 @@ import {
 } from '@mui/icons-material';
 import type { Return } from '../../data/mockReturns';
 import { DetailInfoRow } from '../common/DetailInfoRow';
-import { getStatusSolid } from '../../theme';
+import { getStatusSolid, getToneColor } from '../../theme';
+import { formatDate, formatCurrency } from '../../utils/formatters';
 
 interface ReturnDetailDrawerProps {
     open: boolean;
     onClose: () => void;
     returnItem: Return | null;
-}
-
-function formatDate(date: Date | undefined): string {
-    if (!date) return 'N/A';
-    return new Date(date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-    });
-}
-
-function formatCurrency(amount: number): string {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    }).format(amount);
 }
 
 export function ReturnDetailDrawer({ open, onClose, returnItem }: ReturnDetailDrawerProps) {
@@ -54,12 +39,12 @@ export function ReturnDetailDrawer({ open, onClose, returnItem }: ReturnDetailDr
 
     const statusColors = getStatusSolid(returnItem.status, isDarkMode);
 
-    const reasonColors: Record<string, string> = {
-        'Defective': isDarkMode ? '#DC2626' : '#EF4444',
-        'Wrong Item': isDarkMode ? '#D97706' : '#F59E0B',
+    const reasonColorMap: Record<string, string> = {
+        'Defective': getToneColor('error', isDarkMode).solid,
+        'Wrong Item': getToneColor('warning', isDarkMode).solid,
         'Changed Mind': isDarkMode ? '#525252' : '#737373',
-        'Not as Described': isDarkMode ? '#D97706' : '#F59E0B',
-        'Damaged': isDarkMode ? '#DC2626' : '#EF4444',
+        'Not as Described': getToneColor('warning', isDarkMode).solid,
+        'Damaged': getToneColor('error', isDarkMode).solid,
     };
 
     return (
@@ -69,7 +54,7 @@ export function ReturnDetailDrawer({ open, onClose, returnItem }: ReturnDetailDr
             onClose={onClose}
             PaperProps={{
                 sx: {
-                    width: { xs: '100%', sm: 400 },
+                    width: { xs: '100%', sm: 420 },
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                 },
             }}
@@ -137,7 +122,7 @@ export function ReturnDetailDrawer({ open, onClose, returnItem }: ReturnDetailDr
                                 label={returnItem.reason}
                                 size="small"
                                 sx={{
-                                    bgcolor: reasonColors[returnItem.reason],
+                                    bgcolor: reasonColorMap[returnItem.reason],
                                     color: '#FAFAFA',
                                     fontWeight: 500,
                                     borderRadius: 1,

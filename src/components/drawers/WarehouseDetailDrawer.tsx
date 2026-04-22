@@ -22,20 +22,12 @@ import {
 import type { Warehouse } from '../../data/mockWarehouses';
 import { getStatusSolid, getProgressColor } from '../../theme';
 import { DetailInfoRow } from '../common/DetailInfoRow';
+import { formatDate } from '../../utils/formatters';
 
 interface WarehouseDetailDrawerProps {
     open: boolean;
     onClose: () => void;
     warehouse: Warehouse | null;
-}
-
-function formatDate(date: Date | undefined): string {
-    if (!date) return 'N/A';
-    return new Date(date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-    });
 }
 
 export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDetailDrawerProps) {
@@ -60,7 +52,7 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
             onClose={onClose}
             PaperProps={{
                 sx: {
-                    width: { xs: '100%', sm: 400 },
+                    width: { xs: '100%', sm: 420 },
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                 },
             }}

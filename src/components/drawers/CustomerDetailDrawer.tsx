@@ -22,69 +22,13 @@ import {
 } from '@mui/icons-material';
 import type { Customer } from '../../data/mockCustomers';
 import { getStatusSolid } from '../../theme';
+import { DetailInfoRow } from '../common/DetailInfoRow';
+import { getInitials, formatDate, formatCurrency } from '../../utils/formatters';
 
 interface CustomerDetailDrawerProps {
     open: boolean;
     onClose: () => void;
     customer: Customer | null;
-}
-
-function getInitials(name: string): string {
-    return name
-        .split(' ')
-        .map((n) => n[0])
-        .join('')
-        .toUpperCase()
-        .slice(0, 2);
-}
-
-function formatDate(date: Date | undefined): string {
-    if (!date) return 'Never';
-    return new Date(date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-    });
-}
-
-function formatCurrency(value: number): string {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    }).format(value);
-}
-
-function InfoRow({ icon, label, value, isDarkMode }: {
-    icon: React.ReactNode;
-    label: string;
-    value: string | React.ReactNode;
-    isDarkMode: boolean;
-}) {
-    return (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Box
-                sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 1,
-                    bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}
-            >
-                {icon}
-            </Box>
-            <Box sx={{ flex: 1 }}>
-                <Typography variant="caption" color="text.secondary" display="block">
-                    {label}
-                </Typography>
-                <Typography variant="body2" fontWeight={500}>
-                    {value}
-                </Typography>
-            </Box>
-        </Box>
-    );
 }
 
 export function CustomerDetailDrawer({ open, onClose, customer }: CustomerDetailDrawerProps) {
@@ -209,24 +153,21 @@ export function CustomerDetailDrawer({ open, onClose, customer }: CustomerDetail
                             Contact Information
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<EmailIcon sx={{ fontSize: 20, color: iconColor }} />}
                                 label="Email"
                                 value={customer.email}
-                                isDarkMode={isDarkMode}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<PhoneIcon sx={{ fontSize: 20, color: iconColor }} />}
                                 label="Phone"
                                 value={customer.phone}
-                                isDarkMode={isDarkMode}
                             />
                             {customer.company && (
-                                <InfoRow
+                                <DetailInfoRow
                                     icon={<BusinessIcon sx={{ fontSize: 20, color: iconColor }} />}
                                     label="Company"
                                     value={customer.company}
-                                    isDarkMode={isDarkMode}
                                 />
                             )}
                         </Stack>
@@ -249,7 +190,7 @@ export function CustomerDetailDrawer({ open, onClose, customer }: CustomerDetail
                             Address
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<LocationIcon sx={{ fontSize: 20, color: iconColor }} />}
                                 label="Location"
                                 value={
@@ -259,7 +200,6 @@ export function CustomerDetailDrawer({ open, onClose, customer }: CustomerDetail
                                         {customer.address.country}
                                     </>
                                 }
-                                isDarkMode={isDarkMode}
                             />
                         </Stack>
                     </Box>
@@ -281,23 +221,20 @@ export function CustomerDetailDrawer({ open, onClose, customer }: CustomerDetail
                             Order History
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<OrdersIcon sx={{ fontSize: 20, color: iconColor }} />}
                                 label="Total Orders"
                                 value={customer.totalOrders.toString()}
-                                isDarkMode={isDarkMode}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<MoneyIcon sx={{ fontSize: 20, color: iconColor }} />}
                                 label="Total Spent"
                                 value={formatCurrency(customer.totalSpent)}
-                                isDarkMode={isDarkMode}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<CalendarIcon sx={{ fontSize: 20, color: iconColor }} />}
                                 label="Last Order"
-                                value={formatDate(customer.lastOrderDate)}
-                                isDarkMode={isDarkMode}
+                                value={formatDate(customer.lastOrderDate, 'Never')}
                             />
                         </Stack>
                     </Box>
@@ -319,17 +256,15 @@ export function CustomerDetailDrawer({ open, onClose, customer }: CustomerDetail
                             Account
                         </Typography>
                         <Stack spacing={2}>
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<TagIcon sx={{ fontSize: 20, color: iconColor }} />}
                                 label="Customer ID"
                                 value={<span style={{ fontFamily: 'monospace' }}>{customer.id}</span>}
-                                isDarkMode={isDarkMode}
                             />
-                            <InfoRow
+                            <DetailInfoRow
                                 icon={<CalendarIcon sx={{ fontSize: 20, color: iconColor }} />}
                                 label="Customer Since"
                                 value={formatDate(customer.createdAt)}
-                                isDarkMode={isDarkMode}
                             />
                         </Stack>
                     </Box>

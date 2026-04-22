@@ -24,6 +24,7 @@ import {
 import type { Payout } from '../../data/mockPayouts';
 import { getStatusSolid, getToneColor } from '../../theme';
 import { DetailInfoRow } from '../common/DetailInfoRow';
+import { formatCurrency, formatDateTime } from '../../utils/formatters';
 
 interface PayoutDetailDrawerProps {
     open: boolean;
@@ -32,24 +33,6 @@ interface PayoutDetailDrawerProps {
     onProcess?: (payout: Payout) => void;
     onCancel?: (payout: Payout) => void;
     onRetry?: (payout: Payout) => void;
-}
-
-function formatCurrency(amount: number): string {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    }).format(amount);
-}
-
-function formatDate(date: string | undefined): string {
-    if (!date) return 'N/A';
-    return new Date(date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-    });
 }
 
 export function PayoutDetailDrawer({
@@ -161,14 +144,14 @@ export function PayoutDetailDrawer({
                         >
                             Recipient
                         </Typography>
-                        <Stack spacing={1.5}>
+                        <Stack spacing={2}>
                             <DetailInfoRow
-                                icon={<PersonIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                icon={<PersonIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Name"
                                 value={payout.recipientName}
                             />
                             <DetailInfoRow
-                                icon={<EmailIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                icon={<EmailIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Email"
                                 value={payout.email}
                             />
@@ -193,12 +176,12 @@ export function PayoutDetailDrawer({
                         </Typography>
                         <Stack spacing={1.5}>
                             <DetailInfoRow
-                                icon={<BankIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                icon={<BankIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Payment Method"
                                 value={payout.paymentMethod}
                             />
                             <DetailInfoRow
-                                icon={<CardIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                icon={<CardIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Account"
                                 value={payout.accountInfo}
                             />
@@ -223,15 +206,15 @@ export function PayoutDetailDrawer({
                         </Typography>
                         <Stack spacing={1.5}>
                             <DetailInfoRow
-                                icon={<CalendarIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Created"
-                                value={formatDate(payout.createdAt)}
+                                value={formatDateTime(payout.createdAt)}
                             />
                             {payout.processedAt && (
                                 <DetailInfoRow
-                                    icon={<CalendarIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                    icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                     label="Processed"
-                                    value={formatDate(payout.processedAt)}
+                                    value={formatDateTime(payout.processedAt)}
                                 />
                             )}
                         </Stack>
@@ -268,7 +251,7 @@ export function PayoutDetailDrawer({
                                 >
                                     <NotesIcon
                                         sx={{
-                                            fontSize: 18,
+                                            fontSize: 20,
                                             color: payout.status === 'Failed' ? 'error.main' : (isDarkMode ? '#A3A3A3' : '#525252'),
                                             mt: 0.25,
                                         }}

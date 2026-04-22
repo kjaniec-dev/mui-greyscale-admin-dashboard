@@ -24,27 +24,12 @@ import {
 import type { Shipment } from '../../data/mockShipments';
 import { DetailInfoRow } from '../common/DetailInfoRow';
 import { getStatusSolid } from '../../theme';
+import { formatDate, formatCurrency } from '../../utils/formatters';
 
 interface ShipmentDetailDrawerProps {
     open: boolean;
     onClose: () => void;
     shipment: Shipment | null;
-}
-
-function formatDate(date: Date | undefined): string {
-    if (!date) return 'N/A';
-    return new Date(date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-    });
-}
-
-function formatCurrency(amount: number): string {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    }).format(amount);
 }
 
 export function ShipmentDetailDrawer({ open, onClose, shipment }: ShipmentDetailDrawerProps) {
@@ -62,7 +47,7 @@ export function ShipmentDetailDrawer({ open, onClose, shipment }: ShipmentDetail
             onClose={onClose}
             PaperProps={{
                 sx: {
-                    width: { xs: '100%', sm: 400 },
+                    width: { xs: '100%', sm: 420 },
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                 },
             }}

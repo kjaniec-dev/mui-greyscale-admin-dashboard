@@ -274,9 +274,9 @@ export function ShipmentFormDialog({ open, onClose, onSubmit, defaultValues, mod
                     variant="contained"
                     disabled={isSubmitting}
                     sx={{
-                        bgcolor: '#171717',
-                        color: '#FAFAFA',
-                        '&:hover': { bgcolor: '#262626' },
+                        bgcolor: isDarkMode ? '#FAFAFA' : '#171717',
+                        color: isDarkMode ? '#171717' : '#FAFAFA',
+                        '&:hover': { bgcolor: isDarkMode ? '#E5E5E5' : '#262626' },
                     }}
                 >
                     {isSubmitting ? 'Saving...' : mode === 'create' ? 'Create Shipment' : 'Save Changes'}

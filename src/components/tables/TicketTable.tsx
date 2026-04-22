@@ -15,8 +15,9 @@ import {
     MoreVert as MoreVertIcon,
 } from '@mui/icons-material';
 import type { Ticket } from '../../data/mockTickets';
-import { getStatusSolid } from '../../theme';
+import { getStatusSolid, type StatusKey } from '../../theme';
 import { LazyDataGrid } from './LazyDataGrid';
+import { getInitials } from '../../utils/formatters';
 
 interface TicketTableProps {
     tickets: Ticket[];
@@ -79,36 +80,17 @@ function ActionsMenu({ ticket, onView, onEdit, onDelete }: {
     );
 }
 
-function getInitials(name: string): string {
-    return name
-        .split(' ')
-        .map(n => n[0])
-        .join('')
-        .toUpperCase()
-        .slice(0, 2);
-}
+
 
 export function TicketTable({ tickets, onView, onEdit, onDelete }: TicketTableProps) {
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === 'dark';
 
-    const priorityColors: Record<string, { bg: string; color: string }> = {
-        Low: {
-            bg: isDarkMode ? '#6B7280' : '#F3F4F6',
-            color: isDarkMode ? '#FFFFFF' : '#374151'
-        },
-        Medium: {
-            bg: isDarkMode ? '#3B82F6' : '#DBEAFE',
-            color: isDarkMode ? '#FFFFFF' : '#1E40AF'
-        },
-        High: {
-            bg: isDarkMode ? '#F59E0B' : '#FEF3C7',
-            color: isDarkMode ? '#FFFFFF' : '#92400E'
-        },
-        Urgent: {
-            bg: isDarkMode ? '#EF4444' : '#FEE2E2',
-            color: isDarkMode ? '#FFFFFF' : '#991B1B'
-        },
+    const priorityToTone: Record<string, StatusKey> = {
+        Low: 'success',
+        Medium: 'info',
+        High: 'warning',
+        Urgent: 'error',
     };
 
     const columns: GridColDef[] = [
@@ -185,14 +167,15 @@ export function TicketTable({ tickets, onView, onEdit, onDelete }: TicketTablePr
             headerName: 'Priority',
             width: 100,
             renderCell: (params) => {
-                const colors = priorityColors[params.value] || priorityColors.Low;
+                const tone = priorityToTone[params.value] ?? 'info';
+                const colors = getStatusSolid(tone, isDarkMode);
                 return (
                     <Chip
                         label={params.value}
                         size="small"
                         sx={{
                             bgcolor: colors.bg,
-                            color: colors.color,
+                            color: colors.text,
                             fontWeight: 500,
                             borderRadius: 1,
                         }}

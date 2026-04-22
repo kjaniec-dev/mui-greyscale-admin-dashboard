@@ -25,29 +25,12 @@ import {
 import type { Order } from '../../data/mockOrders';
 import { DetailInfoRow } from '../common/DetailInfoRow';
 import { getStatusSolid } from '../../theme';
+import { formatCurrency, formatDateTime } from '../../utils/formatters';
 
 interface OrderDetailDrawerProps {
     open: boolean;
     onClose: () => void;
     order: Order | null;
-}
-
-function formatCurrency(amount: number): string {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    }).format(amount);
-}
-
-function formatDate(date: Date | undefined): string {
-    if (!date) return 'N/A';
-    return new Date(date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-    });
 }
 
 export function OrderDetailDrawer({ open, onClose, order }: OrderDetailDrawerProps) {
@@ -116,7 +99,7 @@ export function OrderDetailDrawer({ open, onClose, order }: OrderDetailDrawerPro
                             }}
                         />
                         <Typography variant="body2" color="text.secondary">
-                            {formatDate(order.createdAt)}
+                            {formatDateTime(order.createdAt)}
                         </Typography>
                     </Box>
 
@@ -136,20 +119,20 @@ export function OrderDetailDrawer({ open, onClose, order }: OrderDetailDrawerPro
                         >
                             Customer
                         </Typography>
-                        <Stack spacing={1.5}>
+                        <Stack spacing={2}>
                             <DetailInfoRow
-                                icon={<PersonIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                icon={<PersonIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Name"
                                 value={order.customer.name}
                             />
                             <DetailInfoRow
-                                icon={<EmailIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                icon={<EmailIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Email"
                                 value={order.customer.email}
                             />
                             {order.customer.phone && (
                                 <DetailInfoRow
-                                    icon={<PhoneIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                    icon={<PhoneIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                     label="Phone"
                                     value={order.customer.phone}
                                 />
@@ -248,21 +231,17 @@ export function OrderDetailDrawer({ open, onClose, order }: OrderDetailDrawerPro
                                 Payment
                             </Typography>
                             <DetailInfoRow
-                                icon={<PaymentIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                icon={<PaymentIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label={order.paymentMethod}
                                 value={
                                     <Chip
                                         label={order.paymentStatus}
                                         size="small"
                                         sx={{
-                                            bgcolor: order.paymentStatus === 'Paid'
-                                                ? (isDarkMode ? '#A3A3A3' : '#525252')
-                                                : order.paymentStatus === 'Pending'
-                                                    ? (isDarkMode ? '#D97706' : '#F59E0B')
-                                                    : (isDarkMode ? '#DC2626' : '#EF4444'),
-                                            color: order.paymentStatus === 'Paid'
-                                                ? (isDarkMode ? '#171717' : '#FAFAFA')
-                                                : '#FAFAFA',
+                                            ...(() => {
+                                                const ps = getStatusSolid(order.paymentStatus, isDarkMode);
+                                                return { bgcolor: ps.bg, color: ps.text };
+                                            })(),
                                             fontWeight: 500,
                                             borderRadius: 1,
                                         }}
@@ -285,7 +264,7 @@ export function OrderDetailDrawer({ open, onClose, order }: OrderDetailDrawerPro
                                 Shipping Address
                             </Typography>
                             <DetailInfoRow
-                                icon={<ShippingIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                icon={<ShippingIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Address"
                                 value={
                                     <>
@@ -311,9 +290,9 @@ export function OrderDetailDrawer({ open, onClose, order }: OrderDetailDrawerPro
                                 Timeline
                             </Typography>
                             <DetailInfoRow
-                                icon={<CalendarIcon sx={{ fontSize: 18, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
+                                icon={<CalendarIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Last Updated"
-                                value={formatDate(order.updatedAt)}
+                                value={formatDateTime(order.updatedAt)}
                             />
                         </Box>
                     </Stack>
