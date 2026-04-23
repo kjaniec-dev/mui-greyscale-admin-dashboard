@@ -12,6 +12,25 @@ if (import.meta.env.DEV) {
         originalConsoleError(...args);
     };
 }
+
+// Fix: MUI applies aria-hidden="true" to #root when a Modal/Dialog/Drawer opens.
+// In React concurrent mode the focus move into the modal is deferred, so the browser
+// blocks the aria-hidden write (and logs a warning) if a descendant still has focus.
+// Intercepting setAttribute lets us proactively blur that element first, ensuring the
+// attribute always lands before focus management catches up.
+(function patchAriaHiddenFocusBlur() {
+    const origSetAttribute = Element.prototype.setAttribute;
+    Element.prototype.setAttribute = function (name: string, value: string) {
+        if (name === 'aria-hidden' && value === 'true') {
+            const focused = this.querySelector<HTMLElement>(':focus');
+            if (focused) {
+                focused.blur();
+            }
+        }
+        origSetAttribute.call(this, name, value);
+    };
+})();
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App />

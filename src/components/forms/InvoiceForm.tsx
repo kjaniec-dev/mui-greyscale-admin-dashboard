@@ -6,7 +6,7 @@ import {
     TextField,
     MenuItem,
     FormControl,
-    FormLabel,
+
     FormHelperText,
     Select,
     InputAdornment,
@@ -99,12 +99,6 @@ export function InvoiceForm({ defaultValues, onSubmit, isSubmitting = false }: I
         },
     };
 
-    const labelSx = {
-        mb: 1,
-        fontSize: '0.875rem',
-        fontWeight: 500,
-        color: isDarkMode ? '#E5E5E5' : '#171717',
-    };
 
     return (
         <Box
