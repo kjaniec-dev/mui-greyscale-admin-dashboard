@@ -281,11 +281,11 @@ export function NotesPage() {
     };
 
     return (
-        <Box sx={{ display: 'flex', gap: 2, height: 'calc(100vh - 100px)' }}>
+        <Box sx={{ display: 'flex', gap: 2, height: { xs: 'auto', md: 'calc(100vh - 100px)' }, flexDirection: { xs: 'column', md: 'row' } }}>
             {/* Sidebar */}
             <Box
                 sx={{
-                    width: 280,
+                    width: { xs: '100%', md: 280 },
                     flexShrink: 0,
                     display: 'flex',
                     flexDirection: 'column',
@@ -372,7 +372,7 @@ export function NotesPage() {
             {/* Notes List */}
             <Box
                 sx={{
-                    width: 320,
+                    width: { xs: '100%', md: 320 },
                     flexShrink: 0,
                     display: 'flex',
                     flexDirection: 'column',
@@ -489,6 +489,7 @@ export function NotesPage() {
                     flexDirection: 'column',
                     gap: 2,
                     minWidth: 0,
+                    minHeight: { xs: 500, md: 'auto' },
                 }}
             >
                 {selectedNote ? (
@@ -505,7 +506,7 @@ export function NotesPage() {
                         }}
                     >
                         {/* Editor Header */}
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
                             <IconButton onClick={handleTogglePin} color={editedIsPinned ? 'warning' : 'default'}>
                                 {editedIsPinned ? <PinIcon /> : <PinOutlinedIcon />}
                             </IconButton>
@@ -600,7 +601,7 @@ export function NotesPage() {
                         />
 
                         {/* Footer */}
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 1 }}>
                             <Typography variant="caption" color="text.secondary">
                                 Created: {new Date(selectedNote.createdAt).toLocaleString()}
                             </Typography>

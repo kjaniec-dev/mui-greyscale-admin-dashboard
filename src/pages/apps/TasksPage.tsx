@@ -152,12 +152,12 @@ export const TasksPage = () => {
     };
 
     return (
-        <Box sx={{ height: 'calc(100vh - 100px)', display: 'flex', gap: 3 }}>
+        <Box sx={{ height: { xs: 'auto', md: 'calc(100vh - 100px)' }, display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 3 }}>
 
             {/* Left Sidebar - Navigation/Filters */}
             <Paper
                 sx={{
-                    width: 280,
+                    width: { xs: '100%', md: 280 },
                     flexShrink: 0,
                     display: 'flex',
                     flexDirection: 'column',
@@ -264,6 +264,7 @@ export const TasksPage = () => {
             <Paper
                 sx={{
                     flex: 1,
+                    minHeight: { xs: 500, md: 'auto' },
                     display: 'flex',
                     flexDirection: 'column',
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
@@ -279,7 +280,9 @@ export const TasksPage = () => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
-                        borderBottom: `1px solid ${isDarkMode ? '#262626' : '#E5E5E5'} `
+                        borderBottom: `1px solid ${isDarkMode ? '#262626' : '#E5E5E5'} `,
+                        flexDirection: { xs: 'column', sm: 'row' },
+                        gap: { xs: 2, sm: 0 }
                     }}
                 >
                     <Typography variant="h6" sx={{ fontWeight: 600 }}>
@@ -292,7 +295,7 @@ export const TasksPage = () => {
                             p: '2px 4px',
                             display: 'flex',
                             alignItems: 'center',
-                            width: 300,
+                            width: { xs: '100%', sm: 300 },
                             bgcolor: isDarkMode ? '#262626' : '#F5F5F5',
                             border: 'none',
                             borderRadius: 1,

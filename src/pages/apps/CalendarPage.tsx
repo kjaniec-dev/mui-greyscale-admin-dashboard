@@ -223,7 +223,7 @@ export function CalendarPage() {
     return (
         <Box>
             {/* Page Header */}
-            <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <Box sx={{ mb: 4, display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: { xs: 2, sm: 0 }, justifyContent: 'space-between', alignItems: { xs: 'stretch', sm: 'flex-start' } }}>
                 <Box>
                     <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Calendar
@@ -253,11 +253,13 @@ export function CalendarPage() {
                 sx={{
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                     borderRadius: 2,
-                    p: 2,
+                    p: { xs: 1, sm: 2 },
                     border: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
+                    overflowX: 'auto',
                 }}
             >
-                <FullCalendar
+                <Box sx={{ minWidth: { xs: 700, md: 'auto' } }}>
+                    <FullCalendar
                     ref={calendarRef}
                     plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                     initialView="dayGridMonth"
@@ -284,6 +286,7 @@ export function CalendarPage() {
                     height="auto"
                     aspectRatio={1.8}
                 />
+                </Box>
             </CalendarWrapper>
 
             {/* Event Form Dialog */}
