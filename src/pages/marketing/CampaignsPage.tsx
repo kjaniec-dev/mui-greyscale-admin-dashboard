@@ -127,7 +127,8 @@ export function CampaignsPage() {
         {
             field: 'name',
             headerName: 'Campaign',
-            width: 280,
+            flex: 2,
+            minWidth: 200,
             renderCell: (params: GridRenderCellParams<Campaign, string>) => (
                 <Box sx={{ display: 'flex', alignItems: 'center', height: '100%', gap: 1.5 }}>
                     <Box
@@ -158,7 +159,8 @@ export function CampaignsPage() {
         {
             field: 'status',
             headerName: 'Status',
-            width: 120,
+            flex: 0.8,
+            minWidth: 110,
             renderCell: (params: GridRenderCellParams<Campaign, string>) => {
                 const colors = getStatusSolid(params.value as CampaignStatus, isDarkMode);
                 return (
@@ -179,7 +181,8 @@ export function CampaignsPage() {
         {
             field: 'dates',
             headerName: 'Duration',
-            width: 200,
+            flex: 1.5,
+            minWidth: 160,
             renderCell: (params: GridRenderCellParams<Campaign>) => (
                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%' }}>
                     <Typography variant="caption" color="text.secondary">
@@ -194,7 +197,8 @@ export function CampaignsPage() {
         {
             field: 'budget',
             headerName: 'Budget / Spent',
-            width: 180,
+            flex: 1.5,
+            minWidth: 160,
             renderCell: (params: GridRenderCellParams<Campaign>) => {
                 const spentPercent = params.row.budget > 0
                     ? Math.min((params.row.spent / params.row.budget) * 100, 100)
@@ -222,7 +226,8 @@ export function CampaignsPage() {
         {
             field: 'reach',
             headerName: 'Reach',
-            width: 100,
+            flex: 0.8,
+            minWidth: 90,
             renderCell: (params: GridRenderCellParams<Campaign, number>) => (
                 <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
                     <Typography variant="body2">
@@ -234,7 +239,8 @@ export function CampaignsPage() {
         {
             field: 'clicks',
             headerName: 'Clicks',
-            width: 90,
+            flex: 0.7,
+            minWidth: 80,
             renderCell: (params: GridRenderCellParams<Campaign, number>) => (
                 <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
                     <Typography variant="body2">
@@ -246,7 +252,8 @@ export function CampaignsPage() {
         {
             field: 'conversions',
             headerName: 'Conv.',
-            width: 80,
+            flex: 0.7,
+            minWidth: 70,
             renderCell: (params: GridRenderCellParams<Campaign, number>) => (
                 <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
                     <Typography variant="body2" color="success.main" sx={{ fontWeight: 500 }}>
@@ -258,7 +265,7 @@ export function CampaignsPage() {
         {
             field: 'actions',
             headerName: 'Actions',
-            width: 80,
+            width: 72,
             sortable: false,
             renderCell: (params: GridRenderCellParams<Campaign>) => (
                 <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>

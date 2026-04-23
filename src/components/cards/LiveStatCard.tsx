@@ -88,8 +88,8 @@ export function LiveStatCard({
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={String(value)}
-                        initial={valueChanged ? { scale: 1.05, color: '#22c55e' } : false}
-                        animate={{ scale: 1, color: 'inherit' }}
+                        initial={valueChanged ? { scale: 1.05, opacity: 0.6 } : false}
+                        animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 0.3 }}
                     >
                         <Typography variant="h3" sx={{ fontWeight: 700,  mb: 1  }}>
