@@ -146,6 +146,16 @@ const baseTheme: ThemeOptions = {
         },
       },
     },
+    // DialogTitle defaults to component="h2", which causes invalid DOM nesting when
+    // a child <Typography variant="h6"> renders as <h6> inside the <h2>.
+    // Rendering as "div" keeps the MuiTypography-h6 visual styles while producing
+    // valid HTML. Accessibility is unaffected because Dialog already manages
+    // aria-labelledby pointing to the DialogTitle id.
+    MuiDialogTitle: {
+      defaultProps: {
+        component: 'div' as React.ElementType,
+      },
+    },
   },
 };
 
