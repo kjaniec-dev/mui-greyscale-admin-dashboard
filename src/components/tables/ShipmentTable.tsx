@@ -109,7 +109,7 @@ export function ShipmentTable({ shipments, onView, onEdit, onMarkDelivered }: Sh
             headerName: 'Shipment ID',
             width: 130,
             renderCell: (params) => (
-                <Typography variant="body2" fontWeight={500}>
+                <Typography variant="body2" sx={{ fontWeight: 500 }}>
                     {params.value}
                 </Typography>
             ),
@@ -130,7 +130,7 @@ export function ShipmentTable({ shipments, onView, onEdit, onMarkDelivered }: Sh
             flex: 1,
             minWidth: 150,
             renderCell: (params) => (
-                <Typography variant="body2" fontWeight={500}>
+                <Typography variant="body2" sx={{ fontWeight: 500 }}>
                     {params.value}
                 </Typography>
             ),
@@ -198,7 +198,7 @@ export function ShipmentTable({ shipments, onView, onEdit, onMarkDelivered }: Sh
             headerName: 'Cost',
             width: 90,
             renderCell: (params) => (
-                <Typography variant="body2" fontWeight={500}>
+                <Typography variant="body2" sx={{ fontWeight: 500 }}>
                     ${params.value.toFixed(2)}
                 </Typography>
             ),

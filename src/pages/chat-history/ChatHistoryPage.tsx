@@ -110,7 +110,7 @@ export function ChatHistoryPage() {
                             .join('')}
                     </Avatar>
                     <Box>
-                        <Typography variant="body2" fontWeight={500}>
+                        <Typography variant="body2" sx={{ fontWeight: 500 }}>
                             {params.value}
                         </Typography>
                         <Typography variant="caption" color="text.secondary">
@@ -214,7 +214,7 @@ export function ChatHistoryPage() {
         <Box>
             {/* Page Header */}
             <Box sx={{ mb: 4 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     Live Chat History
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
@@ -236,7 +236,7 @@ export function ChatHistoryPage() {
                     <Typography variant="body2" color="text.secondary" gutterBottom>
                         Total Conversations
                     </Typography>
-                    <Typography variant="h4" fontWeight={700}>
+                    <Typography variant="h4" sx={{ fontWeight: 700 }}>
                         {stats.total}
                     </Typography>
                 </Box>
@@ -252,7 +252,7 @@ export function ChatHistoryPage() {
                     <Typography variant="body2" color="text.secondary" gutterBottom>
                         Resolution Rate
                     </Typography>
-                    <Typography variant="h4" fontWeight={700}>
+                    <Typography variant="h4" sx={{ fontWeight: 700 }}>
                         {stats.resolutionRate}%
                     </Typography>
                 </Box>
@@ -269,7 +269,7 @@ export function ChatHistoryPage() {
                         Avg. Rating
                     </Typography>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                        <Typography variant="h4" fontWeight={700}>
+                        <Typography variant="h4" sx={{ fontWeight: 700 }}>
                             {stats.avgRating}
                         </Typography>
                         <Rating value={stats.avgRating} size="small" readOnly />
@@ -287,7 +287,7 @@ export function ChatHistoryPage() {
                     <Typography variant="body2" color="text.secondary" gutterBottom>
                         Avg. Duration
                     </Typography>
-                    <Typography variant="h4" fontWeight={700}>
+                    <Typography variant="h4" sx={{ fontWeight: 700 }}>
                         {stats.avgDuration} min
                     </Typography>
                 </Box>
@@ -310,13 +310,13 @@ export function ChatHistoryPage() {
                     placeholder="Search by customer name, email, agent, or tags..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                     sx={{ maxWidth: 600 }}
                 />
             </Box>
@@ -349,18 +349,18 @@ export function ChatHistoryPage() {
                 onClose={() => setTranscriptDialog(null)}
                 maxWidth="md"
                 fullWidth
-                PaperProps={{
+                slotProps={{ paper: {
                     sx: {
                         bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                         border: `1px solid ${isDarkMode ? '#262626' : '#E5E5E5'}`,
                     },
-                }}
+                } }}
             >
                 {transcriptDialog && (
                     <>
                         <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                             <Box>
-                                <Typography variant="h6" fontWeight={600}>
+                                <Typography variant="h6" sx={{ fontWeight: 600 }}>
                                     Chat Transcript
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
@@ -379,7 +379,7 @@ export function ChatHistoryPage() {
                                         <Typography variant="caption" color="text.secondary">
                                             Agent
                                         </Typography>
-                                        <Typography variant="body2" fontWeight={500}>
+                                        <Typography variant="body2" sx={{ fontWeight: 500 }}>
                                             {transcriptDialog.agentName}
                                         </Typography>
                                     </Box>
@@ -387,7 +387,7 @@ export function ChatHistoryPage() {
                                         <Typography variant="caption" color="text.secondary">
                                             Duration
                                         </Typography>
-                                        <Typography variant="body2" fontWeight={500}>
+                                        <Typography variant="body2" sx={{ fontWeight: 500 }}>
                                             {transcriptDialog.duration} minutes
                                         </Typography>
                                     </Box>

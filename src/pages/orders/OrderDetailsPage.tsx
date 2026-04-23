@@ -87,7 +87,7 @@ export function OrderDetailsPage() {
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1 }}>
-                        <Typography variant="h4" fontWeight={700}>
+                        <Typography variant="h4" sx={{ fontWeight: 700 }}>
                             Order {order.orderNumber}
                         </Typography>
                         <Chip
@@ -131,7 +131,7 @@ export function OrderDetailsPage() {
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                     {/* Order Items */}
                     <Paper sx={sectionSx}>
-                        <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
+                        <Typography variant="h6" sx={{ fontWeight: 600,  mb: 2 }}>
                             Items ({order.items.length})
                         </Typography>
                         <Table size="small">
@@ -147,7 +147,7 @@ export function OrderDetailsPage() {
                                 {order.items.map((item) => (
                                     <TableRow key={item.id}>
                                         <TableCell sx={{ borderColor: isDarkMode ? '#404040' : '#E5E5E5' }}>
-                                            <Typography variant="body2" fontWeight={500}>{item.productName}</Typography>
+                                            <Typography variant="body2" sx={{ fontWeight: 500 }}>{item.productName}</Typography>
                                         </TableCell>
                                         <TableCell align="center" sx={{ borderColor: isDarkMode ? '#404040' : '#E5E5E5' }}>{item.quantity}</TableCell>
                                         <TableCell align="right" sx={{ borderColor: isDarkMode ? '#404040' : '#E5E5E5' }}>{formatCurrency(item.unitPrice)}</TableCell>
@@ -176,8 +176,8 @@ export function OrderDetailsPage() {
                                 </Box>
                                 <Divider />
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <Typography variant="body1" fontWeight={700}>Total</Typography>
-                                    <Typography variant="body1" fontWeight={700}>{formatCurrency(order.total)}</Typography>
+                                    <Typography variant="body1" sx={{ fontWeight: 700 }}>Total</Typography>
+                                    <Typography variant="body1" sx={{ fontWeight: 700 }}>{formatCurrency(order.total)}</Typography>
                                 </Box>
                             </Stack>
                         </Box>
@@ -185,7 +185,7 @@ export function OrderDetailsPage() {
 
                     {/* Customer Information */}
                     <Paper sx={sectionSx}>
-                        <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
+                        <Typography variant="h6" sx={{ fontWeight: 600,  mb: 2 }}>
                             Customer Information
                         </Typography>
                         <Stack spacing={2}>
@@ -214,7 +214,7 @@ export function OrderDetailsPage() {
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                     {/* Payment */}
                     <Paper sx={sectionSx}>
-                        <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
+                        <Typography variant="h6" sx={{ fontWeight: 600,  mb: 2 }}>
                             Payment
                         </Typography>
                         <DetailInfoRow
@@ -237,7 +237,7 @@ export function OrderDetailsPage() {
 
                     {/* Shipping Address */}
                     <Paper sx={sectionSx}>
-                        <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
+                        <Typography variant="h6" sx={{ fontWeight: 600,  mb: 2 }}>
                             Shipping Address
                         </Typography>
                         <DetailInfoRow

@@ -120,7 +120,7 @@ export function SessionsPage() {
                     </Box>
                     <Box sx={{ flex: 1, minWidth: 0 }}>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5, flexWrap: 'wrap' }}>
-                            <Typography variant="body1" fontWeight={600}>
+                            <Typography variant="body1" sx={{ fontWeight: 600 }}>
                                 {session.browser} on {session.os}
                             </Typography>
                             {session.isCurrent && (
@@ -182,7 +182,7 @@ export function SessionsPage() {
     return (
         <Box>
             <Box sx={{ mb: 3 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     Active Sessions
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -199,7 +199,7 @@ export function SessionsPage() {
                 {/* Current Session */}
                 {currentSession && (
                     <Paper sx={sectionPaperSx}>
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                             Current Session
                         </Typography>
                         {renderSessionCard(currentSession)}
@@ -216,7 +216,7 @@ export function SessionsPage() {
                             mb: 2,
                         }}
                     >
-                        <Typography variant="h6" fontWeight={600}>
+                        <Typography variant="h6" sx={{ fontWeight: 600 }}>
                             Other Sessions ({otherSessions.length})
                         </Typography>
                         {otherSessions.length > 0 && (
@@ -247,7 +247,7 @@ export function SessionsPage() {
 
                 {/* Security Tips */}
                 <Paper sx={sectionPaperSx}>
-                    <Typography variant="h6" fontWeight={600} gutterBottom>
+                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                         Security Tips
                     </Typography>
                     <Box component="ul" sx={{ m: 0, pl: 3 }}>

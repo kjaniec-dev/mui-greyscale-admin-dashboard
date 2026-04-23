@@ -63,7 +63,7 @@ function StatCard({ title, value, icon, color, subtitle }: StatCardProps) {
         <Card sx={{ height: '100%' }}>
             <CardContent sx={{ p: 3 }}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-                    <Typography variant="body2" color="text.secondary" fontWeight={500}>
+                    <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 500 }}>
                         {title}
                     </Typography>
                     <Box
@@ -81,7 +81,7 @@ function StatCard({ title, value, icon, color, subtitle }: StatCardProps) {
                         {icon}
                     </Box>
                 </Box>
-                <Typography variant="h4" fontWeight={700} sx={{ mb: 0.5 }}>
+                <Typography variant="h4" sx={{ fontWeight: 700,  mb: 0.5  }}>
                     {value}
                 </Typography>
                 {subtitle && (
@@ -141,7 +141,7 @@ export function TaxReportsPage() {
             headerName: 'Sales',
             width: 140,
             renderCell: (params: GridRenderCellParams<QuarterlyTax, number>) => (
-                <Typography variant="body2" fontWeight={500}>
+                <Typography variant="body2" sx={{ fontWeight: 500 }}>
                     {currencyFormatter.format(params.value || 0)}
                 </Typography>
             ),
@@ -161,7 +161,7 @@ export function TaxReportsPage() {
             headerName: 'Tax Collected',
             width: 140,
             renderCell: (params: GridRenderCellParams<QuarterlyTax, number>) => (
-                <Typography variant="body2" fontWeight={600} color="primary">
+                <Typography variant="body2" color="primary" sx={{ fontWeight: 600 }}>
                     {currencyFormatter.format(params.value || 0)}
                 </Typography>
             ),
@@ -215,14 +215,14 @@ export function TaxReportsPage() {
             {/* Page Header */}
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 2 }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Tax Reports
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
                         View tax summaries, quarterly breakdowns, and export documentation.
                     </Typography>
                 </Box>
-                <Stack direction="row" spacing={2} alignItems="center">
+                <Stack direction="row" spacing={2}  sx={{ alignItems: 'center' }}>
                     <FormControl size="small" sx={{ minWidth: 120 }}>
                         <InputLabel>Year</InputLabel>
                         <Select
@@ -297,7 +297,7 @@ export function TaxReportsPage() {
             {/* Quarterly Breakdown */}
             <Card sx={{ mb: 4 }}>
                 <Box sx={{ p: 3, pb: 2 }}>
-                    <Typography variant="h6" fontWeight={600}>
+                    <Typography variant="h6" sx={{ fontWeight: 600 }}>
                         Quarterly Breakdown
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
@@ -331,7 +331,7 @@ export function TaxReportsPage() {
             {/* Tax Rates Info */}
             <Card>
                 <Box sx={{ p: 3, pb: 2 }}>
-                    <Typography variant="h6" fontWeight={600}>
+                    <Typography variant="h6" sx={{ fontWeight: 600 }}>
                         Applied Tax Rates
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
@@ -359,7 +359,7 @@ export function TaxReportsPage() {
                                     }}
                                 >
                                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-                                        <Typography variant="subtitle2" fontWeight={600}>
+                                        <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
                                             {category.category}
                                         </Typography>
                                         <Chip

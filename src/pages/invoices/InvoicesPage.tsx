@@ -93,7 +93,7 @@ export function InvoicesPage() {
             {/* Page Header */}
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Invoices
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -122,13 +122,13 @@ export function InvoicesPage() {
                     placeholder="Search by invoice number, customer name, or email..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                     sx={{ flex: 1, minWidth: 300 }}
                 />
                 <FormControl sx={{ minWidth: 150 }}>

@@ -83,7 +83,7 @@ export function ContactsPage() {
                             {contact.firstName.charAt(0)}{contact.lastName.charAt(0)}
                         </Avatar>
                         <Box sx={{ display: 'flex', flexDirection: 'column', lineHeight: 1.2 }}>
-                            <Typography variant="body2" fontWeight={600}>
+                            <Typography variant="body2" sx={{ fontWeight: 600 }}>
                                 {fullName}
                             </Typography>
                             <Typography variant="caption" color="text.secondary">
@@ -179,7 +179,7 @@ export function ContactsPage() {
                     <ContactsIcon />
                 </Avatar>
                 <Box>
-                    <Typography variant="h4" fontWeight={700}>
+                    <Typography variant="h4" sx={{ fontWeight: 700 }}>
                         Contacts
                     </Typography>
                     <Typography variant="body1" color="text.secondary">

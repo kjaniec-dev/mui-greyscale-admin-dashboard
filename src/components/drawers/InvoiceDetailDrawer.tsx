@@ -46,12 +46,12 @@ export function InvoiceDetailDrawer({ open, onClose, invoice }: InvoiceDetailDra
             anchor="right"
             open={open}
             onClose={onClose}
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     width: { xs: '100%', sm: 480 },
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                 },
-            }}
+            } }}
         >
             <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 {/* Header */}
@@ -65,7 +65,7 @@ export function InvoiceDetailDrawer({ open, onClose, invoice }: InvoiceDetailDra
                     }}
                 >
                     <Box>
-                        <Typography variant="h6" fontWeight={700}>
+                        <Typography variant="h6" sx={{ fontWeight: 700 }}>
                             Invoice Details
                         </Typography>
                         <Typography variant="body2" color="text.secondary" sx={{ fontFamily: 'monospace' }}>
@@ -103,7 +103,7 @@ export function InvoiceDetailDrawer({ open, onClose, invoice }: InvoiceDetailDra
                                 borderRadius: 1,
                             }}
                         />
-                        <Typography variant="h5" fontWeight={700}>
+                        <Typography variant="h5" sx={{ fontWeight: 700 }}>
                             {formatCurrency(invoice.total)}
                         </Typography>
                     </Box>
@@ -222,7 +222,7 @@ export function InvoiceDetailDrawer({ open, onClose, invoice }: InvoiceDetailDra
                                 {invoice.items.map((item) => (
                                     <TableRow key={item.id}>
                                         <TableCell sx={{ borderColor: isDarkMode ? '#404040' : '#E5E5E5' }}>
-                                            <Typography variant="body2" fontWeight={500}>{item.description}</Typography>
+                                            <Typography variant="body2" sx={{ fontWeight: 500 }}>{item.description}</Typography>
                                         </TableCell>
                                         <TableCell align="center" sx={{ borderColor: isDarkMode ? '#404040' : '#E5E5E5' }}>{item.quantity}</TableCell>
                                         <TableCell align="right" sx={{ borderColor: isDarkMode ? '#404040' : '#E5E5E5' }}>{formatCurrency(item.rate)}</TableCell>
@@ -254,8 +254,8 @@ export function InvoiceDetailDrawer({ open, onClose, invoice }: InvoiceDetailDra
                             </Box>
                             <Divider />
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <Typography variant="body1" fontWeight={700}>Total</Typography>
-                                <Typography variant="body1" fontWeight={700}>{formatCurrency(invoice.total)}</Typography>
+                                <Typography variant="body1" sx={{ fontWeight: 700 }}>Total</Typography>
+                                <Typography variant="body1" sx={{ fontWeight: 700 }}>{formatCurrency(invoice.total)}</Typography>
                             </Box>
                         </Stack>
                     </Box>

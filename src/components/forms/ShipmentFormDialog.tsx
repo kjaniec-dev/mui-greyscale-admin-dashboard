@@ -95,12 +95,12 @@ export function ShipmentFormDialog({ open, onClose, onSubmit, defaultValues, mod
             onClose={onClose}
             maxWidth="md"
             fullWidth
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                     borderRadius: 2,
                 },
-            }}
+            } }}
         >
             <DialogTitle sx={{
                 display: 'flex',
@@ -108,7 +108,7 @@ export function ShipmentFormDialog({ open, onClose, onSubmit, defaultValues, mod
                 alignItems: 'center',
                 borderBottom: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
             }}>
-                <Typography variant="h6" fontWeight={700}>
+                <Typography variant="h6" sx={{ fontWeight: 700 }}>
                     {mode === 'create' ? 'Create Shipment' : 'Edit Shipment'}
                 </Typography>
                 <IconButton onClick={onClose} size="small">
@@ -208,9 +208,9 @@ export function ShipmentFormDialog({ open, onClose, onSubmit, defaultValues, mod
                                 onChange={handleChange('weight')}
                                 fullWidth
                                 type="number"
-                                InputProps={{
+                                slotProps={{ input: {
                                     endAdornment: <InputAdornment position="end">lbs</InputAdornment>,
-                                }}
+                                } }}
                             />
                         </Grid>
                         <Grid size={{ xs: 12, sm: 6 }}>
@@ -220,9 +220,9 @@ export function ShipmentFormDialog({ open, onClose, onSubmit, defaultValues, mod
                                 onChange={handleChange('shippingCost')}
                                 fullWidth
                                 type="number"
-                                InputProps={{
+                                slotProps={{ input: {
                                     startAdornment: <InputAdornment position="start">$</InputAdornment>,
-                                }}
+                                } }}
                             />
                         </Grid>
 
@@ -254,7 +254,7 @@ export function ShipmentFormDialog({ open, onClose, onSubmit, defaultValues, mod
                                 onChange={handleChange('estimatedDelivery')}
                                 fullWidth
                                 type="date"
-                                InputLabelProps={{ shrink: true }}
+                                slotProps={{ inputLabel: { shrink: true } }}
                             />
                         </Grid>
                     </Grid>

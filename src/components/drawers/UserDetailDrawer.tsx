@@ -41,12 +41,12 @@ export function UserDetailDrawer({ open, onClose, user }: UserDetailDrawerProps)
             anchor="right"
             open={open}
             onClose={onClose}
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     width: { xs: '100%', sm: 420 },
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                 },
-            }}
+            } }}
         >
             <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 {/* Header */}
@@ -59,7 +59,7 @@ export function UserDetailDrawer({ open, onClose, user }: UserDetailDrawerProps)
                         borderBottom: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
                     }}
                 >
-                    <Typography variant="h6" fontWeight={700}>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>
                         User Details
                     </Typography>
                     <IconButton
@@ -92,7 +92,7 @@ export function UserDetailDrawer({ open, onClose, user }: UserDetailDrawerProps)
                         >
                             {getInitials(user.name)}
                         </Avatar>
-                        <Typography variant="h5" fontWeight={700} gutterBottom>
+                        <Typography variant="h5" gutterBottom sx={{ fontWeight: 700 }}>
                             {user.name}
                         </Typography>
                         <Stack direction="row" spacing={1} sx={{ mt: 1 }}>
@@ -145,7 +145,7 @@ export function UserDetailDrawer({ open, onClose, user }: UserDetailDrawerProps)
                                 icon={<BadgeIcon sx={{ fontSize: 20, color: iconColor }} />}
                                 label="User ID"
                                 value={
-                                    <Typography variant="body2" fontWeight={500} sx={{ fontFamily: 'monospace' }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 500,  fontFamily: 'monospace'  }}>
                                         {user.id}
                                     </Typography>
                                 }

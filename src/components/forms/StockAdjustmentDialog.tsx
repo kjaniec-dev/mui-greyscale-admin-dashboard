@@ -102,12 +102,12 @@ export function StockAdjustmentDialog({
             onClose={onClose}
             maxWidth="sm"
             fullWidth
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                     borderRadius: 2,
                 },
-            }}
+            } }}
         >
             <form onSubmit={handleSubmit}>
                 <DialogTitle
@@ -120,7 +120,7 @@ export function StockAdjustmentDialog({
                     }}
                 >
                     <Box>
-                        <Typography variant="h6" fontWeight={700}>
+                        <Typography variant="h6" sx={{ fontWeight: 700 }}>
                             {title}
                         </Typography>
                         <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
@@ -144,7 +144,7 @@ export function StockAdjustmentDialog({
                 <DialogContent sx={{ pt: '24px !important', pb: 3 }}>
                     {stockLevel && (
                         <Box sx={{ mb: 3, p: 2, bgcolor: isDarkMode ? '#262626' : '#F5F5F5', borderRadius: 1 }}>
-                            <Typography variant="body2" fontWeight={600}>
+                            <Typography variant="body2" sx={{ fontWeight: 600 }}>
                                 {stockLevel.productName}
                             </Typography>
                             <Typography variant="caption" color="text.secondary">
@@ -162,7 +162,7 @@ export function StockAdjustmentDialog({
                                 value={quantity}
                                 onChange={(e) => setQuantity(parseInt(e.target.value) || 0)}
                                 required
-                                inputProps={{ min: 1 }}
+                                slotProps={{ htmlInput: { min: 1 } }}
                                 error={isRemoveError}
                                 helperText={isRemoveError ? 'Cannot remove more than current stock' : ''}
                             />

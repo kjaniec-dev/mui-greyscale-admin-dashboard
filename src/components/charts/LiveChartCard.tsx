@@ -29,7 +29,7 @@ export function LiveChartCard({
             <CardHeader
                 title={
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                        <Typography component="h2" variant="h6" fontWeight={600}>
+                        <Typography component="h2" variant="h6" sx={{ fontWeight: 600 }}>
                             {title}
                         </Typography>
                         {showLiveIndicator && (

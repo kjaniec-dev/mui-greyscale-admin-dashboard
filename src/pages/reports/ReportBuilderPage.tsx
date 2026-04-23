@@ -189,7 +189,7 @@ export function ReportBuilderPage() {
                     <BackIcon />
                 </IconButton>
                 <Box sx={{ flexGrow: 1 }}>
-                    <Typography variant="h4" fontWeight={700}>
+                    <Typography variant="h4" sx={{ fontWeight: 700 }}>
                         {id ? 'Edit Report' : 'New Report'}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
@@ -222,7 +222,7 @@ export function ReportBuilderPage() {
                 <Box sx={{ flex: '0 0 400px', display: 'flex', flexDirection: 'column', gap: 3 }}>
                     {/* Report Info */}
                     <Paper sx={sectionPaperSx}>
-                        <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+                        <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
                             Report Details
                         </Typography>
                         <TextField
@@ -246,7 +246,7 @@ export function ReportBuilderPage() {
 
                     {/* Data Source */}
                     <Paper sx={sectionPaperSx}>
-                        <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+                        <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
                             Data Source
                         </Typography>
                         <FormControl fullWidth size="small" sx={{ mt: 1 }}>
@@ -269,7 +269,7 @@ export function ReportBuilderPage() {
 
                     {/* Date Range */}
                     <Paper sx={sectionPaperSx}>
-                        <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+                        <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
                             Date Range
                         </Typography>
                         <FormControl fullWidth size="small" sx={{ mt: 1 }}>
@@ -292,7 +292,7 @@ export function ReportBuilderPage() {
 
                     {/* Columns */}
                     <Paper sx={sectionPaperSx}>
-                        <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+                        <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
                             Columns / Metrics
                         </Typography>
                         <FormGroup sx={{ mt: 1 }}>
@@ -327,7 +327,7 @@ export function ReportBuilderPage() {
 
                     {/* Group By */}
                     <Paper sx={sectionPaperSx}>
-                        <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+                        <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
                             Group By
                         </Typography>
                         <FormControl fullWidth size="small" sx={{ mt: 1 }}>
@@ -352,7 +352,7 @@ export function ReportBuilderPage() {
                     {/* Filters */}
                     <Paper sx={sectionPaperSx}>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-                            <Typography variant="subtitle1" fontWeight={600}>
+                            <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
                                 Filters
                             </Typography>
                             <Button
@@ -440,7 +440,7 @@ export function ReportBuilderPage() {
                 <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 3 }}>
                     {/* Chart Type Selection */}
                     <Paper sx={sectionPaperSx}>
-                        <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+                        <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
                             Chart Type
                         </Typography>
                         <Box sx={{ display: 'flex', gap: 1, mt: 2, flexWrap: 'wrap' }}>
@@ -475,7 +475,7 @@ export function ReportBuilderPage() {
                                     <Box sx={{ fontSize: 28, color: isDarkMode ? '#A3A3A3' : '#525252' }}>
                                         {chartIcons[type]}
                                     </Box>
-                                    <Typography variant="caption" fontWeight={500}>
+                                    <Typography variant="caption" sx={{ fontWeight: 500 }}>
                                         {type.charAt(0).toUpperCase() + type.slice(1)}
                                     </Typography>
                                 </Paper>
@@ -485,7 +485,7 @@ export function ReportBuilderPage() {
 
                     {/* Chart Title */}
                     <Paper sx={sectionPaperSx}>
-                        <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+                        <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
                             Chart Title
                         </Typography>
                         <TextField
@@ -500,7 +500,7 @@ export function ReportBuilderPage() {
 
                     {/* Chart Preview */}
                     <Paper sx={{ ...sectionPaperSx, flex: 1, minHeight: 400 }}>
-                        <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+                        <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
                             Preview
                         </Typography>
                         <Divider sx={{ my: 2 }} />

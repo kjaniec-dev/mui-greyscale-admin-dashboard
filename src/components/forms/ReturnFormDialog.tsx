@@ -97,12 +97,12 @@ export function ReturnFormDialog({
             onClose={onClose}
             maxWidth="md"
             fullWidth
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                     borderRadius: 2,
                 },
-            }}
+            } }}
         >
             <form onSubmit={handleSubmit}>
                 <DialogTitle
@@ -115,7 +115,7 @@ export function ReturnFormDialog({
                     }}
                 >
                     <Box>
-                        <Typography variant="h6" fontWeight={700}>
+                        <Typography variant="h6" sx={{ fontWeight: 700 }}>
                             {title}
                         </Typography>
                         <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
@@ -166,7 +166,7 @@ export function ReturnFormDialog({
                                 value={formData.quantity}
                                 onChange={handleChange('quantity')}
                                 required
-                                inputProps={{ min: 1 }}
+                                slotProps={{ htmlInput: { min: 1 } }}
                                 disabled={mode === 'process'}
                             />
                         </Grid>
@@ -231,7 +231,7 @@ export function ReturnFormDialog({
                                 label="Refund Amount"
                                 value={formData.refundAmount}
                                 onChange={handleChange('refundAmount')}
-                                inputProps={{ min: 0, step: 0.01 }}
+                                slotProps={{ htmlInput: { min: 0, step: 0.01 } }}
                                 helperText="Enter amount if refunding"
                             />
                         </Grid>

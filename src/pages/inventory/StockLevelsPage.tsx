@@ -78,7 +78,7 @@ export function StockLevelsPage() {
         <Box>
             {/* Page Header */}
             <Box sx={{ mb: 4 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     Stock Levels
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
@@ -92,13 +92,13 @@ export function StockLevelsPage() {
                     placeholder="Search by product name, SKU, or warehouse..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                     sx={{ flex: 1, minWidth: 300 }}
                 />
                 <FormControl sx={{ minWidth: 200 }}>

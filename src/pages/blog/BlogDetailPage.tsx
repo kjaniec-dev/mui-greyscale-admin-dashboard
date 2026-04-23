@@ -14,7 +14,7 @@ import {
     ArrowBack as ArrowBackIcon,
     Edit as EditIcon,
     Visibility as ViewIcon,
-    ChatBubbleOutline as CommentIcon,
+    ChatBubbleOutlined as CommentIcon,
 } from '@mui/icons-material';
 import { mockPosts } from '../../data/mockPosts';
 import { getStatusSolid } from '../../theme';
@@ -153,7 +153,7 @@ export function BlogDetailPage() {
                             />
                             <Chip label={post.category} size="small" variant="outlined" />
                         </Box>
-                        <Typography variant="h4" fontWeight={700} gutterBottom>
+                        <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                             {post.title}
                         </Typography>
                         <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
@@ -196,7 +196,7 @@ export function BlogDetailPage() {
                             <Avatar sx={{ bgcolor: isDarkMode ? '#404040' : '#E5E5E5' }}>
                                 {post.author.charAt(0)}
                             </Avatar>
-                            <Typography variant="body1" fontWeight={500}>
+                            <Typography variant="body1" sx={{ fontWeight: 500 }}>
                                 {post.author}
                             </Typography>
                         </Box>

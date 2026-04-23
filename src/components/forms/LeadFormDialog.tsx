@@ -53,13 +53,13 @@ export function LeadFormDialog({
             onClose={onClose}
             maxWidth="sm"
             fullWidth
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                     borderRadius: 2,
                     maxHeight: '90vh',
                 },
-            }}
+            } }}
         >
             {/* Dialog Header */}
             <DialogTitle
@@ -72,7 +72,7 @@ export function LeadFormDialog({
                 }}
             >
                 <Box>
-                    <Typography variant="h6" fontWeight={700}>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>
                         {title}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>

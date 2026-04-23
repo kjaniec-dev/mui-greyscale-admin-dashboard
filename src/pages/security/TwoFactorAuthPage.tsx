@@ -167,7 +167,7 @@ export function TwoFactorAuthPage() {
     return (
         <Box>
             <Box sx={{ mb: 3 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     Two-Factor Authentication
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -191,7 +191,7 @@ export function TwoFactorAuthPage() {
                 <Paper sx={sectionPaperSx}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
                         <SecurityIcon sx={{ color: isDarkMode ? '#A3A3A3' : '#525252' }} />
-                        <Typography variant="h6" fontWeight={600}>
+                        <Typography variant="h6" sx={{ fontWeight: 600 }}>
                             Authentication Methods
                         </Typography>
                     </Box>
@@ -225,7 +225,7 @@ export function TwoFactorAuthPage() {
                                         <ListItemText
                                             primary={
                                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                                    <Typography variant="body1" fontWeight={500}>
+                                                    <Typography variant="body1" sx={{ fontWeight: 500 }}>
                                                         {method.title}
                                                     </Typography>
                                                     {method.recommended && (
@@ -295,7 +295,7 @@ export function TwoFactorAuthPage() {
 
                 {/* Security Tips */}
                 <Paper sx={sectionPaperSx}>
-                    <Typography variant="h6" fontWeight={600} gutterBottom>
+                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                         Security Tips
                     </Typography>
                     <Box component="ul" sx={{ m: 0, pl: 3 }}>
@@ -391,10 +391,10 @@ export function TwoFactorAuthPage() {
                                         value={verificationCode}
                                         onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
                                         placeholder="000000"
-                                        inputProps={{
+                                        slotProps={{ htmlInput: {
                                             maxLength: 6,
                                             style: { textAlign: 'center', fontSize: 24, letterSpacing: 8 },
-                                        }}
+                                        } }}
                                         sx={{ my: 3, width: 200 }}
                                     />
                                     <Box>

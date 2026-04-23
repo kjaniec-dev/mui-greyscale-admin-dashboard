@@ -52,12 +52,12 @@ export function LeadDetailDrawer({ open, onClose, lead, onConvert }: LeadDetailD
             anchor="right"
             open={open}
             onClose={onClose}
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     width: { xs: '100%', sm: 420 },
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                 },
-            }}
+            } }}
         >
             <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 {/* Header */}
@@ -70,7 +70,7 @@ export function LeadDetailDrawer({ open, onClose, lead, onConvert }: LeadDetailD
                         borderBottom: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
                     }}
                 >
-                    <Typography variant="h6" fontWeight={700}>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>
                         Lead Details
                     </Typography>
                     <IconButton
@@ -103,7 +103,7 @@ export function LeadDetailDrawer({ open, onClose, lead, onConvert }: LeadDetailD
                         >
                             {getInitials(lead.name)}
                         </Avatar>
-                        <Typography variant="h5" fontWeight={700} gutterBottom>
+                        <Typography variant="h5" gutterBottom sx={{ fontWeight: 700 }}>
                             {lead.name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary" gutterBottom>

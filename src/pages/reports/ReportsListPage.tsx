@@ -112,7 +112,7 @@ export function ReportsListPage() {
         <Box>
             {/* Page Header */}
             <Box sx={{ mb: 4 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     Reports
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
@@ -135,13 +135,13 @@ export function ReportsListPage() {
                     size="small"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon fontSize="small" />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                     sx={{ minWidth: 250 }}
                 />
 
@@ -251,7 +251,7 @@ export function ReportsListPage() {
                     >
                         <ReportsIcon sx={{ fontSize: 40, color: '#737373' }} />
                     </Box>
-                    <Typography variant="h6" fontWeight={600} gutterBottom>
+                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                         {searchQuery || filterDataSource !== 'all'
                             ? 'No reports found'
                             : 'No reports yet'}

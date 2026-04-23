@@ -225,7 +225,7 @@ export function HeatmapsPage() {
             {/* Header */}
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 2 }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Behavior Heatmaps
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -261,7 +261,7 @@ export function HeatmapsPage() {
             >
                 {/* View Header */}
                 <Box sx={{ p: 3, borderBottom: `1px solid ${isDarkMode ? '#262626' : '#E5E5E5'}` }}>
-                    <Typography variant="h6" fontWeight={600}>
+                    <Typography variant="h6" sx={{ fontWeight: 600 }}>
                         {viewMode === 'activity' ? 'Hourly Activity by Day' : 'Page Click Distribution'}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">

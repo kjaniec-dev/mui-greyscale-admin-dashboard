@@ -54,7 +54,7 @@ export function InvoiceCreatePage() {
             {/* Page Header */}
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Create Invoice
                     </Typography>
                     <Typography variant="body1" color="text.secondary">

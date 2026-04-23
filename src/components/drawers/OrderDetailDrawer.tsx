@@ -46,12 +46,12 @@ export function OrderDetailDrawer({ open, onClose, order }: OrderDetailDrawerPro
             anchor="right"
             open={open}
             onClose={onClose}
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     width: { xs: '100%', sm: 480 },
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                 },
-            }}
+            } }}
         >
             <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 {/* Header */}
@@ -65,7 +65,7 @@ export function OrderDetailDrawer({ open, onClose, order }: OrderDetailDrawerPro
                     }}
                 >
                     <Box>
-                        <Typography variant="h6" fontWeight={700}>
+                        <Typography variant="h6" sx={{ fontWeight: 700 }}>
                             Order Details
                         </Typography>
                         <Typography variant="body2" color="text.secondary" sx={{ fontFamily: 'monospace' }}>
@@ -168,7 +168,7 @@ export function OrderDetailDrawer({ open, onClose, order }: OrderDetailDrawerPro
                                 {order.items.map((item) => (
                                     <TableRow key={item.id}>
                                         <TableCell sx={{ borderColor: isDarkMode ? '#404040' : '#E5E5E5' }}>
-                                            <Typography variant="body2" fontWeight={500}>{item.productName}</Typography>
+                                            <Typography variant="body2" sx={{ fontWeight: 500 }}>{item.productName}</Typography>
                                             <Typography variant="caption" color="text.secondary">
                                                 {formatCurrency(item.unitPrice)} each
                                             </Typography>
@@ -207,8 +207,8 @@ export function OrderDetailDrawer({ open, onClose, order }: OrderDetailDrawerPro
                             </Box>
                             <Divider />
                             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <Typography variant="body1" fontWeight={700}>Total</Typography>
-                                <Typography variant="body1" fontWeight={700}>{formatCurrency(order.total)}</Typography>
+                                <Typography variant="body1" sx={{ fontWeight: 700 }}>Total</Typography>
+                                <Typography variant="body1" sx={{ fontWeight: 700 }}>{formatCurrency(order.total)}</Typography>
                             </Box>
                         </Stack>
                     </Box>

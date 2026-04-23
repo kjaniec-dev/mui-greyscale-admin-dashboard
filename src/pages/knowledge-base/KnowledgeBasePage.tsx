@@ -370,7 +370,7 @@ export function KnowledgeBasePage() {
                                 }}
                             />
                         </Box>
-                        <Typography variant="subtitle1" fontWeight={600} sx={{ mb: 1 }}>
+                        <Typography variant="subtitle1" sx={{ fontWeight: 600,  mb: 1  }}>
                             {article.title}
                         </Typography>
                         <Typography variant="body2" color="text.secondary" sx={{ mb: 2, flex: 1 }}>
@@ -406,7 +406,7 @@ export function KnowledgeBasePage() {
             {/* Page Header */}
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Knowledge Base
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -458,13 +458,13 @@ export function KnowledgeBasePage() {
                     placeholder="Search articles..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                     sx={{ maxWidth: 400, flex: 1 }}
                 />
                 <ToggleButtonGroup

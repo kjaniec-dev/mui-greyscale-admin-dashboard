@@ -146,7 +146,7 @@ export function ArticleDetailPage() {
                         ))}
                     </Box>
 
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         {article.title}
                     </Typography>
 
@@ -245,7 +245,7 @@ export function ArticleDetailPage() {
                         border: `1px solid ${isDarkMode ? '#262626' : '#E5E5E5'}`,
                     }}
                 >
-                    <Typography variant="h6" fontWeight={600} gutterBottom>
+                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                         Was this article helpful?
                     </Typography>
                     <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', mt: 2 }}>
@@ -281,7 +281,7 @@ export function ArticleDetailPage() {
                             border: `1px solid ${isDarkMode ? '#262626' : '#E5E5E5'}`,
                         }}
                     >
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                             Related Articles
                         </Typography>
                         <Stack spacing={2} sx={{ mt: 2 }}>
@@ -315,7 +315,7 @@ export function ArticleDetailPage() {
                                                         }}
                                                     />
                                                 </Box>
-                                                <Typography variant="subtitle2" fontWeight={600} gutterBottom>
+                                                <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 600 }}>
                                                     {related.title}
                                                 </Typography>
                                                 <Typography variant="caption" color="text.secondary">

@@ -93,9 +93,9 @@ export function TaskDialog({ open, onClose, task, onSave }: TaskDialogProps) {
             onClose={onClose}
             maxWidth="sm"
             fullWidth
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: { borderRadius: 2 }
-            }}
+            } }}
         >
             <DialogTitle sx={{
                 display: 'flex',
@@ -104,7 +104,7 @@ export function TaskDialog({ open, onClose, task, onSave }: TaskDialogProps) {
                 borderBottom: `1px solid ${theme.palette.divider}`,
                 pb: 2
             }}>
-                <Typography variant="h6" fontWeight={600}>
+                <Typography variant="h6" sx={{ fontWeight: 600 }}>
                     {isEdit ? 'Edit Task' : 'Create New Task'}
                 </Typography>
                 <IconButton onClick={onClose} size="small" sx={{ color: 'text.secondary' }}>
@@ -141,9 +141,9 @@ export function TaskDialog({ open, onClose, task, onSave }: TaskDialogProps) {
                             fullWidth
                             value={list}
                             onChange={(e) => setList(e.target.value as TaskListType)}
-                            InputProps={{
+                            slotProps={{ input: {
                                 startAdornment: <ListIcon color="action" sx={{ mr: 1, ml: 0.5 }} fontSize="small" />
-                            }}
+                            } }}
                         >
                             {taskLists.map(l => (
                                 <MenuItem key={l.id} value={l.id}>
@@ -182,7 +182,7 @@ export function TaskDialog({ open, onClose, task, onSave }: TaskDialogProps) {
                             fullWidth
                             value={dueDate}
                             onChange={(e) => setDueDate(e.target.value)}
-                            InputLabelProps={{ shrink: true }}
+                            slotProps={{ inputLabel: { shrink: true } }}
                         />
 
                         <TextField
@@ -192,9 +192,9 @@ export function TaskDialog({ open, onClose, task, onSave }: TaskDialogProps) {
                             onChange={(e) => setTagsText(e.target.value)}
                             placeholder="urgent, frontend, bug"
                             helperText="Comma separated"
-                            InputProps={{
+                            slotProps={{ input: {
                                 startAdornment: <TagIcon color="action" sx={{ mr: 1, ml: 0.5 }} fontSize="small" />
-                            }}
+                            } }}
                         />
                     </Stack>
                 </Stack>

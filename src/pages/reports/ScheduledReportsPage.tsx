@@ -148,7 +148,7 @@ export function ScheduledReportsPage() {
             minWidth: 250,
             renderCell: (params: GridRenderCellParams<ScheduledReport, string>) => (
                 <Box>
-                    <Typography variant="body2" fontWeight={600}>
+                    <Typography variant="body2" sx={{ fontWeight: 600 }}>
                         {params.row.reportName}
                     </Typography>
                     <Typography variant="caption" color="text.secondary">
@@ -256,7 +256,7 @@ export function ScheduledReportsPage() {
             {/* Header */}
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Scheduled Reports
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -286,13 +286,13 @@ export function ScheduledReportsPage() {
                         placeholder="Search schedules..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        InputProps={{
+                        slotProps={{ input: {
                             startAdornment: (
                                 <InputAdornment position="start">
                                     <SearchIcon fontSize="small" />
                                 </InputAdornment>
                             ),
-                        }}
+                        } }}
                         sx={{ minWidth: 300, flex: 1 }}
                     />
                 </Box>

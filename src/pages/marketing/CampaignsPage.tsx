@@ -145,7 +145,7 @@ export function CampaignsPage() {
                         {typeIcons[params.row.type]}
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', lineHeight: 'normal' }}>
-                        <Typography variant="body2" fontWeight={600} sx={{ lineHeight: 1.2, mb: 0.5 }}>
+                        <Typography variant="body2" sx={{ fontWeight: 600,  lineHeight: 1.2, mb: 0.5  }}>
                             {params.value}
                         </Typography>
                         <Typography variant="caption" color="text.secondary" sx={{ textTransform: 'capitalize', lineHeight: 1.2 }}>
@@ -201,8 +201,8 @@ export function CampaignsPage() {
                     : 0;
                 return (
                     <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', justifyContent: 'center', height: '100%', pr: 2 }}>
-                        <Stack direction="row" justifyContent="space-between" sx={{ mb: 0.5 }}>
-                            <Typography variant="caption" fontWeight={500}>
+                        <Stack direction="row"  sx={{ justifyContent: 'space-between',  mb: 0.5 }}>
+                            <Typography variant="caption" sx={{ fontWeight: 500 }}>
                                 {currencyFormatter.format(params.row.spent)}
                             </Typography>
                             <Typography variant="caption" color="text.secondary">
@@ -249,7 +249,7 @@ export function CampaignsPage() {
             width: 80,
             renderCell: (params: GridRenderCellParams<Campaign, number>) => (
                 <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-                    <Typography variant="body2" fontWeight={500} color="success.main">
+                    <Typography variant="body2" color="success.main" sx={{ fontWeight: 500 }}>
                         {numberFormatter.format(params.value || 0)}
                     </Typography>
                 </Box>
@@ -274,7 +274,7 @@ export function CampaignsPage() {
         <Box>
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Campaigns
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -292,13 +292,13 @@ export function CampaignsPage() {
                     placeholder="Search campaigns..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                     sx={{ maxWidth: 500 }}
                 />
             </Box>

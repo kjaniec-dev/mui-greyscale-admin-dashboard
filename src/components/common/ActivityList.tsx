@@ -38,7 +38,7 @@ export function ActivityList({ title = 'Recent Activity', activities }: Activity
         <Card sx={{ height: '100%' }}>
             <CardHeader
                 title={
-                    <Typography component="h2" variant="h6" fontWeight={600}>
+                    <Typography component="h2" variant="h6" sx={{ fontWeight: 600 }}>
                         {title}
                     </Typography>
                 }
@@ -74,16 +74,20 @@ export function ActivityList({ title = 'Recent Activity', activities }: Activity
                                 </Avatar>
                             </ListItemAvatar>
                             <ListItemText
+                                slotProps={{
+                                    primary: { component: 'div' },
+                                    secondary: { component: 'div' },
+                                }}
                                 primary={
                                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <Typography variant="body2" fontWeight={600}>
+                                        <Typography variant="body2" sx={{ fontWeight: 600 }}>
                                             {activity.user.name}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">
                                             {activity.action}
                                         </Typography>
                                         {activity.target && (
-                                            <Typography variant="body2" fontWeight={500}>
+                                            <Typography variant="body2" sx={{ fontWeight: 500 }}>
                                                 {activity.target}
                                             </Typography>
                                         )}

@@ -82,7 +82,7 @@ export function UserAccountPage() {
         <Box>
             {/* Page Header */}
             <Box sx={{ mb: 4 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     Account Settings
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
@@ -93,7 +93,7 @@ export function UserAccountPage() {
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, maxWidth: 800 }}>
                 {/* Profile Section */}
                 <Paper sx={sectionPaperSx}>
-                    <Typography variant="h6" fontWeight={600} sx={{ mb: 3 }}>
+                    <Typography variant="h6" sx={{ fontWeight: 600,  mb: 3  }}>
                         Profile Information
                     </Typography>
                     <Box sx={{ display: 'flex', gap: 3, alignItems: 'flex-start' }}>
@@ -150,7 +150,7 @@ export function UserAccountPage() {
                 <Paper sx={sectionPaperSx}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
                         <LockIcon sx={{ color: isDarkMode ? '#A3A3A3' : '#525252' }} />
-                        <Typography variant="h6" fontWeight={600}>
+                        <Typography variant="h6" sx={{ fontWeight: 600 }}>
                             Password
                         </Typography>
                     </Box>
@@ -191,7 +191,7 @@ export function UserAccountPage() {
                 <Paper sx={sectionPaperSx}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
                         <NotificationsIcon sx={{ color: isDarkMode ? '#A3A3A3' : '#525252' }} />
-                        <Typography variant="h6" fontWeight={600}>
+                        <Typography variant="h6" sx={{ fontWeight: 600 }}>
                             Notifications
                         </Typography>
                     </Box>
@@ -230,7 +230,7 @@ export function UserAccountPage() {
                 <Paper sx={sectionPaperSx}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
                         <SecurityIcon sx={{ color: isDarkMode ? '#A3A3A3' : '#525252' }} />
-                        <Typography variant="h6" fontWeight={600}>
+                        <Typography variant="h6" sx={{ fontWeight: 600 }}>
                             Security
                         </Typography>
                     </Box>
@@ -250,7 +250,7 @@ export function UserAccountPage() {
 
                 {/* Danger Zone */}
                 <Paper sx={{ ...sectionPaperSx, borderColor: isDarkMode ? '#7f1d1d' : '#fecaca' }}>
-                    <Typography variant="h6" fontWeight={600} sx={{ mb: 1, color: 'error.main' }}>
+                    <Typography variant="h6" sx={{ fontWeight: 600,  mb: 1, color: 'error.main'  }}>
                         Danger Zone
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>

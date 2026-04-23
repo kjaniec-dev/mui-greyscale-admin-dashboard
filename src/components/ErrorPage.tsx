@@ -35,7 +35,7 @@ export function ErrorPage() {
                 <Typography variant="h4" component="h1" gutterBottom>
                     Oops!
                 </Typography>
-                <Typography variant="body1" color="text.secondary" paragraph>
+                <Typography variant="body1" color="text.secondary"  sx={{ mb: 2 }}>
                     Sorry, an unexpected error has occurred.
                 </Typography>
                 <Typography variant="body2" color="error" sx={{ mb: 4, fontFamily: 'monospace' }}>

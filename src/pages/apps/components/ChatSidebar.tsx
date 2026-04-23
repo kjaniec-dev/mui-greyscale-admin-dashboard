@@ -50,13 +50,13 @@ export function ChatSidebar({
                     onChange={(e) => onSearchChange(e.target.value)}
                     fullWidth
                     size="small"
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon sx={{ fontSize: 20 }} />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                 />
             </Box>
 
@@ -110,7 +110,7 @@ export function ChatSidebar({
                             {/* Content */}
                             <Box sx={{ flex: 1, minWidth: 0 }}>
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 0.25 }}>
-                                    <Typography variant="body2" fontWeight={conv.unreadCount > 0 ? 600 : 400} noWrap>
+                                    <Typography variant="body2" noWrap sx={{ fontWeight: conv.unreadCount > 0 ? 600 : 400 }}>
                                         {conv.participant.name}
                                     </Typography>
                                     {lastMessage && (

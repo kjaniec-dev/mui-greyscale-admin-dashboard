@@ -92,13 +92,13 @@ export function CompanyDialog({ open, onClose, company, mode, onSave, onEdit }: 
             onClose={onClose}
             maxWidth="sm"
             fullWidth
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                     borderRadius: 2,
                     backgroundImage: 'none',
                 }
-            }}
+            } }}
         >
             {/* Header */}
             <DialogTitle sx={{
@@ -124,7 +124,7 @@ export function CompanyDialog({ open, onClose, company, mode, onSave, onEdit }: 
                     {company?.name?.charAt(0) || 'C'}
                 </Avatar>
                 <Box sx={{ flex: 1 }}>
-                    <Typography variant="h6" fontWeight={700}>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>
                         {isViewMode ? (company?.name || 'Company Details') : (company ? 'Edit Company' : 'New Company')}
                     </Typography>
                     {isViewMode && company && (
@@ -146,8 +146,7 @@ export function CompanyDialog({ open, onClose, company, mode, onSave, onEdit }: 
                         <Typography
                             variant="caption"
                             color="text.secondary"
-                            fontWeight={600}
-                            sx={{ textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block' }}
+                            sx={{ fontWeight: 600,  textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block'  }}
                         >
                             Basic Information
                         </Typography>
@@ -220,8 +219,7 @@ export function CompanyDialog({ open, onClose, company, mode, onSave, onEdit }: 
                         <Typography
                             variant="caption"
                             color="text.secondary"
-                            fontWeight={600}
-                            sx={{ textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block' }}
+                            sx={{ fontWeight: 600,  textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block'  }}
                         >
                             Location & Size
                         </Typography>
@@ -290,8 +288,7 @@ export function CompanyDialog({ open, onClose, company, mode, onSave, onEdit }: 
                         <Typography
                             variant="caption"
                             color="text.secondary"
-                            fontWeight={600}
-                            sx={{ textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block' }}
+                            sx={{ fontWeight: 600,  textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block'  }}
                         >
                             About
                         </Typography>

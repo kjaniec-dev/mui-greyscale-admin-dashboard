@@ -129,7 +129,7 @@ export function CampaignForm({ defaultValues, onSubmit, isSubmitting = false, on
                             type="date"
                             fullWidth
                             required
-                            InputLabelProps={{ shrink: true }}
+                            slotProps={{ inputLabel: { shrink: true } }}
                             error={!!errors.startDate}
                             helperText={errors.startDate?.message}
                             disabled={isSubmitting}
@@ -146,7 +146,7 @@ export function CampaignForm({ defaultValues, onSubmit, isSubmitting = false, on
                             type="date"
                             fullWidth
                             required
-                            InputLabelProps={{ shrink: true }}
+                            slotProps={{ inputLabel: { shrink: true } }}
                             error={!!errors.endDate}
                             helperText={errors.endDate?.message}
                             disabled={isSubmitting}
@@ -170,9 +170,9 @@ export function CampaignForm({ defaultValues, onSubmit, isSubmitting = false, on
                         helperText={errors.budget?.message}
                         disabled={isSubmitting}
                         onChange={(e) => field.onChange(Number(e.target.value))}
-                        InputProps={{
+                        slotProps={{ input: {
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
-                        }}
+                        } }}
                     />
                 )}
             />

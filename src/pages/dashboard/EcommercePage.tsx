@@ -13,7 +13,7 @@ export function EcommercePage() {
         <Box>
             {/* Page Header */}
             <Box sx={{ mb: 4 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     E-commerce
                 </Typography>
                 <Typography variant="body1" color="text.secondary">

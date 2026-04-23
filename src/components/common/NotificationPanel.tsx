@@ -117,7 +117,7 @@ export function NotificationPanel() {
                 onClose={handleClose}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                 transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-                PaperProps={{
+                slotProps={{ paper: {
                     sx: {
                         width: 380,
                         maxHeight: 480,
@@ -127,7 +127,7 @@ export function NotificationPanel() {
                             ? '0 8px 32px rgba(0,0,0,0.4)'
                             : '0 8px 32px rgba(0,0,0,0.12)',
                     },
-                }}
+                } }}
             >
                 {/* Header */}
                 <Box
@@ -140,7 +140,7 @@ export function NotificationPanel() {
                     }}
                 >
                     <Box>
-                        <Typography variant="subtitle1" fontWeight={600}>
+                        <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
                             Notifications
                         </Typography>
                         <Typography variant="caption" color="text.secondary">
@@ -197,8 +197,7 @@ export function NotificationPanel() {
                                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                             <Typography
                                                 variant="body2"
-                                                fontWeight={notification.read ? 400 : 600}
-                                                sx={{ flex: 1 }}
+                                                sx={{ fontWeight: notification.read ? 400 : 600,  flex: 1  }}
                                             >
                                                 {notification.title}
                                             </Typography>

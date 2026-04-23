@@ -49,7 +49,7 @@ export function ComposeDialog({ open, onClose, onSend, replyTo }: ComposeDialogP
             onClose={handleClose}
             maxWidth="md"
             fullWidth
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                     borderRadius: 2,
@@ -57,7 +57,7 @@ export function ComposeDialog({ open, onClose, onSend, replyTo }: ComposeDialogP
                     display: 'flex',
                     flexDirection: 'column',
                 },
-            }}
+            } }}
         >
             <DialogTitle
                 sx={{
@@ -80,14 +80,14 @@ export function ComposeDialog({ open, onClose, onSend, replyTo }: ComposeDialogP
                         onChange={(e) => setTo(e.target.value)}
                         fullWidth
                         variant="standard"
-                        InputProps={{
+                        slotProps={{ input: {
                             disableUnderline: true,
                             sx: {
                                 px: 2,
                                 py: 1.5,
                                 borderBottom: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
                             },
-                        }}
+                        } }}
                     />
                     <TextField
                         placeholder="Subject"
@@ -95,14 +95,14 @@ export function ComposeDialog({ open, onClose, onSend, replyTo }: ComposeDialogP
                         onChange={(e) => setSubject(e.target.value)}
                         fullWidth
                         variant="standard"
-                        InputProps={{
+                        slotProps={{ input: {
                             disableUnderline: true,
                             sx: {
                                 px: 2,
                                 py: 1.5,
                                 borderBottom: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
                             },
-                        }}
+                        } }}
                     />
                     <TextField
                         placeholder="Write your message..."
@@ -111,10 +111,10 @@ export function ComposeDialog({ open, onClose, onSend, replyTo }: ComposeDialogP
                         fullWidth
                         multiline
                         variant="standard"
-                        InputProps={{
+                        slotProps={{ input: {
                             disableUnderline: true,
                             sx: { px: 2, py: 2, flex: 1 },
-                        }}
+                        } }}
                         sx={{ flex: 1 }}
                     />
                 </Stack>

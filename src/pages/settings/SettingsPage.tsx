@@ -70,7 +70,7 @@ function SettingRow({ icon, label, description, children }: SettingRowProps) {
                     {icon}
                 </Box>
                 <Box>
-                    <Typography variant="body2" fontWeight={500}>
+                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
                         {label}
                     </Typography>
                     {description && (
@@ -187,7 +187,7 @@ export function SettingsPage() {
             {/* Page Header */}
             <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Settings
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -231,7 +231,7 @@ export function SettingsPage() {
                         <Paper sx={sectionPaperSx}>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
                                 <SiteIcon sx={{ color: isDarkMode ? '#A3A3A3' : '#525252' }} />
-                                <Typography variant="h6" fontWeight={600}>
+                                <Typography variant="h6" sx={{ fontWeight: 600 }}>
                                     Site Information
                                 </Typography>
                             </Box>
@@ -278,7 +278,7 @@ export function SettingsPage() {
                         <Paper sx={sectionPaperSx}>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
                                 <TuneIcon sx={{ color: isDarkMode ? '#A3A3A3' : '#525252' }} />
-                                <Typography variant="h6" fontWeight={600}>
+                                <Typography variant="h6" sx={{ fontWeight: 600 }}>
                                     Regional Settings
                                 </Typography>
                             </Box>
@@ -350,7 +350,7 @@ export function SettingsPage() {
                     <Paper sx={sectionPaperSx}>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
                             <PaletteIcon sx={{ color: isDarkMode ? '#A3A3A3' : '#525252' }} />
-                            <Typography variant="h6" fontWeight={600}>
+                            <Typography variant="h6" sx={{ fontWeight: 600 }}>
                                 Theme & Display
                             </Typography>
                         </Box>
@@ -411,7 +411,7 @@ export function SettingsPage() {
                     <Paper sx={sectionPaperSx}>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
                             <EmailIcon sx={{ color: isDarkMode ? '#A3A3A3' : '#525252' }} />
-                            <Typography variant="h6" fontWeight={600}>
+                            <Typography variant="h6" sx={{ fontWeight: 600 }}>
                                 SMTP Configuration
                             </Typography>
                         </Box>
@@ -483,7 +483,7 @@ export function SettingsPage() {
                     <Paper sx={sectionPaperSx}>
                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
                             <NotificationIcon sx={{ color: isDarkMode ? '#A3A3A3' : '#525252' }} />
-                            <Typography variant="h6" fontWeight={600}>
+                            <Typography variant="h6" sx={{ fontWeight: 600 }}>
                                 Notification Preferences
                             </Typography>
                         </Box>
@@ -548,7 +548,7 @@ export function SettingsPage() {
                         <Paper sx={sectionPaperSx}>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
                                 <SecurityIcon sx={{ color: isDarkMode ? '#A3A3A3' : '#525252' }} />
-                                <Typography variant="h6" fontWeight={600}>
+                                <Typography variant="h6" sx={{ fontWeight: 600 }}>
                                     Authentication
                                 </Typography>
                             </Box>
@@ -573,9 +573,9 @@ export function SettingsPage() {
                                         type="number"
                                         value={settings.sessionTimeout}
                                         onChange={(e) => handleChange('sessionTimeout', e.target.value)}
-                                        InputProps={{
+                                        slotProps={{ input: {
                                             endAdornment: <InputAdornment position="end">min</InputAdornment>,
-                                        }}
+                                        } }}
                                         sx={{ ...inputSx, minWidth: 120 }}
                                     />
                                 </SettingRow>
@@ -589,9 +589,9 @@ export function SettingsPage() {
                                         type="number"
                                         value={settings.passwordExpiry}
                                         onChange={(e) => handleChange('passwordExpiry', e.target.value)}
-                                        InputProps={{
+                                        slotProps={{ input: {
                                             endAdornment: <InputAdornment position="end">days</InputAdornment>,
-                                        }}
+                                        } }}
                                         sx={{ ...inputSx, minWidth: 120 }}
                                     />
                                 </SettingRow>
@@ -614,7 +614,7 @@ export function SettingsPage() {
                         <Paper sx={sectionPaperSx}>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
                                 <VisibilityIcon sx={{ color: isDarkMode ? '#A3A3A3' : '#525252' }} />
-                                <Typography variant="h6" fontWeight={600}>
+                                <Typography variant="h6" sx={{ fontWeight: 600 }}>
                                     Privacy
                                 </Typography>
                             </Box>

@@ -70,11 +70,9 @@ function FolderNode({ folder, level, selectedFolderId, onSelectFolder, children 
                 </ListItemIcon>
                 <ListItemText
                     primary={folder.name}
-                    primaryTypographyProps={{
-                        variant: 'body2',
-                        fontWeight: isSelected ? 500 : 400,
+                    slotProps={{ primary: { variant: 'body2', sx: { sx: { fontWeight: isSelected ? 500 : 400 } } ,
                         noWrap: true,
-                    }}
+                     } }}
                 />
                 {hasChildren && (open ? <ExpandLess sx={{ fontSize: 18 }} /> : <ExpandMore sx={{ fontSize: 18 }} />)}
             </ListItemButton>
@@ -133,7 +131,7 @@ export function FolderTree({ selectedFolderId, onSelectFolder }: FolderTreeProps
                     </ListItemIcon>
                     <ListItemText
                         primary="My Files"
-                        primaryTypographyProps={{ variant: 'body2', fontWeight: 500 }}
+                        slotProps={{ primary: { variant: 'body2', sx: { fontWeight: 500  }  } }}
                     />
                 </ListItemButton>
 

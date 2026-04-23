@@ -41,10 +41,10 @@ export function DealColumn({ columnId, title, deals, onAddDeal, onEditDeal }: De
             {/* Header */}
             <Box sx={{ p: 2, borderBottom: `1px solid ${isDarkMode ? '#262626' : '#E5E5E5'}` }}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-                    <Typography variant="subtitle2" fontWeight={700}>
+                    <Typography variant="subtitle2" sx={{ fontWeight: 700 }}>
                         {title}
                     </Typography>
-                    <Typography variant="caption" color="text.secondary" fontWeight={500}>
+                    <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 500 }}>
                         {deals.length}
                     </Typography>
                 </Box>
@@ -52,7 +52,7 @@ export function DealColumn({ columnId, title, deals, onAddDeal, onEditDeal }: De
                     <Box sx={{ height: 4, flex: 1, bgcolor: isDarkMode ? '#262626' : '#E5E5E5', borderRadius: 2, overflow: 'hidden' }}>
                         <Box sx={{ height: '100%', width: '100%', bgcolor: 'primary.main', opacity: 0.5 }} />
                     </Box>
-                    <Typography variant="caption" fontWeight={600} sx={{ ml: 2 }}>
+                    <Typography variant="caption" sx={{ fontWeight: 600,  ml: 2  }}>
                         {formatAmount(totalAmount)}
                     </Typography>
                 </Box>

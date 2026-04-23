@@ -45,7 +45,7 @@ export function ForgotPasswordPage() {
     return (
         <Box>
             <Box sx={{ mb: 4, textAlign: 'center' }}>
-                <Typography variant="h5" fontWeight={700} gutterBottom>
+                <Typography variant="h5" gutterBottom sx={{ fontWeight: 700 }}>
                     Forgot password?
                 </Typography>
                 <Typography variant="body2" color="text.secondary">

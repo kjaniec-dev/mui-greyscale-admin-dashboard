@@ -54,7 +54,7 @@ export function FileManagerPage() {
             {/* Page Header */}
             <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         File Manager
                     </Typography>
                     <Typography variant="body1" color="text.secondary">

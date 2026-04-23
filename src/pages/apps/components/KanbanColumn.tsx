@@ -43,7 +43,7 @@ export function KanbanColumn({ column, onAddTask, onEditTask }: KanbanColumnProp
                 }}
             >
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Typography variant="subtitle2" fontWeight={600}>
+                    <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
                         {column.title}
                     </Typography>
                     <Box
@@ -57,7 +57,7 @@ export function KanbanColumn({ column, onAddTask, onEditTask }: KanbanColumnProp
                             justifyContent: 'center',
                         }}
                     >
-                        <Typography variant="caption" fontWeight={600} sx={{ fontSize: '0.65rem' }}>
+                        <Typography variant="caption" sx={{ fontWeight: 600,  fontSize: '0.65rem'  }}>
                             {column.tasks.length}
                         </Typography>
                     </Box>

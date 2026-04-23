@@ -52,7 +52,7 @@ export function KanbanCard({ task, index, onClick }: KanbanCardProps) {
                     }}
                 >
                     <CardContent sx={{ p: 2, '&:last-child': { pb: 2 } }}>
-                        <Typography variant="body2" fontWeight={500} sx={{ mb: 1 }}>
+                        <Typography variant="body2" sx={{ fontWeight: 500,  mb: 1  }}>
                             {task.title}
                         </Typography>
 

@@ -83,7 +83,7 @@ export function DealCard({ deal, index, onClick }: DealCardProps) {
                             </Typography>
                         </Box>
 
-                        <Typography variant="body2" fontWeight={600} sx={{ mb: 0.5 }}>
+                        <Typography variant="body2" sx={{ fontWeight: 600,  mb: 0.5  }}>
                             {deal.title}
                         </Typography>
 
@@ -96,7 +96,7 @@ export function DealCard({ deal, index, onClick }: DealCardProps) {
                         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                             <Box sx={{ display: 'flex', alignItems: 'center', color: 'success.main' }}>
                                 <MoneyIcon sx={{ fontSize: 16 }} />
-                                <Typography variant="body2" fontWeight={700}>
+                                <Typography variant="body2" sx={{ fontWeight: 700 }}>
                                     {formatCurrency(deal.amount)}
                                 </Typography>
                             </Box>

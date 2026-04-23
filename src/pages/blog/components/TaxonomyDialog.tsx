@@ -80,13 +80,13 @@ export function TaxonomyDialog({ open, onClose, item, mode, type, onSave, onEdit
             onClose={onClose}
             maxWidth="sm"
             fullWidth
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                     borderRadius: 2,
                     backgroundImage: 'none',
                 }
-            }}
+            } }}
         >
             <DialogTitle sx={{
                 display: 'flex',
@@ -110,7 +110,7 @@ export function TaxonomyDialog({ open, onClose, item, mode, type, onSave, onEdit
                     <CategoryIcon />
                 </Avatar>
                 <Box sx={{ flex: 1 }}>
-                    <Typography variant="h6" fontWeight={700}>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>
                         {isViewMode ? formData.name || `View ${type}` : (item ? `Edit ${type}` : `New ${type}`)}
                     </Typography>
                     {isViewMode && item && (
@@ -130,8 +130,7 @@ export function TaxonomyDialog({ open, onClose, item, mode, type, onSave, onEdit
                         <Typography
                             variant="caption"
                             color="text.secondary"
-                            fontWeight={600}
-                            sx={{ textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block' }}
+                            sx={{ fontWeight: 600,  textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block'  }}
                         >
                             Basic Information
                         </Typography>

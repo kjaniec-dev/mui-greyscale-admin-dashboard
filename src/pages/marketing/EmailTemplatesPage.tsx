@@ -167,10 +167,10 @@ export const EmailTemplatesPage = () => {
                         {categoryIcons[params.row.category as EmailTemplateCategory]}
                     </Box>
                     <Box sx={{ minWidth: 0, flex: 1 }}>
-                        <Typography variant="body2" fontWeight={600} noWrap>
+                        <Typography variant="body2" noWrap sx={{ fontWeight: 600 }}>
                             {params.value}
                         </Typography>
-                        <Typography variant="caption" color="text.secondary" noWrap display="block">
+                        <Typography variant="caption" color="text.secondary" noWrap sx={{ display: 'block' }}>
                             {params.row.subject}
                         </Typography>
                     </Box>
@@ -235,7 +235,7 @@ export const EmailTemplatesPage = () => {
             {/* Header */}
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight="bold" gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold' }}>
                         Email Templates
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -274,13 +274,13 @@ export const EmailTemplatesPage = () => {
                         fullWidth
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        InputProps={{
+                        slotProps={{ input: {
                             startAdornment: (
                                 <InputAdornment position="start">
                                     <SearchIcon color="action" />
                                 </InputAdornment>
                             ),
-                        }}
+                        } }}
                         sx={{ maxWidth: 400 }}
                     />
                 </Box>

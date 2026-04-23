@@ -26,7 +26,7 @@ import {
     Today as TodayIcon,
     Event as UpcomingIcon,
     AssignmentLate as LateIcon,
-    CheckCircle as CompletedIcon,
+    
     FiberManualRecord as DotIcon,
 } from '@mui/icons-material';
 import {
@@ -196,7 +196,7 @@ export const TasksPage = () => {
                             sx={{ borderRadius: 1, mb: 0.5 }}
                         >
                             <ListItemIcon sx={{ minWidth: 40 }}><ListIcon fontSize="small" /></ListItemIcon>
-                            <ListItemText primary="All Tasks" primaryTypographyProps={{ variant: 'body2', fontWeight: currentFilter === 'All' ? 600 : 400 }} />
+                            <ListItemText primary="All Tasks" slotProps={{ primary: { variant: 'body2', sx: { fontWeight: currentFilter === 'All' ? 600 : 400  }  } }} />
                             <Typography variant="caption" color="text.secondary">{tasks.length}</Typography>
                         </ListItemButton>
                     </ListItem>
@@ -207,7 +207,7 @@ export const TasksPage = () => {
                             sx={{ borderRadius: 1, mb: 0.5 }}
                         >
                             <ListItemIcon sx={{ minWidth: 40 }}><TodayIcon fontSize="small" color="primary" /></ListItemIcon>
-                            <ListItemText primary="Today" primaryTypographyProps={{ variant: 'body2', fontWeight: currentFilter === 'Today' ? 600 : 400 }} />
+                            <ListItemText primary="Today" slotProps={{ primary: { variant: 'body2', sx: { fontWeight: currentFilter === 'Today' ? 600 : 400  }  } }} />
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
@@ -217,7 +217,7 @@ export const TasksPage = () => {
                             sx={{ borderRadius: 1, mb: 0.5 }}
                         >
                             <ListItemIcon sx={{ minWidth: 40 }}><UpcomingIcon fontSize="small" color="warning" /></ListItemIcon>
-                            <ListItemText primary="Upcoming" primaryTypographyProps={{ variant: 'body2', fontWeight: currentFilter === 'Upcoming' ? 600 : 400 }} />
+                            <ListItemText primary="Upcoming" slotProps={{ primary: { variant: 'body2', sx: { fontWeight: currentFilter === 'Upcoming' ? 600 : 400  }  } }} />
                         </ListItemButton>
                     </ListItem>
                     <ListItem disablePadding>
@@ -227,17 +227,7 @@ export const TasksPage = () => {
                             sx={{ borderRadius: 1, mb: 0.5 }}
                         >
                             <ListItemIcon sx={{ minWidth: 40 }}><LateIcon fontSize="small" color="error" /></ListItemIcon>
-                            <ListItemText primary="Overdue" primaryTypographyProps={{ variant: 'body2', fontWeight: currentFilter === 'Overdue' ? 600 : 400 }} />
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem disablePadding>
-                        <ListItemButton
-                            selected={currentFilter === 'Completed'}
-                            onClick={() => setCurrentFilter('Completed')}
-                            sx={{ borderRadius: 1 }}
-                        >
-                            <ListItemIcon sx={{ minWidth: 40 }}><CompletedIcon fontSize="small" color="success" /></ListItemIcon>
-                            <ListItemText primary="Completed" primaryTypographyProps={{ variant: 'body2', fontWeight: currentFilter === 'Completed' ? 600 : 400 }} />
+                            <ListItemText primary="Overdue" slotProps={{ primary: { variant: 'body2', sx: { fontWeight: currentFilter === 'Completed' ? 600 : 400  }  } }} />
                         </ListItemButton>
                     </ListItem>
                 </List>
@@ -245,7 +235,7 @@ export const TasksPage = () => {
                 <Divider />
 
                 <Box sx={{ p: 2 }}>
-                    <Typography variant="overline" color="text.secondary" fontWeight={600} sx={{ px: 1 }}>
+                    <Typography variant="overline" color="text.secondary" sx={{ fontWeight: 600,  px: 1  }}>
                         Lists
                     </Typography>
                     <List sx={{ mt: 1 }}>
@@ -261,7 +251,7 @@ export const TasksPage = () => {
                                     </ListItemIcon>
                                     <ListItemText
                                         primary={list.name}
-                                        primaryTypographyProps={{ variant: 'body2', fontWeight: currentFilter === list.id ? 600 : 400 }}
+                                        slotProps={{ primary: { variant: 'body2', sx: { fontWeight: currentFilter === list.id ? 600 : 400  }  } }}
                                     />
                                 </ListItemButton>
                             </ListItem>
@@ -292,7 +282,7 @@ export const TasksPage = () => {
                         borderBottom: `1px solid ${isDarkMode ? '#262626' : '#E5E5E5'} `
                     }}
                 >
-                    <Typography variant="h6" fontWeight={600}>
+                    <Typography variant="h6" sx={{ fontWeight: 600 }}>
                         {currentFilter === 'All' ? 'All Tasks' : currentFilter}
                     </Typography>
 
@@ -365,15 +355,18 @@ export const TasksPage = () => {
                                         </ListItemIcon>
 
                                         <ListItemText
+                                            slotProps={{
+                                                primary: { component: 'div' },
+                                                secondary: { component: 'div' },
+                                            }}
                                             primary={
                                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 0.5 }}>
                                                     <Typography
                                                         variant="body1"
-                                                        fontWeight={task.completed ? 400 : 500}
-                                                        sx={{
+                                                        sx={{ fontWeight: task.completed ? 400 : 500, 
                                                             textDecoration: task.completed ? 'line-through' : 'none',
                                                             color: task.completed ? 'text.secondary' : 'text.primary'
-                                                        }}
+                                                         }}
                                                     >
                                                         {task.title}
                                                     </Typography>

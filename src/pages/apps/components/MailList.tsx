@@ -106,9 +106,8 @@ export function MailList({ emails, selectedId, onSelect, onToggleStar }: MailLis
                         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 0.5 }}>
                             <Typography
                                 variant="body2"
-                                fontWeight={email.read ? 400 : 600}
                                 noWrap
-                                sx={{ flex: 1, mr: 1 }}
+                                sx={{ fontWeight: email.read ? 400 : 600,  flex: 1, mr: 1  }}
                             >
                                 {email.from.name}
                             </Typography>
@@ -123,9 +122,8 @@ export function MailList({ emails, selectedId, onSelect, onToggleStar }: MailLis
                         </Box>
                         <Typography
                             variant="body2"
-                            fontWeight={email.read ? 400 : 500}
                             noWrap
-                            sx={{ color: isDarkMode ? '#E5E5E5' : '#171717' }}
+                            sx={{ fontWeight: email.read ? 400 : 500,  color: isDarkMode ? '#E5E5E5' : '#171717'  }}
                         >
                             {email.subject}
                         </Typography>

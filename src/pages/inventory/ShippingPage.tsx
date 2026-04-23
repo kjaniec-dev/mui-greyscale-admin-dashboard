@@ -90,7 +90,7 @@ export function ShippingPage() {
             {/* Page Header */}
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Shipping
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -119,13 +119,13 @@ export function ShippingPage() {
                     placeholder="Search by ID, order, tracking #, or customer..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                     sx={{ flex: 1, minWidth: 300 }}
                 />
                 <FormControl sx={{ minWidth: 150 }}>

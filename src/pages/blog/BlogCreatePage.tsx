@@ -101,7 +101,7 @@ export function BlogCreatePage() {
             {/* Page Header */}
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Create Blog Post
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -125,7 +125,7 @@ export function BlogCreatePage() {
             >
                 {/* Main Content */}
                 <Paper sx={{ p: 3 }}>
-                    <Typography variant="h6" fontWeight={600} sx={{ mb: 3 }}>
+                    <Typography variant="h6" sx={{ fontWeight: 600,  mb: 3  }}>
                         Content
                     </Typography>
 
@@ -171,7 +171,7 @@ export function BlogCreatePage() {
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                     {/* Publish Settings */}
                     <Paper sx={{ p: 3 }}>
-                        <Typography variant="h6" fontWeight={600} sx={{ mb: 3 }}>
+                        <Typography variant="h6" sx={{ fontWeight: 600,  mb: 3  }}>
                             Publish
                         </Typography>
 
@@ -206,7 +206,7 @@ export function BlogCreatePage() {
 
                     {/* Featured Image */}
                     <Paper sx={{ p: 3 }}>
-                        <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
+                        <Typography variant="h6" sx={{ fontWeight: 600,  mb: 2  }}>
                             Featured Image
                         </Typography>
 
@@ -235,7 +235,7 @@ export function BlogCreatePage() {
 
                     {/* Tags */}
                     <Paper sx={{ p: 3 }}>
-                        <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
+                        <Typography variant="h6" sx={{ fontWeight: 600,  mb: 2  }}>
                             Tags
                         </Typography>
 

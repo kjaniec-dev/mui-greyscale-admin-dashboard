@@ -46,12 +46,12 @@ export function CustomerDetailDrawer({ open, onClose, customer }: CustomerDetail
             anchor="right"
             open={open}
             onClose={onClose}
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     width: { xs: '100%', sm: 420 },
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                 },
-            }}
+            } }}
         >
             <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 {/* Header */}
@@ -64,7 +64,7 @@ export function CustomerDetailDrawer({ open, onClose, customer }: CustomerDetail
                         borderBottom: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
                     }}
                 >
-                    <Typography variant="h6" fontWeight={700}>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>
                         Customer Details
                     </Typography>
                     <IconButton
@@ -97,7 +97,7 @@ export function CustomerDetailDrawer({ open, onClose, customer }: CustomerDetail
                         >
                             {getInitials(customer.name)}
                         </Avatar>
-                        <Typography variant="h5" fontWeight={700} gutterBottom>
+                        <Typography variant="h5" gutterBottom sx={{ fontWeight: 700 }}>
                             {customer.name}
                         </Typography>
                         {customer.company && (

@@ -87,7 +87,7 @@ export function CompaniesPage() {
                             {company.name.charAt(0)}
                         </Avatar>
                         <Box sx={{ display: 'flex', flexDirection: 'column', lineHeight: 1.2 }}>
-                            <Typography variant="body2" fontWeight={600}>
+                            <Typography variant="body2" sx={{ fontWeight: 600 }}>
                                 {company.name}
                             </Typography>
                             <Typography variant="caption" color="text.secondary">
@@ -189,7 +189,7 @@ export function CompaniesPage() {
                     <BusinessIcon />
                 </Avatar>
                 <Box>
-                    <Typography variant="h4" fontWeight={700}>
+                    <Typography variant="h4" sx={{ fontWeight: 700 }}>
                         Companies
                     </Typography>
                     <Typography variant="body1" color="text.secondary">

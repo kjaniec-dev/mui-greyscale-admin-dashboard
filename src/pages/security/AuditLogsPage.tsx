@@ -111,7 +111,7 @@ export function AuditLogsPage() {
             headerName: 'User',
             width: 220,
             renderCell: (params: GridRenderCellParams<AuditLogEntry>) => (
-                <Stack direction="row" spacing={1} alignItems="center" sx={{ height: '100%' }}>
+                <Stack direction="row" spacing={1}  sx={{ alignItems: 'center',  height: '100%' }}>
                     <Avatar
                         src={params.row.userAvatar}
                         alt={params.row.userName}
@@ -120,7 +120,7 @@ export function AuditLogsPage() {
                         {params.row.userName.charAt(0)}
                     </Avatar>
                     <Box sx={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-                        <Typography variant="body2" fontWeight={500} sx={{ lineHeight: '1.2' }} noWrap>
+                        <Typography variant="body2" sx={{ fontWeight: 500,  lineHeight: '1.2'  }} noWrap>
                             {params.row.userName}
                         </Typography>
                         <Typography variant="caption" color="text.secondary" sx={{ lineHeight: '1.2' }} noWrap>
@@ -150,7 +150,7 @@ export function AuditLogsPage() {
             width: 140,
             renderCell: (params: GridRenderCellParams<AuditLogEntry>) => (
                 <Box sx={{ display: 'flex', flexDirection: 'column', overflow: 'hidden', height: '100%', justifyContent: 'center' }}>
-                    <Typography variant="body2" fontWeight={500} sx={{ lineHeight: '1.2' }} noWrap>
+                    <Typography variant="body2" sx={{ fontWeight: 500,  lineHeight: '1.2'  }} noWrap>
                         {resourceLabels[params.row.resource]}
                     </Typography>
                     {params.row.resourceName && (
@@ -217,7 +217,7 @@ export function AuditLogsPage() {
     return (
         <Box>
             <Box sx={{ mb: 4 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     Audit Logs
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
@@ -231,13 +231,13 @@ export function AuditLogsPage() {
                     placeholder="Search logs..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                     sx={{ minWidth: 300 }}
                 />
 
@@ -330,14 +330,14 @@ export function AuditLogsPage() {
                 anchor="right"
                 open={drawerOpen}
                 onClose={handleCloseDrawer}
-                PaperProps={{
+                slotProps={{ paper: {
                     sx: { width: { xs: '100%', sm: 420 } },
-                }}
+                } }}
             >
                 {selectedLog && (
                     <Box sx={{ p: 3 }}>
-                        <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 3 }}>
-                            <Typography variant="h6" fontWeight={600}>
+                        <Stack direction="row"   sx={{ justifyContent: 'space-between',  alignItems: 'center',  mb: 3 }}>
+                            <Typography variant="h6" sx={{ fontWeight: 600 }}>
                                 Log Details
                             </Typography>
                             <IconButton onClick={handleCloseDrawer}>
@@ -348,18 +348,18 @@ export function AuditLogsPage() {
                         <Stack spacing={3}>
                             {/* User Info */}
                             <Box>
-                                <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1 }}>
+                                <Stack direction="row" spacing={1}  sx={{ alignItems: 'center',  mb: 1 }}>
                                     <UserIcon fontSize="small" color="action" />
                                     <Typography variant="subtitle2" color="text.secondary">
                                         User
                                     </Typography>
                                 </Stack>
-                                <Stack direction="row" spacing={2} alignItems="center">
+                                <Stack direction="row" spacing={2}  sx={{ alignItems: 'center' }}>
                                     <Avatar src={selectedLog.userAvatar} sx={{ width: 40, height: 40 }}>
                                         {selectedLog.userName.charAt(0)}
                                     </Avatar>
                                     <Box>
-                                        <Typography variant="body1" fontWeight={500}>
+                                        <Typography variant="body1" sx={{ fontWeight: 500 }}>
                                             {selectedLog.userName}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">
@@ -397,13 +397,13 @@ export function AuditLogsPage() {
 
                             {/* Resource */}
                             <Box>
-                                <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1 }}>
+                                <Stack direction="row" spacing={1}  sx={{ alignItems: 'center',  mb: 1 }}>
                                     <ResourceIcon fontSize="small" color="action" />
                                     <Typography variant="subtitle2" color="text.secondary">
                                         Resource
                                     </Typography>
                                 </Stack>
-                                <Typography variant="body1" fontWeight={500}>
+                                <Typography variant="body1" sx={{ fontWeight: 500 }}>
                                     {resourceLabels[selectedLog.resource]}
                                 </Typography>
                                 {selectedLog.resourceName && (
@@ -422,7 +422,7 @@ export function AuditLogsPage() {
 
                             {/* Timestamp */}
                             <Box>
-                                <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1 }}>
+                                <Stack direction="row" spacing={1}  sx={{ alignItems: 'center',  mb: 1 }}>
                                     <TimeIcon fontSize="small" color="action" />
                                     <Typography variant="subtitle2" color="text.secondary">
                                         Timestamp
@@ -437,7 +437,7 @@ export function AuditLogsPage() {
 
                             {/* Device Info */}
                             <Box>
-                                <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1 }}>
+                                <Stack direction="row" spacing={1}  sx={{ alignItems: 'center',  mb: 1 }}>
                                     <DeviceIcon fontSize="small" color="action" />
                                     <Typography variant="subtitle2" color="text.secondary">
                                         Device Information

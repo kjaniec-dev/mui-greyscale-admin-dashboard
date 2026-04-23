@@ -132,7 +132,7 @@ export function MailPage() {
         <Box sx={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 140px)' }}>
             {/* Page Header */}
             <Box sx={{ mb: 3 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     Mail
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
@@ -239,13 +239,13 @@ export function MailPage() {
                             onChange={(e) => setSearchQuery(e.target.value)}
                             fullWidth
                             size="small"
-                            InputProps={{
+                            slotProps={{ input: {
                                 startAdornment: (
                                     <InputAdornment position="start">
                                         <SearchIcon sx={{ fontSize: 20 }} />
                                     </InputAdornment>
                                 ),
-                            }}
+                            } }}
                         />
                     </Box>
                     <Box sx={{ flex: 1, overflow: 'auto' }}>

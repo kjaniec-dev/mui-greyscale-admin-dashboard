@@ -118,7 +118,7 @@ export function TicketsPage() {
             {/* Page Header */}
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Support Tickets
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -168,13 +168,13 @@ export function TicketsPage() {
                     placeholder="Search tickets by ID, subject, or customer..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                     sx={{ maxWidth: 500 }}
                 />
             </Box>

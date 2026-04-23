@@ -49,9 +49,8 @@ export function FileGrid({ files, onOpenFolder }: FileGridProps) {
                         </Typography>
                         <Typography
                             variant="body2"
-                            fontWeight={500}
                             noWrap
-                            sx={{ mb: 0.5 }}
+                            sx={{ fontWeight: 500,  mb: 0.5  }}
                         >
                             {file.name}
                         </Typography>

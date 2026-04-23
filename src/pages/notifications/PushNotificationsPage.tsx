@@ -59,7 +59,7 @@ export function PushNotificationsPage() {
                     <NotificationsActiveIcon />
                 </Avatar>
                 <Box>
-                    <Typography variant="h4" fontWeight={700}>
+                    <Typography variant="h4" sx={{ fontWeight: 700 }}>
                         Push Notifications
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -86,7 +86,7 @@ export function PushNotificationsPage() {
                 </Alert>
 
                 <Box>
-                    <Typography variant="h6" fontWeight={600} gutterBottom>
+                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                         Devices
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
@@ -114,7 +114,7 @@ export function PushNotificationsPage() {
                 <Divider />
 
                 <Box>
-                    <Typography variant="h6" fontWeight={600} gutterBottom>
+                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                         Notification Types
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
@@ -126,7 +126,7 @@ export function PushNotificationsPage() {
                             control={<Switch checked={notifySecurity} onChange={(e) => setNotifySecurity(e.target.checked)} />}
                             label={
                                 <Box>
-                                    <Typography variant="body1" fontWeight={500}>Security Alerts</Typography>
+                                    <Typography variant="body1" sx={{ fontWeight: 500 }}>Security Alerts</Typography>
                                     <Typography variant="body2" color="text.secondary">New logins, password changes, and suspicious activity.</Typography>
                                 </Box>
                             }
@@ -135,7 +135,7 @@ export function PushNotificationsPage() {
                             control={<Switch checked={notifyMarketing} onChange={(e) => setNotifyMarketing(e.target.checked)} />}
                             label={
                                 <Box>
-                                    <Typography variant="body1" fontWeight={500}>Marketing Campaigns</Typography>
+                                    <Typography variant="body1" sx={{ fontWeight: 500 }}>Marketing Campaigns</Typography>
                                     <Typography variant="body2" color="text.secondary">Alerts about your active campaign performance and milestones.</Typography>
                                 </Box>
                             }
@@ -144,7 +144,7 @@ export function PushNotificationsPage() {
                             control={<Switch checked={notifyUpdates} onChange={(e) => setNotifyUpdates(e.target.checked)} />}
                             label={
                                 <Box>
-                                    <Typography variant="body1" fontWeight={500}>System Updates</Typography>
+                                    <Typography variant="body1" sx={{ fontWeight: 500 }}>System Updates</Typography>
                                     <Typography variant="body2" color="text.secondary">Platform updates, maintenance windows, and new features.</Typography>
                                 </Box>
                             }

@@ -15,6 +15,7 @@ import {
     Divider,
     Paper,
     useTheme,
+    InputLabel,
 } from '@mui/material';
 import { Add as AddIcon, Delete as DeleteIcon } from '@mui/icons-material';
 
@@ -114,7 +115,7 @@ export function InvoiceForm({ defaultValues, onSubmit, isSubmitting = false }: I
         >
             {/* Customer/Company Information */}
             <Box>
-                <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
+                <Typography variant="h6" sx={{ fontWeight: 600,  mb: 2  }}>
                     Bill To
                 </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -160,7 +161,7 @@ export function InvoiceForm({ defaultValues, onSubmit, isSubmitting = false }: I
 
             {/* Billing Address */}
             <Box>
-                <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
+                <Typography variant="h6" sx={{ fontWeight: 600,  mb: 2  }}>
                     Billing Address
                 </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -261,7 +262,7 @@ export function InvoiceForm({ defaultValues, onSubmit, isSubmitting = false }: I
             {/* Invoice Items */}
             <Box>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-                    <Typography variant="h6" fontWeight={600}>
+                    <Typography variant="h6" sx={{ fontWeight: 600 }}>
                         Line Items
                     </Typography>
                     <IconButton
@@ -313,7 +314,7 @@ export function InvoiceForm({ defaultValues, onSubmit, isSubmitting = false }: I
                                         disabled={isSubmitting}
                                         size="small"
                                         sx={{ ...inputSx, width: 100 }}
-                                        inputProps={{ min: 1 }}
+                                        slotProps={{ htmlInput: { min: 1 } }}
                                     />
                                 )}
                             />
@@ -330,11 +331,13 @@ export function InvoiceForm({ defaultValues, onSubmit, isSubmitting = false }: I
                                         error={!!errors.items?.[index]?.rate}
                                         disabled={isSubmitting}
                                         size="small"
-                                        sx={{ ...inputSx, width: 120 }}
-                                        InputProps={{
-                                            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                                        sx={{ ...inputSx, width: 180 }}
+                                        slotProps={{
+                                            input: {
+                                                startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                                            },
+                                            htmlInput: { step: '0.01', min: 0 }
                                         }}
-                                        inputProps={{ step: '0.01', min: 0 }}
                                     />
                                 )}
                             />
@@ -371,8 +374,8 @@ export function InvoiceForm({ defaultValues, onSubmit, isSubmitting = false }: I
                     </Box>
                     <Divider sx={{ my: 1 }} />
                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <Typography variant="subtitle1" fontWeight={600}>Total Due</Typography>
-                        <Typography variant="subtitle1" fontWeight={600}>${total.toFixed(2)}</Typography>
+                        <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>Total Due</Typography>
+                        <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>${total.toFixed(2)}</Typography>
                     </Box>
                 </Paper>
             </Box>
@@ -394,7 +397,7 @@ export function InvoiceForm({ defaultValues, onSubmit, isSubmitting = false }: I
                             error={!!errors.dueDate}
                             helperText={errors.dueDate?.message}
                             disabled={isSubmitting}
-                            InputLabelProps={{ shrink: true }}
+                            slotProps={{ inputLabel: { shrink: true } }}
                             sx={inputSx}
                         />
                     )}
@@ -404,9 +407,11 @@ export function InvoiceForm({ defaultValues, onSubmit, isSubmitting = false }: I
                     control={control}
                     render={({ field }) => (
                         <FormControl fullWidth required error={!!errors.status}>
-                            <FormLabel sx={labelSx}>Status</FormLabel>
+                            <InputLabel id="status-label">Status</InputLabel>
                             <Select
                                 {...field}
+                                labelId="status-label"
+                                label="Status"
                                 disabled={isSubmitting}
                                 sx={{ bgcolor: isDarkMode ? '#171717' : '#FAFAFA' }}
                             >

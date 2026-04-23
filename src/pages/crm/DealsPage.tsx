@@ -131,7 +131,7 @@ export function DealsPage() {
                         <ViewKanbanIcon />
                     </Box>
                     <Box>
-                        <Typography variant="h4" fontWeight={700}>
+                        <Typography variant="h4" sx={{ fontWeight: 700 }}>
                             Sales Pipeline
                         </Typography>
                         <Typography variant="body2" color="text.secondary">

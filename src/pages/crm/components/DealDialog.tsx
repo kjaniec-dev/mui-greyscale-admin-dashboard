@@ -74,13 +74,13 @@ export function DealDialog({ open, onClose, deal, onSave }: DealDialogProps) {
             onClose={onClose}
             maxWidth="sm"
             fullWidth
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                     borderRadius: 2,
                     backgroundImage: 'none',
                 }
-            }}
+            } }}
         >
             <DialogTitle sx={{
                 display: 'flex',
@@ -89,7 +89,7 @@ export function DealDialog({ open, onClose, deal, onSave }: DealDialogProps) {
                 borderBottom: `1px solid ${theme.palette.divider}`,
                 pb: 2
             }}>
-                <Typography variant="h6" fontWeight={700}>
+                <Typography variant="h6" sx={{ fontWeight: 700 }}>
                     {deal ? 'Edit Deal' : 'New Deal'}
                 </Typography>
                 <IconButton onClick={onClose} size="small" sx={{ color: 'text.secondary' }}>
@@ -104,8 +104,7 @@ export function DealDialog({ open, onClose, deal, onSave }: DealDialogProps) {
                         <Typography
                             variant="caption"
                             color="text.secondary"
-                            fontWeight={600}
-                            sx={{ textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block' }}
+                            sx={{ fontWeight: 600,  textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block'  }}
                         >
                             Deal Information
                         </Typography>
@@ -134,8 +133,7 @@ export function DealDialog({ open, onClose, deal, onSave }: DealDialogProps) {
                         <Typography
                             variant="caption"
                             color="text.secondary"
-                            fontWeight={600}
-                            sx={{ textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block' }}
+                            sx={{ fontWeight: 600,  textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block'  }}
                         >
                             Value & Stage
                         </Typography>
@@ -184,8 +182,7 @@ export function DealDialog({ open, onClose, deal, onSave }: DealDialogProps) {
                         <Typography
                             variant="caption"
                             color="text.secondary"
-                            fontWeight={600}
-                            sx={{ textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block' }}
+                            sx={{ fontWeight: 600,  textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block'  }}
                         >
                             Timeline
                         </Typography>

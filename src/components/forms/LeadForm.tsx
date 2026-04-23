@@ -260,9 +260,9 @@ export function LeadForm({ defaultValues, onSubmit, isSubmitting = false }: Lead
                         error={!!errors.value}
                         helperText={errors.value?.message}
                         disabled={isSubmitting}
-                        InputProps={{
+                        slotProps={{ input: {
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
-                        }}
+                        } }}
                         sx={inputBgStyle}
                     />
                 )}

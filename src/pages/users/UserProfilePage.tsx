@@ -63,7 +63,7 @@ export function UserProfilePage() {
         <Box>
             {/* Page Header */}
             <Box sx={{ mb: 4 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     My Profile
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
@@ -96,13 +96,13 @@ export function UserProfilePage() {
                     >
                         {getInitials(currentUser.name)}
                     </Avatar>
-                    <Typography variant="h5" fontWeight={700} gutterBottom>
+                    <Typography variant="h5" gutterBottom sx={{ fontWeight: 700 }}>
                         {currentUser.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                         {currentUser.email}
                     </Typography>
-                    <Stack direction="row" spacing={1} justifyContent="center" sx={{ mb: 3 }}>
+                    <Stack direction="row" spacing={1}  sx={{ justifyContent: 'center',  mb: 3 }}>
                         <Chip
                             label={currentUser.role}
                             size="small"
@@ -169,7 +169,7 @@ export function UserProfilePage() {
                             borderRadius: 2,
                         }}
                     >
-                        <Typography variant="h6" fontWeight={600} sx={{ mb: 3 }}>
+                        <Typography variant="h6" sx={{ fontWeight: 600,  mb: 3  }}>
                             Personal Information
                         </Typography>
                         <Stack spacing={2.5}>
@@ -200,7 +200,7 @@ export function UserProfilePage() {
                             borderRadius: 2,
                         }}
                     >
-                        <Typography variant="h6" fontWeight={600} sx={{ mb: 3 }}>
+                        <Typography variant="h6" sx={{ fontWeight: 600,  mb: 3  }}>
                             Account Activity
                         </Typography>
                         <Stack spacing={2.5}>
@@ -231,10 +231,10 @@ export function UserProfilePage() {
                                     />
                                 </Box>
                                 <Box sx={{ flex: 1 }}>
-                                    <Typography variant="caption" color="text.secondary" display="block">
+                                    <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
                                         Account Status
                                     </Typography>
-                                    <Typography variant="body2" fontWeight={500}>
+                                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
                                         {currentUser.status}
                                     </Typography>
                                 </Box>

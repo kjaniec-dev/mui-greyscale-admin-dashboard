@@ -92,12 +92,12 @@ export function WarehouseFormDialog({
             onClose={onClose}
             maxWidth="md"
             fullWidth
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                     borderRadius: 2,
                 },
-            }}
+            } }}
         >
             <form onSubmit={handleSubmit}>
                 <DialogTitle
@@ -110,7 +110,7 @@ export function WarehouseFormDialog({
                     }}
                 >
                     <Box>
-                        <Typography variant="h6" fontWeight={700}>
+                        <Typography variant="h6" sx={{ fontWeight: 700 }}>
                             {title}
                         </Typography>
                         <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
@@ -194,7 +194,7 @@ export function WarehouseFormDialog({
                                 value={formData.capacity}
                                 onChange={handleChange('capacity')}
                                 required
-                                inputProps={{ min: 1 }}
+                                slotProps={{ htmlInput: { min: 1 } }}
                             />
                         </Grid>
                         <Grid size={{ xs: 12, sm: 6 }}>

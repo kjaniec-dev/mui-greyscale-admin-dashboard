@@ -84,13 +84,13 @@ export function ContactDialog({ open, onClose, contact, mode, onSave, onEdit }: 
             onClose={onClose}
             maxWidth="sm"
             fullWidth
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                     borderRadius: 2,
                     backgroundImage: 'none',
                 }
-            }}
+            } }}
         >
             <DialogTitle sx={{
                 display: 'flex',
@@ -116,7 +116,7 @@ export function ContactDialog({ open, onClose, contact, mode, onSave, onEdit }: 
                     {formData.lastName?.charAt(0) || ''}
                 </Avatar>
                 <Box sx={{ flex: 1 }}>
-                    <Typography variant="h6" fontWeight={700}>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>
                         {isViewMode ? fullName : (contact ? 'Edit Contact' : 'New Contact')}
                     </Typography>
                     {isViewMode && contact && (
@@ -137,8 +137,7 @@ export function ContactDialog({ open, onClose, contact, mode, onSave, onEdit }: 
                         <Typography
                             variant="caption"
                             color="text.secondary"
-                            fontWeight={600}
-                            sx={{ textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block' }}
+                            sx={{ fontWeight: 600,  textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block'  }}
                         >
                             Basic Information
                         </Typography>
@@ -184,8 +183,7 @@ export function ContactDialog({ open, onClose, contact, mode, onSave, onEdit }: 
                         <Typography
                             variant="caption"
                             color="text.secondary"
-                            fontWeight={600}
-                            sx={{ textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block' }}
+                            sx={{ fontWeight: 600,  textTransform: 'uppercase', letterSpacing: 0.5, mb: 2, display: 'block'  }}
                         >
                             Contact & Company Details
                         </Typography>

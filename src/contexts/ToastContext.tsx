@@ -51,7 +51,7 @@ export function ToastProvider({ children }: ToastProviderProps) {
                 open={open}
                 autoHideDuration={duration}
                 onClose={handleClose}
-                TransitionComponent={SlideTransition}
+                slots={{ transition: SlideTransition }}
                 anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             >
                 <Alert

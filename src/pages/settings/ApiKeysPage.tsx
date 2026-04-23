@@ -151,9 +151,9 @@ export function ApiKeysPage() {
     return (
         <Box>
             <Box sx={{ mb: 4 }}>
-                <Stack direction="row" justifyContent="space-between" alignItems="flex-start">
+                <Stack direction="row"   sx={{ justifyContent: 'space-between',  alignItems: 'flex-start' }}>
                     <Box>
-                        <Typography variant="h4" fontWeight={700} gutterBottom>
+                        <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                             API Keys
                         </Typography>
                         <Typography variant="body1" color="text.secondary">
@@ -185,11 +185,11 @@ export function ApiKeysPage() {
                         }}
                     >
                         <CardContent>
-                            <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} justifyContent="space-between">
+                            <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}  sx={{ justifyContent: 'space-between' }}>
                                 <Box sx={{ flex: 1 }}>
-                                    <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 1 }}>
+                                    <Stack direction="row" spacing={2}  sx={{ alignItems: 'center',  mb: 1 }}>
                                         <KeyIcon color="action" />
-                                        <Typography variant="h6" fontWeight={600}>
+                                        <Typography variant="h6" sx={{ fontWeight: 600 }}>
                                             {key.name}
                                         </Typography>
                                         <Chip
@@ -230,7 +230,7 @@ export function ApiKeysPage() {
                                         ))}
                                     </Stack>
 
-                                    <Stack direction="row" spacing={3} flexWrap="wrap">
+                                    <Stack direction="row" spacing={3} sx={{ flexWrap: 'wrap' }}>
                                         <Typography variant="caption" color="text.secondary">
                                             Created: {dateFormatter.format(new Date(key.createdAt))}
                                         </Typography>
@@ -255,7 +255,7 @@ export function ApiKeysPage() {
                                     </Stack>
                                 </Box>
 
-                                <Stack direction="row" spacing={1} alignItems="flex-start">
+                                <Stack direction="row" spacing={1}  sx={{ alignItems: 'flex-start' }}>
                                     <Tooltip title="Copy Key ID">
                                         <IconButton onClick={() => handleCopyKey(key)}>
                                             <CopyIcon />
@@ -363,7 +363,7 @@ export function ApiKeysPage() {
                                             }
                                             label={
                                                 <Box>
-                                                    <Typography variant="body2" fontWeight={500}>
+                                                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
                                                         {permissionLabels[perm]}
                                                     </Typography>
                                                     <Typography variant="caption" color="text.secondary">

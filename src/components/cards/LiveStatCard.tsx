@@ -64,7 +64,7 @@ export function LiveStatCard({
             )}
             <CardContent sx={{ p: 3 }}>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 3 }}>
-                    <Typography variant="body2" color="text.secondary" fontWeight={500}>
+                    <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 500 }}>
                         {title}
                     </Typography>
                     {icon && (
@@ -92,7 +92,7 @@ export function LiveStatCard({
                         animate={{ scale: 1, color: 'inherit' }}
                         transition={{ duration: 0.3 }}
                     >
-                        <Typography variant="h3" fontWeight={700} sx={{ mb: 1 }}>
+                        <Typography variant="h3" sx={{ fontWeight: 700,  mb: 1  }}>
                             {value}
                         </Typography>
                     </motion.div>
@@ -112,8 +112,7 @@ export function LiveStatCard({
                             {isNegative && <TrendingDown sx={{ fontSize: 18 }} />}
                             <Typography
                                 variant="body2"
-                                fontWeight={600}
-                                color={isPositive ? 'success.main' : isNegative ? 'error.main' : 'text.secondary'}
+                                color={isPositive ? 'success.main' : isNegative ? 'error.main' : 'text.secondary'} sx={{ fontWeight: 600 }}
                             >
                                 {isPositive ? '+' : ''}{Math.abs(trend) < 0.1 ? '0.0' : trend.toFixed(1)}%
                             </Typography>

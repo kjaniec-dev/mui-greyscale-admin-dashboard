@@ -97,9 +97,8 @@ export function EmptyState({
             {/* Title */}
             <Typography
                 variant={compact ? 'subtitle1' : 'h6'}
-                fontWeight={600}
                 color="text.primary"
-                gutterBottom
+                gutterBottom sx={{ fontWeight: 600 }}
             >
                 {displayTitle}
             </Typography>

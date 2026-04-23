@@ -66,7 +66,7 @@ export function RegisterPage() {
     return (
         <Box>
             <Box sx={{ mb: 3, textAlign: 'center' }}>
-                <Typography variant="h5" fontWeight={700} gutterBottom>
+                <Typography variant="h5" gutterBottom sx={{ fontWeight: 700 }}>
                     Get started
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -171,7 +171,7 @@ export function RegisterPage() {
                                 fullWidth
                                 error={!!errors.password}
                                 helperText={errors.password?.message}
-                                InputProps={{
+                                slotProps={{ input: {
                                     endAdornment: (
                                         <InputAdornment position="end">
                                             <IconButton
@@ -182,7 +182,7 @@ export function RegisterPage() {
                                             </IconButton>
                                         </InputAdornment>
                                     ),
-                                }}
+                                } }}
                             />
                         )}
                     />
@@ -215,8 +215,6 @@ export function RegisterPage() {
                                 label={
                                     <Typography variant="body2">
                                         I agree to the{' '}
-                                        <Link to="#" style={{ color: 'inherit', fontWeight: 600 }}>Terms of Service</Link>
-                                        {' '}and{' '}
                                         <Link to="#" style={{ color: 'inherit', fontWeight: 600 }}>Privacy Policy</Link>
                                     </Typography>
                                 }

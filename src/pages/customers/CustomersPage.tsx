@@ -93,7 +93,7 @@ export function CustomersPage() {
             {/* Page Header */}
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Customers
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -123,13 +123,13 @@ export function CustomersPage() {
                     placeholder="Search customers by name, email, or company..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                     sx={{ maxWidth: 500 }}
                 />
             </Box>

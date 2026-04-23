@@ -64,7 +64,7 @@ export function FileList({ files, onOpenFolder }: FileListProps) {
                                     <Typography sx={{ fontSize: 20 }}>
                                         {getFileIcon(file.type)}
                                     </Typography>
-                                    <Typography variant="body2" fontWeight={file.type === 'folder' ? 500 : 400}>
+                                    <Typography variant="body2" sx={{ fontWeight: file.type === 'folder' ? 500 : 400 }}>
                                         {file.name}
                                     </Typography>
                                 </Box>

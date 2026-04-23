@@ -5,6 +5,7 @@ import { AuthLayout } from '../layouts/AuthLayout';
 import { ErrorPage } from '../components/ErrorPage';
 import { ComingSoonPage } from './ComingSoonPage';
 import { OverviewPage } from '../pages/dashboard/OverviewPage';
+import { Box, CircularProgress } from '@mui/material';
 
 type LazyComponentModule = Record<string, ComponentType>;
 
@@ -24,6 +25,11 @@ export const router = createBrowserRouter([
         path: '/',
         element: <DashboardLayout />,
         errorElement: <ErrorPage />,
+        HydrateFallback: () => (
+            <Box sx={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center' }}>
+                <CircularProgress />
+            </Box>
+        ),
         children: [
             { index: true, element: <OverviewPage /> },
             { path: 'dashboard', element: <OverviewPage /> },

@@ -112,7 +112,7 @@ export function OrderForm({ defaultValues, onSubmit, isSubmitting = false }: Ord
         >
             {/* Customer Information */}
             <Box>
-                <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
+                <Typography variant="h6" sx={{ fontWeight: 600,  mb: 2  }}>
                     Customer Information
                 </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -176,7 +176,7 @@ export function OrderForm({ defaultValues, onSubmit, isSubmitting = false }: Ord
 
             {/* Shipping Address */}
             <Box>
-                <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
+                <Typography variant="h6" sx={{ fontWeight: 600,  mb: 2  }}>
                     Shipping Address
                 </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -277,7 +277,7 @@ export function OrderForm({ defaultValues, onSubmit, isSubmitting = false }: Ord
             {/* Order Items */}
             <Box>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-                    <Typography variant="h6" fontWeight={600}>
+                    <Typography variant="h6" sx={{ fontWeight: 600 }}>
                         Order Items
                     </Typography>
                     <IconButton
@@ -329,7 +329,7 @@ export function OrderForm({ defaultValues, onSubmit, isSubmitting = false }: Ord
                                         disabled={isSubmitting}
                                         size="small"
                                         sx={{ ...inputSx, width: 100 }}
-                                        inputProps={{ min: 1 }}
+                                        slotProps={{ htmlInput: { min: 1 } }}
                                     />
                                 )}
                             />
@@ -347,10 +347,12 @@ export function OrderForm({ defaultValues, onSubmit, isSubmitting = false }: Ord
                                         disabled={isSubmitting}
                                         size="small"
                                         sx={{ ...inputSx, width: 120 }}
-                                        InputProps={{
-                                            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                                        slotProps={{
+                                            input: {
+                                                startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                                            },
+                                            htmlInput: { step: '0.01', min: 0 }
                                         }}
-                                        inputProps={{ step: '0.01', min: 0 }}
                                     />
                                 )}
                             />
@@ -388,8 +390,8 @@ export function OrderForm({ defaultValues, onSubmit, isSubmitting = false }: Ord
                     </Box>
                     <Divider sx={{ my: 1 }} />
                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <Typography variant="subtitle1" fontWeight={600}>Total</Typography>
-                        <Typography variant="subtitle1" fontWeight={600}>${total.toFixed(2)}</Typography>
+                        <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>Total</Typography>
+                        <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>${total.toFixed(2)}</Typography>
                     </Box>
                 </Paper>
             </Box>

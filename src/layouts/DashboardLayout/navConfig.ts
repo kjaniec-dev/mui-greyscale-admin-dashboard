@@ -32,7 +32,7 @@ import {
     PersonAdd as UserAddIcon,
     AccountBox as UserProfileIcon,
     ManageAccounts as UserAccountIcon,
-    AddCircleOutline as CreateIcon,
+    AddCircleOutlined as CreateIcon,
     Info as DetailsIcon,
     PostAdd as InvoiceCreateIcon,
     Edit as BlogEditIcon,

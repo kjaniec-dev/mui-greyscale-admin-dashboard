@@ -210,7 +210,7 @@ export function MediaLibraryPage() {
         <Box>
             <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Media Library
                     </Typography>
                     <Breadcrumbs>
@@ -253,13 +253,13 @@ export function MediaLibraryPage() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     sx={{ width: 300 }}
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon fontSize="small" />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                 />
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                     <Typography variant="body2" color="text.secondary">
@@ -333,7 +333,7 @@ export function MediaLibraryPage() {
                                     </IconButton>
                                 </Box>
                                 <CardContent sx={{ py: 1, px: 1.5 }}>
-                                    <Typography variant="body2" noWrap fontWeight={500}>
+                                    <Typography variant="body2" noWrap sx={{ fontWeight: 500 }}>
                                         {file.name}
                                     </Typography>
                                     {file.size && (
@@ -377,7 +377,7 @@ export function MediaLibraryPage() {
                                 )}
                             </Box>
                             <Box sx={{ flex: 1, minWidth: 0 }}>
-                                <Typography variant="body2" fontWeight={500} noWrap>
+                                <Typography variant="body2" noWrap sx={{ fontWeight: 500 }}>
                                     {file.name}
                                 </Typography>
                             </Box>

@@ -286,7 +286,7 @@ export function TasksPage() {
                         height: 'fit-content',
                     }}
                 >
-                    <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
+                    <Typography variant="h6" sx={{ fontWeight: 600,  mb: 2  }}>
                         Lists
                     </Typography>
                     <List disablePadding>
@@ -364,7 +364,7 @@ export function TasksPage() {
                     {/* Header */}
                     <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                         <Box>
-                            <Typography variant="h4" fontWeight={700} gutterBottom>
+                            <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                                 Tasks
                             </Typography>
                             <Typography variant="body1" color="text.secondary">
@@ -399,7 +399,7 @@ export function TasksPage() {
                             <Typography variant="body2" color="text.secondary" gutterBottom>
                                 Total Tasks
                             </Typography>
-                            <Typography variant="h5" fontWeight={700}>
+                            <Typography variant="h5" sx={{ fontWeight: 700 }}>
                                 {stats.total}
                             </Typography>
                         </Box>
@@ -415,7 +415,7 @@ export function TasksPage() {
                             <Typography variant="body2" color="text.secondary" gutterBottom>
                                 Completed Today
                             </Typography>
-                            <Typography variant="h5" fontWeight={700}>
+                            <Typography variant="h5" sx={{ fontWeight: 700 }}>
                                 {stats.completedToday}
                             </Typography>
                         </Box>
@@ -431,7 +431,7 @@ export function TasksPage() {
                             <Typography variant="body2" color="text.secondary" gutterBottom>
                                 Overdue
                             </Typography>
-                            <Typography variant="h5" fontWeight={700} color="error">
+                            <Typography variant="h5" color="error" sx={{ fontWeight: 700 }}>
                                 {stats.overdue}
                             </Typography>
                         </Box>
@@ -447,7 +447,7 @@ export function TasksPage() {
                             <Typography variant="body2" color="text.secondary" gutterBottom>
                                 Completion Rate
                             </Typography>
-                            <Typography variant="h5" fontWeight={700}>
+                            <Typography variant="h5" sx={{ fontWeight: 700 }}>
                                 {stats.completionRate}%
                             </Typography>
                         </Box>
@@ -512,13 +512,13 @@ export function TasksPage() {
                             placeholder="Search tasks..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            InputProps={{
+                            slotProps={{ input: {
                                 startAdornment: (
                                     <InputAdornment position="start">
                                         <SearchIcon fontSize="small" />
                                     </InputAdornment>
                                 ),
-                            }}
+                            } }}
                             sx={{ flex: 1, maxWidth: 300 }}
                         />
                     </Box>
@@ -632,12 +632,12 @@ export function TasksPage() {
                 onClose={() => setDialogOpen(false)}
                 maxWidth="sm"
                 fullWidth
-                PaperProps={{
+                slotProps={{ paper: {
                     sx: {
                         bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                         borderRadius: 2,
                     },
-                }}
+                } }}
             >
                 <DialogTitle sx={{ fontWeight: 600 }}>
                     {editingTask ? 'Edit Task' : 'Add New Task'}

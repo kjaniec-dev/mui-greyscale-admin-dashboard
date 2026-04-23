@@ -143,7 +143,7 @@ export function ArticleCreatePage() {
         <Box>
             {/* Page Header */}
             <Box sx={{ mb: 4 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     {isEditing ? 'Edit Article' : 'Create New Article'}
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
@@ -157,7 +157,7 @@ export function ArticleCreatePage() {
                 <Stack spacing={3}>
                     {/* Basic Information */}
                     <Paper sx={paperSx}>
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                             Basic Information
                         </Typography>
                         <Stack spacing={2.5} sx={{ mt: 2 }}>
@@ -204,10 +204,10 @@ export function ArticleCreatePage() {
                                 options={ALL_TAGS}
                                 value={formData.tags}
                                 onChange={(_, newValue) => handleChange('tags', newValue)}
-                                renderTags={(value, getTagProps) =>
+                                renderValue={(value, getItemProps) =>
                                     value.map((option, index) => (
                                         <Chip
-                                            {...getTagProps({ index })}
+                                            {...getItemProps({ index })}
                                             key={option}
                                             label={option}
                                             size="small"
@@ -229,7 +229,7 @@ export function ArticleCreatePage() {
 
                     {/* Content */}
                     <Paper sx={paperSx}>
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                             Article Content
                         </Typography>
                         <TextField
@@ -247,7 +247,7 @@ export function ArticleCreatePage() {
 
                     {/* Related Articles */}
                     <Paper sx={paperSx}>
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                             Related Articles
                         </Typography>
                         <Autocomplete
@@ -263,10 +263,10 @@ export function ArticleCreatePage() {
                                     newValue.map((a) => a.id)
                                 )
                             }
-                            renderTags={(value, getTagProps) =>
+                            renderValue={(value, getItemProps) =>
                                 value.map((option, index) => (
                                     <Chip
-                                        {...getTagProps({ index })}
+                                        {...getItemProps({ index })}
                                         key={option.id}
                                         label={option.title}
                                         size="small"
@@ -286,7 +286,7 @@ export function ArticleCreatePage() {
 
                     {/* Publishing Options */}
                     <Paper sx={paperSx}>
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                             Publishing Options
                         </Typography>
                         <FormControl fullWidth sx={{ mt: 2 }}>

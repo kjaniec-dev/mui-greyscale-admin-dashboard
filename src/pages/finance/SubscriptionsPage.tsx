@@ -66,7 +66,7 @@ export function SubscriptionsPage() {
                             {user.name.charAt(0)}
                         </Avatar>
                         <Box sx={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>
-                            <Typography variant="body2" fontWeight={500}>
+                            <Typography variant="body2" sx={{ fontWeight: 500 }}>
                                 {user.name}
                             </Typography>
                             <Typography variant="caption" color="text.secondary">
@@ -88,7 +88,7 @@ export function SubscriptionsPage() {
                 if (!plan) return null;
                 return (
                     <Box>
-                        <Typography variant="body2" fontWeight={500}>
+                        <Typography variant="body2" sx={{ fontWeight: 500 }}>
                             {plan.name}
                         </Typography>
                         <Typography variant="caption" color="text.secondary">
@@ -156,7 +156,7 @@ export function SubscriptionsPage() {
     return (
         <Box>
             <Box sx={{ mb: 4 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     Subscriptions
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
@@ -216,14 +216,14 @@ export function SubscriptionsPage() {
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
-                PaperProps={{
+                slotProps={{ paper: {
                     sx: {
                         minWidth: 160,
                         boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
                         border: `1px solid ${isDarkMode ? '#262626' : '#E5E5E5'}`,
                         bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                     },
-                }}
+                } }}
             >
                 <MenuItem onClick={handleMenuClose}>
                     <ListItemIcon>

@@ -33,10 +33,10 @@ export function DetailInfoRow({
                 {icon}
             </Box>
             <Box sx={{ flex: 1 }}>
-                <Typography variant="caption" color="text.secondary" display="block">
+                <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
                     {label}
                 </Typography>
-                <Typography variant="body2" fontWeight={500}>
+                <Typography variant="body2" component="div" sx={{ fontWeight: 500 }}>
                     {value}
                 </Typography>
             </Box>

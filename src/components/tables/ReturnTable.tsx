@@ -111,7 +111,7 @@ export function ReturnTable({ returns, onView, onApprove, onReject }: ReturnTabl
             headerName: 'Return ID',
             width: 130,
             renderCell: (params) => (
-                <Typography variant="body2" fontWeight={500}>
+                <Typography variant="body2" sx={{ fontWeight: 500 }}>
                     {params.value}
                 </Typography>
             ),
@@ -133,7 +133,7 @@ export function ReturnTable({ returns, onView, onApprove, onReject }: ReturnTabl
             minWidth: 180,
             renderCell: (params) => (
                 <Box>
-                    <Typography variant="body2" fontWeight={500}>
+                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
                         {params.value}
                     </Typography>
                     <Typography variant="caption" color="text.secondary">
@@ -216,7 +216,7 @@ export function ReturnTable({ returns, onView, onApprove, onReject }: ReturnTabl
             headerName: 'Refund',
             width: 100,
             renderCell: (params) => (
-                <Typography variant="body2" fontWeight={500}>
+                <Typography variant="body2" sx={{ fontWeight: 500 }}>
                     {params.value ? `$${params.value.toFixed(2)}` : '-'}
                 </Typography>
             ),

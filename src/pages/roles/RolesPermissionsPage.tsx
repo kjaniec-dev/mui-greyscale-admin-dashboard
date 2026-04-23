@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import {
     Box,
     Typography,
@@ -258,7 +258,7 @@ export function RolesPermissionsPage() {
         <Box>
             <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Roles & Permissions
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
@@ -318,7 +318,7 @@ export function RolesPermissionsPage() {
                                                 {roleIcons[role.name] || <SecurityIcon />}
                                             </Avatar>
                                             <Box>
-                                                <Typography variant="body2" fontWeight={600}>
+                                                <Typography variant="body2" sx={{ fontWeight: 600 }}>
                                                     {role.name}
                                                 </Typography>
                                                 {role.isSystem && (
@@ -394,10 +394,10 @@ export function RolesPermissionsPage() {
                         </TableHead>
                         <TableBody>
                             {permissionModules.map((module) => (
-                                <>
-                                    <TableRow key={module} sx={{ bgcolor: isDarkMode ? '#0A0A0A' : '#F5F5F5' }}>
+                                <Fragment key={module}>
+                                    <TableRow sx={{ bgcolor: isDarkMode ? '#0A0A0A' : '#F5F5F5' }}>
                                         <TableCell colSpan={roles.length + 1}>
-                                            <Typography variant="subtitle2" fontWeight={600}>
+                                            <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
                                                 {module}
                                             </Typography>
                                         </TableCell>
@@ -423,7 +423,7 @@ export function RolesPermissionsPage() {
                                             </TableRow>
                                         );
                                     })}
-                                </>
+                                </Fragment>
                             ))}
                         </TableBody>
                     </Table>
@@ -454,7 +454,7 @@ export function RolesPermissionsPage() {
                         />
 
                         <Box>
-                            <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+                            <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
                                 Permissions
                             </Typography>
                             {permissionModules.map((module) => {
@@ -483,7 +483,7 @@ export function RolesPermissionsPage() {
                                                 />
                                             }
                                             label={
-                                                <Typography fontWeight={600}>
+                                                <Typography sx={{ fontWeight: 600 }}>
                                                     {module}
                                                 </Typography>
                                             }

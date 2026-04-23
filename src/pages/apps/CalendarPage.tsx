@@ -225,7 +225,7 @@ export function CalendarPage() {
             {/* Page Header */}
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Calendar
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -292,12 +292,12 @@ export function CalendarPage() {
                 onClose={handleDialogClose}
                 maxWidth="sm"
                 fullWidth
-                PaperProps={{
+                slotProps={{ paper: {
                     sx: {
                         bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                         borderRadius: 2,
                     },
-                }}
+                } }}
             >
                 <DialogTitle sx={{ fontWeight: 600 }}>
                     {selectedEvent ? 'Edit Event' : 'Add Event'}

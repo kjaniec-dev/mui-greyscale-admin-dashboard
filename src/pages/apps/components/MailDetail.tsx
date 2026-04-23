@@ -96,7 +96,7 @@ export function MailDetail({ email, onToggleStar, onDelete, onReply }: MailDetai
 
             {/* Subject */}
             <Box sx={{ p: 2, borderBottom: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}` }}>
-                <Typography variant="h6" fontWeight={600} sx={{ mb: 1 }}>
+                <Typography variant="h6" sx={{ fontWeight: 600,  mb: 1  }}>
                     {email.subject}
                 </Typography>
                 <Typography variant="caption" color="text.secondary">
@@ -116,7 +116,7 @@ export function MailDetail({ email, onToggleStar, onDelete, onReply }: MailDetai
                     {email.from.name.split(' ').map(n => n[0]).join('')}
                 </Avatar>
                 <Box sx={{ flex: 1 }}>
-                    <Typography variant="body2" fontWeight={600}>
+                    <Typography variant="body2" sx={{ fontWeight: 600 }}>
                         {email.from.name}
                     </Typography>
                     <Typography variant="caption" color="text.secondary">

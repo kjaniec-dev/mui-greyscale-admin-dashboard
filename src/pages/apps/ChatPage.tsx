@@ -56,7 +56,7 @@ export function ChatPage() {
         <Box sx={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 140px)' }}>
             {/* Page Header */}
             <Box sx={{ mb: 3 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     Chat
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
@@ -127,7 +127,7 @@ export function ChatPage() {
                                 </Avatar>
                             </Badge>
                             <Box>
-                                <Typography variant="body1" fontWeight={600}>
+                                <Typography variant="body1" sx={{ fontWeight: 600 }}>
                                     {selectedConversation.participant.name}
                                 </Typography>
                                 <Typography variant="caption" color="text.secondary">

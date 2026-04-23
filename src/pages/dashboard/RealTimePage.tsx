@@ -92,13 +92,9 @@ function ActivityItem({ activity }: { activity: RealtimeActivity }) {
             <ListItemText
                 primary={activity.message}
                 secondary={formatRelativeTime(activity.timestamp)}
-                primaryTypographyProps={{
-                    variant: 'body2',
-                    fontWeight: 500,
-                    noWrap: true,
-                }}
-                secondaryTypographyProps={{
-                    variant: 'caption',
+                slotProps={{ 
+                    primary: { variant: 'body2', sx: { fontWeight: 500 }, noWrap: true },
+                    secondary: { variant: 'caption' }
                 }}
             />
         </ListItem>
@@ -124,7 +120,7 @@ export function RealTimePage() {
             {/* Page Header */}
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 2 }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Real-time Dashboard
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -168,7 +164,7 @@ export function RealTimePage() {
                     <Card sx={{ height: '100%' }}>
                         <CardHeader
                             title={
-                                <Typography variant="h6" fontWeight={600}>
+                                <Typography variant="h6" sx={{ fontWeight: 600 }}>
                                     Live Activity
                                 </Typography>
                             }

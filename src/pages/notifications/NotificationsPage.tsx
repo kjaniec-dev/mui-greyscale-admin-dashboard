@@ -108,7 +108,7 @@ export function NotificationsPage() {
             {/* Header */}
             <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Notifications
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
@@ -226,8 +226,7 @@ export function NotificationsPage() {
                                         primary={
                                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                                 <Typography
-                                                    variant="body1"
-                                                    fontWeight={notification.read ? 400 : 600}
+                                                    variant="body1" sx={{ fontWeight: notification.read ? 400 : 600 }}
                                                 >
                                                     {notification.title}
                                                 </Typography>

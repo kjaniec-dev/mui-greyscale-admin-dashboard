@@ -314,7 +314,7 @@ export function NotesPage() {
                         p: 2,
                     }}
                 >
-                    <Typography variant="subtitle2" fontWeight={600} sx={{ mb: 1 }}>
+                    <Typography variant="subtitle2" sx={{ fontWeight: 600,  mb: 1  }}>
                         Folders
                     </Typography>
                     <List disablePadding>
@@ -384,13 +384,13 @@ export function NotesPage() {
                     placeholder="Search notes..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon fontSize="small" />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                     fullWidth
                 />
 
@@ -442,8 +442,7 @@ export function NotesPage() {
                                             )}
                                             <Typography
                                                 variant="subtitle2"
-                                                fontWeight={600}
-                                                sx={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
+                                                sx={{ fontWeight: 600,  flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'  }}
                                             >
                                                 {note.title}
                                             </Typography>
@@ -564,13 +563,13 @@ export function NotesPage() {
                             placeholder="Note title"
                             variant="standard"
                             fullWidth
-                            InputProps={{
+                            slotProps={{ input: {
                                 disableUnderline: true,
                                 sx: {
                                     fontSize: '1.5rem',
                                     fontWeight: 600,
                                 },
-                            }}
+                            } }}
                         />
 
                         {/* Content */}
@@ -581,13 +580,13 @@ export function NotesPage() {
                             multiline
                             fullWidth
                             variant="standard"
-                            InputProps={{
+                            slotProps={{ input: {
                                 disableUnderline: true,
                                 sx: {
                                     fontSize: '0.95rem',
                                     fontFamily: 'monospace',
                                 },
-                            }}
+                            } }}
                             sx={{ flex: 1 }}
                         />
 

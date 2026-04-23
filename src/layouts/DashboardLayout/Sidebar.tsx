@@ -112,10 +112,8 @@ export function Sidebar({
                         <>
                             <ListItemText
                                 primary={item.title}
-                                primaryTypographyProps={{
-                                    variant: 'body2',
-                                    fontWeight: active ? 600 : 400,
-                                }}
+                                slotProps={{ primary: { variant: 'body2', sx: { fontWeight: active ? 600 : 400 } ,
+                                 } }}
                             />
                             {hasChildren && (isOpen ? <ExpandLess /> : <ExpandMore />)}
                         </>
@@ -177,7 +175,7 @@ export function Sidebar({
                 }}
             >
                 {!collapsed && (
-                    <Typography variant="h6" fontWeight={700} color="text.primary">
+                    <Typography variant="h6" color="text.primary" sx={{ fontWeight: 700 }}>
                         Dashboard
                     </Typography>
                 )}
@@ -221,7 +219,7 @@ export function Sidebar({
                 </Avatar>
                 {!collapsed && (
                     <Box sx={{ minWidth: 0 }}>
-                        <Typography variant="body2" fontWeight={600} noWrap>
+                        <Typography variant="body2" noWrap sx={{ fontWeight: 600 }}>
                             John Doe
                         </Typography>
                         <Typography variant="caption" color="text.secondary" noWrap>

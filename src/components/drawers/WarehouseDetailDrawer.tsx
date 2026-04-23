@@ -50,12 +50,12 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
             anchor="right"
             open={open}
             onClose={onClose}
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     width: { xs: '100%', sm: 420 },
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                 },
-            }}
+            } }}
         >
             <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 {/* Header */}
@@ -68,7 +68,7 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
                         borderBottom: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
                     }}
                 >
-                    <Typography variant="h6" fontWeight={700}>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>
                         Warehouse Details
                     </Typography>
                     <IconButton
@@ -102,7 +102,7 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
                         >
                             <WarehouseIcon sx={{ fontSize: 40, color: isDarkMode ? '#A3A3A3' : '#525252' }} />
                         </Box>
-                        <Typography variant="h5" fontWeight={700} gutterBottom textAlign="center">
+                        <Typography variant="h5" gutterBottom  sx={{ textAlign: 'center',  fontWeight: 700 }}>
                             {warehouse.name}
                         </Typography>
                         <Typography
@@ -145,7 +145,7 @@ export function WarehouseDetailDrawer({ open, onClose, warehouse }: WarehouseDet
                         </Typography>
                         <Box sx={{ mb: 2 }}>
                             <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                                <Typography variant="body2" fontWeight={500}>
+                                <Typography variant="body2" sx={{ fontWeight: 500 }}>
                                     {warehouse.usedCapacity.toLocaleString()} used
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">

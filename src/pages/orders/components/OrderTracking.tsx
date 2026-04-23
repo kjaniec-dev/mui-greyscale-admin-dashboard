@@ -8,6 +8,7 @@ import {
     Paper,
     useTheme,
 } from '@mui/material';
+import type { StepIconProps } from '@mui/material';
 import {
     LocalShipping as ShippingIcon,
     CheckCircle as CheckIcon,
@@ -55,13 +56,13 @@ export function OrderTracking({ order }: OrderTrackingProps) {
     if (order.status === 'Cancelled') {
         return (
             <Paper sx={{ p: 3, bgcolor: isDarkMode ? '#171717' : '#FFFFFF', border: `1px solid ${isDarkMode ? '#262626' : '#E5E5E5'}`, borderRadius: 2 }}>
-                <Typography variant="h6" fontWeight={600} sx={{ mb: 2 }}>
+                <Typography variant="h6" sx={{ fontWeight: 600,  mb: 2  }}>
                     Order Status
                 </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, color: 'error.main' }}>
                     <CancelIcon fontSize="large" />
                     <Box>
-                        <Typography variant="subtitle1" fontWeight={600}>Order Cancelled</Typography>
+                        <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>Order Cancelled</Typography>
                         <Typography variant="body2" color="text.secondary">
                             {order.timeline.find(e => e.status === 'Cancelled')?.description || 'This order has been cancelled.'}
                         </Typography>
@@ -80,7 +81,7 @@ export function OrderTracking({ order }: OrderTrackingProps) {
 
     return (
         <Paper sx={{ p: 3, bgcolor: isDarkMode ? '#171717' : '#FFFFFF', border: `1px solid ${isDarkMode ? '#262626' : '#E5E5E5'}`, borderRadius: 2 }}>
-            <Typography variant="h6" fontWeight={600} sx={{ mb: 3 }}>
+            <Typography variant="h6" sx={{ fontWeight: 600,  mb: 3  }}>
                 Order Tracking
             </Typography>
 
@@ -97,7 +98,7 @@ export function OrderTracking({ order }: OrderTrackingProps) {
                     return (
                         <Step key={step.label} expanded={true}>
                             <StepLabel
-                                StepIconComponent={(props) => (
+                                slots={{ stepIcon: (props: StepIconProps) => (
                                     <Box
                                         sx={{
                                             bgcolor: props.active || props.completed ? (isDarkMode ? '#FAFAFA' : '#171717') : (isDarkMode ? '#262626' : '#E5E5E5'),
@@ -113,7 +114,7 @@ export function OrderTracking({ order }: OrderTrackingProps) {
                                     >
                                         <Icon sx={{ fontSize: 18 }} />
                                     </Box>
-                                )}
+                                ) }}
                                 optional={
                                     event ? (
                                         <Typography variant="caption">{formatDate(event.date)}</Typography>
@@ -121,7 +122,7 @@ export function OrderTracking({ order }: OrderTrackingProps) {
                                 }
                                 error={order.status === 'Cancelled'}
                             >
-                                <Typography variant="subtitle2" fontWeight={600}>
+                                <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
                                     {step.label}
                                 </Typography>
                             </StepLabel>

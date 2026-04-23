@@ -23,3 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 .worktrees/
+
+# Tooling & AI artifacts
+.lighthouse/
+.playwright-mcp/
+.serena/
+.superpowers/
+scripts/

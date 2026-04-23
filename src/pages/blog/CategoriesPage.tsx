@@ -107,7 +107,7 @@ export function CategoriesPage() {
                 const item = params.row;
                 return (
                     <Box sx={{ display: 'flex', flexDirection: 'column', lineHeight: 1.2 }}>
-                        <Typography variant="body2" fontWeight={600}>
+                        <Typography variant="body2" sx={{ fontWeight: 600 }}>
                             {item.name}
                         </Typography>
                     </Box>
@@ -177,7 +177,7 @@ export function CategoriesPage() {
                     <CategoryIcon />
                 </Avatar>
                 <Box>
-                    <Typography variant="h4" fontWeight={700}>
+                    <Typography variant="h4" sx={{ fontWeight: 700 }}>
                         Categories & Tags
                     </Typography>
                     <Typography variant="body1" color="text.secondary">

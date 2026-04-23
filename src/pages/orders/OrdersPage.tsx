@@ -86,7 +86,7 @@ export function OrdersPage() {
         <Box>
             {/* Page Header */}
             <Box sx={{ mb: 4 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     Orders
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
@@ -100,13 +100,13 @@ export function OrdersPage() {
                     placeholder="Search by order number, customer name, or email..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                     sx={{ flex: 1, minWidth: 300 }}
                 />
                 <FormControl sx={{ minWidth: 150 }}>

@@ -141,7 +141,7 @@ export function Header({ onMenuClick, sidebarCollapsed, isMobile }: HeaderProps)
                         onClick={handleClose}
                         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-                        PaperProps={{
+                        slotProps={{ paper: {
                             sx: {
                                 mt: 1,
                                 minWidth: 200,
@@ -149,10 +149,10 @@ export function Header({ onMenuClick, sidebarCollapsed, isMobile }: HeaderProps)
                                 boxShadow: (theme) =>
                                     `0 4px 20px ${alpha(theme.palette.common.black, 0.1)}`,
                             },
-                        }}
+                        } }}
                     >
                         <Box sx={{ px: 2, py: 1.5 }}>
-                            <Typography variant="subtitle2" fontWeight={600}>
+                            <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
                                 John Doe
                             </Typography>
                             <Typography variant="caption" color="text.secondary">

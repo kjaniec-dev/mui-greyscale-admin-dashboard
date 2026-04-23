@@ -125,7 +125,7 @@ export function PaymentGatewaysPage() {
             {/* Page Header */}
             <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Payment Gateways
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -157,7 +157,7 @@ export function PaymentGatewaysPage() {
             {/* Active Gateways Summary */}
             {enabledGateways.length > 0 && (
                 <Paper sx={{ ...sectionPaperSx, mb: 3 }}>
-                    <Typography variant="h6" fontWeight={600} gutterBottom>
+                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                         Active Payment Methods
                     </Typography>
                     <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
@@ -208,7 +208,7 @@ export function PaymentGatewaysPage() {
                                     </Box>
                                     <Box sx={{ flex: 1 }}>
                                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
-                                            <Typography variant="h6" fontWeight={600}>
+                                            <Typography variant="h6" sx={{ fontWeight: 600 }}>
                                                 {providerInfo.displayName}
                                             </Typography>
                                             {gateway.enabled && (
@@ -275,7 +275,7 @@ export function PaymentGatewaysPage() {
                                 <Stack spacing={2.5}>
                                     {/* Mode Selection */}
                                     <Box>
-                                        <Typography variant="body2" fontWeight={500} gutterBottom>
+                                        <Typography variant="body2" gutterBottom sx={{ fontWeight: 500 }}>
                                             Mode
                                         </Typography>
                                         <FormControl size="small" fullWidth sx={{ maxWidth: 200 }}>
@@ -290,7 +290,7 @@ export function PaymentGatewaysPage() {
                                                 <MenuItem value="live">Live Mode</MenuItem>
                                             </Select>
                                         </FormControl>
-                                        <Typography variant="caption" color="text.secondary" display="block" sx={{ mt: 0.5 }}>
+                                        <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
                                             {gateway.mode === 'test'
                                                 ? 'Use test API keys for development'
                                                 : 'Live mode processes real payments'}
@@ -299,7 +299,7 @@ export function PaymentGatewaysPage() {
 
                                     {/* API Credentials */}
                                     <Box>
-                                        <Typography variant="body2" fontWeight={500} gutterBottom>
+                                        <Typography variant="body2" gutterBottom sx={{ fontWeight: 500 }}>
                                             API Credentials
                                         </Typography>
                                         <Stack spacing={1.5}>
@@ -323,14 +323,14 @@ export function PaymentGatewaysPage() {
                                     {/* Webhook URL */}
                                     {gateway.webhookUrl && (
                                         <Box>
-                                            <Typography variant="body2" fontWeight={500} gutterBottom>
+                                            <Typography variant="body2" gutterBottom sx={{ fontWeight: 500 }}>
                                                 Webhook URL
                                             </Typography>
                                             <TextField
                                                 size="small"
                                                 value={gateway.webhookUrl}
                                                 fullWidth
-                                                InputProps={{
+                                                slotProps={{ input: {
                                                     readOnly: true,
                                                     endAdornment: (
                                                         <InputAdornment position="end">
@@ -344,10 +344,10 @@ export function PaymentGatewaysPage() {
                                                             </Tooltip>
                                                         </InputAdornment>
                                                     ),
-                                                }}
+                                                } }}
                                                 sx={inputSx}
                                             />
-                                            <Typography variant="caption" color="text.secondary" display="block" sx={{ mt: 0.5 }}>
+                                            <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
                                                 Configure this URL in your {gateway.name} dashboard
                                             </Typography>
                                         </Box>
@@ -355,7 +355,7 @@ export function PaymentGatewaysPage() {
 
                                     {/* Transaction Fee */}
                                     <Box>
-                                        <Typography variant="body2" fontWeight={500} gutterBottom>
+                                        <Typography variant="body2" gutterBottom sx={{ fontWeight: 500 }}>
                                             Transaction Fee
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">

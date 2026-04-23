@@ -172,7 +172,7 @@ export function ExportCenterPage() {
     return (
         <Box>
             <Box sx={{ mb: 3 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     Export Center
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -196,7 +196,7 @@ export function ExportCenterPage() {
                 <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 3 }}>
                     {/* Format Selection */}
                     <Paper sx={sectionPaperSx}>
-                        <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+                        <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
                             Export Format
                         </Typography>
                         <Box sx={{ display: 'flex', gap: 2, mt: 2, flexWrap: 'wrap' }}>
@@ -227,7 +227,7 @@ export function ExportCenterPage() {
                                     }}
                                 >
                                     <Box sx={{ fontSize: 32 }}>{formatIcons[format]}</Box>
-                                    <Typography variant="body2" fontWeight={500}>
+                                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
                                         {formatLabels[format]}
                                     </Typography>
                                 </Paper>
@@ -237,7 +237,7 @@ export function ExportCenterPage() {
 
                     {/* Data Source */}
                     <Paper sx={sectionPaperSx}>
-                        <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+                        <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
                             Data Source
                         </Typography>
                         <FormControl fullWidth size="small" sx={{ mt: 2 }}>
@@ -263,7 +263,7 @@ export function ExportCenterPage() {
 
                     {/* Date Range */}
                     <Paper sx={sectionPaperSx}>
-                        <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+                        <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 600 }}>
                             Date Range
                         </Typography>
                         <FormControl fullWidth size="small" sx={{ mt: 2 }}>
@@ -292,7 +292,7 @@ export function ExportCenterPage() {
                 <Box sx={{ flex: 1 }}>
                     <Paper sx={sectionPaperSx}>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-                            <Typography variant="subtitle1" fontWeight={600}>
+                            <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
                                 Select Columns
                             </Typography>
                             <Box sx={{ display: 'flex', gap: 1 }}>

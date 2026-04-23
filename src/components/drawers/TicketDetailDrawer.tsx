@@ -51,12 +51,12 @@ export function TicketDetailDrawer({ open, onClose, ticket }: TicketDetailDrawer
             anchor="right"
             open={open}
             onClose={onClose}
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     width: { xs: '100%', sm: 420 },
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                 },
-            }}
+            } }}
         >
             <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 {/* Header */}
@@ -76,7 +76,7 @@ export function TicketDetailDrawer({ open, onClose, ticket }: TicketDetailDrawer
                         >
                             {ticket.id}
                         </Typography>
-                        <Typography variant="h6" fontWeight={700} sx={{ mt: 0.5 }}>
+                        <Typography variant="h6" sx={{ fontWeight: 700,  mt: 0.5  }}>
                             {ticket.subject}
                         </Typography>
                         <Box sx={{ display: 'flex', gap: 1, mt: 1.5 }}>
@@ -170,7 +170,7 @@ export function TicketDetailDrawer({ open, onClose, ticket }: TicketDetailDrawer
                                             >
                                                 {getInitials(ticket.customerName)}
                                             </Avatar>
-                                            <Typography variant="body2" fontWeight={500}>
+                                            <Typography variant="body2" sx={{ fontWeight: 500 }}>
                                                 {ticket.customerName}
                                             </Typography>
                                         </Box>
@@ -241,7 +241,7 @@ export function TicketDetailDrawer({ open, onClose, ticket }: TicketDetailDrawer
                                     >
                                         {getInitials(message.senderName)}
                                     </Avatar>
-                                    <Typography variant="body2" fontWeight={600}>
+                                    <Typography variant="body2" sx={{ fontWeight: 600 }}>
                                         {message.senderName}
                                     </Typography>
                                     <Typography variant="caption" color="text.secondary" sx={{ ml: 'auto' }}>

@@ -24,7 +24,7 @@ import {
 import type { Payout } from '../../data/mockPayouts';
 import { getStatusSolid, getToneColor } from '../../theme';
 import { DetailInfoRow } from '../common/DetailInfoRow';
-import { formatCurrency, formatDateTime } from '../../utils/formatters';
+import { formatDateTime } from '../../utils/formatters';
 
 interface PayoutDetailDrawerProps {
     open: boolean;
@@ -60,12 +60,12 @@ export function PayoutDetailDrawer({
             anchor="right"
             open={open}
             onClose={onClose}
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     width: { xs: '100%', sm: 420 },
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                 },
-            }}
+            } }}
         >
             <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 {/* Header */}
@@ -79,7 +79,7 @@ export function PayoutDetailDrawer({
                     }}
                 >
                     <Box>
-                        <Typography variant="h6" fontWeight={700}>
+                        <Typography variant="h6" sx={{ fontWeight: 700 }}>
                             Payout Details
                         </Typography>
                         <Typography variant="body2" color="text.secondary" sx={{ fontFamily: 'monospace' }}>
@@ -123,20 +123,7 @@ export function PayoutDetailDrawer({
                                 }}
                             />
                         </Box>
-                        <Typography variant="h5" fontWeight={700}>
-                            {formatCurrency(payout.amount)}
-                        </Typography>
-                    </Box>
-
-                    <Divider sx={{ mb: 3 }} />
-
-                    {/* Recipient Info */}
-                    <Box sx={{ mb: 3 }}>
-                        <Typography
-                            variant="overline"
-                            sx={{
-                                color: isDarkMode ? '#A3A3A3' : '#737373',
-                                fontWeight: 600,
+                        <Typography variant="h5" sx={{ fontWeight: 600,
                                 letterSpacing: 1,
                                 mb: 2,
                                 display: 'block',

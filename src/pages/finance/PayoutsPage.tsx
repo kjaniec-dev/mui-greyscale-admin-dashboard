@@ -102,7 +102,7 @@ export function PayoutsPage() {
             headerName: 'Payout ID',
             width: 120,
             renderCell: (params: GridRenderCellParams<Payout, string>) => (
-                <Typography variant="body2" fontWeight={500}>
+                <Typography variant="body2" sx={{ fontWeight: 500 }}>
                     {params.value}
                 </Typography>
             ),
@@ -114,7 +114,7 @@ export function PayoutsPage() {
             minWidth: 200,
             renderCell: (params: GridRenderCellParams<Payout>) => (
                 <Box>
-                    <Typography variant="body2" fontWeight={500}>
+                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
                         {params.row.recipientName}
                     </Typography>
                     <Typography variant="caption" color="text.secondary">
@@ -149,7 +149,7 @@ export function PayoutsPage() {
             headerName: 'Amount',
             width: 130,
             renderCell: (params: GridRenderCellParams<Payout, number>) => (
-                <Typography variant="body2" fontWeight={600}>
+                <Typography variant="body2" sx={{ fontWeight: 600 }}>
                     {currencyFormatter.format(params.value || 0)}
                 </Typography>
             ),
@@ -212,7 +212,7 @@ export function PayoutsPage() {
         <Box>
             {/* Page Header */}
             <Box sx={{ mb: 4 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     Payouts
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
@@ -226,13 +226,13 @@ export function PayoutsPage() {
                     placeholder="Search by recipient name, email, or ID..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                     sx={{ flex: 1, minWidth: 300 }}
                 />
                 <FormControl sx={{ minWidth: 150 }}>

@@ -23,15 +23,14 @@ export function AuthLayout() {
                     <Link to="/dashboard" style={{ textDecoration: 'none' }}>
                         <Typography
                             variant="h4"
-                            fontWeight={800}
-                            sx={{
+                            sx={{ fontWeight: 800, 
                                 background: isDarkMode
                                     ? 'linear-gradient(135deg, #FAFAFA 0%, #A3A3A3 100%)'
                                     : 'linear-gradient(135deg, #171717 0%, #525252 100%)',
                                 WebkitBackgroundClip: 'text',
                                 WebkitTextFillColor: 'transparent',
                                 letterSpacing: '-0.02em',
-                            }}
+                             }}
                         >
                             Dashboard
                         </Typography>

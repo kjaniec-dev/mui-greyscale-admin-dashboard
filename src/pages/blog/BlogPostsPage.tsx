@@ -36,7 +36,7 @@ import {
     ViewList as ListIcon,
     ViewModule as GridIcon,
     RemoveRedEye as EyeIcon,
-    ChatBubbleOutline as CommentIcon,
+    ChatBubbleOutlined as CommentIcon,
 } from '@mui/icons-material';
 import { DataGrid, type GridColDef } from '@mui/x-data-grid';
 import { mockPosts, type BlogPost, type BlogPostStatus } from '../../data/mockPosts';
@@ -332,7 +332,7 @@ export function BlogPostsPage() {
                                 sx={{ fontSize: '0.7rem' }}
                             />
                         </Box>
-                        <Typography variant="subtitle1" fontWeight={600} sx={{ mb: 1 }}>
+                        <Typography variant="subtitle1" sx={{ fontWeight: 600,  mb: 1  }}>
                             {post.title}
                         </Typography>
                         <Typography variant="body2" color="text.secondary" sx={{ mb: 2, flex: 1 }}>
@@ -368,7 +368,7 @@ export function BlogPostsPage() {
             {/* Page Header */}
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Blog Posts
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -415,13 +415,13 @@ export function BlogPostsPage() {
                     placeholder="Search posts..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                     sx={{ maxWidth: 400, flex: 1 }}
                 />
                 <ToggleButtonGroup

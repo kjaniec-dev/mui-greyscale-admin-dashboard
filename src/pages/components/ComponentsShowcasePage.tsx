@@ -25,7 +25,7 @@ export function ComponentsShowcasePage() {
     return (
         <Box>
             <Box sx={{ mb: 3 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     UI Components Showcase
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -49,7 +49,7 @@ export function ComponentsShowcasePage() {
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                     {/* Stats Grid */}
                     <Box>
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                             Stat Cards
                         </Typography>
                         <StatGridSkeleton count={4} />
@@ -57,7 +57,7 @@ export function ComponentsShowcasePage() {
 
                     {/* Table */}
                     <Box>
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                             Table
                         </Typography>
                         <TableSkeleton rows={5} columns={5} />
@@ -65,7 +65,7 @@ export function ComponentsShowcasePage() {
 
                     {/* Charts */}
                     <Box>
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                             Charts
                         </Typography>
                         <Grid container spacing={3}>
@@ -80,7 +80,7 @@ export function ComponentsShowcasePage() {
 
                     {/* Card Grid */}
                     <Box>
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                             Card Grid
                         </Typography>
                         <CardGridSkeleton count={6} columns={3} />
@@ -88,7 +88,7 @@ export function ComponentsShowcasePage() {
 
                     {/* List & Form */}
                     <Box>
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                             List & Form
                         </Typography>
                         <Grid container spacing={3}>
@@ -109,7 +109,7 @@ export function ComponentsShowcasePage() {
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                     {/* No Data */}
                     <Box>
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                             No Data
                         </Typography>
                         <Paper>
@@ -126,7 +126,7 @@ export function ComponentsShowcasePage() {
 
                     {/* No Results */}
                     <Box>
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                             No Search Results
                         </Typography>
                         <Paper>
@@ -136,7 +136,7 @@ export function ComponentsShowcasePage() {
 
                     {/* Error State */}
                     <Box>
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                             Error State
                         </Typography>
                         <Paper>
@@ -153,7 +153,7 @@ export function ComponentsShowcasePage() {
 
                     {/* Card Empty State */}
                     <Box>
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                             Card Empty State (Dashed Border)
                         </Typography>
                         <Grid container spacing={3}>
@@ -182,7 +182,7 @@ export function ComponentsShowcasePage() {
 
                     {/* Compact Mode */}
                     <Box>
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                             Compact Mode
                         </Typography>
                         <Paper>

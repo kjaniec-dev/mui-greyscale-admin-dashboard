@@ -59,7 +59,7 @@ export function ChartCard({ title, subtitle, chart, action }: ChartCardProps) {
         <Card sx={{ height: '100%' }}>
             <CardHeader
                 title={
-                    <Typography component="h2" variant="h6" fontWeight={600}>
+                    <Typography component="h2" variant="h6" sx={{ fontWeight: 600 }}>
                         {title}
                     </Typography>
                 }

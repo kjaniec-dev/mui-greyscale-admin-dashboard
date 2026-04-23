@@ -117,9 +117,9 @@ export function CouponForm({ defaultValues, onSubmit, isSubmitting = false, onCa
                             helperText={errors.value?.message}
                             disabled={isSubmitting}
                             onChange={(e) => field.onChange(Number(e.target.value))}
-                            InputProps={{
+                            slotProps={{ input: {
                                 endAdornment: type === 'percentage' ? '%' : '$',
-                            }}
+                            } }}
                         />
                     )}
                 />
@@ -170,7 +170,7 @@ export function CouponForm({ defaultValues, onSubmit, isSubmitting = false, onCa
                         label="Expiration Date"
                         type="date"
                         fullWidth
-                        InputLabelProps={{ shrink: true }}
+                        slotProps={{ inputLabel: { shrink: true } }}
                         error={!!errors.expirationDate}
                         helperText={errors.expirationDate?.message}
                         disabled={isSubmitting}

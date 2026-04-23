@@ -108,7 +108,7 @@ export function ProductTable({ products, onView, onEdit, onDelete }: ProductTabl
             minWidth: 200,
             renderCell: (params) => (
                 <Box>
-                    <Typography variant="body2" fontWeight={500}>
+                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
                         {params.value}
                     </Typography>
                     <Typography variant="caption" color="text.secondary">
@@ -140,7 +140,7 @@ export function ProductTable({ products, onView, onEdit, onDelete }: ProductTabl
             width: 120,
             valueFormatter: (value: number) => `$${value.toFixed(2)}`,
             renderCell: (params) => (
-                <Typography variant="body2" fontWeight={600}>
+                <Typography variant="body2" sx={{ fontWeight: 600 }}>
                     ${params.value.toFixed(2)}
                 </Typography>
             ),
@@ -152,14 +152,13 @@ export function ProductTable({ products, onView, onEdit, onDelete }: ProductTabl
             renderCell: (params) => (
                 <Typography
                     variant="body2"
-                    fontWeight={500}
-                    sx={{
+                    sx={{ fontWeight: 500, 
                         color: params.value === 0
                             ? 'error.main'
                             : params.value < 20
                                 ? isDarkMode ? '#D97706' : '#F59E0B'
                                 : 'inherit',
-                    }}
+                     }}
                 >
                     {params.value}
                 </Typography>

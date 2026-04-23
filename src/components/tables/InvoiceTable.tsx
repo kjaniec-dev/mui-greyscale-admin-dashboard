@@ -121,7 +121,7 @@ export function InvoiceTable({ invoices, onView, onEdit, onDelete }: InvoiceTabl
             headerName: 'Invoice #',
             width: 150,
             renderCell: (params) => (
-                <Typography variant="body2" fontWeight={600} sx={{ fontFamily: 'monospace' }}>
+                <Typography variant="body2" sx={{ fontWeight: 600,  fontFamily: 'monospace'  }}>
                     {params.value}
                 </Typography>
             ),
@@ -134,7 +134,7 @@ export function InvoiceTable({ invoices, onView, onEdit, onDelete }: InvoiceTabl
             valueGetter: (value: Invoice['customer']) => value.name,
             renderCell: (params) => (
                 <Box>
-                    <Typography variant="body2" fontWeight={500}>
+                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
                         {params.row.customer.name}
                     </Typography>
                     <Typography variant="caption" color="text.secondary">
@@ -148,7 +148,7 @@ export function InvoiceTable({ invoices, onView, onEdit, onDelete }: InvoiceTabl
             headerName: 'Amount',
             width: 130,
             renderCell: (params) => (
-                <Typography variant="body2" fontWeight={600}>
+                <Typography variant="body2" sx={{ fontWeight: 600 }}>
                     {formatCurrency(params.value)}
                 </Typography>
             ),

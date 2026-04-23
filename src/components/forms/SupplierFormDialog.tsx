@@ -91,12 +91,12 @@ export function SupplierFormDialog({
             onClose={onClose}
             maxWidth="md"
             fullWidth
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                     borderRadius: 2,
                 },
-            }}
+            } }}
         >
             <form onSubmit={handleSubmit}>
                 <DialogTitle
@@ -109,7 +109,7 @@ export function SupplierFormDialog({
                     }}
                 >
                     <Box>
-                        <Typography variant="h6" fontWeight={700}>
+                        <Typography variant="h6" sx={{ fontWeight: 700 }}>
                             {title}
                         </Typography>
                         <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
@@ -224,7 +224,7 @@ export function SupplierFormDialog({
                                 label="Initial Rating"
                                 value={formData.rating}
                                 onChange={handleChange('rating')}
-                                inputProps={{ min: 1, max: 5, step: 0.1 }}
+                                slotProps={{ htmlInput: { min: 1, max: 5, step: 0.1 } }}
                                 helperText="Rating from 1.0 to 5.0"
                             />
                         </Grid>

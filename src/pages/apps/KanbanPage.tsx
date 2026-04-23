@@ -185,7 +185,7 @@ export function KanbanPage() {
             {/* Page Header */}
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Kanban Board
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -236,12 +236,12 @@ export function KanbanPage() {
                 onClose={handleDialogClose}
                 maxWidth="sm"
                 fullWidth
-                PaperProps={{
+                slotProps={{ paper: {
                     sx: {
                         bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                         borderRadius: 2,
                     },
-                }}
+                } }}
             >
                 <DialogTitle sx={{ fontWeight: 600 }}>
                     {selectedTask ? 'Edit Task' : 'Add Task'}

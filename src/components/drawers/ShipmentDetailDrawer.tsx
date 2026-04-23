@@ -45,12 +45,12 @@ export function ShipmentDetailDrawer({ open, onClose, shipment }: ShipmentDetail
             anchor="right"
             open={open}
             onClose={onClose}
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     width: { xs: '100%', sm: 420 },
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                 },
-            }}
+            } }}
         >
             <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 {/* Header */}
@@ -63,7 +63,7 @@ export function ShipmentDetailDrawer({ open, onClose, shipment }: ShipmentDetail
                         borderBottom: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
                     }}
                 >
-                    <Typography variant="h6" fontWeight={700}>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>
                         Shipment Details
                     </Typography>
                     <IconButton
@@ -97,7 +97,7 @@ export function ShipmentDetailDrawer({ open, onClose, shipment }: ShipmentDetail
                         >
                             <ShippingIcon sx={{ fontSize: 40, color: isDarkMode ? '#A3A3A3' : '#525252' }} />
                         </Box>
-                        <Typography variant="h5" fontWeight={700} gutterBottom textAlign="center">
+                        <Typography variant="h5" gutterBottom  sx={{ textAlign: 'center',  fontWeight: 700 }}>
                             {shipment.id}
                         </Typography>
                         <Chip
@@ -168,7 +168,7 @@ export function ShipmentDetailDrawer({ open, onClose, shipment }: ShipmentDetail
                                 icon={<TrackingIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Tracking Number"
                                 value={
-                                    <Typography variant="body2" fontWeight={500} sx={{ fontFamily: 'monospace' }}>
+                                    <Typography variant="body2" sx={{ fontWeight: 500,  fontFamily: 'monospace'  }}>
                                         {shipment.trackingNumber}
                                     </Typography>
                                 }

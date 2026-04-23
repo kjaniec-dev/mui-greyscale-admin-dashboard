@@ -126,8 +126,7 @@ export function CouponsPage() {
                 <Box sx={{ display: 'flex', alignItems: 'center', height: '100%', gap: 1 }}>
                     <Typography
                         variant="body2"
-                        fontWeight={600}
-                        sx={{ fontFamily: 'monospace', letterSpacing: 1 }}
+                        sx={{ fontWeight: 600,  fontFamily: 'monospace', letterSpacing: 1  }}
                     >
                         {params.value}
                     </Typography>
@@ -143,7 +142,7 @@ export function CouponsPage() {
             width: 140,
             renderCell: (params: GridRenderCellParams<Coupon>) => (
                 <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-                    <Typography variant="body2" fontWeight={500}>
+                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
                         {params.row.type === 'percentage'
                             ? `${params.row.value}% OFF`
                             : `${currencyFormatter.format(params.row.value)} OFF`}
@@ -159,7 +158,7 @@ export function CouponsPage() {
                 const usagePercent = Math.min((params.row.usageCount / params.row.maxUsage) * 100, 100);
                 return (
                     <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%', justifyContent: 'center', height: '100%', pr: 2 }}>
-                        <Stack direction="row" justifyContent="space-between" sx={{ mb: 0.5 }}>
+                        <Stack direction="row"  sx={{ justifyContent: 'space-between',  mb: 0.5 }}>
                             <Typography variant="caption" color="text.secondary">
                                 {params.row.usageCount} / {params.row.maxUsage}
                             </Typography>
@@ -228,7 +227,7 @@ export function CouponsPage() {
         <Box>
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Coupons
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -246,13 +245,13 @@ export function CouponsPage() {
                     placeholder="Search coupons..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                     sx={{ maxWidth: 500 }}
                 />
             </Box>

@@ -108,7 +108,7 @@ export function StockLevelTable({ stockLevels, onAddStock, onRemoveStock, onView
             minWidth: 200,
             renderCell: (params) => (
                 <Box>
-                    <Typography variant="body2" fontWeight={500}>
+                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
                         {params.value}
                     </Typography>
                     <Typography variant="caption" color="text.secondary">
@@ -145,7 +145,7 @@ export function StockLevelTable({ stockLevels, onAddStock, onRemoveStock, onView
                     return isDarkMode ? '#E5E5E5' : '#171717';
                 };
                 return (
-                    <Typography variant="body2" fontWeight={600} sx={{ color: getColor() }}>
+                    <Typography variant="body2" sx={{ fontWeight: 600,  color: getColor()  }}>
                         {params.value.toLocaleString()}
                     </Typography>
                 );

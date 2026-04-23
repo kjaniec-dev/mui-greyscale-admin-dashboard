@@ -178,12 +178,14 @@ export function ProductForm({ defaultValues, onSubmit, isSubmitting = false }: P
                             error={!!errors.price}
                             helperText={errors.price?.message}
                             disabled={isSubmitting}
-                            InputProps={{
-                                startAdornment: <InputAdornment position="start">$</InputAdornment>,
-                            }}
-                            inputProps={{
-                                step: '0.01',
-                                min: '0',
+                            slotProps={{
+                                input: {
+                                    startAdornment: <InputAdornment position="start">$</InputAdornment>,
+                                },
+                                htmlInput: {
+                                    step: '0.01',
+                                    min: '0',
+                                }
                             }}
                             sx={inputSx}
                         />
@@ -205,10 +207,10 @@ export function ProductForm({ defaultValues, onSubmit, isSubmitting = false }: P
                             error={!!errors.stock}
                             helperText={errors.stock?.message}
                             disabled={isSubmitting}
-                            inputProps={{
+                            slotProps={{ htmlInput: {
                                 step: '1',
                                 min: '0',
-                            }}
+                            } }}
                             sx={inputSx}
                         />
                     )}

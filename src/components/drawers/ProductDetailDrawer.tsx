@@ -41,12 +41,12 @@ export function ProductDetailDrawer({ open, onClose, product }: ProductDetailDra
             anchor="right"
             open={open}
             onClose={onClose}
-            PaperProps={{
+            slotProps={{ paper: {
                 sx: {
                     width: { xs: '100%', sm: 420 },
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                 },
-            }}
+            } }}
         >
             <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                 {/* Header */}
@@ -59,7 +59,7 @@ export function ProductDetailDrawer({ open, onClose, product }: ProductDetailDra
                         borderBottom: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
                     }}
                 >
-                    <Typography variant="h6" fontWeight={700}>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>
                         Product Details
                     </Typography>
                     <IconButton
@@ -93,7 +93,7 @@ export function ProductDetailDrawer({ open, onClose, product }: ProductDetailDra
                         >
                             <InventoryIcon sx={{ fontSize: 40, color: isDarkMode ? '#A3A3A3' : '#525252' }} />
                         </Box>
-                        <Typography variant="h5" fontWeight={700} gutterBottom textAlign="center">
+                        <Typography variant="h5" gutterBottom  sx={{ textAlign: 'center',  fontWeight: 700 }}>
                             {product.name}
                         </Typography>
                         <Typography

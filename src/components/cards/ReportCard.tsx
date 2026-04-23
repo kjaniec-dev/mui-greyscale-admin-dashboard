@@ -167,7 +167,7 @@ export function ReportCard({
             </Box>
 
             <CardContent sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
-                <Typography variant="subtitle1" fontWeight={600} gutterBottom noWrap>
+                <Typography variant="subtitle1" gutterBottom noWrap sx={{ fontWeight: 600 }}>
                     {name}
                 </Typography>
                 {description && (

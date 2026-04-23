@@ -325,7 +325,7 @@ export function EmailPreferencesPage() {
             {/* Page Header */}
             <Box sx={{ mb: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
-                    <Typography variant="h4" fontWeight={700} gutterBottom>
+                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                         Email Preferences
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
@@ -355,7 +355,7 @@ export function EmailPreferencesPage() {
             <Box sx={{ maxWidth: 1000 }}>
                 {/* Digest Settings */}
                 <Paper sx={paperSx}>
-                    <Typography variant="h6" fontWeight={600} gutterBottom>
+                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                         Digest Settings
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
@@ -364,7 +364,7 @@ export function EmailPreferencesPage() {
 
                     <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3}>
                         <FormControl sx={{ flex: 1 }}>
-                            <Typography variant="body2" fontWeight={500} gutterBottom>
+                            <Typography variant="body2" gutterBottom sx={{ fontWeight: 500 }}>
                                 Daily Digest Time
                             </Typography>
                             <Select
@@ -382,7 +382,7 @@ export function EmailPreferencesPage() {
                         </FormControl>
 
                         <FormControl sx={{ flex: 1 }}>
-                            <Typography variant="body2" fontWeight={500} gutterBottom>
+                            <Typography variant="body2" gutterBottom sx={{ fontWeight: 500 }}>
                                 Weekly Digest Day
                             </Typography>
                             <Select
@@ -405,7 +405,7 @@ export function EmailPreferencesPage() {
                 {/* Preference Categories */}
                 {preferences.map((category, categoryIndex) => (
                     <Paper key={category.title} sx={paperSx}>
-                        <Typography variant="h6" fontWeight={600} gutterBottom>
+                        <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
                             {category.title}
                         </Typography>
                         <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
@@ -436,7 +436,7 @@ export function EmailPreferencesPage() {
                                                 }
                                                 label={
                                                     <Box>
-                                                        <Typography variant="body1" fontWeight={500}>
+                                                        <Typography variant="body1" sx={{ fontWeight: 500 }}>
                                                             {preference.label}
                                                         </Typography>
                                                         <Typography variant="body2" color="text.secondary">

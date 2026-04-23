@@ -76,14 +76,14 @@ export function TransactionsPage() {
             headerName: 'User',
             width: 280,
             renderCell: (params: GridRenderCellParams<Transaction>) => (
-                <Stack direction="row" spacing={1} alignItems="center" sx={{ height: '100%' }}>
+                <Stack direction="row" spacing={1}  sx={{ alignItems: 'center',  height: '100%' }}>
                     <Avatar
                         src={params.row.userAvatar}
                         alt={params.row.userName}
                         sx={{ width: 32, height: 32 }}
                     />
                     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                        <Typography variant="body2" fontWeight={500} sx={{ lineHeight: '1.2' }}>
+                        <Typography variant="body2" sx={{ fontWeight: 500,  lineHeight: '1.2'  }}>
                             {params.row.userName}
                         </Typography>
                         <Typography variant="caption" color="text.secondary" sx={{ lineHeight: '1.2' }}>
@@ -117,8 +117,7 @@ export function TransactionsPage() {
                 <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
                     <Typography
                         variant="body2"
-                        fontWeight={600}
-                        color={params.row.type === 'refund' ? 'error.main' : 'text.primary'}
+                        color={params.row.type === 'refund' ? 'error.main' : 'text.primary'} sx={{ fontWeight: 600 }}
                     >
                         {currencyFormatter.format(params.value!)}
                     </Typography>
@@ -158,7 +157,7 @@ export function TransactionsPage() {
     return (
         <Box>
             <Box sx={{ mb: 4 }}>
-                <Typography variant="h4" fontWeight={700} gutterBottom>
+                <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
                     Transactions
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
@@ -172,13 +171,13 @@ export function TransactionsPage() {
                     placeholder="Search transactions..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    InputProps={{
+                    slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
                                 <SearchIcon />
                             </InputAdornment>
                         ),
-                    }}
+                    } }}
                     sx={{ maxWidth: 500 }}
                 />
             </Box>

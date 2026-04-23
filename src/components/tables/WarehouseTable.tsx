@@ -109,7 +109,7 @@ export function WarehouseTable({ warehouses, onView, onEdit, onDelete }: Warehou
             minWidth: 200,
             renderCell: (params) => (
                 <Box>
-                    <Typography variant="body2" fontWeight={500}>
+                    <Typography variant="body2" sx={{ fontWeight: 500 }}>
                         {params.value}
                     </Typography>
                     <Typography variant="caption" color="text.secondary">
