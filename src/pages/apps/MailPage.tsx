@@ -129,7 +129,7 @@ export function MailPage() {
     };
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 140px)' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', height: { xs: 'auto', md: 'calc(100vh - 140px)' } }}>
             {/* Page Header */}
             <Box sx={{ mb: 3 }}>
                 <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
@@ -145,6 +145,7 @@ export function MailPage() {
                 sx={{
                     flex: 1,
                     display: 'flex',
+                    flexDirection: { xs: 'column', md: 'row' },
                     border: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
                     borderRadius: 2,
                     overflow: 'hidden',
@@ -153,7 +154,7 @@ export function MailPage() {
                 {/* Sidebar */}
                 <Box
                     sx={{
-                        width: 220,
+                        width: { xs: '100%', md: 220 },
                         flexShrink: 0,
                         borderRight: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
                         bgcolor: isDarkMode ? '#1A1A1A' : '#FAFAFA',
@@ -224,7 +225,7 @@ export function MailPage() {
                 {/* Email List */}
                 <Box
                     sx={{
-                        width: 350,
+                        width: { xs: '100%', md: 350 },
                         flexShrink: 0,
                         borderRight: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
                         display: 'flex',

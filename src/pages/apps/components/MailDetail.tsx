@@ -62,6 +62,7 @@ export function MailDetail({ email, onToggleStar, onDelete, onReply }: MailDetai
                 flexDirection: 'column',
                 bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                 overflow: 'hidden',
+                minHeight: { xs: 500, md: 'auto' },
             }}
         >
             {/* Header */}
