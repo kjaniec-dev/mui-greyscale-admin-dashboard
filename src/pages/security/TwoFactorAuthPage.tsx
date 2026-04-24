@@ -17,7 +17,6 @@ import {
     ListItem,
     ListItemIcon,
     ListItemText,
-    ListItemSecondaryAction,
     Chip,
     Alert,
     Divider,
@@ -201,8 +200,8 @@ export function TwoFactorAuthPage() {
                             return (
                                 <Box key={method.key}>
                                     {index > 0 && <Divider />}
-                                    <ListItem sx={{ py: 2, px: 0 }}>
-                                        <ListItemIcon>
+                                    <ListItem sx={{ py: 2, px: 0, flexDirection: 'row', flexWrap: 'wrap', alignItems: { xs: 'flex-start', sm: 'center' } }}>
+                                        <ListItemIcon sx={{ mt: { xs: 0.5, sm: 0 }, mb: { xs: 0, sm: 0 }, mr: 2, minWidth: 'auto' }}>
                                             <Box
                                                 sx={{
                                                     width: 44,
@@ -223,8 +222,9 @@ export function TwoFactorAuthPage() {
                                             </Box>
                                         </ListItemIcon>
                                         <ListItemText
+                                            sx={{ m: 0 }}
                                             primary={
-                                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap', mb: { xs: 0.5, sm: 0 } }}>
                                                     <Typography variant="body1" sx={{ fontWeight: 500 }}>
                                                         {method.title}
                                                     </Typography>
@@ -237,7 +237,7 @@ export function TwoFactorAuthPage() {
                                                 </Box>
                                             }
                                             secondary={
-                                                <Typography variant="body2" color="text.secondary">
+                                                <Typography variant="body2" color="text.secondary" sx={{ mt: { xs: 1, sm: 0.5 } }}>
                                                     {method.description}
                                                     {method.key === 'backup' && config.methods.backup.enabled && config.methods.backup.codesRemaining && (
                                                         <> • {config.methods.backup.codesRemaining} codes remaining</>
@@ -245,19 +245,21 @@ export function TwoFactorAuthPage() {
                                                 </Typography>
                                             }
                                         />
-                                        <ListItemSecondaryAction>
+                                        <Box sx={{ mt: { xs: 1, sm: 0 }, ml: 'auto' }}>
                                             {methodState.enabled ? (
-                                                <Box sx={{ display: 'flex', gap: 1 }}>
+                                                <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'flex-end' }}>
                                                     {method.key === 'backup' && (
                                                         <>
                                                             <Button
                                                                 size="small"
+                                                                variant="outlined"
                                                                 onClick={() => setShowBackupCodes(true)}
                                                             >
                                                                 View Codes
                                                             </Button>
                                                             <Button
                                                                 size="small"
+                                                                variant="outlined"
                                                                 startIcon={<RefreshIcon />}
                                                                 onClick={handleRegenerateBackupCodes}
                                                             >
@@ -285,7 +287,7 @@ export function TwoFactorAuthPage() {
                                                     Setup
                                                 </Button>
                                             )}
-                                        </ListItemSecondaryAction>
+                                        </Box>
                                     </ListItem>
                                 </Box>
                             );

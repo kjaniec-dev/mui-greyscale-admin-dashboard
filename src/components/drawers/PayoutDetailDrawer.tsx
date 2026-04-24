@@ -102,8 +102,8 @@ export function PayoutDetailDrawer({
                 {/* Content */}
                 <Box sx={{ flex: 1, overflow: 'auto', p: 3 }}>
                     {/* Status & Amount */}
-                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
-                        <Box sx={{ display: 'flex', gap: 1 }}>
+                    <Box sx={{ mb: 3 }}>
+                        <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
                             <Chip
                                 label={payout.status}
                                 sx={{
@@ -123,7 +123,16 @@ export function PayoutDetailDrawer({
                                 }}
                             />
                         </Box>
-                        <Typography variant="h5" sx={{ fontWeight: 600,
+                        
+                        <Typography variant="h3" sx={{ fontWeight: 700, mb: 3 }}>
+                            ${payout.amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        </Typography>
+
+                        <Typography
+                            variant="overline"
+                            sx={{
+                                color: isDarkMode ? '#A3A3A3' : '#737373',
+                                fontWeight: 600,
                                 letterSpacing: 1,
                                 mb: 2,
                                 display: 'block',
@@ -131,7 +140,7 @@ export function PayoutDetailDrawer({
                         >
                             Recipient
                         </Typography>
-                        <Stack spacing={2}>
+                        <Stack spacing={1.5}>
                             <DetailInfoRow
                                 icon={<PersonIcon sx={{ fontSize: 20, color: isDarkMode ? '#A3A3A3' : '#525252' }} />}
                                 label="Name"
