@@ -69,6 +69,7 @@ export function ChatPage() {
                 sx={{
                     flex: 1,
                     display: 'flex',
+                    flexDirection: { xs: 'column', md: 'row' },
                     border: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
                     borderRadius: 2,
                     overflow: 'hidden',

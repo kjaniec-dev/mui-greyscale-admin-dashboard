@@ -94,6 +94,7 @@ export function ChatHistoryPage() {
             field: 'customerName',
             headerName: 'Customer',
             width: 200,
+            flex: 1.5,
             renderCell: (params) => (
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                     <Avatar
@@ -124,11 +125,13 @@ export function ChatHistoryPage() {
             field: 'agentName',
             headerName: 'Agent',
             width: 140,
+            flex: 1,
         },
         {
             field: 'startedAt',
             headerName: 'Start Time',
             width: 160,
+            flex: 1,
             valueGetter: (_value, row) => new Date(row.startedAt).toLocaleString(),
         },
         {
@@ -168,6 +171,7 @@ export function ChatHistoryPage() {
             field: 'rating',
             headerName: 'Rating',
             width: 140,
+            flex: 1,
             renderCell: (params) =>
                 params.value ? (
                     <Rating value={params.value} size="small" readOnly />
@@ -181,6 +185,7 @@ export function ChatHistoryPage() {
             field: 'tags',
             headerName: 'Tags',
             width: 180,
+            flex: 1.5,
             renderCell: (params) => (
                 <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap' }}>
                     {params.value.slice(0, 2).map((tag: string) => (

@@ -186,8 +186,10 @@ export function PaymentGatewaysPage() {
                             <Box
                                 sx={{
                                     display: 'flex',
-                                    alignItems: 'center',
+                                    alignItems: { xs: 'flex-start', sm: 'center' },
+                                    flexDirection: { xs: 'column', sm: 'row' },
                                     justifyContent: 'space-between',
+                                    gap: { xs: 2, sm: 0 },
                                     mb: gateway.enabled ? 2 : 0,
                                 }}
                             >

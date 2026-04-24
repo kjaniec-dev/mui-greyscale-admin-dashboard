@@ -295,8 +295,9 @@ export function AuditLogsPage() {
             </Typography>
 
             {/* DataGrid */}
-            <Box sx={{ height: 700, width: '100%' }}>
+            <Box sx={{ width: '100%' }}>
                 <DataGridComponent
+                    autoHeight
                     rowHeight={64}
                     rows={filteredLogs}
                     columns={columns}

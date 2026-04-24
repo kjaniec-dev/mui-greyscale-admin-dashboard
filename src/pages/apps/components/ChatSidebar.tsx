@@ -34,12 +34,14 @@ export function ChatSidebar({
     return (
         <Box
             sx={{
-                width: 320,
+                width: { xs: '100%', md: 320 },
                 flexShrink: 0,
-                borderRight: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
+                borderRight: { xs: 'none', md: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}` },
+                borderBottom: { xs: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`, md: 'none' },
                 display: 'flex',
                 flexDirection: 'column',
                 bgcolor: isDarkMode ? '#1A1A1A' : '#FAFAFA',
+                maxHeight: { xs: '40%', md: '100%' },
             }}
         >
             {/* Search */}

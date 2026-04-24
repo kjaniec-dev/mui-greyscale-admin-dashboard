@@ -246,13 +246,13 @@ export function MediaLibraryPage() {
             </Box>
 
             {/* Toolbar */}
-            <Paper sx={{ ...sectionPaperSx, mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Paper sx={{ ...sectionPaperSx, mb: 3, display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 2, justifyContent: 'space-between', alignItems: { xs: 'stretch', sm: 'center' } }}>
                 <TextField
                     size="small"
                     placeholder="Search files..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    sx={{ width: 300 }}
+                    sx={{ width: { xs: '100%', sm: 300 } }}
                     slotProps={{ input: {
                         startAdornment: (
                             <InputAdornment position="start">
