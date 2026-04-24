@@ -223,6 +223,7 @@ export function NotificationsPage() {
                                         </Avatar>
                                     </ListItemAvatar>
                                     <ListItemText
+                                        disableTypography
                                         primary={
                                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                                 <Typography
