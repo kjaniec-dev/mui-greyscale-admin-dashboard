@@ -45,6 +45,7 @@ export function BlogEditPage() {
 
     useEffect(() => {
         if (post) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setFormData({
                 title: post.title,
                 content: post.content,

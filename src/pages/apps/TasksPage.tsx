@@ -61,7 +61,7 @@ export const TasksPage = () => {
     const overdueTasks = useMemo(() => getOverdueTasks(tasks, currentDate), [tasks, currentDate]);
 
     const filteredTasks = useMemo(() => {
-        let filtered = tasks;
+        let filtered: Task[];
 
         // Apply sidebar filter
         switch (currentFilter) {

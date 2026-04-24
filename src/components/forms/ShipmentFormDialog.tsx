@@ -66,6 +66,7 @@ export function ShipmentFormDialog({ open, onClose, onSubmit, defaultValues, mod
 
     useEffect(() => {
         if (open) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setFormData(defaultValues ? { ...emptyForm, ...defaultValues } : emptyForm);
         }
     }, [open, defaultValues]);

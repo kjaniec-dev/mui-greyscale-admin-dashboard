@@ -18,7 +18,6 @@ export default defineConfig({
         },
         rollupOptions: {
             output: {
-                onlyExplicitManualChunks: true,
                 manualChunks(id) {
                     if (id.includes('@react-pdf/') || id.includes('yoga-layout')) {
                         return 'pdf';

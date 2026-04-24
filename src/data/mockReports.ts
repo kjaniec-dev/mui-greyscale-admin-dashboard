@@ -284,8 +284,8 @@ export function generateMockChartData(config: ReportConfig): { labels: string[];
     const { dataSource, chartType, dateRange } = config;
 
     // Generate labels based on data source and grouping
-    let labels: string[] = [];
-    let values: number[] = [];
+    let labels: string[];
+    let values: number[];
 
     if (config.groupBy === 'date' || config.groupBy === 'createdAt') {
         // Time-based data
