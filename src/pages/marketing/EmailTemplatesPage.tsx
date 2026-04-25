@@ -231,7 +231,7 @@ export const EmailTemplatesPage = () => {
     ];
 
     return (
-        <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', gap: 3 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
             {/* Header */}
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Box>
@@ -256,7 +256,6 @@ export const EmailTemplatesPage = () => {
             <Paper
                 elevation={0}
                 sx={{
-                    flex: 1,
                     display: 'flex',
                     flexDirection: 'column',
                     border: '1px solid',
@@ -287,6 +286,7 @@ export const EmailTemplatesPage = () => {
 
                 {/* Data Grid */}
                 <DataGrid
+                    autoHeight
                     rows={filteredTemplates}
                     columns={columns}
                     initialState={{

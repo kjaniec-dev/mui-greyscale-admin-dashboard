@@ -200,7 +200,6 @@ export function CompaniesPage() {
 
             <Paper
                 sx={{
-                    height: 700,
                     width: '100%',
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                     border: `1px solid ${isDarkMode ? '#262626' : '#E5E5E5'}`,
@@ -223,6 +222,7 @@ export function CompaniesPage() {
                 }}
             >
                 <DataGrid
+                    autoHeight
                     rows={mockCompanies}
                     columns={columns}
                     initialState={{

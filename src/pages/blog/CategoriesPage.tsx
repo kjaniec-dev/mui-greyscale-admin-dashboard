@@ -195,7 +195,6 @@ export function CategoriesPage() {
 
             <Paper
                 sx={{
-                    height: 700,
                     width: '100%',
                     bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
                     border: `1px solid ${isDarkMode ? '#262626' : '#E5E5E5'}`,
@@ -220,6 +219,7 @@ export function CategoriesPage() {
             >
                 <CustomTabPanel value={tabValue} index={0}>
                     <DataGrid
+                        autoHeight
                         rows={mockCategories}
                         columns={columns}
                         initialState={{
@@ -241,13 +241,13 @@ export function CategoriesPage() {
                                 p: 2,
                                 borderBottom: `1px solid ${isDarkMode ? '#262626' : '#E5E5E5'}`,
                             },
-                            height: '100%',
                         }}
                     />
                 </CustomTabPanel>
 
                 <CustomTabPanel value={tabValue} index={1}>
                     <DataGrid
+                        autoHeight
                         rows={mockTags}
                         columns={columns}
                         initialState={{
@@ -269,7 +269,6 @@ export function CategoriesPage() {
                                 p: 2,
                                 borderBottom: `1px solid ${isDarkMode ? '#262626' : '#E5E5E5'}`,
                             },
-                            height: '100%',
                         }}
                     />
                 </CustomTabPanel>

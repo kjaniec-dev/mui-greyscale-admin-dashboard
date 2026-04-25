@@ -182,8 +182,9 @@ export function TransactionsPage() {
                 />
             </Box>
 
-            <Box sx={{ height: 850, width: '100%' }}>
+            <Box sx={{ width: '100%' }}>
                 <DataGridComponent
+                    autoHeight
                     rowHeight={72}
                     rows={filteredTransactions}
                     columns={columns}
