@@ -1,4 +1,4 @@
-import { useForm, Controller } from 'react-hook-form';
+import { useForm, Controller, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import {
@@ -45,7 +45,6 @@ export function CouponForm({ defaultValues, onSubmit, isSubmitting = false, onCa
     const {
         control,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm<CouponFormData>({
         resolver: zodResolver(couponFormSchema),
@@ -60,7 +59,7 @@ export function CouponForm({ defaultValues, onSubmit, isSubmitting = false, onCa
         },
     });
 
-    const type = watch('type');
+    const type = useWatch({ control, name: 'type' });
 
     return (
         <Box

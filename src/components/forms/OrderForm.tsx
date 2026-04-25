@@ -1,4 +1,4 @@
-import { useForm, Controller, useFieldArray } from 'react-hook-form';
+import { useForm, Controller, useFieldArray, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import {
@@ -55,7 +55,6 @@ export function OrderForm({ defaultValues, onSubmit, isSubmitting = false }: Ord
     const {
         control,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm<OrderFormData>({
         resolver: zodResolver(orderFormSchema),
@@ -80,7 +79,7 @@ export function OrderForm({ defaultValues, onSubmit, isSubmitting = false }: Ord
         name: 'items',
     });
 
-    const watchItems = watch('items');
+    const watchItems = useWatch({ control, name: 'items' });
 
     const subtotal = watchItems?.reduce((sum, item) => {
         return sum + (item.quantity || 0) * (item.unitPrice || 0);
