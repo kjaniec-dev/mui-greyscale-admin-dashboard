@@ -1,6 +1,7 @@
 import { BarChart } from '@mui/x-charts/BarChart';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { PieChart } from '@mui/x-charts/PieChart';
+import { useTheme, useMediaQuery } from '@mui/material';
 import { getChartColors } from '../../theme';
 import type { BarChartConfig, ChartConfig, LineChartConfig, PieChartConfig } from './ChartCard';
 
@@ -10,6 +11,8 @@ interface ChartRendererProps {
 }
 
 export function ChartRenderer({ chart, isDarkMode }: ChartRendererProps) {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const chartColors = getChartColors(isDarkMode);
     const axisStyles = {
         '& .MuiChartsAxis-line': {
@@ -47,7 +50,7 @@ export function ChartRenderer({ chart, isDarkMode }: ChartRendererProps) {
                 }]}
                 sx={axisStyles}
                 grid={{ horizontal: true }}
-                margin={{ top: 20, right: 20, bottom: 40, left: 60 }}
+                margin={{ top: 20, right: 20, bottom: 40, left: isMobile ? 35 : 60 }}
             />
         );
     }
@@ -75,7 +78,7 @@ export function ChartRenderer({ chart, isDarkMode }: ChartRendererProps) {
                 layout={isHorizontal ? 'horizontal' : 'vertical'}
                 sx={axisStyles}
                 grid={{ horizontal: !isHorizontal, vertical: isHorizontal }}
-                margin={{ top: 20, right: 20, bottom: 40, left: isHorizontal ? 120 : 60 }}
+                margin={{ top: 20, right: 20, bottom: 40, left: isHorizontal ? (isMobile ? 80 : 120) : (isMobile ? 35 : 60) }}
             />
         );
     }

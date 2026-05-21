@@ -41,7 +41,7 @@ export function ChatSidebar({
                 display: 'flex',
                 flexDirection: 'column',
                 bgcolor: isDarkMode ? '#1A1A1A' : '#FAFAFA',
-                maxHeight: { xs: '40%', md: '100%' },
+                height: { xs: 260, md: '100%' },
             }}
         >
             {/* Search */}

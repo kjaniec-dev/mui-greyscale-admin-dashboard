@@ -53,7 +53,7 @@ export function ChatPage() {
     };
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 140px)' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', height: { xs: 'auto', md: 'calc(100vh - 140px)' } }}>
             {/* Page Header */}
             <Box sx={{ mb: 3 }}>
                 <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
@@ -72,7 +72,8 @@ export function ChatPage() {
                     flexDirection: { xs: 'column', md: 'row' },
                     border: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
                     borderRadius: 2,
-                    overflow: 'hidden',
+                    overflow: { xs: 'visible', md: 'hidden' },
+                    minHeight: { xs: 0, md: 'auto' },
                 }}
             >
                 {/* Sidebar */}
@@ -92,6 +93,7 @@ export function ChatPage() {
                             display: 'flex',
                             flexDirection: 'column',
                             bgcolor: isDarkMode ? '#171717' : '#FFFFFF',
+                            minHeight: { xs: 400, md: 0 },
                         }}
                     >
                         {/* Chat Header */}

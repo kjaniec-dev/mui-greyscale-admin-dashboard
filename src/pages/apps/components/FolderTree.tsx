@@ -106,11 +106,13 @@ export function FolderTree({ selectedFolderId, onSelectFolder }: FolderTreeProps
     return (
         <Box
             sx={{
-                width: 240,
+                width: { xs: '100%', md: 240 },
                 flexShrink: 0,
-                borderRight: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
+                borderRight: { xs: 'none', md: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}` },
+                borderBottom: { xs: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`, md: 'none' },
                 bgcolor: isDarkMode ? '#1A1A1A' : '#FAFAFA',
                 overflow: 'auto',
+                maxHeight: { xs: 180, md: 'none' },
             }}
         >
             <List sx={{ p: 1 }}>
