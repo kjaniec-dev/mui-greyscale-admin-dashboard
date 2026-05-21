@@ -344,7 +344,7 @@ export const TasksPage = () => {
                                         sx={{
                                             py: 2,
                                             pl: 2,
-                                            pr: 10, // Give room for secondary actions
+                                            pr: 14,
                                         }}
                                     >
                                         <ListItemIcon sx={{ minWidth: 48 }} onClick={(e) => { e.stopPropagation(); handleToggleComplete(task.id); }}>
@@ -374,7 +374,7 @@ export const TasksPage = () => {
                                                         {task.title}
                                                     </Typography>
                                                     {task.priority === 'High' && !task.completed && (
-                                                        <Chip label="High Priority" size="small" color="error" sx={{ height: 20, fontSize: '0.65rem', fontWeight: 600 }} />
+                                                        <Chip label="High Priority" size="small" color="error" sx={{ height: 20, fontSize: '0.65rem', fontWeight: 600, display: { xs: 'none', sm: 'flex' } }} />
                                                     )}
                                                 </Box>
                                             }

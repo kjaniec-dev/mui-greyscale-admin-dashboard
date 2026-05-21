@@ -50,7 +50,7 @@ export function FileManagerPage() {
     };
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 140px)' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', height: { xs: 'auto', md: 'calc(100vh - 140px)' } }}>
             {/* Page Header */}
             <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <Box>
@@ -79,9 +79,11 @@ export function FileManagerPage() {
                 sx={{
                     flex: 1,
                     display: 'flex',
+                    flexDirection: { xs: 'column', md: 'row' },
                     border: `1px solid ${isDarkMode ? '#404040' : '#E5E5E5'}`,
                     borderRadius: 2,
-                    overflow: 'hidden',
+                    overflow: { xs: 'visible', md: 'hidden' },
+                    minHeight: { xs: 0, md: 'auto' },
                 }}
             >
                 {/* Folder Tree */}

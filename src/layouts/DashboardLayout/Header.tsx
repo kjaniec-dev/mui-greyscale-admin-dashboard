@@ -75,13 +75,13 @@ export function Header({ onMenuClick, sidebarCollapsed, isMobile }: HeaderProps)
                     {/* Search */}
                     <Box
                         sx={{
-                            display: 'flex',
+                            display: { xs: 'none', sm: 'flex' },
                             alignItems: 'center',
                             bgcolor: 'action.hover',
                             borderRadius: 2,
                             px: 2,
                             py: 0.5,
-                            minWidth: { xs: 180, md: 280 },
+                            minWidth: { sm: 180, md: 280 },
                         }}
                     >
                         <SearchIcon sx={{ color: 'text.secondary', mr: 1 }} />
@@ -95,10 +95,14 @@ export function Header({ onMenuClick, sidebarCollapsed, isMobile }: HeaderProps)
                             }}
                         />
                     </Box>
+                    {/* Search icon only on mobile */}
+                    <IconButton sx={{ display: { xs: 'flex', sm: 'none' }, color: 'text.primary' }}>
+                        <SearchIcon />
+                    </IconButton>
                 </Box>
 
                 {/* Right side */}
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 0, sm: 0.5 } }}>
                     {/* Theme toggle */}
                     <Tooltip title={mode === 'light' ? 'Dark mode' : 'Light mode'}>
                         <IconButton onClick={toggleTheme} sx={{ color: 'text.primary' }}>
@@ -111,14 +115,14 @@ export function Header({ onMenuClick, sidebarCollapsed, isMobile }: HeaderProps)
 
                     {/* Settings */}
                     <Tooltip title="Settings">
-                        <IconButton sx={{ color: 'text.primary' }}>
+                        <IconButton sx={{ display: { xs: 'none', sm: 'flex' }, color: 'text.primary' }}>
                             <SettingsIcon />
                         </IconButton>
                     </Tooltip>
 
                     {/* Profile */}
                     <Tooltip title="Account">
-                        <IconButton onClick={handleProfileClick} sx={{ ml: 1 }}>
+                        <IconButton onClick={handleProfileClick} sx={{ ml: { xs: 0, sm: 1 } }}>
                             <Avatar
                                 sx={{
                                     width: 36,
